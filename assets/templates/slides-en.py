@@ -160,7 +160,6 @@ def content_slide(prs, eyebrow, title, body, page_num=None):
     add_text(s, title,
              Inches(1.2), Inches(1.2), Inches(11.33), Inches(1.2),
              font=SERIF, size=34, color=NEAR_BLACK)
-    add_line(s, Inches(1.2), Inches(2.55), Inches(1), weight_pt=1.5)
     add_text(s, body,
              Inches(1.2), Inches(3), Inches(11), Inches(3.5),
              font=SANS, size=18, color=DARK_WARM)

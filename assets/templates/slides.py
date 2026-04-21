@@ -165,7 +165,7 @@ def chapter_slide(prs, number, title):
 
 
 def content_slide(prs, eyebrow, title, body, page_num=None):
-    """内容页：小标题 + 大标题 + 短线 + 正文"""
+    """内容页：小标题 + 大标题 + 正文"""
     s = blank_slide(prs)
     # eyebrow
     add_text(s, eyebrow,
@@ -175,8 +175,6 @@ def content_slide(prs, eyebrow, title, body, page_num=None):
     add_text(s, title,
              Inches(1.2), Inches(1.2), Inches(11.33), Inches(1.2),
              font=SERIF, size=32, color=NEAR_BLACK)
-    # brand line
-    add_line(s, Inches(1.2), Inches(2.5), Inches(1), weight_pt=1.5)
     # body
     add_text(s, body,
              Inches(1.2), Inches(3), Inches(11), Inches(3.5),
