@@ -151,15 +151,31 @@
 
   /* ---------- Hero ---------- */
   .hero {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: end;
-    gap: 40px;
     padding-bottom: 40px;
     border-bottom: 1px solid var(--border-warm);
-    margin-bottom: 64px;
+    margin-bottom: 48px;
+  }
+  .hero-tokens {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+  }
+  .hero-tokens span {
+    display: flex;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--stone);
+    font-variant-numeric: tabular-nums;
+  }
+  .hero-tokens b {
+    color: var(--charcoal);
+    font-weight: 500;
   }
   .eyebrow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     font-family: var(--sans);
     font-size: 12px;
     font-weight: 600;
@@ -167,6 +183,20 @@
     text-transform: uppercase;
     color: var(--stone);
     margin: 0 0 18px;
+  }
+  .hero-links {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .hero-links a {
+    color: var(--stone);
+    display: flex;
+    align-items: center;
+    transition: color 0.15s;
+  }
+  .hero-links a:hover {
+    color: var(--charcoal);
   }
   .hero h1 {
     font-family: var(--serif);
@@ -179,7 +209,7 @@
   }
   .hero h1 .cn {
     display: inline-block;
-    margin-left: 10px;
+    margin-left: 16px;
     color: var(--brand);
   }
   .hero .tagline {
@@ -189,22 +219,10 @@
     line-height: 1.35;
     color: var(--olive);
     margin: 0;
-    max-width: 560px;
   }
-  .hero .meta {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 2px 12px;
-    text-align: right;
-    font-size: 12px;
-    line-height: 1.6;
-    color: var(--stone);
-    font-variant-numeric: tabular-nums;
-  }
-  .hero .meta b { color: var(--charcoal); font-weight: 500; }
 
   /* ---------- Section ---------- */
-  section { margin-bottom: 88px; }
+  section { margin-bottom: 96px; }
   .section-head { margin-bottom: 28px; }
   .section-num {
     font-family: var(--serif);
@@ -833,8 +851,9 @@
 
   /* Background text */
   .background-text {
-    font-size: 14px;
-    line-height: 1.65;
+    font-family: var(--serif);
+    font-size: 16px;
+    line-height: 1.6;
     color: var(--dark-warm);
   }
   .background-text p {
