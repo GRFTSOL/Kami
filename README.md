@@ -63,7 +63,7 @@ npx skills add tw93/kami -a codex -g -y
 
 The skill auto-triggers when you describe what you need, no slash command required.
 
-> "make a one-pager for my startup", "build me a resume", "write me a recommendation letter", "design a slide deck for my talk", "turn this into a polished white paper", "make a portfolio showcasing my projects", "帮我排版一份白皮书", "帮我做一份作品集", "生成一份项目方案"
+> make a one-pager for my startup / build me a resume / write me a recommendation letter / design a slide deck for my talk / turn this into a polished white paper / make a portfolio showcasing my projects / 帮我排版一份白皮书 / 帮我做一份作品集 / 生成一份项目方案
 
 ## Design
 
