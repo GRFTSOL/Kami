@@ -59,6 +59,12 @@ npx skills add tw93/kami -a claude-code -g -y
 npx skills add tw93/kami -a codex -g -y
 ```
 
+**Generic agents** (opencode, pi, and other tools that read from `~/.agents/`)
+
+```bash
+npx skills add tw93/kami -a '*' -g -y
+```
+
 **Claude Desktop**
 
 [Download from Releases](https://github.com/tw93/kami/releases), open Customize > Skills > "+" > Create skill, upload the ZIP.
