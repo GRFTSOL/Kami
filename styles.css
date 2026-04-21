@@ -255,8 +255,8 @@
   /* ---------- Manifesto ---------- */
   .manifesto {
     font-family: var(--serif);
-    font-size: 24px;
-    line-height: 1.45;
+    font-size: 20px;
+    line-height: 1.5;
     color: var(--near-black);
     margin: 0 0 28px;
     font-weight: 500;
@@ -956,7 +956,7 @@
   .hero .tagline { font-size: 17px; }
   .hero-tokens { gap: 14px; margin-top: 14px; }
   .section-title { font-size: 24px; }
-  .manifesto { font-size: 19px; line-height: 1.5; }
+  .manifesto { font-size: 17px; line-height: 1.5; }
   .subhead { font-size: 16px; margin: 28px 0 12px; }
 
   /* Grids: single column */
