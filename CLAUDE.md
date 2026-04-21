@@ -39,6 +39,7 @@ python3 scripts/build.py --check  # CSS 扫描 (rgba / 冷灰 / 行高)
 4. break-inside 在 flex 失效: 要包一层 block wrapper
 5. height: 100vh 在 @page 不准: 改用 mm 明确值
 6. SVG marker orient="auto" 不生效: WeasyPrint 不旋转 marker
+7. section 内文本不加 max-width: `.manifesto`、`.section-lede` 等内容文本应撑满 `.page` 容器宽度，不设 max-width。例外: `.type-sample` 和 `.footer .colophon` 窄是合理的。
 
 ## 字体
 
