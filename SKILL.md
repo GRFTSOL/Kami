@@ -7,7 +7,7 @@ description: 'Typeset any professional document: resumes, one-pagers, white pape
 
 **紙 · かみ** - the paper your deliverables land on.
 
-One design language across six document types: warm parchment canvas, ink-blue accent, serif-led hierarchy, tight editorial rhythm. Inspired by Anthropic's product visuals.
+Good content deserves good paper. One design language across six document types: warm parchment canvas, ink-blue accent, serif-led hierarchy, tight editorial rhythm.
 
 Part of `Kaku · Waza · Kami` - Kaku writes code, Waza drills habits, **Kami delivers documents**.
 

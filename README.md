@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://gw.alipayobjects.com/zos/k/vl/logo.svg" width="120" />
   <h1>Kami</h1>
-  <p><b>An AI skill for beautiful document typesetting.</b></p>
+  <p><b>Good content deserves good paper.</b></p>
   <a href="https://github.com/tw93/kami/stargazers"><img src="https://img.shields.io/github/stars/tw93/kami?style=flat-square" alt="Stars"></a>
   <a href="https://github.com/tw93/kami/releases"><img src="https://img.shields.io/github/v/tag/tw93/kami?label=version&style=flat-square" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="License"></a>
@@ -20,7 +20,34 @@ Kami holds one design idea across every format: warm parchment canvas, a single 
 
 It is part of the `Kaku · Waza · Kami` trilogy: Kaku (書く) is how you write code, Waza (技) is the habits you practice, Kami (紙) is the paper your work ships on.
 
-## Install
+## See it
+
+<table>
+<tr>
+  <td align="center" width="25%">
+    <a href="assets/demos/demo-tesla.pdf"><img src="assets/demos/demo-tesla.png" alt="Tesla company one-pager"></a>
+    <br><b>One-Pager</b> · 中文
+    <br><sub>Tesla 公司介绍 · 单页</sub>
+  </td>
+  <td align="center" width="25%">
+    <a href="assets/demos/demo-agent-slides.pdf"><img src="assets/demos/demo-agent-slides.png" alt="Agent keynote slides" /></a>
+    <br><b>Slides</b> · English
+    <br><sub>Agent keynote, 6 slides</sub>
+  </td>
+  <td align="center" width="25%">
+    <a href="assets/demos/demo-musk-resume.pdf"><img src="assets/demos/demo-musk-resume.png" alt="Elon Musk resume"></a>
+    <br><b>Resume</b> · English
+    <br><sub>Founder CV, 2 pages</sub>
+  </td>
+  <td align="center" width="25%">
+    <a href="assets/demos/demo-kaku.pdf"><img src="assets/demos/demo-kaku.png" alt="Kaku portfolio"></a>
+    <br><b>Portfolio</b> · 中文
+    <br><sub>Kaku 项目作品集 · 6 页</sub>
+  </td>
+</tr>
+</table>
+
+## Usage
 
 **Claude Code**
 
@@ -36,58 +63,31 @@ npx skills add tw93/kami -a codex -g -y
 
 **Claude Desktop**
 
-[Download ZIP](https://github.com/tw93/kami/archive/refs/heads/main.zip), open Customize > Skills > "+" > Create skill, upload the ZIP.
+[Download from Releases](https://github.com/tw93/kami/releases), open Customize > Skills > "+" > Create skill, upload the ZIP.
 
-## See it
+The skill auto-triggers when you describe what you need, no slash command required.
 
-Just tell Claude what you need: "帮我生成一份白皮书", "生成一份项目方案", "build me a resume", "写一份推荐信", "make a slide deck for my talk", "帮我做一份作品集". The skill auto-triggers, no slash command needed.
-
-<table>
-<tr>
-  <td align="center" width="25%">
-    <a href="assets/demos/demo-tesla.pdf"><img src="assets/demos/demo-tesla.png" alt="Tesla company one-pager"></a>
-    <br><b>One-Pager</b> · 中文
-    <br><sub>Tesla 公司介绍 · 单页 · <a href="assets/demos/demo-tesla.pdf">PDF</a></sub>
-  </td>
-  <td align="center" width="25%">
-    <a href="assets/demos/demo-agent-slides.pdf"><img src="assets/demos/demo-agent-slides-1.png" alt="Agent keynote cover" /></a>
-    <a href="assets/demos/demo-agent-slides.pdf"><img src="assets/demos/demo-agent-slides-3.png" alt="Agent keynote content slide" /></a>
-    <br><b>Slides</b> · English
-    <br><sub>Agent keynote, 6 slides · <a href="assets/demos/demo-agent-slides.pdf">PDF</a></sub>
-  </td>
-  <td align="center" width="25%">
-    <a href="assets/demos/demo-musk-resume.pdf"><img src="assets/demos/demo-musk-resume.png" alt="Elon Musk resume"></a>
-    <br><b>Resume</b> · English
-    <br><sub>Founder CV, 2 pages strict · <a href="assets/demos/demo-musk-resume.pdf">PDF</a></sub>
-  </td>
-  <td align="center" width="25%">
-    <a href="assets/demos/demo-kaku.pdf"><img src="assets/demos/demo-kaku.png" alt="Kaku portfolio"></a>
-    <br><b>Portfolio</b> · 中文
-    <br><sub>Kaku 项目作品集 · 6 页 · <a href="assets/demos/demo-kaku.pdf">PDF</a></sub>
-  </td>
-</tr>
-</table>
+> "make a one-pager for my startup", "build me a resume", "write me a recommendation letter", "design a slide deck for my talk", "turn this into a polished white paper", "make a portfolio showcasing my projects", "帮我排版一份白皮书", "帮我做一份作品集", "生成一份项目方案"
 
 ## Design
 
-Six document types, each with Chinese and English variants: One-Pager, Long Doc, Letter, Portfolio, Resume, and Slides. Three inline SVG diagram primitives also ship. Kami picks the right variant based on the language you write in.
+Warm parchment canvas, ink blue as the sole accent, serif carries authority, no hard shadows or flashy palettes. This is not a UI framework; it is an aesthetic constraint system for printed matter. Quality documents read like literature, not dashboards.
 
-Eight invariants hold across every document:
+Six document types (One-Pager, Long Doc, Letter, Portfolio, Resume, Slides), each with Chinese and English variants. Three inline SVG diagram primitives (architecture, flowchart, quadrant) also ship. Kami picks the right variant based on the language you write in.
 
-1. Page background `#f5f4ed` parchment, not pure white
-2. Single accent color: ink-blue `#1B365D`
-3. All neutrals warm-toned. No `#6b7280`, no `#888`
-4. English: serif for headlines and body. Chinese: serif headlines, sans body. Sans for UI elements only
-5. Serif weight locked at 500. No bold headlines
-6. Line-heights: tight headlines 1.1 to 1.3, dense body 1.4 to 1.45, reading body 1.5 to 1.55. Never 1.6+
-7. Tag backgrounds must be solid hex. `rgba()` triggers a WeasyPrint double-rectangle bug
-8. Depth via ring shadow or whisper shadow. No hard drop shadows
+| Element | Rule |
+|---|---|
+| Canvas | `#f5f4ed` parchment, never pure white |
+| Accent | Ink blue `#1B365D` only, no second chromatic hue |
+| Neutrals | All warm-toned (yellow-brown undertone), no cool blue-grays |
+| Serif | Weight locked at 500, never bold. Single weight is the signature |
+| Line-height | Tight titles 1.1-1.3, dense body 1.4-1.45, reading body 1.5-1.55. Never 1.6+ |
+| Shadows | Ring or whisper only, no hard drop shadows |
+| Tags | Solid hex backgrounds only. `rgba()` triggers a WeasyPrint double-rectangle bug |
 
-**Chinese fonts**: TsangerJinKai02 serif + Source Han Sans. TsangerJinKai is a commercial font, for commercial use please obtain a license from [tsanger.cn](https://tsanger.cn). Fallback: Noto Serif CJK SC, Songti SC, Georgia.
+**Fonts**: Chinese uses TsangerJinKai02 serif + Source Han Sans (TsangerJinKai is commercial, license from [tsanger.cn](https://tsanger.cn)). English uses Newsreader serif + Inter sans, both OFL open source.
 
-**English fonts**: Newsreader serif for headlines and body + Inter sans for UI elements only, both OFL open source. Fallback: Charter/Georgia, Helvetica Neue/Arial.
-
-Full spec: [references/design.md](references/design.md), [references/design.en.md](references/design.en.md). Cheatsheet: [CHEATSHEET.md](CHEATSHEET.md), [CHEATSHEET.en.md](CHEATSHEET.en.md).
+Full spec: [design.md](references/design.md) / [design.en.md](references/design.en.md). Cheatsheet: [CHEATSHEET.md](CHEATSHEET.md) / [CHEATSHEET.en.md](CHEATSHEET.en.md).
 
 ## Background
 

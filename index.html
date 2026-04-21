@@ -17,17 +17,17 @@
     <div>
       <p class="eyebrow">Design System · v1.0 · April 2026</p>
       <h1>Kami<span class="cn">紙</span></h1>
-      <p class="tagline">AI 时代的文档排版 skill。六种文档，一套设计语言: 暖米纸底，油墨蓝点缀，serif 主导层级，编辑级留白。</p>
+      <p class="tagline">好内容，值得好纸面。六种文档，一套设计语言: 暖米纸底，油墨蓝点缀，serif 主导层级，编辑级留白。</p>
       <div style="margin-top:18px; display:flex; gap:10px;">
         <a href="https://github.com/tw93/kami" class="btn btn-primary" style="text-decoration:none; font-size:14px; padding:10px 20px;">GitHub</a>
       </div>
     </div>
     <div class="meta">
-      <div><b>Canvas</b>&nbsp;&nbsp;#f5f4ed</div>
-      <div><b>Accent</b>&nbsp;&nbsp;#1B365D</div>
-      <div><b>Serif</b>&nbsp;&nbsp;TsangerJinKai / Newsreader</div>
-      <div><b>Sans</b>&nbsp;&nbsp;Source Han Sans / Inter</div>
-      <div style="margin-top:10px; color: var(--olive);">六种文档 · 一套语言</div>
+      <b>Canvas</b><span>#f5f4ed</span>
+      <b>Accent</b><span>#1B365D</span>
+      <b>Serif</b><span>TsangerJinKai / Newsreader</span>
+      <b>Sans</b><span>Source Han Sans / Inter</span>
+      <span style="grid-column:1/-1; margin-top:10px; color:var(--olive);">六种文档 · 一套语言</span>
     </div>
   </header>
 
@@ -45,8 +45,7 @@
         <p class="demo-desc">Tesla 公司介绍，单页 A4</p>
       </div>
       <div class="demo-card">
-        <a href="assets/demos/demo-agent-slides.pdf" target="_blank"><img src="assets/demos/demo-agent-slides-1.png" alt="Agent slides cover"></a>
-        <a href="assets/demos/demo-agent-slides.pdf" target="_blank"><img src="assets/demos/demo-agent-slides-3.png" alt="Agent slides content" style="margin-top:8px;"></a>
+        <a href="assets/demos/demo-agent-slides.pdf" target="_blank"><img src="assets/demos/demo-agent-slides.png" alt="Agent slides"></a>
         <p class="demo-title">Slides · English</p>
         <p class="demo-desc">Agent keynote, 6 slides</p>
       </div>
@@ -66,9 +65,9 @@
   <!-- ============ 01 INSTALL ============ -->
   <section>
     <div class="section-head">
-      <p class="section-num">01 · Install</p>
-      <h2 class="section-title">安装</h2>
-      <p class="section-lede">直接告诉 Claude 你要什么: "帮我生成一份白皮书"、"做一份简历"、"帮我做一份作品集"。skill 会自动触发，不需要斜杠命令。</p>
+      <p class="section-num">01 · Usage</p>
+      <h2 class="section-title">使用</h2>
+      <p class="section-lede">直接告诉 Claude 你要什么: "帮我排版一份白皮书"、"做一份简历"、"帮我做一份作品集"。skill 会自动触发，不需要斜杠命令。</p>
     </div>
 <pre class="code"><span class="c"># Claude Code</span>
 npx skills add tw93/kami -a claude-code -g -y
@@ -114,7 +113,7 @@ npx skills add tw93/kami -a codex -g -y</pre>
 
     <h3 class="subhead">主调 · Brand</h3>
     <div class="swatches">
-      <div class="swatch brand"><div class="chip" style="background:#1B365D"></div><div class="info"><p class="name">Ink Blue</p><p class="role">主色 · CTA · section 下划线</p><span class="hex">#1B365D</span></div></div>
+      <div class="swatch brand"><div class="chip" style="background:#1B365D"></div><div class="info"><p class="name">Ink Blue</p><p class="role">主色 · CTA · section 竖线</p><span class="hex">#1B365D</span></div></div>
       <div class="swatch"><div class="chip" style="background:#2D5A8A"></div><div class="info"><p class="name">Ink Light</p><p class="role">深色底上的链接 · 亮变体</p><span class="hex">#2D5A8A</span></div></div>
       <div class="swatch"><div class="chip" style="background:#30302e"></div><div class="info"><p class="name" style="color:var(--deep-dark)">Dark Surface</p><p class="role">深色主题容器 · 暖炭灰</p><span class="hex">#30302E</span></div></div>
       <div class="swatch"><div class="chip" style="background:#b53333"></div><div class="info"><p class="name">Error</p><p class="role">错误，深暖红，不刺眼</p><span class="hex">#B53333</span></div></div>
@@ -320,7 +319,7 @@ npx skills add tw93/kami -a codex -g -y</pre>
 
       <div class="comp">
         <h4>Section Title</h4>
-        <p class="hint">serif 500 + 0.5pt 品牌色下划线，留足呼吸间距</p>
+        <p class="hint">serif 500 + 2.5pt 品牌色左侧竖线，留足呼吸间距</p>
         <div class="demo">
           <span class="sample-section-title">核心项目 · Selected Works</span>
         </div>
@@ -343,8 +342,9 @@ npx skills add tw93/kami -a codex -g -y</pre>
 .section-title {
   font-family: <span class="k">serif</span>;
   font-weight: <span class="k">500</span>;
-  border-bottom: <span class="k">1pt</span> solid
+  border-left: <span class="k">2.5pt</span> solid
     var(--brand);
+  padding-left: <span class="k">8pt</span>;
 }</pre>
       </div>
 
@@ -377,12 +377,12 @@ npx skills add tw93/kami -a codex -g -y</pre>
       <tr><td class="task">大标题</td><td class="how">serif <code>500</code>，字号按层级，line-height <code>1.10–1.30</code></td></tr>
       <tr><td class="task">正文阅读</td><td class="how">sans <code>400</code>，<code>9.5–10 pt</code>，line-height <code>1.55</code></td></tr>
       <tr><td class="task">强调一个数字</td><td class="how"><code>color: var(--brand)</code>，不要粗体</td></tr>
-      <tr><td class="task">分隔两段内容</td><td class="how"><code>1pt</code> 品牌色 border-bottom，或 <code>0.5pt</code> 暖灰虚线</td></tr>
+      <tr><td class="task">分隔两段内容</td><td class="how"><code>2.5pt</code> 品牌色左侧竖线，或 <code>0.5pt</code> 暖灰虚线</td></tr>
       <tr><td class="task">引用某人的话</td><td class="how">左 <code>2pt</code> 品牌色实线 + olive 色</td></tr>
       <tr><td class="task">展示代码</td><td class="how">ivory 底 + <code>0.5pt</code> border + <code>6pt</code> 圆角 + mono 字体</td></tr>
       <tr><td class="task">区分主次按钮</td><td class="how">Primary 品牌色填充 + ivory 字；Secondary warm-sand + charcoal</td></tr>
       <tr><td class="task">标注某张特殊卡片</td><td class="how"><code>border: 0.5pt solid var(--brand)</code> 或 <code>border-left: 3pt</code></td></tr>
-      <tr><td class="task">章节开始</td><td class="how">serif 标题 + 下方 <code>1pt</code> 品牌色实线</td></tr>
+      <tr><td class="task">章节开始</td><td class="how">serif 标题 + 左侧 <code>2.5pt</code> 品牌色竖线</td></tr>
       <tr><td class="task">文档封面</td><td class="how">单页 Display 字号 + 右对齐作者/日期 + 大量留白</td></tr>
       <tr><td class="task">数据卡</td><td class="how">ivory 底 + <code>8pt</code> 圆角 + serif 大数字（油墨蓝） + sans 小标签</td></tr>
     </table>
@@ -421,7 +421,7 @@ npx skills add tw93/kami -a codex -g -y</pre>
       </div>
       <div class="yes">
         <h5>Do</h5>
-        <p>Serif 固定 500。需要更强存在感用字号或 1pt 品牌色下划线，不加粗。</p>
+        <p>Serif 固定 500。需要更强存在感用字号或品牌色左侧竖线，不加粗。</p>
       </div>
 
       <div class="no">
@@ -457,7 +457,7 @@ npx skills add tw93/kami -a codex -g -y</pre>
       </svg>
       <div>
         <p class="wm-name">Kami · 紙</p>
-        <p class="wm-sub">AI 时代的文档排版 skill。</p>
+        <p class="wm-sub">好内容，值得好纸面。</p>
       </div>
     </div>
     <div class="colophon">
@@ -469,5 +469,16 @@ npx skills add tw93/kami -a codex -g -y</pre>
   </footer>
 
 </main>
+<script>
+(function(){
+  var sw=document.querySelector('.lang-switch'),last=0;
+  window.addEventListener('scroll',function(){
+    var y=window.scrollY;
+    if(y>80&&y>last)sw.classList.add('hidden');
+    else sw.classList.remove('hidden');
+    last=y;
+  },{passive:true});
+})();
+</script>
 </body>
 </html>

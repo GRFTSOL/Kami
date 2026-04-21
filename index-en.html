@@ -17,17 +17,17 @@
     <div>
       <p class="eyebrow">Design System · v1.0 · April 2026</p>
       <h1>Kami<span class="cn">紙</span></h1>
-      <p class="tagline">An AI skill for beautiful document typesetting. One design language across six document types: warm parchment, ink-blue accent, serif-led hierarchy, editorial whitespace.</p>
+      <p class="tagline">Good content deserves good paper. One design language across six document types: warm parchment, ink-blue accent, serif-led hierarchy, editorial whitespace.</p>
       <div style="margin-top:18px; display:flex; gap:10px;">
         <a href="https://github.com/tw93/kami" class="btn btn-primary" style="text-decoration:none; font-size:14px; padding:10px 20px;">GitHub</a>
       </div>
     </div>
     <div class="meta">
-      <div><b>Canvas</b>&nbsp;&nbsp;#f5f4ed</div>
-      <div><b>Accent</b>&nbsp;&nbsp;#1B365D</div>
-      <div><b>Serif</b>&nbsp;&nbsp;Newsreader / TsangerJinKai</div>
-      <div><b>Sans</b>&nbsp;&nbsp;Inter / Source Han Sans</div>
-      <div style="margin-top:10px; color: var(--olive);">Six templates · One language</div>
+      <b>Canvas</b><span>#f5f4ed</span>
+      <b>Accent</b><span>#1B365D</span>
+      <b>Serif</b><span>Newsreader / TsangerJinKai</span>
+      <b>Sans</b><span>Inter / Source Han Sans</span>
+      <span style="grid-column:1/-1; margin-top:10px; color:var(--olive);">Six templates · One language</span>
     </div>
   </header>
 
@@ -45,8 +45,7 @@
         <p class="demo-desc">Tesla company profile, single A4</p>
       </div>
       <div class="demo-card">
-        <a href="assets/demos/demo-agent-slides.pdf" target="_blank"><img src="assets/demos/demo-agent-slides-1.png" alt="Agent slides cover"></a>
-        <a href="assets/demos/demo-agent-slides.pdf" target="_blank"><img src="assets/demos/demo-agent-slides-3.png" alt="Agent slides content" style="margin-top:8px;"></a>
+        <a href="assets/demos/demo-agent-slides.pdf" target="_blank"><img src="assets/demos/demo-agent-slides.png" alt="Agent slides"></a>
         <p class="demo-title">Slides</p>
         <p class="demo-desc">Agent keynote, 6 slides</p>
       </div>
@@ -66,9 +65,9 @@
   <!-- ============ 01 INSTALL ============ -->
   <section>
     <div class="section-head">
-      <p class="section-num">01 · Install</p>
-      <h2 class="section-title">Install</h2>
-      <p class="section-lede">Just tell Claude what you need: "build me a resume", "make a slide deck for my talk", "turn this into a polished PDF". The skill auto-triggers, no slash command needed.</p>
+      <p class="section-num">01 · Usage</p>
+      <h2 class="section-title">Usage</h2>
+      <p class="section-lede">Just tell Claude what you need: "build me a resume", "make a one-pager for my startup", "design a slide deck for my talk". The skill auto-triggers, no slash command needed.</p>
     </div>
 <pre class="code"><span class="c"># Claude Code</span>
 npx skills add tw93/kami -a claude-code -g -y
@@ -114,7 +113,7 @@ npx skills add tw93/kami -a codex -g -y</pre>
 
     <h3 class="subhead">Brand</h3>
     <div class="swatches">
-      <div class="swatch brand"><div class="chip" style="background:#1B365D"></div><div class="info"><p class="name">Ink Blue</p><p class="role">Primary color · CTA · section underlines</p><span class="hex">#1B365D</span></div></div>
+      <div class="swatch brand"><div class="chip" style="background:#1B365D"></div><div class="info"><p class="name">Ink Blue</p><p class="role">Primary color · CTA · section left bar</p><span class="hex">#1B365D</span></div></div>
       <div class="swatch"><div class="chip" style="background:#2D5A8A"></div><div class="info"><p class="name">Ink Light</p><p class="role">Links on dark surfaces · lighter variant</p><span class="hex">#2D5A8A</span></div></div>
       <div class="swatch"><div class="chip" style="background:#30302e"></div><div class="info"><p class="name" style="color:var(--deep-dark)">Dark Surface</p><p class="role">Dark theme container · warm charcoal</p><span class="hex">#30302E</span></div></div>
       <div class="swatch"><div class="chip" style="background:#b53333"></div><div class="info"><p class="name">Error</p><p class="role">Error state, deep warm red</p><span class="hex">#B53333</span></div></div>
@@ -301,7 +300,7 @@ npx skills add tw93/kami -a codex -g -y</pre>
       </div>
       <div class="comp">
         <h4>Section Title</h4>
-        <p class="hint">serif 500 + 0.5pt brand underline with breathing room</p>
+        <p class="hint">serif 500 + 2.5pt brand left bar with breathing room</p>
         <div class="demo">
           <span class="sample-section-title">Selected Works · Projects</span>
         </div>
@@ -322,8 +321,9 @@ npx skills add tw93/kami -a codex -g -y</pre>
 .section-title {
   font-family: <span class="k">serif</span>;
   font-weight: <span class="k">500</span>;
-  border-bottom: <span class="k">1pt</span> solid
+  border-left: <span class="k">2.5pt</span> solid
     var(--brand);
+  padding-left: <span class="k">8pt</span>;
 }</pre>
       </div>
       <div class="comp">
@@ -354,12 +354,12 @@ npx skills add tw93/kami -a codex -g -y</pre>
       <tr><td class="task">Large headline</td><td class="how">serif <code>500</code>, size by hierarchy, line-height <code>1.10-1.30</code></td></tr>
       <tr><td class="task">Reading body</td><td class="how">serif <code>400</code>, <code>9.5-10 pt</code>, line-height <code>1.55</code></td></tr>
       <tr><td class="task">Emphasize a number</td><td class="how"><code>color: var(--brand)</code>, not bold</td></tr>
-      <tr><td class="task">Separate two sections</td><td class="how"><code>1pt</code> brand border-bottom, or <code>0.5pt</code> warm-gray dashed</td></tr>
+      <tr><td class="task">Separate two sections</td><td class="how"><code>2.5pt</code> brand left bar, or <code>0.5pt</code> warm-gray dashed</td></tr>
       <tr><td class="task">Quote someone</td><td class="how">Left <code>2pt</code> brand solid + olive text</td></tr>
       <tr><td class="task">Show code</td><td class="how">Ivory bg + <code>0.5pt</code> border + <code>6pt</code> radius + mono font</td></tr>
       <tr><td class="task">Primary vs secondary</td><td class="how">Primary: brand fill + ivory text; Secondary: warm-sand + charcoal</td></tr>
       <tr><td class="task">Mark a special card</td><td class="how"><code>border: 0.5pt solid var(--brand)</code> or <code>border-left: 3pt</code></td></tr>
-      <tr><td class="task">Begin a section</td><td class="how">Serif title + <code>1pt</code> brand underline below</td></tr>
+      <tr><td class="task">Begin a section</td><td class="how">Serif title + <code>2.5pt</code> brand left bar</td></tr>
       <tr><td class="task">Document cover</td><td class="how">Single page, Display size + right-aligned author/date + generous whitespace</td></tr>
       <tr><td class="task">Data card</td><td class="how">Ivory bg + <code>8pt</code> radius + serif large number, ink blue + sans small label</td></tr>
     </table>
@@ -396,7 +396,7 @@ npx skills add tw93/kami -a codex -g -y</pre>
       </div>
       <div class="yes">
         <h5>Do</h5>
-        <p>Keep serif at 500. For stronger presence, increase size or add a 1pt brand underline. Never go bold.</p>
+        <p>Keep serif at 500. For stronger presence, increase size or add a brand left bar. Never go bold.</p>
       </div>
       <div class="no">
         <h5>Don't</h5>
@@ -431,7 +431,7 @@ npx skills add tw93/kami -a codex -g -y</pre>
       </svg>
       <div>
         <p class="wm-name">Kami · 紙</p>
-        <p class="wm-sub">An AI skill for beautiful document typesetting.</p>
+        <p class="wm-sub">Good content deserves good paper.</p>
       </div>
     </div>
     <div class="colophon">
@@ -443,5 +443,16 @@ npx skills add tw93/kami -a codex -g -y</pre>
   </footer>
 
 </main>
+<script>
+(function(){
+  var sw=document.querySelector('.lang-switch'),last=0;
+  window.addEventListener('scroll',function(){
+    var y=window.scrollY;
+    if(y>80&&y>last)sw.classList.add('hidden');
+    else sw.classList.remove('hidden');
+    last=y;
+  },{passive:true});
+})();
+</script>
 </body>
 </html>
