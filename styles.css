@@ -994,6 +994,7 @@
   /* Lang switch + eyebrow */
   .lang-switch { top: 16px; right: 16px; }
   .eyebrow { justify-content: flex-start; gap: 8px; }
+  .eyebrow-date { display: none; }
   .hero-tokens { display: none; }
 
   /* Misc */
