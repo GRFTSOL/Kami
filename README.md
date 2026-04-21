@@ -12,13 +12,9 @@
 
 ## Why
 
-Kami (紙, かみ) is the Japanese word for paper: the quiet surface on which a finished idea finally lands.
+Kami (紙, かみ) is the Japanese word for paper: the quiet surface on which a finished idea finally lands. Most document design drifts into two failure modes: generic corporate gray, or SaaS hype gradients. Neither reads like something a person actually made with care.
 
-Most document design drifts into two failure modes: generic corporate gray, or SaaS hype gradients. Neither reads like something a person actually made with care.
-
-Kami holds one design idea across every format: warm parchment canvas, a single ink-blue accent, serif for authority, sans for utility, editorial whitespace tuned for print.
-
-It is part of the `Kaku · Waza · Kami` trilogy: Kaku (書く) is how you write code, Waza (技) is the habits you practice, Kami (紙) is the paper your work ships on.
+Kami holds one design idea across every format: warm parchment canvas, a single ink-blue accent, serif for authority, sans for utility, editorial whitespace tuned for print. It is part of the `Kaku · Waza · Kami` trilogy: Kaku (書く) writes code, Waza (技) drills habits, Kami (紙) ships documents.
 
 ## See it
 
@@ -85,7 +81,7 @@ Six document types (One-Pager, Long Doc, Letter, Portfolio, Resume, Slides), eac
 | Shadows | Ring or whisper only, no hard drop shadows |
 | Tags | Solid hex backgrounds only. `rgba()` triggers a WeasyPrint double-rectangle bug |
 
-**Fonts**: Chinese uses TsangerJinKai02 serif + Source Han Sans (TsangerJinKai is commercial, license from [tsanger.cn](https://tsanger.cn)). English uses Newsreader serif + Inter sans, both OFL open source.
+**Fonts**: Chinese uses TsangerJinKai02 serif + Source Han Sans. TsangerJinKai is free for personal use, commercial use requires a license from [tsanger.cn](https://tsanger.cn). English uses Newsreader serif + Inter sans, both OFL open source.
 
 Full spec: [design.md](references/design.md) / [design.en.md](references/design.en.md). Cheatsheet: [CHEATSHEET.md](CHEATSHEET.md) / [CHEATSHEET.en.md](CHEATSHEET.en.md).
 
