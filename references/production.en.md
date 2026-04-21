@@ -270,7 +270,7 @@ Every entry below came from a real failure. Check here first when something look
 | 0.08 | `#EEF2F7` |
 | 0.14 | `#E4ECF5` |
 | **0.18** | **`#E4ECF5`** ← default |
-| 0.22 | `#ead3c7` |
+| 0.22 | `#D0DCE9` |
 | 0.30 | `#D6E1EE` |
 
 Formula: `solid_channel = base + (foreground - base) × alpha`. Different base colors (e.g. ivory) need re-computing.

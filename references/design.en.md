@@ -94,7 +94,7 @@ Ink Blue `#1B365D` over parchment `#f5f4ed`:
 | 0.08 | `#EEF2F7` |
 | 0.14 | `#E4ECF5` |
 | **0.18** | **`#E4ECF5`** ← default tag |
-| 0.22 | `#ead3c7` |
+| 0.22 | `#D0DCE9` |
 | 0.30 | `#D6E1EE` |
 
 ---
@@ -294,12 +294,13 @@ ul, ol {
 ul li::marker { color: var(--brand); }
 ```
 
-Editorial bookish variant - **em-dash instead of bullet**:
+Editorial bookish variant - **en-dash instead of bullet**:
 
 ```css
 ul.dash { list-style: none; padding-left: 0; }
+ul.dash li { padding-left: 14pt; }
 ul.dash li::before {
-  content: "-  ";
+  content: "\2013";
   color: var(--brand);
 }
 ```

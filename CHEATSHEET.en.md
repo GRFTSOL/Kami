@@ -41,7 +41,7 @@ One-page quick reference. Scan before filling a template or tweaking a detail. F
 | 0.08 | `#EEF2F7` |
 | 0.14 | `#E4ECF5` |
 | **0.18** | **`#E4ECF5`** ← default tag |
-| 0.22 | `#ead3c7` |
+| 0.22 | `#D0DCE9` |
 | 0.30 | `#D6E1EE` |
 
 ## Type (print pt)
@@ -161,6 +161,38 @@ Screen (px) ≈ pt × 1.33.
   line-height: 1.55;
 }
 ```
+
+## Diagram components
+
+Three built-in diagram types. Extract the `<svg>` block and embed in a `<figure>` in long-doc / portfolio:
+
+| Type | File | Use |
+|---|---|---|
+| Architecture | `assets/diagrams/architecture.html` | System components and connections |
+| Flowchart | `assets/diagrams/flowchart.html` | Decision branches and flows |
+| Quadrant | `assets/diagrams/quadrant.html` | 2×2 positioning |
+
+Usage: extract the `<svg>` block from the HTML file and paste into the template's `<figure>` container.
+
+## Dark section
+
+Alternate light/dark rhythm: add `.sd-alt` to any section container.
+
+- Background switches to `--deep-dark` (`#141413`)
+- Body text switches to `--warm-silver` (`#b0aea5`)
+- Headings switch to `--ivory`
+- Appropriate for: section-level light/dark alternation in long-doc / portfolio
+- Restriction: showcase pages only, never in print templates
+
+## --verify checks
+
+`python3 scripts/build.py --verify <file>` runs in sequence:
+
+1. Source file exists
+2. `{{...}}` placeholder scan (unfilled placeholders are errors)
+3. WeasyPrint render to PDF
+4. Page count check (overflow warning if exceeds max_pages)
+5. Font embedding check (Chinese expects TsangerJinKai02, English expects Newsreader / Inter; missing fonts trigger a fallback warning)
 
 ## Quick decisions
 

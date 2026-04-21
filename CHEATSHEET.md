@@ -41,7 +41,7 @@
 | 0.08 | `#EEF2F7` |
 | 0.14 | `#E4ECF5` |
 | **0.18** | **`#E4ECF5`** ← 默认 tag |
-| 0.22 | `#ead3c7` |
+| 0.22 | `#D0DCE9` |
 | 0.30 | `#D6E1EE` |
 
 ## 字号（印刷品 pt）
@@ -149,6 +149,38 @@
   line-height: 1.55;
 }
 ```
+
+## 图表组件
+
+三种内置图表，嵌入 long-doc / portfolio 的 `<figure>` 中：
+
+| 类型 | 文件 | 用途 |
+|---|---|---|
+| Architecture | `assets/diagrams/architecture.html` | 系统组件和连接关系 |
+| Flowchart | `assets/diagrams/flowchart.html` | 决策分支流程 |
+| Quadrant | `assets/diagrams/quadrant.html` | 2×2 象限定位 |
+
+用法：从 HTML 文件提取 `<svg>` 块，直接嵌入模板的 `<figure>` 容器。
+
+## Dark Section
+
+明暗交替节奏：在容器上加 `.sd-alt`。
+
+- 背景切 `--deep-dark`（`#141413`）
+- 正文切 `--warm-silver`（`#b0aea5`）
+- 标题切 `--ivory`
+- 适用：长文档 / portfolio 的 section 级明暗切换
+- 限制：仅 showcase 页面使用，打印模板不用 dark section
+
+## --verify 验证内容
+
+`python3 scripts/build.py --verify <file>` 依次检查：
+
+1. 源文件存在性
+2. `{{...}}` 占位符扫描（未替换内容报错）
+3. WeasyPrint 渲染 PDF
+4. 页数检查（超 max_pages 报溢出）
+5. 字体嵌入检查（中文期望 TsangerJinKai02，英文期望 Newsreader / Inter，缺失则警告 fallback）
 
 ## 决策速查
 

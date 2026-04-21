@@ -742,9 +742,9 @@
     line-height: 1.55;
     color: var(--charcoal);
   }
-  ul.dash li { position: relative; padding-left: 18px; }
+  ul.dash li { position: relative; padding-left: 14px; }
   ul.dash li::before {
-    content: "-";
+    content: "\2013";
     position: absolute;
     left: 0;
     color: var(--brand);
