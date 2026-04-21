@@ -2,7 +2,7 @@
 
 一页纸速查。填模板 / 调细节前扫一眼。完整规范在 `references/design.md`。
 
-## 八条铁律
+## 九条铁律
 
 1. 页面背景 `#f5f4ed`（parchment），不用纯白
 2. 强调色只有油墨蓝 `#1B365D`
@@ -23,7 +23,7 @@
 | Dark Surface | `#30302e` | 深色容器 |
 | Deep Dark | `#141413` | 深色页面底 |
 | **Brand** | **`#1B365D`** | **强调 · CTA · 标题左侧竖线（全文 ≤ 5%）** |
-| Brand Coral | `#2D5A8A` | 深底上的链接 |
+| Brand Light | `#2D5A8A` | 深底上的链接 |
 | Near Black | `#141413` | 主文字 |
 | Dark Warm | `#3d3d3a` | 次级深色 / 链接 |
 | Charcoal | `#4d4c48` | 按钮文字 / 高密度正文 |

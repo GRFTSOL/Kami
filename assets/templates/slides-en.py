@@ -22,17 +22,17 @@ from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
 # Design system constants
 # ═══════════════════════════════════════════════════════════
 
-PARCHMENT  = RGBColor(0xf5, 0xf4, 0xed)
-IVORY      = RGBColor(0xfa, 0xf9, 0xf5)
-BRAND      = RGBColor(0x1B, 0x36, 0x5D)
-BRAND_DEEP = RGBColor(0x1B, 0x36, 0x5D)
-NEAR_BLACK = RGBColor(0x14, 0x14, 0x13)
-DARK_WARM  = RGBColor(0x3d, 0x3d, 0x3a)
-CHARCOAL   = RGBColor(0x4d, 0x4c, 0x48)
-OLIVE      = RGBColor(0x5e, 0x5d, 0x59)
-STONE      = RGBColor(0x87, 0x86, 0x7f)
-BORDER     = RGBColor(0xe8, 0xe6, 0xdc)
-WHITE      = RGBColor(0xff, 0xff, 0xff)
+PARCHMENT   = RGBColor(0xf5, 0xf4, 0xed)
+IVORY       = RGBColor(0xfa, 0xf9, 0xf5)
+BRAND       = RGBColor(0x1B, 0x36, 0x5D)
+BRAND_DEEP  = RGBColor(0x1B, 0x36, 0x5D)
+NEAR_BLACK  = RGBColor(0x14, 0x14, 0x13)
+DARK_WARM   = RGBColor(0x3d, 0x3d, 0x3a)
+CHARCOAL    = RGBColor(0x4d, 0x4c, 0x48)
+OLIVE       = RGBColor(0x5e, 0x5d, 0x59)
+STONE       = RGBColor(0x87, 0x86, 0x7f)
+BORDER      = RGBColor(0xe8, 0xe6, 0xdc)
+WHITE       = RGBColor(0xff, 0xff, 0xff)
 
 # English Silicon Valley stack. PowerPoint falls back silently if the
 # primary face is not installed on the viewing machine.
@@ -112,7 +112,7 @@ def cover_slide(prs, title, subtitle, author, date):
     add_line(s, Inches(6.17), Inches(4.3), Inches(1), weight_pt=1.5)
     add_text(s, subtitle,
              Inches(1), Inches(4.6), Inches(11.33), Inches(0.8),
-             font=SANS, size=18, italic=True, color=OLIVE,
+             font=SANS, size=18, color=OLIVE,
              align=PP_ALIGN.CENTER)
     add_text(s, f"{author} · {date}",
              Inches(1), Inches(6.5), Inches(11.33), Inches(0.4),
@@ -203,7 +203,7 @@ def quote_slide(prs, quote, source):
     s = blank_slide(prs)
     add_text(s, f"\u201c{quote}\u201d",
              Inches(1.5), Inches(2.8), Inches(10.33), Inches(2.5),
-             font=SERIF, size=30, italic=True, color=NEAR_BLACK,
+             font=SERIF, size=30, color=NEAR_BLACK,
              align=PP_ALIGN.CENTER,
              vanchor=MSO_ANCHOR.MIDDLE)
     add_text(s, f"— {source}",
@@ -256,7 +256,7 @@ def main():
         title="{{Core claim as a sentence}}",
         body=("{{A short body paragraph, 18pt sans. Keep it under three lines. "
               "One slide, one core idea. The reader's attention is the scarce resource.}}"),
-        page_num=4)
+        page_num=5)
 
     metrics_slide(prs,
         title="Key Results",

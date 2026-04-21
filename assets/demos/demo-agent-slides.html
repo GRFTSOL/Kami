@@ -303,6 +303,22 @@
     background: var(--brand);
     margin: 22pt auto;
   }
+
+  /* --- Code Card --- */
+  .code-card {
+    background: var(--ivory);
+    border: 1px solid #e8e5da;
+    border-radius: 6pt;
+    padding: 14pt 18pt;
+    font-family: var(--mono);
+    font-size: 10pt;
+    line-height: 1.55;
+    color: var(--near-black);
+    white-space: pre;
+    overflow: hidden;
+  }
+  .code-card .k { color: var(--brand); }
+  .code-card .c { color: #87867f; }
 </style>
 </head>
 <body>
@@ -314,7 +330,7 @@
     <h1>Things you don't know about Agents</h1>
     <div class="sub">Loops, harness, context, memory: what actually moves the needle in production.</div>
     <div class="line"></div>
-    <div class="meta">kami slides demo · A4 landscape · 6 slides</div>
+    <div class="meta">kami slides demo · A4 landscape · 7 slides</div>
   </div>
   <div class="cover-visual">
     <!-- Decorative loop mark: concentric arcs in brand + stone -->
@@ -540,12 +556,48 @@
   <div class="footer-mark">Agent Engineering</div>
 </section>
 
-<!-- ═══════════ 06 · Closing ═══════════ -->
+<!-- ═══════════ 06 · Code Card demo ═══════════ -->
+<section class="slide">
+  <div class="slide-head">
+    <span class="eyebrow">05 · Code Style</span>
+  </div>
+  <div class="slide-title">Pseudocode over syntax</div>
+
+  <div class="body-grid">
+    <div>
+      <p class="claim">Comments should outnumber code lines. The reader sees <span class="hl">logic</span>, not a language tutorial.</p>
+      <ul class="pts">
+        <li>Write the intent first, then the implementation detail below it.</li>
+        <li>Variable names describe what a thing <span class="hl">is</span>, not what type it has.</li>
+        <li>One concept per block. Split ruthlessly.</li>
+      </ul>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14pt;">
+      <div class="code-card"><span class="c"># resolve tool call or decide to stop</span>
+<span class="k">function</span> agent_step(context, tools):
+  <span class="c"># model picks the next action</span>
+  action = <span class="k">model.think</span>(context)
+
+  <span class="c"># terminal condition: model says done</span>
+  <span class="k">if</span> action.type == <span class="k">"stop"</span>:
+    <span class="k">return</span> action.result
+
+  <span class="c"># delegate to the right tool</span>
+  result = tools[action.name](action.args)
+  <span class="k">return</span> agent_step(context + result, tools)</div>
+    </div>
+  </div>
+
+  <div class="page-num">06</div>
+  <div class="footer-mark">Agent Engineering</div>
+</section>
+
+<!-- ═══════════ 07 · Closing ═══════════ -->
 <section class="slide ending">
   <h1>Protocol first.<br>Then parallelism.</h1>
   <div class="line"></div>
   <div class="sub">Fix your evals before you tweak the Agent. Most of what looks like model failure is infrastructure noise in disguise.</div>
-  <div class="page-num">06</div>
+  <div class="page-num">07</div>
   <div class="footer-mark">End of Deck</div>
 </section>
 

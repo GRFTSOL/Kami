@@ -31,7 +31,7 @@ When ambiguous (e.g. a one-word command like "resume"), ask a one-liner rather t
 | "formal letter / 信件 / 辞职信 / 推荐信 / memo" | Letter | `letter.html` | `letter-en.html` |
 | "portfolio / 作品集 / case studies" | Portfolio | `portfolio.html` | `portfolio-en.html` |
 | "resume / resume / CV / 简历" | Resume | `resume.html` | `resume-en.html` |
-| "slides / PPT / deck / 演示" | Slides | `slides.py` | `slides-en.py` |
+| "slides / PPT / deck / 演示" | Slides | `slides.py` | `slides-en.py` | Long deck (>20 slides): also read Deck Recipe (design.md section 8) |
 
 If unsure, ask a one-liner about the scenario rather than guess.
 
@@ -80,6 +80,7 @@ Pick the tier that matches the task. Default to the lowest tier that covers the 
 | **Content-only** | Updating text, swapping bullets, translating an existing doc. CSS stays untouched. | `CHEATSHEET.md` only (170 lines) |
 | **Layout tweak** | Adjusting spacing, moving sections, changing font size within spec. CSS touched. | `CHEATSHEET.md` + template (tokens already inline) |
 | **New document** | Building from scratch or from raw content. | Full design spec + writing spec + template |
+| **Deck (>20 slides)** | Long presentation needing Part Divider, Code Cards, section headers. | Full design spec + Deck Recipe (design.md section 8) |
 | **Troubleshoot** | Rendering bug, font issue, page overflow. | `production.md` (+ design spec if CSS is the cause) |
 | **Diagram** | Embedding SVG in a doc. | `diagrams.md` only (has its own token map) |
 
@@ -130,7 +131,7 @@ Do not guess. Ask back using kami vocabulary, with current values included.
 |---|---|
 | "太挤了" / "too cramped" | Which element? Line-height (current: X)? Padding (current: Y)? Page margin? |
 | "太松了" / "too loose" | Same direction, reversed |
-| "颜色不对" / "color feels wrong" | Which element? Brand orange overused? A gray reading too cool? |
+| "颜色不对" / "color feels wrong" | Which element? Brand blue overused? A gray reading too cool? |
 | "不够好看" / "not polished" | Font rendering? Alignment? Whitespace distribution? Hierarchy unclear? |
 | "看着不专业" / "unprofessional" | Content wording? Or layout (alignment, consistency)? |
 

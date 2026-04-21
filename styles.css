@@ -66,6 +66,9 @@
     --ring-warm:    #d1cfc5;
     --ring-deep:    #c2c0b6;
 
+    /* Slide-scale spacing */
+    --slide-pad:    80px;
+
     --serif: "TsangerJinKai02", "Newsreader", "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", Georgia, serif;
     --sans: "Inter", "TsangerJinKai02", -apple-system, BlinkMacSystemFont, "Source Han Sans SC", "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
     --mono: "JetBrains Mono", "Fira Code", "SF Mono", Consolas, Monaco, monospace;

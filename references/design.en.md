@@ -6,7 +6,7 @@ kami's aesthetic compresses into one sentence: **warm parchment canvas, ink-blue
 
 This is not a UI framework. It is a set of aesthetic constraints for print. It assumes a high-quality document should read like literature, not a dashboard. Every rule's trade-off is the same one: rather than add another option, remove another temptation.
 
-**The eight invariants** (think hard before violating any):
+**The nine invariants** (each has a real cost — think before violating):
 
 1. Page background parchment `#f5f4ed`, never pure white
 2. Single accent: ink-blue `#1B365D`, no second chromatic color
@@ -198,6 +198,20 @@ Print documents are **tighter** than English web body. English web typically run
 
 **Rule**: denser = smaller margins, more formal (letter) = larger margins.
 
+### Slide-scale spacing
+
+Print uses mm/pt; slides (screen) use px. The scale relationships differ:
+
+```css
+--slide-pad: 80px;   /* slide four-side padding baseline */
+```
+
+**Key rules**:
+- Slide padding-top: 72-80px (print is 96-120px; slides are more compact)
+- Slide letter-spacing = print value / 2 (8px tracking "falls apart" on screen; halve it)
+- Macro scale (font size, padding): multiply print pt values by ~1.6
+- Micro scale (letter-spacing, border, radius): multiply by ~0.6
+
 ---
 
 ## 4. Components
@@ -362,6 +376,94 @@ Key numbers side-by-side (one-pager header, resume top, portfolio cover):
 .metric-label { font-size: 9pt; color: var(--olive); }
 ```
 
+### Section Header (`.kami-section-header`)
+
+Lightweight section opener for content slides. Has an eyebrow and a horizontal rule.
+
+```css
+.kami-section-header {
+  margin-bottom: 36px;
+}
+.kami-section-header .eyebrow {
+  display: flex;
+  align-items: center;             /* dot is geometric, center beats baseline */
+  gap: 8px;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--stone);
+  margin-bottom: 14px;
+}
+.kami-section-header .eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--brand);
+  flex-shrink: 0;
+}
+.kami-section-header .rule {
+  height: 1px;
+  background: var(--border-warm);
+  margin-bottom: 36px;             /* gap below rule >= 36px (>= 2x the gap above) */
+}
+.kami-section-header h1 {
+  font-family: var(--serif);
+  font-size: 38px;
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--near-black);
+}
+```
+
+**Spacing rule**: eyebrow to rule: 14px; rule to H1: **≥ 36px** (the gap below must be at least double the gap above, creating a visual anchor).
+
+### Code Card (`.kami-code-card`)
+
+For displaying pseudocode or code snippets in slides. More structured than a plain code block.
+
+```css
+.kami-code-card {
+  background: var(--ivory);
+  border: 1px solid var(--border-cream);
+  border-radius: 8px;
+  padding: 20px 24px;
+  overflow: hidden;
+}
+.kami-code-card pre {
+  font-family: var(--mono);
+  font-size: 13px;                 /* 14px for larger slides */
+  line-height: 1.55;
+  color: var(--near-black);
+  margin: 0;
+  white-space: pre;
+}
+/* Syntax colors: existing tokens only, no new colors */
+.kami-code-card .k { color: var(--brand); }    /* keyword / string */
+.kami-code-card .c { color: var(--stone); }    /* comment */
+
+/* Optional line numbers: 1px left divider */
+.kami-code-card.numbered {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0 16px;
+}
+.kami-code-card .line-nums {
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--stone);
+  text-align: right;
+  border-right: 1px solid var(--border-soft);
+  padding-right: 12px;
+  user-select: none;
+}
+```
+
+**Content philosophy**: use pseudocode style. Comments should outnumber code lines. The reader sees logic, not syntax.
+
 ---
 
 ## 5. Depth & Shadow
@@ -437,3 +539,21 @@ When you're not sure "what should I use":
 | Data card | ivory background + 8pt radius + serif big number + sans small label |
 
 Not on this table -> return to first principles: **serif carries authority, sans carries utility, warm gray carries rhythm, ink-blue carries focus**.
+
+---
+
+## 8. Deck Recipe (long deck rules)
+
+For decks longer than 20 slides, the following rules apply. Each came from real production work.
+
+| Rule | Content |
+|------|---------|
+| R1 | Slide container fixed at 1920×1080, scaled externally. No dynamic vh/vw units |
+| R2 | Slide titles use Display (64px), not H1 (30px). H1 is a print hierarchy level |
+| R4 | Slide letter-spacing = print value / 2. 8px tracking "falls apart" on screen |
+| R5 | Section header: gap below rule ≥ 36px (at least 2x the gap above) |
+| R6 | Eyebrow dot uses `align-items: center`, not baseline (dot is geometric, not text) |
+| R7 | Slide padding-top 72-80px (print is 96-120px; slides are more compact) |
+| R8 | Images use `object-fit: contain` + flex centering. Never stretch or crop |
+| R9 | Use `.kami-slide-footer` for page number and deck mark, absolutely positioned to bottom |
+| R10 | Code uses pseudocode style: more comment lines than code lines. Show logic, not syntax |

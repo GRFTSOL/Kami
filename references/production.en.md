@@ -125,13 +125,13 @@ from pptx.dml.color import RGBColor
 
 PARCHMENT   = RGBColor(0xf5, 0xf4, 0xed)
 IVORY       = RGBColor(0xfa, 0xf9, 0xf5)
-BRAND       = RGBColor(0xc9, 0x64, 0x42)
+BRAND       = RGBColor(0x1B, 0x36, 0x5D)
 NEAR_BLACK  = RGBColor(0x14, 0x14, 0x13)
 DARK_WARM   = RGBColor(0x3d, 0x3d, 0x3a)
 OLIVE       = RGBColor(0x5e, 0x5d, 0x59)
 STONE       = RGBColor(0x87, 0x86, 0x7f)
 BORDER_WARM = RGBColor(0xe8, 0xe6, 0xdc)
-TAG_BG      = RGBColor(0xed, 0xd9, 0xce)
+TAG_BG      = RGBColor(0xee, 0xf2, 0xf7)
 ```
 
 ### Type (bigger than print, optimized for projection)
@@ -482,3 +482,19 @@ Chevron templates (tip at endpoint, 8px arm length):
 | left | `M (x+8) (y-8) L x y L (x+8) (y+8)` |
 | up | `M (x-8) (y+8) L x y L (x+8) (y+8)` |
 | right | `M (x-8) (y-8) L x y L (x-8) (y+8)` |
+
+### 16. Slide letter-spacing must be halved
+
+**Symptom**: Slide text looks "scattered" or over-spaced when print letter-spacing values (e.g. `letter-spacing: 8px`) are used directly.
+
+**Root cause**: Print letter-spacing values are tuned for small sizes (8-12pt). At slide sizes (48-64px), the same absolute value gets multiplied out of control.
+
+**Fix**: Slide letter-spacing = print value / 2. Mono fonts are exempt (fixed-width by nature, no extra tracking needed).
+
+```css
+/* Print eyebrow */
+.eyebrow { letter-spacing: 6px; }
+
+/* Slide eyebrow */
+.slide .eyebrow { letter-spacing: 3px; }   /* halved */
+```

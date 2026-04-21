@@ -24,7 +24,7 @@ from weasyprint import HTML
 HTML('doc.html').write_pdf('output.pdf')
 ```
 
-**注意 CWD**：HTML 里 `@font-face { src: url("xxx.ttf") }` 是相对路径，必须在**包含字体文件的目录**执行。
+**CWD 很重要**：HTML 里 `@font-face { src: url("xxx.ttf") }` 使用相对路径，必须在**字体文件所在目录**执行。
 
 ```bash
 cd /path/to/html-and-font
@@ -33,7 +33,7 @@ python3 -c "from weasyprint import HTML; HTML('doc.html').write_pdf('out.pdf')"
 
 ### 字体处理
 
-**最稳的做法**：字体文件和 HTML 同目录，`@font-face` 用相对路径。
+**最稳的方式**：字体文件和 HTML 同目录，`@font-face` 用相对路径。
 
 ```html
 <style>
@@ -45,7 +45,7 @@ body { font-family: "TsangerJinKai02", serif; }
 </style>
 ```
 
-**商业字体不可得时**，fallback 链已内嵌在所有模板里：
+**商业字体不可得时**，fallback 链已内嵌在所有模板中：
 ```css
 font-family: "TsangerJinKai02",
              "Source Han Serif SC", "Noto Serif CJK SC",
@@ -120,13 +120,13 @@ from pptx.dml.color import RGBColor
 
 PARCHMENT   = RGBColor(0xf5, 0xf4, 0xed)
 IVORY       = RGBColor(0xfa, 0xf9, 0xf5)
-BRAND       = RGBColor(0xc9, 0x64, 0x42)
+BRAND       = RGBColor(0x1B, 0x36, 0x5D)
 NEAR_BLACK  = RGBColor(0x14, 0x14, 0x13)
 DARK_WARM   = RGBColor(0x3d, 0x3d, 0x3a)
 OLIVE       = RGBColor(0x5e, 0x5d, 0x59)
 STONE       = RGBColor(0x87, 0x86, 0x7f)
 BORDER_WARM = RGBColor(0xe8, 0xe6, 0xdc)
-TAG_BG      = RGBColor(0xed, 0xd9, 0xce)
+TAG_BG      = RGBColor(0xee, 0xf2, 0xf7)
 ```
 
 ### 字号（屏幕投影优先易读性，比 PDF 大）
@@ -153,7 +153,7 @@ TAG_BG      = RGBColor(0xed, 0xd9, 0xce)
 4. **内容页**：小标题（sans stone）+ 核心论点（serif near-black）+ 品牌色短线 + 正文（sans dark-warm）
 5. **数据页**：顶部 takeaway + 下方 2-4 张 metric 卡（大数字 serif 品牌色 + 小标签 sans olive）
 6. **对比页**：左右两栏 + 中间 0.5pt 暖灰竖线
-7. **引用页**：Parchment 底极简，居中大号斜体引文 + `- 来源`
+7. **引用页**：Parchment 底极简，居中大号 serif 引文 + `- 来源`
 8. **结束页**：Parchment 底，居中"谢谢 / Q&A / 联系方式"
 
 ### 脚本骨架
@@ -166,7 +166,7 @@ from pptx.enum.shapes import MSO_SHAPE
 from pptx.enum.text import PP_ALIGN
 
 PARCHMENT = RGBColor(0xf5, 0xf4, 0xed)
-BRAND     = RGBColor(0xc9, 0x64, 0x42)
+BRAND     = RGBColor(0x1B, 0x36, 0x5D)
 # ... 其他色见上表
 SERIF = "Source Han Serif SC"
 SANS  = "Source Han Sans SC"
@@ -326,7 +326,7 @@ for variant, vars_css in [
 
 公式：`实色通道 = 底 + (前景 - 底) × 透明度`。其他底色要重算。
 
-**想要"呼吸感"**：用 CSS linear-gradient（整张 tag 栅格化为位图，不走逐像素合成）：
+**如需"呼吸感"效果**：用 CSS linear-gradient，整张 tag 栅格化为位图，绕过逐像素合成：
 
 ```css
 .tag {
@@ -334,7 +334,7 @@ for variant, vars_css in [
 }
 ```
 
-**美学教训**：工程上 gradient 能做出笔刷感，审美上往往**用力过猛**。实战优先级：极淡实色 `#EEF2F7` > 稍浓实色 `#E4ECF5` > 慎用 gradient。如果读者第一眼看到的是背景形状而不是字，就过度了。
+**美学教训**：gradient 工程上可行，审美上往往**用力过猛**。优先级：极淡实色 `#EEF2F7` > 稍浓实色 `#E4ECF5` > 慎用 gradient。读者第一眼落在背景形状而非文字，就说明过度了。
 
 ### 2. 薄边框 + 圆角 = 双圈 bug
 
@@ -362,7 +362,7 @@ for variant, vars_css in [
 4. 减小 section 间距（慎用）
 5. 最后手段：字号降 0.1-0.2pt
 
-**不要做**：去掉封面/教育/Timeline 这类结构性内容，砍高亮（简历会变死气）。
+**不要**：砍掉封面/教育/Timeline 这类结构性内容，也不要删高亮，简历失去强调就没有生气了。
 
 ### 4. 字体 fallback 导致页数不一致
 
@@ -407,7 +407,7 @@ mkdir -p ~/.fonts && cp *.ttf ~/.fonts/ && fc-cache -f
 
 ### 7. 千分位 · 百分号 · 箭头
 
-| ✅ | ❌ |
+| 正确 | 错误 |
 |---|---|
 | `5,000+` | `5000+` / `5，000+`（全角逗号） |
 | `90%` | `90 %`（前有空格） |
@@ -421,8 +421,8 @@ grep -oE '[0-9]{4,}' doc.html | sort -u
 
 ### 8. 高亮过多 / 过少
 
-- 一行 4-5 个橙字 -> 视觉疲劳
-- 整节没高亮 -> 扁平
+- 一行 4-5 处蓝色强调，读者视线无处安放
+- 整节没有高亮，版面一片扁平
 
 **规则**：每行 ≤ 2 处，每节至少 1 处，只高亮**可量化的数字或独特表达**。
 
@@ -502,7 +502,7 @@ pdftoppm -png -r 300 out.pdf inspect    # 视觉怀疑时
 
 **症状**：SVG 里用 `<marker orient="auto">` 或 `orient="auto-start-reverse"` 的箭头，所有方向都指向右（marker 的默认绘制方向），不随路径切线旋转。
 
-**根因**：WeasyPrint 的 SVG 渲染不支持 marker 的 `orient="auto"` 属性。marker 永远按 0° 绘制。
+**根因**：WeasyPrint 的 SVG 渲染不支持 marker 的 `orient="auto"` 属性。Marker 永远按 0° 绘制。
 
 **解法**：不用 `<marker>`，手动在每个箭头端点画 chevron `<path>`，方向写死。
 
@@ -529,3 +529,19 @@ pdftoppm -png -r 300 out.pdf inspect    # 视觉怀疑时
 | ← | `M (x+8) (y-8) L x y L (x+8) (y+8)` |
 | ↑ | `M (x-8) (y+8) L x y L (x+8) (y+8)` |
 | → | `M (x-8) (y-8) L x y L (x-8) (y+8)` |
+
+### 16. Slide letter-spacing 减半
+
+**症状**：照搬印刷品 letter-spacing 数值（如 `letter-spacing: 8px`）到 slide，文字看起来"散架"，字母间距过大。
+
+**根因**：印刷品的字距是针对小字号（8-12pt）优化的。Slide 字号（48-64px）乘以相同 letter-spacing 绝对值，间距被放大到失控。
+
+**解法**：Slide letter-spacing = 印刷值 / 2。Mono 字体除外（mono 本身是等宽，不需要额外字距调整）。
+
+```css
+/* 印刷品 eyebrow */
+.eyebrow { letter-spacing: 6px; }
+
+/* ✅ Slide eyebrow */
+.slide .eyebrow { letter-spacing: 3px; }   /* 减半 */
+```

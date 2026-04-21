@@ -9,7 +9,7 @@ Kaku(写代码) · Waza(练习惯) · **Kami(出文档)** 三部曲之一。
 |---|---|---|
 | `SKILL.md` | Claude 路由规则 | 低 |
 | `CHEATSHEET.md / .en.md` | 快速设计参考 | 低 |
-| `references/design.md` | 设计语言规范（9 条铁律） | 低 |
+| `references/design.md` | 设计语言规范（九条铁律） | 低 |
 | `references/writing.md` | 文案规范 | 低 |
 | `references/production.md` | WeasyPrint 踩坑 | 中 |
 | `assets/templates/` | 6 种模板 × 2 语言 | 中 |

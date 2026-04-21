@@ -6,7 +6,7 @@ kami 的审美可以浓缩成一句话：**暖米纸底，油墨蓝点缀，seri
 
 这不是一套 UI 框架，是一套印刷品的审美约束。它相信：高质量的文档读起来像文学，不像仪表盘。每条铁律的 trade-off 都是"与其多一个选择，不如少一个诱惑"。
 
-**八条铁律**（违反之前先想清楚是否真的要违反）：
+**九条铁律**（每一条都有代价，违反前先想清楚）：
 
 1. 页面背景 parchment `#f5f4ed`，不用纯白
 2. 强调色只有油墨蓝 `#1B365D`，不引入第二种彩色
@@ -18,7 +18,7 @@ kami 的审美可以浓缩成一句话：**暖米纸底，油墨蓝点缀，seri
 8. 阴影用 ring 或 whisper shadow，不用硬 drop shadow
 9. **禁止 italic**。所有模板和 demo 中不使用 `font-style: italic`，不需要 italic 字体文件
 
-所有文档类型（One-Pager / Long Doc / Letter / Portfolio / Resume / Slides）都依据这份规范。这套系统来自 Anthropic 视觉语言 + 中文简历设计迭代，是两个来源的融合。
+所有文档类型（One-Pager / Long Doc / Letter / Portfolio / Resume / Slides）都依据这份规范。这套系统脱胎于 Anthropic 视觉语言与中文简历设计的长期迭代，两条脉络合并而成。
 
 ---
 
@@ -30,7 +30,7 @@ kami 的审美可以浓缩成一句话：**暖米纸底，油墨蓝点缀，seri
 
 ```css
 --brand:        #1B365D;   /* Ink Blue Brand - 唯一的彩色，用于 CTA、强调、section-title 左侧竖线 */
---brand-light:  #2D5A8A;   /* Coral Accent - 更亮的变体，偶尔用于深色底上的链接 */
+--brand-light:  #2D5A8A;   /* 更亮的变体，深色底上的链接偶尔用 */
 ```
 
 **使用规则**：油墨蓝 `#1B365D` 全文档不超过 **5% 的面积**。超过就是堆砌，不是克制。
@@ -201,6 +201,20 @@ font-family: "JetBrains Mono", "Fira Code",
 
 **规律**：密度越高 margin 越小，越正式（letter）margin 越大。
 
+### Slide 尺度间距
+
+印刷品用 mm/pt，Slide（屏幕）用 px，尺度关系不同：
+
+```css
+--slide-pad: 80px;   /* slide 四边 padding baseline */
+```
+
+**关键规则**：
+- Slide padding-top 72-80px（印刷品是 96-120px，slide 的视觉呼吸感已足够）
+- Letter-spacing slide = 印刷值 / 2，8px tracking 照搬到屏幕会"散架"
+- 宏观尺度（字号、padding）相较印刷 pt 值乘以约 1.6
+- 微观尺度（letter-spacing、border、圆角）乘以约 0.6
+
 ---
 
 ## 4. 组件样式
@@ -283,9 +297,9 @@ font-family: "JetBrains Mono", "Fira Code",
 }
 ```
 
-**设计哲学**：tint 浓度要比装饰性需求**低一档**。宁可清淡不可浓艳。实战发现"笔刷渐变"虽然技术上酷，但会抢焦点（见 production.md Part 4 #1 的实战经验）。
+**设计哲学**：tint 浓度要比装饰性需求**低一档**。宁可清淡，不可浓艳。"笔刷渐变"技术上可行，但实战中往往用力过猛，把读者的视线引向背景形状而非文字（详见 production.md Part 4 #1）。
 
-**绝对不用**：`background: rgba(201, 100, 66, 0.18)` -- 会触发 WeasyPrint 双层 bug。用等效实色替代。
+**禁止**：`background: rgba(201, 100, 66, 0.18)`，WeasyPrint 会渲染出双层矩形。用等效实色替代。
 
 ### 列表
 
@@ -379,11 +393,99 @@ ul.dash li::before {
 }
 ```
 
+### Section Header (`.kami-section-header`)
+
+用于内容页的小节起始，比 Section Title 更轻量，带 eyebrow 和横线。
+
+```css
+.kami-section-header {
+  margin-bottom: 36px;
+}
+.kami-section-header .eyebrow {
+  display: flex;
+  align-items: center;             /* 圆点是几何图形，center 比 baseline 好 */
+  gap: 8px;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--stone);
+  margin-bottom: 14px;
+}
+.kami-section-header .eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--brand);
+  flex-shrink: 0;
+}
+.kami-section-header .rule {
+  height: 1px;
+  background: var(--border-warm);
+  margin-bottom: 36px;             /* 横线下方 gap >= 36px（上方 14px 的 2 倍以上）*/
+}
+.kami-section-header h1 {
+  font-family: var(--serif);
+  font-size: 38px;
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--near-black);
+}
+```
+
+**间距铁律**：eyebrow → 横线 14px，横线 → H1 **≥ 36px**（下方 gap 是上方 gap 的 2 倍以上，制造视觉锚点）。
+
+### Code Card (`.kami-code-card`)
+
+用于 Slide 中展示伪代码或代码片段，比普通 code-block 更有结构感。
+
+```css
+.kami-code-card {
+  background: var(--ivory);
+  border: 1px solid var(--border-cream);
+  border-radius: 8px;
+  padding: 20px 24px;
+  overflow: hidden;
+}
+.kami-code-card pre {
+  font-family: var(--mono);
+  font-size: 13px;                 /* 或 14px，slide 上更大 */
+  line-height: 1.55;
+  color: var(--near-black);
+  margin: 0;
+  white-space: pre;
+}
+/* 语法色：只用现有 token，不引入新颜色 */
+.kami-code-card .k { color: var(--brand); }    /* keyword / string */
+.kami-code-card .c { color: var(--stone); }    /* comment */
+
+/* 可选行号：左侧 1px divider */
+.kami-code-card.numbered {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0 16px;
+}
+.kami-code-card .line-nums {
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--stone);
+  text-align: right;
+  border-right: 1px solid var(--border-soft);
+  padding-right: 12px;
+  user-select: none;
+}
+```
+
+**内容哲学**：代码卡用**伪代码风格**，注释行数 > 代码行数。读者看到的是逻辑，不是语法。
+
 ---
 
 ## 5. 阴影与深度
 
-**核心原则**：Claude 设计系统**不用传统硬阴影**。深度通过三种方式创造：
+**核心原则**：kami **不用传统硬阴影**。深度通过三种方式创造：
 
 ### 1. Ring Shadow（边框式阴影）
 
@@ -467,3 +569,21 @@ figure,
 | 一张数据卡 | ivory 底 + 8 pt 圆角 + serif 大数字 + sans 小标签 |
 
 不在这张表里的情况 -> 回到原则：**serif 承担权威，sans 承担功能，暖灰承担节奏，油墨蓝承担焦点**。
+
+---
+
+## 8. Deck Recipe（长 Deck 规范）
+
+长 deck (> 20 slides) 必须遵循以下规则表。条目来自实战经验沉淀，违反前先想清楚原因。
+
+| 规则 | 内容 |
+|------|------|
+| R1 | Slide 容器固定 1920×1080，外部 scale 适配。不用 vh/vw 动态单位 |
+| R2 | Slide 标题用 Display (64px)，不用 H1 (30px)。H1 是印刷品的层级 |
+| R4 | Slide letter-spacing = 印刷值 / 2。8px tracking 在屏幕上会"散架" |
+| R5 | Section header 横线下方 gap ≥ 36px（上方 gap 的 2 倍以上） |
+| R6 | Eyebrow 圆点用 `align-items: center`，不用 baseline（圆点是几何图形） |
+| R7 | Slide padding-top 72-80px（印刷品 96-120px，slide 更紧凑） |
+| R8 | 图片用 `object-fit: contain` + flex 居中，不拉伸不裁切 |
+| R9 | 统一用 `.kami-slide-footer` 放置页码和 deck 标识，绝对定位到 bottom |
+| R10 | 代码用伪代码风格：注释行数 > 代码行数，读者看逻辑不看语法 |

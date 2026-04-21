@@ -223,11 +223,11 @@ def metrics_slide(prs, title, metrics):
 
 
 def quote_slide(prs, quote, source):
-    """引用页：极简，居中斜体引文"""
+    """引用页：极简，居中引文"""
     s = blank_slide(prs)
     add_text(s, f"\u201c{quote}\u201d",
              Inches(1.5), Inches(2.8), Inches(10.33), Inches(2.5),
-             font=SERIF, size=28, italic=True, color=NEAR_BLACK,
+             font=SERIF, size=28, color=NEAR_BLACK,
              align=PP_ALIGN.CENTER,
              vanchor=MSO_ANCHOR.MIDDLE)
     add_text(s, f"— {source}",
@@ -279,14 +279,14 @@ def main():
     # 3. 章节首页
     chapter_slide(prs, 1, "{{章节标题}}")
 
-    # 4. 内容页
+    # 5. 内容页
     content_slide(prs,
         eyebrow="{{章节 · 本页}}",
         title="{{核心论点标题}}",
         body="{{一段正文，18pt sans 字体。控制在 3 行内，一屏一个核心信息。}}",
-        page_num=4)
+        page_num=5)
 
-    # 5. 数据页
+    # 7. 数据页
     metrics_slide(prs,
         title="关键结果",
         metrics=[
