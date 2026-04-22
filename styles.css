@@ -144,6 +144,8 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+  html[lang="en"] body { letter-spacing: 0; }
+  html[lang="en"] .section-title { letter-spacing: -0.3px; }
 
   .page {
     max-width: 1120px;
