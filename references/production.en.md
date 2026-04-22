@@ -102,6 +102,36 @@ font-family: "TsangerJinKai02", "Source Han Serif SC",
 | CSS variables `var(--name)` | | |
 | `::before` / `::after` | | |
 
+### PDF metadata
+
+WeasyPrint reads standard meta tags in `<head>` and writes them into the PDF (Title / Author / Subject / Keywords). All templates have pre-built placeholders:
+
+```html
+<head>
+  <title>{{DOC_TITLE}}</title>
+  <meta name="author"      content="{{AUTHOR}}">
+  <meta name="description" content="{{DESCRIPTION}}">
+  <meta name="keywords"    content="{{KEYWORDS}}">
+  <meta name="generator"   content="Kami">
+</head>
+```
+
+**Auto-inference rules** (Claude fills these from the document content without asking):
+
+| Field | Source |
+|---|---|
+| `<title>` | H1 heading or `.header .title` text |
+| `author` | Resume / letter / portfolio: person's name from the document; everything else: `"Kami"` |
+| `description` | One sentence extracted from the first 2 paragraphs, ≤150 characters |
+| `keywords` | 3-5 keywords from title + section headings, comma-separated |
+| `generator` | Fixed `"Kami"`, already set in template, do not change |
+
+**Verify**:
+
+```bash
+pdfinfo assets/examples/one-pager-en.pdf   # shows Title / Author / Subject
+```
+
 ---
 
 ## Part 2 · Python -> PPTX (python-pptx)

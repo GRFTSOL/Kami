@@ -165,15 +165,22 @@
 
 ## 图表组件
 
-三种内置图表，嵌入 long-doc / portfolio 的 `<figure>` 中：
+六种内置图表，嵌入 long-doc / portfolio 的 `<figure>` 中：
 
 | 类型 | 文件 | 用途 |
 |---|---|---|
 | Architecture | `assets/diagrams/architecture.html` | 系统组件和连接关系 |
 | Flowchart | `assets/diagrams/flowchart.html` | 决策分支流程 |
 | Quadrant | `assets/diagrams/quadrant.html` | 2×2 象限定位 |
+| Bar Chart | `assets/diagrams/bar-chart.html` | 分类对比（最多 8 组 × 3 系列） |
+| Line Chart | `assets/diagrams/line-chart.html` | 趋势时序（最多 12 点 × 3 线） |
+| Donut Chart | `assets/diagrams/donut-chart.html` | 占比分布（最多 6 段） |
 
 用法：从 HTML 文件提取 `<svg>` 块，直接嵌入模板的 `<figure>` 容器。
+
+**数据图表配色**：主系列 `#1B365D` · 辅系列 `#5e5d59` → `#87867f` → `#b8b7b0` → `#d4d3cd` → `#EEF2F7`。
+
+**数据替换**：只改 `<!-- DATA START -->` / `<!-- DATA END -->` 之间的元素，CSS 不动。坐标必须被 4 整除。
 
 ## Dark Section
 

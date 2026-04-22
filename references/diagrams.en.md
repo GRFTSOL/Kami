@@ -13,6 +13,9 @@ Every diagram is a **self-contained HTML + inline SVG**. No Mermaid, no JS, no b
 | System components + connections | **Architecture** | `assets/diagrams/architecture.html` |
 | Decision branches, "if A then B else C" | **Flowchart** | `assets/diagrams/flowchart.html` |
 | Two-axis positioning / prioritization | **Quadrant** | `assets/diagrams/quadrant.html` |
+| Category comparison (revenue, market share, quarterly) | **Bar Chart** | `assets/diagrams/bar-chart.html` |
+| Trend over time (stock price, growth rate, time series) | **Line Chart** | `assets/diagrams/line-chart.html` |
+| Proportional breakdown (spend, user segments, share) | **Donut Chart** | `assets/diagrams/donut-chart.html` |
 
 Not on the list:
 - **Time / stages**: use the built-in timeline component in `resume.html` or `one-pager.html`. Don't reinvent.
@@ -153,12 +156,69 @@ Scan for these when drawing or reviewing:
 
 ---
 
-## 6. Build / preview
+## 6. Data charts (bar / line / donut)
+
+Three data-driven chart types for investment reports, financial comparisons, and market-share breakdowns. Like the first three diagram types, all are self-contained HTML + inline SVG, embeddable in any kami document.
+
+### Color palette (derived from kami warm palette)
+
+| Role | Value | Use |
+|---|---|---|
+| Primary series | `#1B365D` ink-blue | First group / focal data |
+| Series 2 | `#5e5d59` olive | Second group |
+| Series 3 | `#87867f` stone | Third group |
+| Series 4 | `#b8b7b0` light-stone | Fourth group |
+| Series 5 | `#d4d3cd` mist | Fifth group |
+| Series 6 | `#EEF2F7` brand-tint | Sixth group |
+| Grid lines | `#e8e7e1` | Axes / reference lines |
+| Data labels | `#141413` near-black | Numeric text |
+
+### Data limits
+
+| Chart | Max categories | Max series | Template |
+|---|---|---|---|
+| Bar chart | 8 groups | 3 series | `assets/diagrams/bar-chart.html` |
+| Line chart | 12 points | 3 lines | `assets/diagrams/line-chart.html` |
+| Donut chart | 6 segments | — | `assets/diagrams/donut-chart.html` |
+
+### Editing data
+
+Each file has `<!-- DATA START -->` / `<!-- DATA END -->` comments. Only change SVG elements between those markers (`<rect>` coordinates, `<polyline>` points, `<path>` arcs, `<text>` values). Leave surrounding structure and styles untouched.
+
+**Coordinate rules (same as the first three diagram types)**:
+- All coordinates divisible by 4
+- Bar chart corner radius `rx=2` (distinct from node radius 6-10)
+- Line chart: `<polyline>` points format `"x1,y1 x2,y2 ..."`, data points marked with `<circle>`
+- Donut chart: `<path>` arcs use `A R R 0 large-arc sweep_flag x y`; `large-arc=1` only when segment > 180°
+
+**Bar / line chart Y-axis formula** (default scale: max=140, chart-height=280, scale=2):
+```
+bar_height = value × 2
+bar_top_y  = 320 - bar_height   (baseline y = 320)
+dot_y      = 320 - value × 2
+```
+
+**Donut arc coordinates** (cx=300 cy=200 R=136 r=76, clockwise from top at -90°):
+```
+angle_start = -90 + sum_of_previous_percentages × 3.6
+angle_end   = angle_start + this_percentage × 3.6
+outer_x = 300 + 136 × cos(angle_deg × π/180)
+outer_y = 200 + 136 × sin(angle_deg × π/180)
+inner_x = 300 + 76  × cos(angle_deg × π/180)
+inner_y = 200 + 76  × sin(angle_deg × π/180)
+```
+
+---
+
+## 7. Build / preview
 
 ```bash
 python3 scripts/build.py diagram-architecture
 python3 scripts/build.py diagram-flowchart
 python3 scripts/build.py diagram-quadrant
+python3 scripts/build.py diagram-bar-chart
+python3 scripts/build.py diagram-line-chart
+python3 scripts/build.py diagram-donut-chart
 
 # or all
 python3 scripts/build.py
@@ -168,6 +228,6 @@ Or just open `assets/diagrams/*.html` in a browser.
 
 ---
 
-## 7. Credit
+## 8. Credit
 
 This capability is inspired by Cathryn Lavery's [diagram-design](https://github.com/cathrynlavery/diagram-design) (a Claude Code skill with 13 editorial diagram types). kami borrowed the **approach** (inline SVG, semantic tokens, complexity budget, anti-slop table). Not the full catalog. Thirteen types would bloat kami; three are enough for every document type kami serves.

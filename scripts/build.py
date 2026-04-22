@@ -2,7 +2,7 @@
 """kami build & check
 
 Usage:
-    python3 scripts/build.py                      # build all 15 examples (10 HTML + 3 diagrams + 2 PPTX)
+    python3 scripts/build.py                      # build all 18 examples (10 HTML + 6 diagrams + 2 PPTX)
     python3 scripts/build.py resume               # build one template, print pages + fonts
     python3 scripts/build.py --check              # scan templates for CSS rule violations
     python3 scripts/build.py --check -v           # verbose (show each scanned file)
@@ -49,6 +49,9 @@ DIAGRAM_TARGETS: dict[str, str] = {
     "diagram-architecture": "architecture.html",
     "diagram-flowchart":    "flowchart.html",
     "diagram-quadrant":     "quadrant.html",
+    "diagram-bar-chart":    "bar-chart.html",
+    "diagram-line-chart":   "line-chart.html",
+    "diagram-donut-chart":  "donut-chart.html",
 }
 
 

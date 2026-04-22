@@ -347,10 +347,77 @@ beauty   = constraints × <span class="k">intention</span> ÷ noise</pre>
     </div>
   </section>
 
+  <!-- ============ 07 DIAGRAMS ============ -->
+  <section>
+    <div class="section-head">
+      <p class="section-num">07 · Diagrams</p>
+      <h2 class="section-title">Inline Charts</h2>
+      <p class="section-lede">Six inline SVG diagram types: architecture, flowchart, quadrant, bar chart, line chart, donut chart. Tell Claude which chart type you need and it embeds directly into the document, colors and fonts following the Kami design language.</p>
+    </div>
+    <div class="chart-showcase">
+      <div class="chart-card">
+        <div class="chart-label">Bar Chart · 柱状图</div>
+        <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg">
+          <line x1="28" y1="128" x2="260" y2="128" stroke="#e8e6dc" stroke-width="1"/>
+          <rect x="38" y="78" width="42" height="50" rx="3" fill="#87867f"/>
+          <rect x="98" y="62" width="42" height="66" rx="3" fill="#5e5d59"/>
+          <rect x="158" y="44" width="42" height="84" rx="3" fill="#2d4e7a"/>
+          <rect x="218" y="30" width="42" height="98" rx="3" fill="#1B365D"/>
+          <text x="59" y="145" text-anchor="middle" font-size="10" font-family="Inter,Arial,sans-serif" fill="#87867f">Q1</text>
+          <text x="119" y="145" text-anchor="middle" font-size="10" font-family="Inter,Arial,sans-serif" fill="#5e5d59">Q2</text>
+          <text x="179" y="145" text-anchor="middle" font-size="10" font-family="Inter,Arial,sans-serif" fill="#4d4c48">Q3</text>
+          <text x="239" y="145" text-anchor="middle" font-size="10" font-family="Inter,Arial,sans-serif" fill="#4d4c48">Q4</text>
+          <text x="59" y="73" text-anchor="middle" font-size="9" font-weight="600" font-family="Inter,Arial,sans-serif" fill="#87867f">180</text>
+          <text x="119" y="57" text-anchor="middle" font-size="9" font-weight="600" font-family="Inter,Arial,sans-serif" fill="#5e5d59">220</text>
+          <text x="179" y="39" text-anchor="middle" font-size="9" font-weight="600" font-family="Inter,Arial,sans-serif" fill="#2d4e7a">195</text>
+          <text x="239" y="25" text-anchor="middle" font-size="9" font-weight="600" font-family="Inter,Arial,sans-serif" fill="#1B365D">240</text>
+        </svg>
+        <p class="chart-caption">Quarterly revenue comparison, gradient or single color</p>
+      </div>
+      <div class="chart-card">
+        <div class="chart-label">Line Chart · 折线图</div>
+        <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg">
+          <line x1="28" y1="128" x2="260" y2="128" stroke="#e8e6dc" stroke-width="1"/>
+          <line x1="28" y1="88" x2="260" y2="88" stroke="#e8e6dc" stroke-width="0.5" stroke-dasharray="3,3"/>
+          <line x1="28" y1="48" x2="260" y2="48" stroke="#e8e6dc" stroke-width="0.5" stroke-dasharray="3,3"/>
+          <polyline points="44,118 96,100 148,78 200,54 252,32" fill="none" stroke="#1B365D" stroke-width="2" stroke-linejoin="round"/>
+          <circle cx="44" cy="118" r="4" fill="#1B365D"/>
+          <circle cx="96" cy="100" r="4" fill="#1B365D"/>
+          <circle cx="148" cy="78" r="4" fill="#1B365D"/>
+          <circle cx="200" cy="54" r="4" fill="#1B365D"/>
+          <circle cx="252" cy="32" r="4" fill="#1B365D"/>
+          <text x="44" y="145" text-anchor="middle" font-size="10" font-family="Inter,Arial,sans-serif" fill="#87867f">2020</text>
+          <text x="96" y="145" text-anchor="middle" font-size="10" font-family="Inter,Arial,sans-serif" fill="#87867f">2021</text>
+          <text x="148" y="145" text-anchor="middle" font-size="10" font-family="Inter,Arial,sans-serif" fill="#4d4c48">2022</text>
+          <text x="200" y="145" text-anchor="middle" font-size="10" font-family="Inter,Arial,sans-serif" fill="#4d4c48">2023</text>
+          <text x="252" y="145" text-anchor="middle" font-size="10" font-family="Inter,Arial,sans-serif" fill="#4d4c48">2024</text>
+        </svg>
+        <p class="chart-caption">Trend line chart, supports multiple data series</p>
+      </div>
+      <div class="chart-card">
+        <div class="chart-label">Donut Chart · 环形图</div>
+        <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 80,25 A 55,55 0 1,1 47.7,124.5 L 62.4,104.3 A 30,30 0 1,0 80,50 Z" fill="#1B365D" stroke="white" stroke-width="1.5"/>
+          <path d="M 47.7,124.5 A 55,55 0 0,1 35.5,47.7 L 55.7,62.4 A 30,30 0 0,0 62.4,104.3 Z" fill="#5e5d59" stroke="white" stroke-width="1.5"/>
+          <path d="M 35.5,47.7 A 55,55 0 0,1 80,25 L 80,50 A 30,30 0 0,0 55.7,62.4 Z" fill="#87867f" stroke="white" stroke-width="1.5"/>
+          <text x="80" y="77" text-anchor="middle" font-size="18" font-weight="600" font-family="Inter,Arial,sans-serif" fill="#1B365D">60%</text>
+          <text x="80" y="92" text-anchor="middle" font-size="10" font-family="Inter,Arial,sans-serif" fill="#5e5d59">Primary</text>
+          <rect x="150" y="46" width="10" height="10" rx="2" fill="#1B365D"/>
+          <text x="165" y="55" font-size="11" font-family="Inter,Arial,sans-serif" fill="#4d4c48">Core revenue · 60%</text>
+          <rect x="150" y="72" width="10" height="10" rx="2" fill="#5e5d59"/>
+          <text x="165" y="81" font-size="11" font-family="Inter,Arial,sans-serif" fill="#4d4c48">Services · 25%</text>
+          <rect x="150" y="98" width="10" height="10" rx="2" fill="#87867f"/>
+          <text x="165" y="107" font-size="11" font-family="Inter,Arial,sans-serif" fill="#4d4c48">Other · 15%</text>
+        </svg>
+        <p class="chart-caption">Revenue structure breakdown, supports 3–6 segments</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ 07 DECISION TABLE ============ -->
   <section>
     <div class="section-head">
-      <p class="section-num">07 · Decision Lookup</p>
+      <p class="section-num">08 · Decision Lookup</p>
       <h2 class="section-title">Quick Reference</h2>
       <p class="section-lede">When in doubt about what to use, consult this table. If it's not here, go back to first principles.</p>
     </div>

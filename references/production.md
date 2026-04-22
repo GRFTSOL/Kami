@@ -104,6 +104,36 @@ font-family: "TsangerJinKai02",
 | CSS 变量 `var(--name)` | | |
 | 伪元素 `::before` `::after` | | |
 
+### PDF 元数据
+
+WeasyPrint 从 HTML `<head>` 的标准 meta 标签自动写入 PDF 元数据（Title / Author / Subject / Keywords）。所有模板已预置占位符：
+
+```html
+<head>
+  <title>{{文档标题}}</title>
+  <meta name="author"      content="{{作者}}">
+  <meta name="description" content="{{摘要}}">
+  <meta name="keywords"    content="{{关键词}}">
+  <meta name="generator"   content="Kami">
+</head>
+```
+
+**填写规则**（Claude 根据内容自动推断，不问用户）：
+
+| 字段 | 推断来源 |
+|---|---|
+| `<title>` | H1 标题或 `.header .title` 文本 |
+| `author` | 简历/信件/作品集：文档中的人名；其他：固定值 `"Kami"` |
+| `description` | 前两段提取一句话概要，≤150 字 |
+| `keywords` | 标题 + section headings 提取 3-5 个关键词，逗号分隔 |
+| `generator` | 固定 `"Kami"`，模板已写死，不改 |
+
+**验证**：
+
+```bash
+pdfinfo assets/examples/one-pager.pdf   # 查看 Title / Author / Subject
+```
+
 ---
 
 ## Part 2 · Python -> PPTX（python-pptx）

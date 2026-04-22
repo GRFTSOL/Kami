@@ -177,15 +177,22 @@ Screen (px) ≈ pt × 1.33.
 
 ## Diagram components
 
-Three built-in diagram types. Extract the `<svg>` block and embed in a `<figure>` in long-doc / portfolio:
+Six built-in diagram types. Extract the `<svg>` block and embed in a `<figure>` in long-doc / portfolio:
 
 | Type | File | Use |
 |---|---|---|
 | Architecture | `assets/diagrams/architecture.html` | System components and connections |
 | Flowchart | `assets/diagrams/flowchart.html` | Decision branches and flows |
 | Quadrant | `assets/diagrams/quadrant.html` | 2×2 positioning |
+| Bar Chart | `assets/diagrams/bar-chart.html` | Category comparison (up to 8 groups × 3 series) |
+| Line Chart | `assets/diagrams/line-chart.html` | Trends over time (up to 12 points × 3 lines) |
+| Donut Chart | `assets/diagrams/donut-chart.html` | Proportional breakdown (up to 6 segments) |
 
 Usage: extract the `<svg>` block from the HTML file and paste into the template's `<figure>` container.
+
+**Data chart colors**: primary series `#1B365D` · secondary `#5e5d59` → `#87867f` → `#b8b7b0` → `#d4d3cd` → `#EEF2F7`.
+
+**Editing data**: only modify elements between `<!-- DATA START -->` / `<!-- DATA END -->`, leave CSS untouched. All coordinates must be divisible by 4.
 
 ## Dark section
 

@@ -77,11 +77,15 @@ The skill auto-triggers when you describe what you need, no slash command requir
 
 > make a one-pager for my startup / turn this research into a long doc / write a formal letter / make a portfolio showcasing my projects / build me a resume / design a slide deck for my talk / 帮我做一份一页纸 / 帮我排版一份长文档 / 帮我写一封正式信件 / 帮我做一份作品集 / 帮我做一份简历 / 帮我做一套演讲幻灯片
 
+To include inline charts, mention the data and chart type in your prompt. Kami embeds bar charts, line charts, and donut charts directly into the document as SVG, no external tools needed.
+
+> add a revenue breakdown donut chart / show the quarterly delivery trend as a bar chart / draw a line chart of user growth / 加一个营收结构环形图 / 用柱状图展示季度交付量 / 画一条用户增长折线
+
 ## Design
 
 Warm parchment canvas, ink blue as the sole accent, serif carries hierarchy, no hard shadows or flashy palettes. This is not a UI framework; it is a constraint system for printed matter. Quality documents should read as composed pages, not dashboards.
 
-Six document types (One-Pager, Long Doc, Letter, Portfolio, Resume, Slides), each with Chinese and English variants. Three inline SVG diagram types (architecture, flowchart, quadrant) are included. Kami picks the right variant based on the language you write in.
+Six document types (One-Pager, Long Doc, Letter, Portfolio, Resume, Slides), each with Chinese and English variants. Six inline SVG diagram types (architecture, flowchart, quadrant, bar chart, line chart, donut chart) are included. Kami picks the right variant based on the language you write in.
 
 | Element | Rule |
 |---|---|

@@ -46,6 +46,9 @@ When the user asks for **a diagram inside** a long-doc / portfolio / slide (not 
 | "架构图 / architecture / 系统图 / components diagram" | Architecture | `assets/diagrams/architecture.html` |
 | "流程图 / flowchart / 决策流 / branching logic" | Flowchart | `assets/diagrams/flowchart.html` |
 | "象限图 / quadrant / 优先级矩阵 / 2×2 matrix" | Quadrant | `assets/diagrams/quadrant.html` |
+| "柱状图 / bar chart / 分类对比 / grouped bars" | Bar Chart | `assets/diagrams/bar-chart.html` |
+| "折线图 / line chart / 趋势 / 股价 / time series" | Line Chart | `assets/diagrams/line-chart.html` |
+| "环形图 / donut / pie / 占比 / 分布结构" | Donut Chart | `assets/diagrams/donut-chart.html` |
 
 Read `references/diagrams.md` / `diagrams.en.md` before drawing - it has the selection guide, kami token map, and the AI-slop anti-pattern table. Extract the `<svg>` block from the template and drop it into a `<figure>` inside long-doc / portfolio.
 
@@ -130,6 +133,19 @@ The full spec files for reference:
 - Copy the template into your working directory; don't write HTML from scratch
 - **CSS stays untouched**, only edit the body
 - Content follows `writing.md` / `writing.en.md`: data over adjectives, distinctive phrasing over industry clichés
+
+### Fill PDF metadata (WeasyPrint reads these into the PDF)
+
+Every template has meta placeholders in `<head>`. Fill all four before building:
+
+| Placeholder (CN) | Placeholder (EN) | Rule |
+|---|---|---|
+| `{{作者}}` | `{{AUTHOR}}` | Resume/letter/portfolio: use the person's name from the doc. All others: `"Kami"` |
+| `{{摘要}}` | `{{DESCRIPTION}}` | Extract one sentence (≤150 chars) from the first 2 paragraphs |
+| `{{关键词}}` | `{{KEYWORDS}}` | 3-5 keywords from the title + section headings, comma-separated |
+| `{{文档标题}}` / `{{信件主题}}` etc. | `{{DOC_TITLE}}` / `{{LETTER_SUBJECT}}` etc. | Infer from the H1 or `.header .title` text |
+
+`<meta name="generator" content="Kami">` is already fixed in the template; do not change it.
 
 ## Step 5 · Build & verify
 
