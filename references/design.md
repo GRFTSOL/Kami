@@ -13,7 +13,7 @@ kami 的审美可以浓缩成一句话：**暖米纸底，油墨蓝点缀，seri
 3. 所有灰色暖调（yellow-brown undertone），禁止冷蓝灰
 4. 英文模板: serif 通吃标题和正文。中文模板: 标题 serif，正文 sans。UI 元素 (label, eyebrow, meta) 都用 sans
 5. Serif 字重固定 500，不用 bold
-6. 行距三档：紧凑标题 1.1-1.3 / 密排正文 1.4-1.45 / 阅读型 1.5-1.55。禁用 1.6+
+6. 行距三档：紧凑标题 1.1-1.3 / 密排正文 1.4-1.45 / 阅读型 1.5-1.55
 7. Tag 背景必须实色 hex，禁止 rgba 半透明（WeasyPrint 会渲染出双层矩形）
 8. 阴影用 ring 或 whisper shadow，不用硬 drop shadow
 9. **禁止 italic**。所有模板和 demo 中不使用 `font-style: italic`，不需要 italic 字体文件

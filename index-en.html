@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>Kami · Design System</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Kami - warm parchment design system for professional documents. One accent color, serif-led hierarchy, editorial whitespace.">
+  <meta name="description" content="Kami - a warm parchment design system for professional documents, shaped by one accent color, serif-led hierarchy, and editorial whitespace.">
   <link rel="icon" href="https://gw.alipayobjects.com/zos/k/vl/logo.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./styles.css">
 </head>
@@ -15,7 +15,7 @@
   <!-- ============ HERO ============ -->
   <header class="hero">
     <div class="eyebrow">
-      <span>Design System · v1.0<span class="eyebrow-date"> · 2026.04</span></span>
+      <span>Design System · v1.1.0<span class="eyebrow-date"> · 2026.04</span></span>
       <span class="hero-links">
         <a href="https://github.com/tw93/kami" target="_blank" rel="noopener" aria-label="GitHub">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
@@ -30,7 +30,7 @@
       </span>
     </div>
     <h1>Kami<span class="cn">紙</span></h1>
-    <p class="tagline">Good content deserves good paper. One design language across six document types: warm parchment, ink-blue accent, serif-led hierarchy, editorial whitespace.</p>
+    <p class="tagline">Good content deserves good paper. Six formats share parchment, ink blue, and serif hierarchy.</p>
     <div class="hero-tokens">
       <span><b>Canvas</b>#f5f4ed</span>
       <span><b>Accent</b>#1B365D</span>
@@ -44,7 +44,7 @@
     <div class="section-head">
       <p class="section-num">00 · See it</p>
       <h2 class="section-title">Output Samples</h2>
-      <p class="section-lede">Tell Claude what you need in plain language. It produces print-ready documents in kami's design language.</p>
+      <p class="section-lede">Give Claude the brief: one-pagers, long docs, formal letters, portfolios, resumes, and slides become polished layouts.</p>
     </div>
     <div class="demo-grid">
       <div class="demo-card">
@@ -75,7 +75,7 @@
     <div class="section-head">
       <p class="section-num">01 · Usage</p>
       <h2 class="section-title">Install &amp; Invoke</h2>
-      <p class="section-lede">Just tell Claude what you need: "build me a resume", "make a one-pager for my startup", "design a slide deck for my talk". The skill auto-triggers, no slash command needed.</p>
+      <p class="section-lede">Tell Claude what you need, for example "build me a resume", "make a one-pager for my startup", or "design a slide deck for my talk". The skill auto-triggers, no slash command needed.</p>
     </div>
 <pre class="code"><span class="c"># Claude Code</span>
 npx skills add tw93/kami -a claude-code -g -y
@@ -90,14 +90,14 @@ npx skills add tw93/kami -a codex -g -y</pre>
       <p class="section-num">02 · Manifesto</p>
       <h2 class="section-title">Design Principles</h2>
     </div>
-    <p class="manifesto">Warm parchment canvas, <em>ink blue</em> as the sole accent, serif carries hierarchy, no hard shadows or flashy palettes. This is not a UI framework, it is a constraint system for printed matter.</p>
+    <p class="manifesto">Warm parchment canvas, <em>ink blue</em> as the sole accent, serif carries hierarchy, while hard shadows and flashy palettes recede. This system is built for printed matter: stable, clear, and composed.</p>
     <ol class="rules">
       <li><span class="n">1</span><p>Page background is parchment <code>#f5f4ed</code>, never pure white</p></li>
       <li><span class="n">2</span><p>Accent color is ink blue <code>#1B365D</code> only; no second chromatic hue</p></li>
       <li><span class="n">3</span><p>All grays are warm, yellow-brown undertone; no cool blue-grays</p></li>
-      <li><span class="n">4</span><p>English: serif for headlines and body. Chinese: serif headlines, sans body</p></li>
+      <li><span class="n">4</span><p>English uses serif for headlines and body; Chinese uses serif headlines and sans body</p></li>
       <li><span class="n">5</span><p>Serif body at 400, headings at 500. Avoid synthetic bold</p></li>
-      <li><span class="n">6</span><p>Three line-height bands: tight titles 1.1-1.3 / dense 1.4-1.45 / reading 1.5-1.55. Never 1.6+</p></li>
+      <li><span class="n">6</span><p>Three line-height bands: tight titles 1.1-1.3 / dense 1.4-1.45 / reading 1.5-1.55</p></li>
       <li><span class="n">7</span><p>Tag backgrounds must be solid hex; no rgba, WeasyPrint double-rectangle bug</p></li>
       <li><span class="n">8</span><p>Shadows: ring or whisper only, no hard drop shadows</p></li>
     </ol>
@@ -138,7 +138,7 @@ npx skills add tw93/kami -a codex -g -y</pre>
     </div>
 
     <h3 class="subhead">Tag Tints: rgba to solid hex</h3>
-    <p style="font-size:14px; color: var(--olive); max-width: 720px; margin: 0 0 16px; line-height: 1.55;">Ink Blue <code style="font-family:var(--mono);font-size:12px;background:#EEF2F7;color:var(--brand);padding:1px 5px;border-radius:2px">#1B365D</code> layered on parchment as equivalent solid hex. <b style="color:var(--brand);font-weight:500">Never</b> use <code style="font-family:var(--mono);font-size:12px;background:#EEF2F7;color:var(--brand);padding:1px 5px;border-radius:2px">rgba()</code>: WeasyPrint double-rectangle bug.</p>
+    <p style="font-size:14px; color: var(--olive); max-width: 720px; margin: 0 0 16px; line-height: 1.55;">These are the equivalent solid hex values for ink blue <code style="font-family:var(--mono);font-size:12px;background:#EEF2F7;color:var(--brand);padding:1px 5px;border-radius:2px">#1B365D</code> layered on parchment. Tag backgrounds avoid <code style="font-family:var(--mono);font-size:12px;background:#EEF2F7;color:var(--brand);padding:1px 5px;border-radius:2px">rgba()</code> so WeasyPrint will not render double rectangles.</p>
     <div class="tint-strip">
       <div class="tint"><span class="flag">&nbsp;</span><span class="sample" style="background:#EEF2F7">Tag sample</span><p class="opacity">0.08</p><span class="hex">#EEF2F7</span></div>
       <div class="tint"><span class="flag">&nbsp;</span><span class="sample" style="background:#E4ECF5">Tag sample</span><p class="opacity">0.14</p><span class="hex">#E4ECF5</span></div>
@@ -181,7 +181,7 @@ npx skills add tw93/kami -a codex -g -y</pre>
     <div class="type-grid">
       <div class="type-row">
         <div class="type-label">Display</div>
-        <div class="type-sample display">Quality documents read<br>clean, stable, structured</div>
+        <div class="type-sample display">Good docs read<br>clear, stable, poised</div>
         <div class="type-specs"><b>36-48 pt</b><br>weight 500<br>line 1.10</div>
       </div>
       <div class="type-row">
@@ -211,7 +211,7 @@ npx skills add tw93/kami -a codex -g -y</pre>
       </div>
       <div class="type-row">
         <div class="type-label">Label</div>
-        <div class="type-sample label">Design System · v1.0</div>
+        <div class="type-sample label">Design System · v1.1.0</div>
         <div class="type-specs"><b>7.5-8 pt</b><br>weight 600<br>line 1.35</div>
       </div>
     </div>
@@ -248,11 +248,11 @@ npx skills add tw93/kami -a codex -g -y</pre>
     </div>
 
     <h3 class="subhead">Depth: Three Shadow Methods</h3>
-    <p style="font-size:14px; color: var(--olive); max-width: 720px; margin: 0 0 12px; line-height: 1.55;">Kami avoids traditional hard shadows. Depth is created through ring shadow / whisper shadow / light-dark alternation.</p>
+    <p style="font-size:14px; color: var(--olive); max-width: 720px; margin: 0 0 12px; line-height: 1.55;">Kami avoids traditional hard shadows. Depth comes from ring shadows, whisper shadows, and light-dark alternation.</p>
     <div class="shadow-row">
       <div class="shadow-demo sd-ring">
         <p class="t">Ring Shadow</p>
-        <p class="s">box-shadow: 0 0 0 1pt var(--ring-warm)<br>&nbsp;<br>Buttons · card hover</p>
+        <p class="s">0 0 0 1pt var(--ring-warm)<br>&nbsp;<br>Buttons · card hover</p>
       </div>
       <div class="shadow-demo sd-whisper">
         <p class="t">Whisper Shadow</p>
@@ -270,7 +270,7 @@ npx skills add tw93/kami -a codex -g -y</pre>
     <div class="section-head">
       <p class="section-num">06 · Components</p>
       <h2 class="section-title">Atomic Modules</h2>
-      <p class="section-lede">A small, fixed set. Each answers a specific question.</p>
+      <p class="section-lede">A small fixed set, kept only where it solves a concrete document problem.</p>
     </div>
 
     <div class="comp-grid">
@@ -375,13 +375,13 @@ beauty   = constraints × <span class="k">intention</span> ÷ noise</pre>
     <div class="section-head">
       <p class="section-num">08 · Anti-Patterns</p>
       <h2 class="section-title">What to Avoid</h2>
-      <p class="section-lede">Before breaking a rule, make sure you truly intend to.</p>
+      <p class="section-lede">Exceptions are allowed, but the reason should be explicit.</p>
     </div>
 
     <div class="anti">
       <div class="no">
         <h5>Don't</h5>
-        <p>Use <code>#ffffff</code> pure white or <code>#f3f4f6</code> cool gray as page background. Kami's emotional foundation is warm parchment.</p>
+        <p>Use <code>#ffffff</code> pure white or <code>#f3f4f6</code> cool gray as page background. It makes the page feel brittle and weakens the warm parchment character.</p>
       </div>
       <div class="yes">
         <h5>Do</h5>
@@ -393,7 +393,7 @@ beauty   = constraints × <span class="k">intention</span> ÷ noise</pre>
       </div>
       <div class="yes">
         <h5>Do</h5>
-        <p>Use the tint lookup table for equivalent solid hex <code>#E4ECF5</code>. Bug gone, color consistent.</p>
+        <p>Use the tint lookup table for equivalent solid hex <code>#E4ECF5</code>. The rendering stays clean and the color remains stable.</p>
       </div>
       <div class="no">
         <h5>Don't</h5>
@@ -401,7 +401,7 @@ beauty   = constraints × <span class="k">intention</span> ÷ noise</pre>
       </div>
       <div class="yes">
         <h5>Do</h5>
-        <p>Body at 400, headings at 500 (real W05 weight). For stronger presence, increase size or add a brand left bar. Never use synthetic bold.</p>
+        <p>Body 400, headings 500 (real W05). For more presence, use size or a brand left bar, never synthetic bold.</p>
       </div>
       <div class="no">
         <h5>Don't</h5>
@@ -421,8 +421,8 @@ beauty   = constraints × <span class="k">intention</span> ÷ noise</pre>
       <h2 class="section-title">Design Origins</h2>
     </div>
     <div class="background-text">
-      <p>I invest in US equities and regularly ask AI to generate analysis reports. The output always looked like a default Google Doc: bland, inconsistent, forgettable. I can't stand ugly documents, especially when every report comes out looking different from the last one. So I kept tweaking the typography, colors, and spacing until I had something I actually wanted to read.</p>
-      <p>Then I was invited to present a talk and needed a slide deck that matched the same standard. That round pushed the system further, adding inline SVG diagrams, a consistent warm palette, and tighter editorial rhythm. Eventually it was doing enough that I pulled it into its own package. That became kami: one visual language I like, applied to everything I ship.</p>
+      <p>I invest in US equities and often ask AI to generate analysis reports. The earliest drafts looked like default Google Docs: plain, inconsistent, and easy to forget. I did not want each document to arrive with a different face, so I kept refining the typography, palette, and spacing until the page became something I wanted to keep reading.</p>
+      <p>Later, I was invited to give a talk and needed a slide deck that shared the same visual standard. That iteration pushed the system further: inline SVG diagrams, a unified warm palette, and a tighter editorial rhythm. Over time it covered the document formats I use most, so it became kami, a visual language I can reuse with confidence and send out without hesitation.</p>
     </div>
   </section>
 
@@ -442,7 +442,7 @@ beauty   = constraints × <span class="k">intention</span> ÷ noise</pre>
     <div class="colophon">
       <div><a href="https://github.com/tw93/kami" style="color:var(--brand); text-decoration:none; font-weight:500;">GitHub</a>&nbsp;&nbsp;·&nbsp;&nbsp;One-Pager · Long Doc · Letter · Portfolio · Resume · Slides</div>
       <div style="margin-top:8px; color: var(--olive); font-family: var(--serif);">
-        Serif for authority, sans for function, warm grays for rhythm, ink blue for focus.
+        Serif carries authority, sans function, warm grays rhythm, ink blue focus.
       </div>
     </div>
   </footer>

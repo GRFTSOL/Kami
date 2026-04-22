@@ -61,6 +61,8 @@ font-family: "TsangerJinKai02",
 
 **字体 fallback 影响页数**：换字体必须重新跑页数验证。溢出时优先调 `font-size`，再调 margin，最后砍内容。
 
+**Claude Desktop skill ZIP 不打包大字体**：`TsangerJinKai02-W04.ttf` 和 `TsangerJinKai02-W05.ttf` 单文件接近 19MB，会让 Claude.ai / Desktop 的 skill 上传或执行超时。发布 ZIP 必须用 `scripts/package-skill.sh` 生成，它会排除这两个 TTF。模板仍保留本地优先、jsDelivr 兜底的 `@font-face` 路径。
+
 ### 页面规格
 
 ```css
@@ -301,6 +303,20 @@ for variant, vars_css in [
     custom = base.replace('{{VARS}}', f':root {{ {vars_css} }}')
     HTML(string=custom).write_pdf(f'out-{variant}.pdf')
 ```
+
+### 交付前 5 维自查
+
+生成成功不等于可以交付。交付前快速扫一遍：
+
+| 维度 | 通过标准 |
+|---|---|
+| 事实准确性 | 数字、日期、版本、融资、规格、市场事实有来源；不确定处用量级或标注待补 |
+| 内容结构 | 标题串起来能读成摘要；每段第一句有明确论点；没有无意义铺垫 |
+| 素材完整度 | 品牌文档有 logo、产品图或 UI 截图；缺失素材明确标注待补 |
+| 排印细节 | 字体加载正确，行距在规范内，强调只给数字或独特表达，tag 背景是实色 |
+| PDF 可交付性 | 页数符合约束，无未替换占位符，截图检查没有溢出、重叠、断页错误 |
+
+任一项不通过，先修正再交付。
 
 ---
 

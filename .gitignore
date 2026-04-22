@@ -14,5 +14,6 @@ assets/fonts/Newsreader-italic.woff
 assets/examples/
 
 /tmp/
+/dist/
 *.log
 .vercel

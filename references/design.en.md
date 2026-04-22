@@ -13,7 +13,7 @@ This is not a UI framework. It is a constraint system for print, designed to kee
 3. All grays warm-toned (yellow-brown undertone), no cool blue-grays
 4. English: serif for everything (headlines and body). Chinese: serif headlines, sans body. Sans only for UI elements (labels, eyebrows, meta) in both
 5. Serif weight locked at 500, no bold
-6. Line-heights: tight headlines 1.1-1.3, dense body 1.4-1.45, reading body 1.5-1.55. **Never 1.6+**
+6. Line-heights: tight headlines 1.1-1.3, dense body 1.4-1.45, reading body 1.5-1.55
 7. Tag backgrounds must be solid hex, never rgba (WeasyPrint renders a double rectangle)
 8. Depth via ring shadow or whisper shadow, never hard drop shadows
 9. **No italic anywhere**. No `font-style: italic` in any template or demo. No italic @font-face declarations needed

@@ -140,7 +140,7 @@
     font-family: var(--sans);
     font-size: 14px;
     line-height: 1.55;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.4px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -219,21 +219,21 @@
   .hero .tagline {
     font-family: var(--serif);
     font-weight: 500;
-    font-size: 22px;
+    font-size: 21px;
     line-height: 1.35;
     color: var(--olive);
     margin: 0;
   }
 
   /* ---------- Section ---------- */
-  section { margin-bottom: 96px; }
-  .section-head { margin-bottom: 28px; }
+  section { margin-bottom: 72px; }
+  .section-head { margin-bottom: 24px; }
   .section-num {
     font-family: var(--serif);
     font-weight: 500;
     font-size: 14px;
     color: var(--brand);
-    letter-spacing: 0.5px;
+    letter-spacing: 0.4px;
     margin: 0 0 6px;
   }
   .section-title {
@@ -244,7 +244,7 @@
     color: var(--near-black);
     margin: 0;
     display: block;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.4px;
   }
   .section-lede {
     font-family: var(--serif);
@@ -353,7 +353,7 @@
     font-family: var(--mono);
     font-size: 12px;
     color: var(--stone);
-    letter-spacing: 0.3px;
+    letter-spacing: 0.4px;
   }
   .swatch.brand .name { color: var(--brand); }
   .swatch.dark .chip { border-bottom-color: var(--deep-dark); }
@@ -386,7 +386,8 @@
     color: var(--brand);
     padding: 2px 8px;
     border-radius: 3px;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.4px;
+    margin-left: -1px;
     margin-bottom: 10px;
   }
   .tint .opacity {
@@ -448,7 +449,7 @@
   .type-specs b { color: var(--charcoal); font-weight: 500; }
   .type-sample.display {
     font-family: var(--serif); font-weight: 500;
-    font-size: 60px; line-height: 1.1; color: var(--near-black);
+    font-size: 48px; line-height: 1.1; color: var(--near-black);
     letter-spacing: -0.5px;
   }
   .type-sample.h1 {
@@ -647,7 +648,7 @@
     border-radius: 8px;
     cursor: pointer;
     user-select: none;
-    letter-spacing: 0.1px;
+    letter-spacing: 0.4px;
   }
   .btn-primary {
     background: var(--brand);
@@ -674,7 +675,7 @@
     padding: 2px 7px;
     border-radius: 2px;
     color: var(--brand);
-    letter-spacing: 0.2px;
+    letter-spacing: 0.4px;
   }
   .tag.calm { background: #EEF2F7; }
   .tag.standard { background: #E4ECF5; border-radius: 4px; padding: 2px 8px; }
@@ -716,7 +717,7 @@
     color: var(--olive);
   }
 
-  /* Section title inline sample — size-led hierarchy, no decoration */
+  /* Section title inline sample: size-led hierarchy, no decoration */
   .sample-section-title {
     font-family: var(--serif);
     font-weight: 500;
@@ -960,7 +961,7 @@
 @media (max-width: 768px) {
   /* Container + spacing */
   .page { padding: 48px 20px 64px; }
-  section { margin-bottom: 56px; }
+  section { margin-bottom: 48px; }
   .section-head { margin-bottom: 20px; }
 
   /* Typography scale */
