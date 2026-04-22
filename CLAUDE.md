@@ -27,15 +27,21 @@ python3 scripts/build.py --check  # CSS 扫描 (rgba / 冷灰 / 行高)
 
 ## Demo 截图
 
-单页文档 (one-pager):
+所有 demo PNG 统一尺寸 **1241×1754px**（单张 A4 portrait @ 150dpi）。
+
+单页 / 多页文档 (one-pager / letter / resume / portfolio / long-doc): 取第 1 页:
 ```bash
-pdftoppm -r 150 -png <pdf> /tmp/p && mv /tmp/p-1.png <target>.png
+pdftoppm -r 150 -f 1 -l 1 -png <pdf> /tmp/p && cp /tmp/p-1.png <target>.png
 ```
 
-多页文档 (slides / resume / portfolio / long-doc): 截取前 2 页，上下拼接，中间留 20px 间隔 (#f5f4ed 底色):
+横向幻灯片 (slides): 取前 2 页，每页缩至 867px 高 + 20px gap = 1754px，补底色至 1241px 宽:
 ```bash
-pdftoppm -r 150 -f 1 -l 2 -png <pdf> /tmp/p
-convert /tmp/p-1.png /tmp/p-2.png -splice 0x20 -background '#f5f4ed' -append <target>.png
+pdftoppm -r 150 -f 1 -l 2 -png <pdf> /tmp/sl
+magick /tmp/sl-1.png -resize x867 /tmp/sl1.png
+magick /tmp/sl-2.png -resize x867 /tmp/sl2.png
+magick -size $(identify -format '%w' /tmp/sl1.png)x20 xc:'#f5f4ed' /tmp/gap.png
+magick /tmp/sl1.png /tmp/gap.png /tmp/sl2.png -append /tmp/stacked.png
+magick /tmp/stacked.png -gravity Center -background '#f5f4ed' -extent 1241x1754 <target>.png
 ```
 
 ## 改动规范
