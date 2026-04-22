@@ -15,6 +15,7 @@ Kaku(写代码) · Waza(练习惯) · **Kami(出文档)** 三部曲之一。
 | `assets/templates/` | 6 种模板 × 2 语言 | 中 |
 | `assets/demos/` | README 展示用 demo | 样式改后重新生成 |
 | `scripts/build.py` | 生成 PDF/PNG/PPTX | 低 |
+| `scripts/package-skill.sh` | 打包 Claude Desktop ZIP（排除大字体） | 低 |
 
 ## 验证
 
@@ -60,8 +61,21 @@ magick /tmp/stacked.png -gravity Center -background '#f5f4ed' -extent 1241x1754 
 6. SVG marker orient="auto" 不生效: WeasyPrint 不旋转 marker
 7. section 内文本不加 max-width: `.manifesto`、`.section-lede` 等内容文本应撑满 `.page` 容器宽度，不设 max-width。例外: `.type-sample` 和 `.footer .colophon` 窄是合理的。
 
+## 发布流程
+
+每次打 Release tag 后必须执行：
+
+```bash
+bash scripts/package-skill.sh        # 生成 dist/kami.zip（< 5MB，不含 TsangerJinKai TTF）
+gh release upload <tag> dist/kami.zip -R tw93/kami
+```
+
+README 下载链接固定用 `releases/latest/download/kami.zip`，不含版本号，发布后无需手动替换。
+
 ## 字体
 
 TsangerJinKai02-W04.ttf 是商业字体，商业用途需从 tsanger.cn 获取授权。
 无字体时 fallback: Source Han Serif SC -> Noto Serif CJK SC -> Songti SC -> Georgia。
 英文模板用 Newsreader serif。
+
+Claude Desktop ZIP 不打包 TsangerJinKai TTF（体积 ~19MB/个，会触发上传限制）。Skill 在构建中文文档前会自动检测字体，缺失时从 jsDelivr 下载到 `assets/fonts/`，WeasyPrint 通过已有相对路径读取，无需改 HTML。
