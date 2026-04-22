@@ -427,7 +427,7 @@
   .type-row > * {
     padding: 22px 0;
     border-bottom: 1px solid var(--border-soft);
-    align-self: start;
+    align-self: stretch;
   }
   .type-label {
     font-family: var(--serif);
@@ -513,6 +513,9 @@
     color: var(--near-black);
     margin: 0 0 18px;
     letter-spacing: -1px;
+    height: 80px;
+    display: flex;
+    align-items: center;
   }
   .family.serif .glyph { font-family: var(--serif); }
   .family.sans .glyph { font-family: var(--sans); }
@@ -604,6 +607,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
+    align-items: stretch;
   }
   .comp {
     background: var(--ivory);
@@ -611,6 +615,8 @@
     border-radius: 12px;
     padding: 28px 28px 24px;
     transition: box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
   }
   .comp:hover {
     box-shadow: 0 4px 24px rgba(0,0,0,0.05);
@@ -628,7 +634,7 @@
     font-family: var(--mono);
     margin: 0 0 20px;
   }
-  .comp .demo { margin-bottom: 4px; }
+  .comp .demo { margin-bottom: 4px; flex: 1; }
 
   /* Buttons */
   .btn {
