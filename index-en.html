@@ -44,7 +44,7 @@
     <div class="section-head">
       <p class="section-num">00 · See it</p>
       <h2 class="section-title">Output Samples</h2>
-      <p class="section-lede">Tell Claude what you need in plain language. It produces print-ready documents using kami's design language.</p>
+      <p class="section-lede">Tell Claude what you need in plain language. It produces print-ready documents in kami's design language.</p>
     </div>
     <div class="demo-grid">
       <div class="demo-card">
@@ -60,7 +60,7 @@
       <div class="demo-card">
         <a href="assets/demos/demo-musk-resume.pdf" target="_blank"><img src="assets/demos/demo-musk-resume.png" alt="Musk resume"></a>
         <p class="demo-title">Resume</p>
-        <p class="demo-desc">Founder CV, 2 pages strict</p>
+        <p class="demo-desc">Founder CV, 2 pages</p>
       </div>
       <div class="demo-card">
         <a href="assets/demos/demo-kaku.pdf" target="_blank"><img src="assets/demos/demo-kaku.png" alt="Kaku portfolio"></a>
@@ -88,15 +88,15 @@ npx skills add tw93/kami -a codex -g -y</pre>
   <section>
     <div class="section-head">
       <p class="section-num">02 · Manifesto</p>
-      <h2 class="section-title">Design Manifesto</h2>
+      <h2 class="section-title">Design Principles</h2>
     </div>
-    <p class="manifesto">Warm parchment canvas, <em>ink blue</em> as the sole accent, serif carries authority, no hard shadows or flashy palettes. This is not a UI framework; it is an aesthetic constraint system for printed matter. It believes: quality documents read like literature, not dashboards.</p>
+    <p class="manifesto">Warm parchment canvas, <em>ink blue</em> as the sole accent, serif carries hierarchy, no hard shadows or flashy palettes. This is not a UI framework, it is a constraint system for printed matter.</p>
     <ol class="rules">
       <li><span class="n">1</span><p>Page background is parchment <code>#f5f4ed</code>, never pure white</p></li>
       <li><span class="n">2</span><p>Accent color is ink blue <code>#1B365D</code> only; no second chromatic hue</p></li>
       <li><span class="n">3</span><p>All grays are warm, yellow-brown undertone; no cool blue-grays</p></li>
       <li><span class="n">4</span><p>English: serif for headlines and body. Chinese: serif headlines, sans body</p></li>
-      <li><span class="n">5</span><p>Serif weight fixed at 500, never bold. Single weight is part of the design language</p></li>
+      <li><span class="n">5</span><p>Serif body at 400, headings at 500. Avoid synthetic bold</p></li>
       <li><span class="n">6</span><p>Three line-height bands: tight titles 1.1-1.3 / dense 1.4-1.45 / reading 1.5-1.55. Never 1.6+</p></li>
       <li><span class="n">7</span><p>Tag backgrounds must be solid hex; no rgba, WeasyPrint double-rectangle bug</p></li>
       <li><span class="n">8</span><p>Shadows: ring or whisper only, no hard drop shadows</p></li>
@@ -153,7 +153,7 @@ npx skills add tw93/kami -a codex -g -y</pre>
     <div class="section-head">
       <p class="section-num">04 · Typography</p>
       <h2 class="section-title">Type System</h2>
-      <p class="section-lede">Serif carries authority, sans carries function. Serif weight fixed at 500: single weight is the system's signature.</p>
+      <p class="section-lede">Serif carries hierarchy, sans carries function. Serif body at 400, headings at 500.</p>
     </div>
 
     <div class="family-grid">
@@ -161,7 +161,7 @@ npx skills add tw93/kami -a codex -g -y</pre>
         <p class="glyph">Aa</p>
         <p class="role">Serif · Headlines + Body</p>
         <p class="name">Newsreader / TsangerJinKai02</p>
-        <p class="use">All headlines, body text, pull quotes, and numeric emphasis. Fixed weight 500 for headlines, 400 for body. English uses Newsreader; Chinese uses TsangerJinKai02.</p>
+        <p class="use">Used for headlines, body text, pull quotes, and numeric emphasis. English uses Newsreader, Chinese uses TsangerJinKai02.</p>
       </div>
       <div class="family sans">
         <p class="glyph">Aa</p>
@@ -181,7 +181,7 @@ npx skills add tw93/kami -a codex -g -y</pre>
     <div class="type-grid">
       <div class="type-row">
         <div class="type-label">Display</div>
-        <div class="type-sample display">Quality documents read<br>like literature</div>
+        <div class="type-sample display">Quality documents read<br>clean, stable, structured</div>
         <div class="type-specs"><b>36-48 pt</b><br>weight 500<br>line 1.10</div>
       </div>
       <div class="type-row">
@@ -259,8 +259,8 @@ npx skills add tw93/kami -a codex -g -y</pre>
         <p class="s">0 4pt 24pt rgba(0,0,0,0.05)<br>&nbsp;<br>Gentle elevation · feature cards</p>
       </div>
       <div class="shadow-demo sd-alt">
-        <p class="t">Light / Dark</p>
-        <p class="s">parchment / deep-dark<br>&nbsp;<br>Section-level · most dramatic</p>
+        <p class="t">Light ⇌ Dark</p>
+        <p class="s">parchment ⇌ deep-dark<br>&nbsp;<br>Section-level · strongest contrast</p>
       </div>
     </div>
   </section>
@@ -295,7 +295,7 @@ npx skills add tw93/kami -a codex -g -y</pre>
       <div class="comp">
         <h4>Quote</h4>
         <p class="hint">left 2pt brand solid + olive text</p>
-        <blockquote class="quote">A thousand no's for every yes. Prefer clarity over decoration.</blockquote>
+        <blockquote class="quote">A thousand no's for every yes, prefer clarity over decoration.</blockquote>
       </div>
       <div class="comp">
         <h4>Metric</h4>
@@ -315,7 +315,7 @@ npx skills add tw93/kami -a codex -g -y</pre>
       </div>
       <div class="comp">
         <h4>Dash List</h4>
-        <p class="hint">dash instead of bullet · more literary</p>
+        <p class="hint">dash instead of bullet · editorial tone</p>
         <ul class="dash demo">
           <li>Warm parchment, never pure white</li>
           <li>Ink blue accent, no second color</li>
@@ -400,15 +400,15 @@ npx skills add tw93/kami -a codex -g -y</pre>
       </div>
       <div class="no">
         <h5>Don't</h5>
-        <p>Set headlines to <code>font-weight: 700</code> bold. Serif 500 is the system's signature; bold makes the layout feel restless.</p>
+        <p>Set headlines to <code>font-weight: 600</code> or heavier synthetic bold. Synthetic bold blurs strokes and degrades typographic quality.</p>
       </div>
       <div class="yes">
         <h5>Do</h5>
-        <p>Keep serif at 500. For stronger presence, increase size or add a brand left bar. Never go bold.</p>
+        <p>Body at 400, headings at 500 (real W05 weight). For stronger presence, increase size or add a brand left bar. Never use synthetic bold.</p>
       </div>
       <div class="no">
         <h5>Don't</h5>
-        <p>Use hard drop shadow <code>0 2px 8px rgba(0,0,0,0.3)</code>. Cold, SaaS-like, prints as dark blobs.</p>
+        <p>Use hard drop shadow <code>0 2px 8px rgba(0,0,0,0.3)</code>. Visually heavy and likely to print as dark blobs.</p>
       </div>
       <div class="yes">
         <h5>Do</h5>

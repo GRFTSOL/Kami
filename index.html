@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>Kami · Design System</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Kami 紙: 温暖纸质感设计系统，用于专业文档排版。单一强调色，serif 主导层级，编辑级留白。">
+  <meta name="description" content="Kami 紙：温暖纸质感设计系统，用于专业文档排版。单一强调色，serif 主导层级，编辑级留白。">
   <link rel="icon" href="https://gw.alipayobjects.com/zos/k/vl/logo.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./styles.css">
 </head>
@@ -30,7 +30,7 @@
       </span>
     </div>
     <h1>Kami<span class="cn">紙</span></h1>
-    <p class="tagline">好内容，值得好纸面。六种文档，一套设计语言: 暖米纸底，油墨蓝点缀，serif 主导层级，编辑级留白。</p>
+    <p class="tagline">好内容，值得好纸面。六种文档，一套设计语言：暖米纸底，油墨蓝点缀，serif 主导层级，编辑级留白。</p>
     <div class="hero-tokens">
       <span><b>Canvas</b>#f5f4ed</span>
       <span><b>Accent</b>#1B365D</span>
@@ -60,7 +60,7 @@
       <div class="demo-card">
         <a href="assets/demos/demo-musk-resume.pdf" target="_blank"><img src="assets/demos/demo-musk-resume.png" alt="Musk resume"></a>
         <p class="demo-title">Resume · English</p>
-        <p class="demo-desc">Founder CV, 2 pages strict</p>
+        <p class="demo-desc">Founder CV，2 页</p>
       </div>
       <div class="demo-card">
         <a href="assets/demos/demo-kaku.pdf" target="_blank"><img src="assets/demos/demo-kaku.png" alt="Kaku 作品集"></a>
@@ -75,7 +75,7 @@
     <div class="section-head">
       <p class="section-num">01 · Usage</p>
       <h2 class="section-title">安装与调用</h2>
-      <p class="section-lede">直接告诉 Claude 你要什么: "帮我排版一份白皮书"、"做一份简历"、"帮我做一份作品集"。skill 会自动触发，不需要斜杠命令。</p>
+      <p class="section-lede">直接告诉 Claude 你要什么：「帮我排版一份白皮书」、「做一份简历」、「帮我做一份作品集」。skill 会自动触发，不需要斜杠命令。</p>
     </div>
 <pre class="code"><span class="c"># Claude Code</span>
 npx skills add tw93/kami -a claude-code -g -y
@@ -88,15 +88,15 @@ npx skills add tw93/kami -a codex -g -y</pre>
   <section>
     <div class="section-head">
       <p class="section-num">02 · Manifesto</p>
-      <h2 class="section-title">设计宣言</h2>
+      <h2 class="section-title">设计原则</h2>
     </div>
-    <p class="manifesto">暖米纸底，<em>油墨蓝</em>点缀，serif 承担权威，拒绝硬阴影与花哨配色。这不是一套 UI 框架，是一套印刷品的审美约束。它相信：高质量的文档读起来像文学，不像仪表盘。</p>
+    <p class="manifesto">暖米纸底，<em>油墨蓝</em>点缀，serif 承担层级，拒绝硬阴影与花哨配色。这不是一套 UI 框架，而是一套面向印刷文档的约束系统。</p>
     <ol class="rules">
       <li><span class="n">1</span><p>页面背景 parchment <code>#f5f4ed</code>，不用纯白</p></li>
       <li><span class="n">2</span><p>强调色只有油墨蓝 <code>#1B365D</code>，不引入第二种彩色</p></li>
       <li><span class="n">3</span><p>所有灰色暖调 (yellow-brown undertone)，禁止冷蓝灰</p></li>
-      <li><span class="n">4</span><p>英文: serif 通吃标题和正文。中文: 标题 serif，正文 sans</p></li>
-      <li><span class="n">5</span><p>Serif 字重固定 500，不用 bold。单一字重是设计语言的一部分</p></li>
+      <li><span class="n">4</span><p>英文：serif 通吃标题和正文。中文：标题 serif，正文 sans</p></li>
+      <li><span class="n">5</span><p>Serif 正文 400，标题 500，不用合成 bold</p></li>
       <li><span class="n">6</span><p>行距三档：紧凑标题 1.1–1.3 / 密排 1.4–1.45 / 阅读 1.5–1.55。禁 1.6+</p></li>
       <li><span class="n">7</span><p>Tag 背景必须实色 hex，禁止 rgba（WeasyPrint 双层矩形 bug）</p></li>
       <li><span class="n">8</span><p>阴影只用 ring 或 whisper shadow，不用硬 drop shadow</p></li>
@@ -108,14 +108,14 @@ npx skills add tw93/kami -a codex -g -y</pre>
     <div class="section-head">
       <p class="section-num">03 · Color</p>
       <h2 class="section-title">暖调克制</h2>
-      <p class="section-lede">唯一强调色 + 纯暖调中性灰 + 零冷色。油墨蓝全文档不超过 <b>5%</b> 面积。超过就是堆砌，不是克制。</p>
+      <p class="section-lede">唯一强调色 + 纯暖调中性灰 + 零冷色，油墨蓝全文档不超过 <b>5%</b> 面积，超过就是堆砌不是克制。</p>
     </div>
 
     <h3 class="subhead">画布 · Canvas</h3>
     <div class="swatches">
       <div class="swatch"><div class="chip" style="background:#f5f4ed"></div><div class="info"><p class="name">Parchment</p><p class="role">页面底色，整个设计的情感基础</p><span class="hex">#F5F4ED</span></div></div>
-      <div class="swatch"><div class="chip" style="background:#faf9f5"></div><div class="info"><p class="name">Ivory</p><p class="role">卡片 / 浮起容器</p><span class="hex">#FAF9F5</span></div></div>
-      <div class="swatch"><div class="chip" style="background:#e8e6dc"></div><div class="info"><p class="name">Warm Sand</p><p class="role">按钮默认背景 / 交互面</p><span class="hex">#E8E6DC</span></div></div>
+      <div class="swatch"><div class="chip" style="background:#faf9f5"></div><div class="info"><p class="name">Ivory</p><p class="role">卡片 · 浮起容器</p><span class="hex">#FAF9F5</span></div></div>
+      <div class="swatch"><div class="chip" style="background:#e8e6dc"></div><div class="info"><p class="name">Warm Sand</p><p class="role">按钮默认背景 · 交互面</p><span class="hex">#E8E6DC</span></div></div>
       <div class="swatch dark"><div class="chip" style="background:#141413"></div><div class="info"><p class="name" style="color:var(--deep-dark)">Deep Dark</p><p class="role">深色主题页面底，非纯黑，有橄榄底色</p><span class="hex">#141413</span></div></div>
     </div>
 
@@ -153,7 +153,7 @@ npx skills add tw93/kami -a codex -g -y</pre>
     <div class="section-head">
       <p class="section-num">04 · Typography</p>
       <h2 class="section-title">字体系统</h2>
-      <p class="section-lede">Serif 承担权威，sans 承担功能。Serif 字重固定 500，单一字重是这套系统的签名式样。</p>
+      <p class="section-lede">Serif 承担层级，sans 承担功能。Serif 正文 400，标题 500。</p>
     </div>
 
     <div class="family-grid">
@@ -161,19 +161,19 @@ npx skills add tw93/kami -a codex -g -y</pre>
         <p class="glyph">紙 Aa</p>
         <p class="role">Serif · 标题</p>
         <p class="name">TsangerJinKai02 / Newsreader</p>
-        <p class="use">承担所有标题、引语与数字强调。固定字重 500，不用 bold。中文首选仓耳今楷，英文首选 Newsreader。</p>
+        <p class="use">承担标题、引语与数字强调，中文用仓耳今楷，英文用 Newsreader</p>
       </div>
       <div class="family sans">
         <p class="glyph">文 Aa</p>
         <p class="role">Sans · 正文 / UI</p>
         <p class="name">Source Han Sans / Inter</p>
-        <p class="use">正文、标签、按钮、metadata。默认 400，标签 / 标题用 500–600。Silicon Valley editorial stack。</p>
+        <p class="use">用于正文、标签、按钮与 metadata，默认 400，标签标题用 500–600</p>
       </div>
       <div class="family mono">
         <p class="glyph">&lt;/&gt;</p>
         <p class="role">Mono · 代码</p>
         <p class="name">JetBrains Mono</p>
-        <p class="use">代码块、版本号、hex 值、等宽数字。与 serif / sans 搭配时字号小一档。</p>
+        <p class="use">用于代码块、版本号、hex 值与等宽数字，字号比正文小一档</p>
       </div>
     </div>
 
@@ -182,42 +182,42 @@ npx skills add tw93/kami -a codex -g -y</pre>
 
       <div class="type-row">
         <div class="type-label">Display</div>
-        <div class="type-sample display">高质量文档读起来<br>像文学，不像仪表盘</div>
+        <div class="type-sample display">高质量文档读起来<br>清楚、稳定、有节奏</div>
         <div class="type-specs"><b>36–48 pt</b><br>weight 500<br>line 1.10</div>
       </div>
       <div class="type-row">
-        <div class="type-label">H1 Section</div>
+        <div class="type-label">Section H1</div>
         <div class="type-sample h1">色彩系统 · Color</div>
         <div class="type-specs"><b>18–22 pt</b><br>weight 500<br>line 1.20</div>
       </div>
       <div class="type-row">
-        <div class="type-label">H2 Subsection</div>
+        <div class="type-label">Subsection H2</div>
         <div class="type-sample h2">画布 · Canvas</div>
         <div class="type-specs"><b>14–16 pt</b><br>weight 500<br>line 1.25</div>
       </div>
       <div class="type-row">
-        <div class="type-label">H3 Item</div>
+        <div class="type-label">Item H3</div>
         <div class="type-sample h3">Tag Tints · rgba 对照</div>
         <div class="type-specs"><b>12–13 pt</b><br>weight 500<br>line 1.30</div>
       </div>
       <div class="type-row">
         <div class="type-label">Body Lead</div>
-        <div class="type-sample lede">这不是一套 UI 框架，是一套印刷品的审美约束。每条铁律的 trade-off 都是"与其多一个选择，不如少一个诱惑"。</div>
+        <div class="type-sample lede">这不是一套 UI 框架，而是一套印刷文档约束。目标是稳定、清楚、可读。</div>
         <div class="type-specs"><b>11 pt</b><br>weight 400<br>line 1.55</div>
       </div>
       <div class="type-row">
         <div class="type-label">Body</div>
-        <div class="type-sample body">油墨蓝全文档不超过 5% 面积。超过就是堆砌，不是克制。所有灰色都有暖黄底色，R ≈ G > B 是基本规律。</div>
+        <div class="type-sample body">油墨蓝全文档不超过 5% 面积，超过就是堆砌不是克制，所有灰色都有暖黄底色，R ≈ G > B 是基本规律。</div>
         <div class="type-specs"><b>9.5–10 pt</b><br>weight 400<br>line 1.55</div>
       </div>
       <div class="type-row">
         <div class="type-label">Body Dense</div>
-        <div class="type-sample dense">密排正文用于简历、一页纸、名片、索引卡。中文 pt 字号下，1.4–1.45 的行距最舒服；英文网页的 1.6 放进来会显得松散。</div>
+        <div class="type-sample dense">密排正文用于简历、一页纸、名片、索引卡，中文 pt 字号下 1.4–1.45 的行距最舒服，英文网页的 1.6 放进来会显得松散。</div>
         <div class="type-specs"><b>9–9.2 pt</b><br>weight 400<br>line 1.40</div>
       </div>
       <div class="type-row">
         <div class="type-label">Caption</div>
-        <div class="type-sample caption">图注、脚注、说明文字。颜色用 olive 或 stone 降一级。</div>
+        <div class="type-sample caption">图注、脚注、说明文字，颜色用 olive 或 stone 降一级。</div>
         <div class="type-specs"><b>8.5–9 pt</b><br>weight 400<br>line 1.45</div>
       </div>
       <div class="type-row">
@@ -234,7 +234,7 @@ npx skills add tw93/kami -a codex -g -y</pre>
     <div class="section-head">
       <p class="section-num">05 · Spacing &amp; Shape</p>
       <h2 class="section-title">节奏与形</h2>
-      <p class="section-lede">基础单位 4pt。密度越高 margin 越小，越正式 margin 越大。</p>
+      <p class="section-lede">基础单位 4pt，密度越高 margin 越小，越正式 margin 越大。</p>
     </div>
 
     <table class="space-table">
@@ -262,7 +262,7 @@ npx skills add tw93/kami -a codex -g -y</pre>
     </div>
 
     <h3 class="subhead">深度 · 阴影三法</h3>
-    <p style="font-size:14px; color: var(--olive); max-width: 720px; margin: 0 0 12px; line-height: 1.55;">Kami 不用传统硬阴影。深度通过 ring shadow / whisper shadow / 明暗交替 三种方式创造。</p>
+    <p style="font-size:14px; color: var(--olive); max-width: 720px; margin: 0 0 12px; line-height: 1.55;">Kami 不用传统硬阴影，深度通过 ring shadow / whisper shadow / 明暗交替三种方式创造。</p>
     <div class="shadow-row">
       <div class="shadow-demo sd-ring">
         <p class="t">Ring Shadow</p>
@@ -274,7 +274,7 @@ npx skills add tw93/kami -a codex -g -y</pre>
       </div>
       <div class="shadow-demo sd-alt">
         <p class="t">Light ⇌ Dark</p>
-        <p class="s">parchment ⇌ deep-dark<br>&nbsp;<br>section 级别 · 最戏剧化</p>
+        <p class="s">parchment ⇌ deep-dark<br>&nbsp;<br>section 级别 · 对比最明显</p>
       </div>
     </div>
   </section>
@@ -284,7 +284,7 @@ npx skills add tw93/kami -a codex -g -y</pre>
     <div class="section-head">
       <p class="section-num">06 · Components</p>
       <h2 class="section-title">原子组件</h2>
-      <p class="section-lede">小而定型的一组。每个都回答一个具体问题。</p>
+      <p class="section-lede">小而定型的一组，每个都回答一个具体问题。</p>
     </div>
 
     <div class="comp-grid">
@@ -312,7 +312,7 @@ npx skills add tw93/kami -a codex -g -y</pre>
       <div class="comp">
         <h4>Quote</h4>
         <p class="hint">左 2pt 品牌实线 + olive 色</p>
-        <blockquote class="quote">一千个 no 换一个 yes。宁可清淡不可浓艳。</blockquote>
+        <blockquote class="quote">一千个 no 换一个 yes，宁可清淡不可浓艳。</blockquote>
       </div>
 
       <div class="comp">
@@ -321,7 +321,7 @@ npx skills add tw93/kami -a codex -g -y</pre>
         <div class="metrics demo">
           <div class="metric"><span class="metric-value">6</span><span class="metric-label">文档类型</span></div>
           <div class="metric"><span class="metric-value">1</span><span class="metric-label">强调色</span></div>
-          <div class="metric"><span class="metric-value">8</span><span class="metric-label">条铁律</span></div>
+          <div class="metric"><span class="metric-value">8</span><span class="metric-label">条规则</span></div>
         </div>
       </div>
 
@@ -378,7 +378,7 @@ npx skills add tw93/kami -a codex -g -y</pre>
     <div class="section-head">
       <p class="section-num">07 · Decision Lookup</p>
       <h2 class="section-title">决策速查</h2>
-      <p class="section-lede">遇到"该用什么"的时候查这张表。不在表里 → 回到原则。</p>
+      <p class="section-lede">遇到“该用什么”的时候查这张表，不在表里就回到基础原则。</p>
     </div>
     <table class="decision">
       <tr><th>要做什么</th><th>怎么做</th></tr>
@@ -401,7 +401,7 @@ npx skills add tw93/kami -a codex -g -y</pre>
     <div class="section-head">
       <p class="section-num">08 · Anti-Patterns</p>
       <h2 class="section-title">反面示例</h2>
-      <p class="section-lede">违反铁律前，先想清楚是否真的要违反。</p>
+      <p class="section-lede">要破例前，先确认理由是否充分。</p>
     </div>
 
     <div class="anti">
@@ -425,16 +425,16 @@ npx skills add tw93/kami -a codex -g -y</pre>
 
       <div class="no">
         <h5>Don't</h5>
-        <p>标题用 <code>font-weight: 700</code> bold。Serif 500 是这套系统的签名，bold 会让版面浮躁。</p>
+        <p>标题用 <code>font-weight: 600</code> 或更粗的合成 bold。合成粗体会让笔画变糊，破坏版面质感。</p>
       </div>
       <div class="yes">
         <h5>Do</h5>
-        <p>Serif 固定 500。需要更强存在感用字号或品牌色左侧竖线，不加粗。</p>
+        <p>正文 400，标题 500（真实 W05 字重）。需要更强存在感时，用字号或品牌色左侧竖线，不用合成粗体。</p>
       </div>
 
       <div class="no">
         <h5>Don't</h5>
-        <p>box-shadow 硬投影 <code>0 2px 8px rgba(0,0,0,0.3)</code>。冷硬、SaaS 感、印刷会发黑。</p>
+        <p>box-shadow 硬投影 <code>0 2px 8px rgba(0,0,0,0.3)</code>。观感偏硬，印刷时容易发黑。</p>
       </div>
       <div class="yes">
         <h5>Do</h5>
@@ -450,8 +450,8 @@ npx skills add tw93/kami -a codex -g -y</pre>
       <h2 class="section-title">设计缘起</h2>
     </div>
     <div class="background-text">
-      <p>我做美股投资，经常让 AI 生成分析报告。每次出来的东西都像默认 Google Doc: 平淡、不一致、没有记忆点。我受不了丑的文档，尤其是每份报告的风格都不一样。所以我反复调字体、配色、间距，直到做出自己愿意读的东西。</p>
-      <p>后来受邀做一次演讲，需要一套和文档风格一致的 slides。这轮迭代又推进了一步: 加入 inline SVG 图表、统一暖色调、收紧编辑节奏。做着做着，发现这套东西已经覆盖了我所有的文档需求，就独立出来了。这就是 kami: 一套我喜欢的视觉语言，用在我发出去的所有东西上。</p>
+      <p>我做美股投资，经常让 AI 生成分析报告。每次出来的东西都像默认 Google Doc：平淡、不一致、没有记忆点。我受不了丑的文档，尤其是每份报告的风格都不一样。所以我反复调字体、配色、间距，直到做出自己愿意读的东西。</p>
+      <p>后来受邀做一次演讲，需要一套和文档风格一致的 slides。这轮迭代又推进了一步：加入 inline SVG 图表、统一暖色调、收紧编辑节奏。做着做着，发现这套东西已经覆盖了我所有的文档需求，就独立出来了。这就是 kami：一套我喜欢的视觉语言，用在我发出去的所有东西上。</p>
     </div>
   </section>
 
