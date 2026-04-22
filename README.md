@@ -67,7 +67,7 @@ npx skills add tw93/kami -a '*' -g -y
 
 **Claude Desktop**
 
-[Download `kami.zip` from Releases](https://github.com/tw93/kami/releases), open Customize > Skills > "+" > Create skill, upload the ZIP.
+[kami.zip](https://github.com/tw93/kami/releases/download/V1.1.0/kami.zip), open Customize > Skills > "+" > Create skill, upload the ZIP.
 The release ZIP is intentionally lightweight: Chinese TsangerJinKai font files are loaded from local checkout first, then jsDelivr CDN, and are not bundled inside the Claude Desktop skill package.
 
 The skill auto-triggers when you describe what you need, no slash command required. It supports one-pagers, long docs, formal letters, portfolios, resumes, and slides in both Chinese and English.
