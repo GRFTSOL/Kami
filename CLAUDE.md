@@ -23,7 +23,20 @@ python3 scripts/build.py          # 生成全部
 python3 scripts/build.py --check  # CSS 扫描 (rgba / 冷灰 / 行高)
 ```
 
-期望页数: one-pager 1 / letter 1 / resume 2(严格) / long-doc 7±2 / portfolio 6±2
+期望页数: one-pager 1 / letter 1 / resume 2(严格) / long-doc 7±2 / portfolio 6±2 / slides 7±3
+
+## Demo 截图
+
+单页文档 (one-pager):
+```bash
+pdftoppm -r 150 -png <pdf> /tmp/p && mv /tmp/p-1.png <target>.png
+```
+
+多页文档 (slides / resume / portfolio / long-doc): 截取前 2 页，上下拼接，中间留 20px 间隔 (#f5f4ed 底色):
+```bash
+pdftoppm -r 150 -f 1 -l 2 -png <pdf> /tmp/p
+convert /tmp/p-1.png /tmp/p-2.png -splice 0x20 -background '#f5f4ed' -append <target>.png
+```
 
 ## 改动规范
 

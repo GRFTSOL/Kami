@@ -31,7 +31,9 @@ When ambiguous (e.g. a one-word command like "resume"), ask a one-liner rather t
 | "formal letter / 信件 / 辞职信 / 推荐信 / memo" | Letter | `letter.html` | `letter-en.html` |
 | "portfolio / 作品集 / case studies" | Portfolio | `portfolio.html` | `portfolio-en.html` |
 | "resume / resume / CV / 简历" | Resume | `resume.html` | `resume-en.html` |
-| "slides / PPT / deck / 演示" | Slides | `slides.py` | `slides-en.py` | Long deck (>20 slides): also read Deck Recipe (design.md section 8) |
+| "slides / PPT / deck / 演示" | Slides | `slides.py` | `slides-en.py` |
+
+> Long deck (>20 slides): also read Deck Recipe (design.md section 8).
 
 If unsure, ask a one-liner about the scenario rather than guess.
 
