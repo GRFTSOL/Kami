@@ -9,9 +9,18 @@ One-page quick reference. Scan before filling a template or tweaking a detail. F
 3. All grays **warm-toned** (yellow-brown undertone), no cool blue-gray
 4. English: serif for headlines and body. Chinese: serif headlines, sans body. Sans for UI only
 5. Serif weight locked at 500, no bold
-6. Line-height: headlines 1.1-1.3 / dense 1.4-1.45 / reading 1.5-1.55. **Never 1.6+**
+6. Line-height: headlines 1.1-1.3 / dense 1.4-1.45 / reading 1.5-1.55
 7. Tag backgrounds solid hex, no rgba (WeasyPrint double-rectangle bug)
 8. Depth via ring / whisper shadow, no hard drop shadows
+
+## Sources and Materials
+
+| Trigger | Do first |
+|---|---|
+| Latest product / version / launch / funding / market data | Check reliable sources first |
+| Company / product / project branded doc | Confirm logo, product image, or UI screenshot |
+| Key number or result | Record the source; if unverifiable, write magnitude or mark missing |
+| Missing material | Mark the gap or ask the user; do not use unrelated imagery |
 
 ## Color
 

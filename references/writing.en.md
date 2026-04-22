@@ -33,6 +33,23 @@ Junior writes "what they did". Mid writes "how they did it". **Senior writes "wh
 - If you don't know the exact number, don't invent one. Write a vague but honest magnitude
 - Attribute collaborators
 
+### 5. Sources before phrasing
+
+For companies, products, people, launch dates, versions, funding, financials, market data, or technical specs, verify the source before writing. Priority: user-provided source material > official pages / docs / press releases > filings / app stores / repo releases > credible media.
+
+- Do not write "latest", "new", version numbers, or market figures before checking them
+- If sources conflict, list the conflict and ask the user instead of choosing one
+- If only the magnitude is known, write the magnitude instead of false precision
+
+### 6. Materials serve recognition
+
+Branded documents should first make the subject recognizable, then use decoration and atmosphere with restraint.
+
+- Company / product / project docs should confirm logo, product image, UI screenshot, and brand color before layout
+- If a key material is missing, mark the gap or ask the user. Do not fill the page with unrelated imagery
+- Physical products prefer official product images; digital products prefer real UI screenshots
+- If brand color is unknown, keep kami ink-blue rather than inventing a new color
+
 ---
 
 ## Per-document strategies
@@ -52,6 +69,7 @@ Junior writes "what they did". Mid writes "how they did it". **Senior writes "wh
 - Total: 200-350 words
 - All section headlines should work as a standalone outline - reading just the headlines should deliver the gist
 - Data must fill 30%+ of the body
+- Company / product one-pagers must confirm logo, core screenshot or product image, and source for key metrics
 - No opening ceremony ("In recent years, as technology has rapidly evolved...")
 
 ### Long Document
@@ -67,6 +85,7 @@ Junior writes "what they did". Mid writes "how they did it". **Senior writes "wh
 - Every chapter opens with a "claim paragraph" (2-3 sentences summarizing the argument)
 - After long paragraphs (>5 lines), intersperse callouts / quotes / figures to relieve eye fatigue
 - Highlight key data / conclusions with `<span class="hl">`
+- Chapters with external facts must preserve source cues so readers can distinguish fact, judgment, and inference
 - Use "chapter breaks" (blank page + chapter number) between major sections
 
 ### Letter
@@ -109,6 +128,7 @@ Junior writes "what they did". Mid writes "how they did it". **Senior writes "wh
 - Visuals first, text supports
 - Every project's outcome must be quantifiable
 - Photos > design mockups > code screenshots (the more abstract, the better)
+- If project images are missing, mark the gap. Do not fill the layout with unrelated imagery
 - Don't list every tech stack - a mono tag row is enough
 
 ### Resume
@@ -169,6 +189,8 @@ Run through before every draft:
 - [ ] Any jargon like "leverage / unlock / embrace / pioneer"? Cut.
 - [ ] Does every paragraph's first sentence stand alone? If not, that paragraph has no claim.
 - [ ] Are all numbers verifiable? If asked "where did this come from", can you answer?
+- [ ] Are current facts, versions, launch dates, funding, financials, and specs backed by reliable sources?
+- [ ] Does every branded document have logo, product image, or UI screenshot coverage? Are missing materials clearly marked?
 - [ ] At least one **distinctive phrase** (not industry boilerplate)?
 - [ ] Every emphasized (brand-colored) span is either a number or a distinctive phrase? If not, remove the emphasis.
 - [ ] Paragraph lengths even? No paragraph over 5 lines?

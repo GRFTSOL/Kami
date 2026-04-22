@@ -51,15 +51,44 @@ Read `references/diagrams.md` / `diagrams.en.md` before drawing - it has the sel
 
 Before drawing, always ask: **would a well-written paragraph teach the reader less than this diagram?** If no, don't draw.
 
+## Step 2.1 · Source and material pass
+
+Run this before distilling or filling content when the document depends on facts or materials outside the user's draft. Skip it only for personal drafts where the user already supplied everything needed.
+
+### Source check
+
+Trigger when the document mentions a specific company, product, person, release date, version, funding round, metric, market fact, technical spec, or any current fact likely to change.
+
+- Use primary sources before writing: user-provided material, official site, docs, filings, press release, app store page, or repo release
+- Keep a short note of source names and dates for facts that drive the document
+- If sources conflict or a fact cannot be checked quickly, ask the user instead of choosing silently
+- Avoid current-sounding claims such as "latest", "recent", "new", version numbers, launch dates, or financial figures unless they are checked
+
+### Material check
+
+Trigger when the document is about a company, product, project, venue, or personal brand.
+
+Confirm the materials that make the subject recognizable before layout:
+
+| Need | Required when | Accept |
+|---|---|---|
+| Logo | Any branded document | User file or official SVG/PNG |
+| Product image | Physical product / venue / object | Official image, user image, or marked gap |
+| UI screenshot | App / SaaS / website / tool | Current screenshot, official product image, or user capture |
+| Brand colors | Branded one-pager / portfolio / deck | Official value, extracted asset value, or keep kami ink-blue |
+| Fonts | Only if brand typography matters | Official font, close system fallback, or kami default |
+
+If a required item is missing, use a compact gap table and ask once. Do not replace missing material with generic imagery, approximate logo drawings, or invented values.
+
 ## Step 2.5 · Distill raw content (if applicable)
 
 Skip this step if the user already provides structured content (clear sections, bullet points, metrics in place).
 
 When the user hands over **raw material** (meeting notes, brain dump, existing doc in different format, chat transcript, scattered points):
 
-1. **Extract**: pull out every factual claim, number, date, name, and action item
+1. **Extract**: pull out every factual claim, number, date, name, source, material reference, and action item
 2. **Classify**: map each extract to the target template's sections (see `references/writing.md` for section structure per doc type)
-3. **Gap-check**: list what the template needs but the raw content doesn't have - present as a compact table
+3. **Gap-check**: list what the template needs but the raw content doesn't have - include missing facts, missing proof, and missing materials
 4. **Ask once**: share the gap table with the user. Do not guess to fill gaps.
 
 Example gap-check:
@@ -68,6 +97,7 @@ Example gap-check:
 |---|---|---|
 | 4 metric cards | "8 years", "50-person team" | 2 more quantifiable results |
 | 3-5 core projects | 2 mentioned | at least 1 more with outcome |
+| Materials | logo file provided | product screenshot source |
 
 Then proceed to Step 3 with structured, distilled content.
 
@@ -79,9 +109,10 @@ Pick the tier that matches the task. Default to the lowest tier that covers the 
 
 | Tier | When | Read |
 |---|---|---|
-| **Content-only** | Updating text, swapping bullets, translating an existing doc. CSS stays untouched. | `CHEATSHEET.md` only (170 lines) |
+| **Content-only** | Updating text, swapping bullets, translating an existing doc. CSS stays untouched. | `CHEATSHEET.md` only |
 | **Layout tweak** | Adjusting spacing, moving sections, changing font size within spec. CSS touched. | `CHEATSHEET.md` + template (tokens already inline) |
 | **New document** | Building from scratch or from raw content. | Full design spec + writing spec + template |
+| **Sources / materials** | Company, product, market, launch, funding, specs, or branded subject. | `writing.md` source rules + user/source material |
 | **Deck (>20 slides)** | Long presentation needing Part Divider, Code Cards, section headers. | Full design spec + Deck Recipe (design.md section 8) |
 | **Troubleshoot** | Rendering bug, font issue, page overflow. | `production.md` (+ design spec if CSS is the cause) |
 | **Diagram** | Embedding SVG in a doc. | `diagrams.md` only (has its own token map) |
@@ -114,8 +145,8 @@ Visual anomalies (tag double rectangle, font fallback, page break issues) -> `pr
 
 **Chinese**
 - Main serif: TsangerJinKai02-W04.ttf (400 weight) + TsangerJinKai02-W05.ttf (500 weight, real bold)
-- Both files are commercial fonts, included in repo
 - Templates use dual @font-face declarations: W04 for body text, W05 for headings
+- Both files are commercial fonts. Keep them available in the repository for local preview and CDN fallback, but do not bundle them inside Claude Desktop skill ZIPs
 - Fallback chain baked into templates: Source Han Serif SC -> Noto Serif CJK SC -> Songti SC -> Georgia
 
 **English**
@@ -123,7 +154,7 @@ Visual anomalies (tag double rectangle, font fallback, page break issues) -> `pr
 - Sans: Inter (open source) - used for UI elements only (labels, eyebrows, meta)
 - Fallback: Charter (macOS) / Georgia (cross-platform), Helvetica Neue / system-ui
 
-Font files next to HTML and `@font-face` relative paths is the most stable setup.
+Font files next to HTML and `@font-face` relative paths is the most stable setup. For Claude Desktop releases, run `scripts/package-skill.sh`; it excludes `assets/fonts/TsangerJinKai02-W04.ttf` and `assets/fonts/TsangerJinKai02-W05.ttf` while keeping the smaller open-source font files.
 
 ## Feedback protocol
 

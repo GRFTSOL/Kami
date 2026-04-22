@@ -14,7 +14,7 @@
 
 Kami (紙, かみ) means paper: the surface where a finished idea lands. Most document design drifts into two failure modes: generic corporate gray, or gradient-heavy SaaS styling. Neither reads like something made with care.
 
-Kami holds one design idea across every format: warm parchment canvas, a single ink-blue accent, serif for authority, sans for utility, editorial whitespace tuned for print. 
+Kami holds one design idea across six document types: one-pagers, long docs, formal letters, portfolios, resumes, and slides. Each format shares a warm parchment canvas, a single ink-blue accent, serif for authority, sans for utility, and editorial whitespace tuned for print.
 
 Part of a trilogy: [Kaku](https://github.com/tw93/Kaku) (書く) writes code, [Waza](https://github.com/tw93/Waza) (技) drills habits, [Kami](https://github.com/tw93/Kami) (紙) delivers documents.
 
@@ -67,11 +67,12 @@ npx skills add tw93/kami -a '*' -g -y
 
 **Claude Desktop**
 
-[Download from Releases](https://github.com/tw93/kami/releases), open Customize > Skills > "+" > Create skill, upload the ZIP.
+[Download `kami.zip` from Releases](https://github.com/tw93/kami/releases), open Customize > Skills > "+" > Create skill, upload the ZIP.
+The release ZIP is intentionally lightweight: Chinese TsangerJinKai font files are loaded from local checkout first, then jsDelivr CDN, and are not bundled inside the Claude Desktop skill package.
 
-The skill auto-triggers when you describe what you need, no slash command required.
+The skill auto-triggers when you describe what you need, no slash command required. It supports one-pagers, long docs, formal letters, portfolios, resumes, and slides in both Chinese and English.
 
-> make a one-pager for my startup / build me a resume / write me a recommendation letter / design a slide deck for my talk / turn this into a polished white paper / make a portfolio showcasing my projects / 帮我排版一份白皮书 / 帮我做一份作品集 / 生成一份项目方案
+> make a one-pager for my startup / turn this research into a long doc / write a formal letter / make a portfolio showcasing my projects / build me a resume / design a slide deck for my talk / 帮我做一份一页纸 / 帮我排版一份长文档 / 帮我写一封正式信件 / 帮我做一份作品集 / 帮我做一份简历 / 帮我做一套演讲幻灯片
 
 ## Design
 
@@ -84,8 +85,8 @@ Six document types (One-Pager, Long Doc, Letter, Portfolio, Resume, Slides), eac
 | Canvas | `#f5f4ed` parchment, never pure white |
 | Accent | Ink blue `#1B365D` only, no second chromatic hue |
 | Neutrals | All warm-toned (yellow-brown undertone), no cool blue-grays |
-| Serif | Body at 400, headings at 500. Avoid synthetic bold |
-| Line-height | Tight titles 1.1-1.3, dense body 1.4-1.45, reading body 1.5-1.55. Never 1.6+ |
+| Serif | Body 400, headings 500. Avoid synthetic bold |
+| Line-height | Tight titles 1.1-1.3, dense body 1.4-1.45, reading body 1.5-1.55 |
 | Shadows | Ring or whisper only, no hard drop shadows |
 | Tags | Solid hex backgrounds only. `rgba()` triggers a WeasyPrint double-rectangle bug |
 
@@ -95,9 +96,9 @@ Full spec: [design.md](references/design.md) / [design.en.md](references/design.
 
 ## Background
 
-I invest in US equities and regularly ask AI to generate analysis reports. The output always looked like a default Google Doc: bland, inconsistent, forgettable. I can't stand ugly documents, especially when every report comes out looking different from the last one. So I kept tweaking the typography, colors, and spacing until I had something I actually wanted to read.
+I invest in US equities and often ask AI to generate analysis reports. The earliest drafts looked like default Google Docs: plain, inconsistent, and easy to forget. I did not want each document to arrive with a different face, so I kept refining the typography, palette, and spacing until the page became something I wanted to keep reading.
 
-Then I was invited to present a talk based on my article "The Agent You Don't Know: Principles, Architecture, and Engineering Practice" and needed a slide deck that matched the same standard. That round pushed the system further, adding inline SVG diagrams, a consistent warm palette, and tighter editorial rhythm. Eventually it was doing enough that I pulled it into its own package. That became kami: one visual language I like, applied to everything I ship.
+Later, I was invited to give a talk on my article "The Agent You Don't Know: Principles, Architecture, and Engineering Practice" and needed a slide deck that shared the same visual standard. That iteration pushed the system further: inline SVG diagrams, a unified warm palette, and a tighter editorial rhythm. Over time it covered the document formats I use most, so it became kami, a visual language I can reuse with confidence and send out without hesitation.
 
 ## Support
 

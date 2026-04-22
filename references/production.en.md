@@ -59,6 +59,8 @@ font-family: "TsangerJinKai02", "Source Han Serif SC",
 
 **Font fallback affects page count**. Any font swap requires re-running the page-count check. If it overflows: lower `font-size` first, then tighten margins, then cut content.
 
+**Claude Desktop skill ZIPs do not bundle large Chinese font files**: `TsangerJinKai02-W04.ttf` and `TsangerJinKai02-W05.ttf` are close to 19MB each and can make Claude.ai / Desktop skill upload or execution time out. Release ZIPs must be generated with `scripts/package-skill.sh`, which excludes both TTF files. Templates still keep local-first and jsDelivr fallback `@font-face` paths.
+
 ### Page spec
 
 ```css
@@ -243,6 +245,20 @@ pdftoppm -png -r 160 output.pdf preview      # standard
 pdftoppm -png -r 300 output.pdf preview      # detail bugs
 pdftoppm -png -r 400 output.pdf preview      # extreme detail (tag double-rect check)
 ```
+
+### 5-point pre-ship review
+
+A successful render is not enough. Scan these before delivery:
+
+| Dimension | Pass standard |
+|---|---|
+| Fact accuracy | Numbers, dates, versions, funding, specs, and market facts have sources; uncertainty is written as magnitude or marked as missing |
+| Content structure | Headlines read as a summary; each paragraph opens with a claim; no ceremonial filler |
+| Material coverage | Branded docs include logo, product image, or UI screenshot coverage; missing materials are clearly marked |
+| Typographic detail | Fonts load correctly, line-height stays in spec, emphasis only marks numbers or distinctive phrases, tag backgrounds are solid hex |
+| PDF readiness | Page count fits, placeholders are replaced, visual inspection shows no overflow, overlap, or broken page breaks |
+
+If any row fails, fix it before delivery.
 
 ---
 
