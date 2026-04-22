@@ -69,7 +69,7 @@ npx skills add tw93/kami -a '*' -g -y
 
 Download [kami.zip](https://github.com/tw93/kami/releases/download/V1.1.0/kami.zip), open Customize > Skills > "+" > Create skill, and upload the ZIP directly (no need to unzip).
 
-The ZIP is intentionally lightweight: Chinese TsangerJinKai font files are loaded from local checkout first, then jsDelivr CDN, not bundled inside.
+The ZIP is intentionally lightweight: Chinese TsangerJinKai font files are loaded from local checkout first, then jsDelivr CDN, not bundled inside. If the font renders incorrectly, Claude will download it automatically on the next run.
 
 To update: click "..." on the kami skill card, choose Replace, and upload the new ZIP.
 

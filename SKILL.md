@@ -156,6 +156,22 @@ Visual anomalies (tag double rectangle, font fallback, page break issues) -> `pr
 
 Font files next to HTML and `@font-face` relative paths is the most stable setup. For Claude Desktop releases, run `scripts/package-skill.sh`; it excludes `assets/fonts/TsangerJinKai02-W04.ttf` and `assets/fonts/TsangerJinKai02-W05.ttf` while keeping the smaller open-source font files.
 
+**Font auto-recovery (Claude Desktop)**
+
+When building a Chinese document, check whether the font files are present before running the build. If they are missing, download them directly into `assets/fonts/` so WeasyPrint picks them up via the existing relative `@font-face` path, no HTML changes needed:
+
+```bash
+# Check
+test -f assets/fonts/TsangerJinKai02-W04.ttf || {
+  curl -fsSL "https://cdn.jsdelivr.net/gh/tw93/Kami@main/assets/fonts/TsangerJinKai02-W04.ttf" \
+    -o assets/fonts/TsangerJinKai02-W04.ttf
+  curl -fsSL "https://cdn.jsdelivr.net/gh/tw93/Kami@main/assets/fonts/TsangerJinKai02-W05.ttf" \
+    -o assets/fonts/TsangerJinKai02-W05.ttf
+}
+```
+
+Run this check once before `python3 scripts/build.py`. If the network is unavailable, WeasyPrint falls back to Source Han Serif SC; warn the user but still deliver the PDF.
+
 ## Feedback protocol
 
 When the user gives **vague visual feedback** ("looks off", "不对劲", "spacing weird", "too cramped", "not elegant"):
