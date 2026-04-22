@@ -21,7 +21,7 @@
 
   @page {
     size: A4;
-    margin: 14mm 16mm 14mm 16mm;
+    margin: 12mm 16mm 12mm 16mm;
     background: #f5f4ed;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -53,8 +53,8 @@
   .header {
     border-left: 3.5pt solid var(--brand);
     border-radius: 1pt;
-    padding: 4pt 0 6pt 14pt;
-    margin-bottom: 14pt;
+    padding: 3pt 0 5pt 14pt;
+    margin-bottom: 10pt;
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
@@ -69,12 +69,12 @@
     margin-bottom: 7pt;
   }
   h1 {
-    font-size: 25pt;
+    font-size: 28pt;
     font-weight: 500;
     color: var(--near-black);
-    line-height: 1.15;
+    line-height: 1.12;
     letter-spacing: -0.3pt;
-    margin-bottom: 6pt;
+    margin-bottom: 5pt;
   }
   .subtitle {
     font-size: 9.5pt;
@@ -94,7 +94,7 @@
   .metrics {
     display: flex;
     gap: 8pt;
-    margin-bottom: 12pt;
+    margin-bottom: 9pt;
   }
   .metric {
     flex: 1;
@@ -123,7 +123,7 @@
     font-size: 10.5pt;
     line-height: 1.6;
     color: var(--dark-warm);
-    margin-bottom: 14pt;
+    margin-bottom: 10pt;
   }
   .hl { color: var(--brand); font-weight: 500; }
 
@@ -219,26 +219,26 @@
     border: 0.5pt solid var(--border);
     border-left: 2.5pt solid var(--brand);
     border-radius: 0 4pt 4pt 0;
-    padding: 10pt 12pt;
+    padding: 8pt 12pt;
     break-inside: avoid;
   }
   .callout-quote {
     font-size: 9.5pt;
-    line-height: 1.6;
+    line-height: 1.55;
     color: var(--charcoal);
     font-style: italic;
-    margin-bottom: 7pt;
+    margin-bottom: 5pt;
   }
   .callout-src {
     font-size: 7pt;
     color: var(--stone);
     letter-spacing: 0.3pt;
-    margin-bottom: 9pt;
+    margin-bottom: 7pt;
   }
   .callout-body {
     font-size: 8.5pt;
     color: var(--olive);
-    line-height: 1.55;
+    line-height: 1.5;
   }
 
   /* ── Divider ── */
@@ -304,7 +304,6 @@
 <div class="two-col">
   <section>
     <h2>业务主线</h2>
-    <p style="color:var(--olive); font-size:8.5pt;">营收集中在汽车，但长期叙事在能源与 AI。</p>
     <ul class="dash">
       <li><span class="hl">汽车</span>：Model S/3/X/Y + Cybertruck，覆盖 $25k–$100k</li>
       <li><span class="hl">能源</span>：Powerwall + Megapack 储能，增速快于整车</li>
@@ -313,7 +312,6 @@
   </section>
   <section>
     <h2>信念与方法</h2>
-    <p style="color:var(--olive); font-size:8.5pt;">三条反行业共识的判断，定义了长期战略。</p>
     <ul class="dash">
       <li>垂直整合：电池、电机、逆变器、软件、充电网全自研</li>
       <li>软件迭代：OTA 双周发版，老款 Model S 仍持续更新</li>
@@ -323,7 +321,7 @@
 </div>
 
 <!-- Timeline -->
-<section style="margin-top: 14pt;">
+<section style="margin-top: 9pt;">
   <h2>三个主计划 · Master Plan</h2>
   <div class="tl-wrap">
     <div class="tl-step">
@@ -344,26 +342,19 @@
   </div>
 </section>
 
-<!-- 关键里程碑 + Quote -->
-<div class="two-col-wide" style="margin-top: 14pt;">
-  <section>
-    <h2>关键里程碑<span class="sub">从跑车到万亿市值</span></h2>
-    <ul class="dash">
-      <li><span class="hl">2008</span>：Roadster 交付，史上首款量产电动跑车</li>
-      <li><span class="hl">2012</span>：Model S 发布，重新定义豪华电动车</li>
-      <li><span class="hl">2017</span>：Model 3 量产，EV 正式进入主流价位</li>
-      <li><span class="hl">2023</span>：上海超级工厂年产 95 万辆，全球第一</li>
-    </ul>
-  </section>
-  <div class="callout">
-    <div class="callout-quote">「答案不在行业先例里——要从物理极限出发向上推导，这才是第一性原理。」</div>
-    <div class="callout-src">— Elon Musk</div>
-    <div class="callout-body">不买电池、不外包软件、不套用成熟供应链——Tesla 每一个"反常规"背后都是同一个逻辑：行业惯例是别人的妥协，不是物理的极限。</div>
-  </div>
-</div>
+<!-- 关键里程碑 -->
+<section style="margin-top: 9pt;">
+  <h2>关键里程碑<span class="sub">从跑车到万亿市值</span></h2>
+  <ul class="dash">
+    <li><span class="hl">2008</span>：Roadster 交付，史上首款量产电动跑车</li>
+    <li><span class="hl">2012</span>：Model S 发布，重新定义豪华电动车</li>
+    <li><span class="hl">2017</span>：Model 3 量产，EV 正式进入主流价位</li>
+    <li><span class="hl">2023</span>：上海超级工厂年产 95 万辆，全球第一</li>
+  </ul>
+</section>
 
 <!-- 竞争格局 + 2025关键变量 -->
-<div class="two-col" style="margin-top: 14pt;">
+<div class="two-col" style="margin-top: 9pt;">
   <section>
     <h2>竞争格局</h2>
     <ul class="dash">
@@ -382,6 +373,13 @@
       <li><span class="hl">主要风险</span>：中国竞争 · FSD 监管 · Musk 精力分散</li>
     </ul>
   </section>
+</div>
+
+<!-- Callout -->
+<div class="callout" style="margin-top: 9pt;">
+  <div class="callout-quote">「答案不在行业先例里——要从物理极限出发向上推导，这才是第一性原理。」</div>
+  <div class="callout-src">— Elon Musk</div>
+  <div class="callout-body">不买电池、不外包软件、不套用成熟供应链——Tesla 每一个"反常规"背后都是同一个逻辑：行业惯例是别人的妥协，不是物理的极限。</div>
 </div>
 
 <!-- FOOTER -->

@@ -135,13 +135,15 @@
 
   /* ════════════ ABOUT ════════════ */
   .about-body {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20pt;
-    line-height: 1.55;
+    line-height: 1.6;
+    font-size: 10pt;
   }
   .about-body p {
-    margin-bottom: 10pt;
+    margin-bottom: 9pt;
+    color: var(--dark-warm);
+  }
+  .about-body p:last-child {
+    margin-bottom: 0;
   }
 
   /* ════════════ FEATURE CARDS ════════════ */
@@ -508,7 +510,7 @@
   <div class="cover-meta">
     <div><strong>项目</strong> 终端模拟器</div>
     <div><strong>技术栈</strong> Rust · WezTerm · Lua</div>
-    <div><strong>状态</strong> 开源 · 4200+ Stars</div>
+    <div><strong>状态</strong> 开源 · 4800+ Stars</div>
   </div>
 </div>
 
@@ -520,7 +522,7 @@
 
   <div class="about-metrics">
     <div class="about-metric">
-      <div class="about-metric-value">4200+</div>
+      <div class="about-metric-value">4800+</div>
       <div class="about-metric-label">GitHub Stars</div>
     </div>
     <div class="about-metric">
@@ -538,16 +540,8 @@
   </div>
 
   <div class="about-body">
-    <div>
-      <p>Kaku 是三部曲的一部分：Kaku（書く）写代码，Waza（技）练习惯，Kami（紙）出文档。可以把它们想象成一个家庭：Kaku 是父亲，Waza 是大姐，Kami 是小妹。三者独立运作，又彼此呼应。</p>
-      <p>我长期依赖命令行工作，构建的工具如 Mole 和 Pake 都反映了这一点。我使用 Alacritty 多年，学会了重视速度和简洁。随着工作流转向 AI 辅助编码，我需要更强的标签页和窗格管理，以及内置的 AI 交互能力。</p>
-      <p>WezTerm 是强大的引擎，Kaku 在其基础上做了两件事：大幅裁减不必要的体积，以及把 AI 工作流直接嵌入终端。不再需要在终端、浏览器、IDE 之间反复切换。</p>
-    </div>
-    <div>
-      <p>我尝试过 Kitty、Ghostty、Warp 和 iTerm2，每个都有各自的优势，但都不是我想要的那个平衡点：性能优先、默认即好用、保留完整的 Lua 可定制性。</p>
-      <p>Kaku 的配置体系完全兼容 WezTerm Lua API，存量配置不需要迁移。同时预置了 Starship 提示符、Delta diff 高亮、Lazygit、Yazi 等工具的集成，开箱后的终端已经是一个完整的工作环境。</p>
-      <p>macOS 专属设计意味着 Kaku 可以深度利用平台特性：Traffic Light 嵌入标签栏、系统 Deep Dark 主题跟随、原生字体渲染、Apple 公证开箱即用。</p>
-    </div>
+      <p>Kaku 是三部曲的一部分：Kaku（書く）写代码，Waza（技）练习惯，Kami（紙）出文档，三者独立运作、彼此呼应。我长期依赖命令行工作，使用 Alacritty 多年后，随着工作流转向 AI 辅助编码，开始需要更强的标签页管理和内置 AI 交互能力。我尝试过 Kitty、Ghostty、Warp 和 iTerm2，各有优势，但都不是我想要的平衡点：性能优先、默认即好用、保留完整的 Lua 可定制性。</p>
+      <p>WezTerm 是强大的引擎，Kaku 在此基础上做了两件事：裁减不必要体积，以及把 AI 工作流直接嵌入终端。配置体系完全兼容 WezTerm Lua API，存量配置无需迁移，并预置 Starship、Delta、Lazygit、Yazi 等工具集成，开箱即是完整工作环境。macOS 专属设计让 Kaku 深度利用平台特性：Traffic Light 嵌入标签栏、系统主题跟随、原生字体渲染、Apple 公证开箱即用。</p>
   </div>
 </section>
 
@@ -783,7 +777,7 @@
     <div><strong>GitHub</strong><a href="https://github.com/tw93/Kaku">github.com/tw93/Kaku</a></div>
     <div><strong>官网</strong><a href="https://kaku.app">kaku.app</a></div>
     <div><strong>安装</strong>brew install tw93/tap/kaku</div>
-    <div><strong>Stars</strong>4200+ 持续增长中</div>
+    <div><strong>Stars</strong>4800+ 持续增长中</div>
     <div><strong>文档</strong><a href="https://github.com/tw93/Kaku/tree/main/docs">完整文档和 FAQ</a></div>
     <div><strong>作者</strong><a href="https://twitter.com/HiTw93">@HiTw93</a></div>
   </div>
