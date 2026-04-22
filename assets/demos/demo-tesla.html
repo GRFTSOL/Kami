@@ -51,10 +51,10 @@
 
   /* ── HEADER ── */
   .header {
-    background: var(--brand);
-    border-radius: 5pt;
-    padding: 13pt 16pt 11pt 16pt;
-    margin-bottom: 12pt;
+    border-left: 3.5pt solid var(--brand);
+    border-radius: 1pt;
+    padding: 4pt 0 6pt 14pt;
+    margin-bottom: 14pt;
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
@@ -63,27 +63,27 @@
   .title-block { flex: 1; }
   .eyebrow {
     font-size: 7pt;
-    color: #8eaacb;
+    color: var(--brand);
     letter-spacing: 1.5pt;
     text-transform: uppercase;
     margin-bottom: 7pt;
   }
   h1 {
-    font-size: 22pt;
+    font-size: 25pt;
     font-weight: 500;
-    color: #ffffff;
-    line-height: 1.18;
+    color: var(--near-black);
+    line-height: 1.15;
     letter-spacing: -0.3pt;
     margin-bottom: 6pt;
   }
   .subtitle {
     font-size: 9.5pt;
-    color: #a8bdd4;
+    color: var(--olive);
     line-height: 1.4;
   }
   .meta {
     font-size: 7.5pt;
-    color: #607fa0;
+    color: var(--stone);
     text-align: right;
     line-height: 1.7;
     white-space: nowrap;
@@ -124,8 +124,6 @@
     line-height: 1.6;
     color: var(--dark-warm);
     margin-bottom: 14pt;
-    padding-bottom: 13pt;
-    border-bottom: 0.5pt solid var(--border);
   }
   .hl { color: var(--brand); font-weight: 500; }
 
@@ -139,8 +137,6 @@
     text-transform: uppercase;
     letter-spacing: 1.2pt;
     margin-bottom: 7pt;
-    padding-bottom: 5pt;
-    border-bottom: 0.8pt solid var(--brand);
     display: block;
   }
   h2 .sub {
@@ -326,10 +322,8 @@
   </section>
 </div>
 
-<hr class="divider">
-
 <!-- Timeline -->
-<section>
+<section style="margin-top: 14pt;">
   <h2>三个主计划 · Master Plan</h2>
   <div class="tl-wrap">
     <div class="tl-step">
@@ -350,10 +344,8 @@
   </div>
 </section>
 
-<hr class="divider">
-
 <!-- 关键里程碑 + Quote -->
-<div class="two-col-wide">
+<div class="two-col-wide" style="margin-top: 14pt;">
   <section>
     <h2>关键里程碑<span class="sub">从跑车到万亿市值</span></h2>
     <ul class="dash">
@@ -370,10 +362,8 @@
   </div>
 </div>
 
-<hr class="divider">
-
 <!-- 竞争格局 + 2025关键变量 -->
-<div class="two-col">
+<div class="two-col" style="margin-top: 14pt;">
   <section>
     <h2>竞争格局</h2>
     <ul class="dash">
