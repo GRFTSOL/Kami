@@ -867,7 +867,7 @@
   /* Chart showcase */
   .chart-showcase {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     align-items: start;
   }
@@ -881,6 +881,9 @@
     width: 100%;
     height: auto;
     display: block;
+  }
+  .chart-card svg text {
+    font-family: "Inter", "TsangerJinKai02", -apple-system, BlinkMacSystemFont, Arial, sans-serif;
   }
   .chart-label {
     font-family: var(--sans);
@@ -1025,6 +1028,7 @@
   .comp-grid { grid-template-columns: 1fr; }
   .shadow-row { grid-template-columns: 1fr; }
   .anti { grid-template-columns: 1fr; }
+  .chart-showcase { grid-template-columns: 1fr; }
 
   /* Table: hide bar column */
   .space-table td.bar { display: none; }

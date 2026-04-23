@@ -1,6 +1,6 @@
 # Diagrams
 
-kami's drawing capability. **We don't reimplement 13 diagram types.** We ship three that are actually useful inside long-doc, portfolio, and slides: architecture, flowchart, quadrant. All of them wear kami's skin (parchment + ink-blue + warm grays). No second design system.
+kami's drawing capability. **12 diagram types** covering structural, process, and data chart scenarios. All wear kami's skin (parchment + ink-blue + warm grays). No second design system.
 
 Every diagram is a **self-contained HTML + inline SVG**. No Mermaid, no JS, no build step. Browse them as standalone pages, or copy the `<svg>...</svg>` block into a long-doc `<figure>` to embed.
 
@@ -16,11 +16,15 @@ Every diagram is a **self-contained HTML + inline SVG**. No Mermaid, no JS, no b
 | Category comparison (revenue, market share, quarterly) | **Bar Chart** | `assets/diagrams/bar-chart.html` |
 | Trend over time (stock price, growth rate, time series) | **Line Chart** | `assets/diagrams/line-chart.html` |
 | Proportional breakdown (spend, user segments, share) | **Donut Chart** | `assets/diagrams/donut-chart.html` |
+| Finite states + directed transitions (lifecycle, state machine) | **State Machine** | `assets/diagrams/state-machine.html` |
+| Time axis + milestone events (roadmap, project progress) | **Timeline** | `assets/diagrams/timeline.html` |
+| Cross-responsibility process (multi-role, API request path) | **Swimlane** | `assets/diagrams/swimlane.html` |
+| Hierarchical relationships (org chart, module deps, directory tree) | **Tree** | `assets/diagrams/tree.html` |
+| Vertically stacked system layers (OSI, application stack) | **Layer Stack** | `assets/diagrams/layer-stack.html` |
+| Set intersections (feature overlap, audience comparison, capability map) | **Venn** | `assets/diagrams/venn.html` |
 
 Not on the list:
-- **Time / stages**: use the built-in timeline component in `resume.html` or `one-pager.html`. Don't reinvent.
 - **Compare two things**: use a table. A three-column table beats any diagram of a binary contrast.
-- **Hierarchy / nested lists**: a nested markdown `ul` is enough.
 - **One box with a label**: delete the box, write the sentence.
 
 ### The question before drawing
@@ -219,6 +223,12 @@ python3 scripts/build.py diagram-quadrant
 python3 scripts/build.py diagram-bar-chart
 python3 scripts/build.py diagram-line-chart
 python3 scripts/build.py diagram-donut-chart
+python3 scripts/build.py diagram-state-machine
+python3 scripts/build.py diagram-timeline
+python3 scripts/build.py diagram-swimlane
+python3 scripts/build.py diagram-tree
+python3 scripts/build.py diagram-layer-stack
+python3 scripts/build.py diagram-venn
 
 # or all
 python3 scripts/build.py
@@ -230,4 +240,4 @@ Or just open `assets/diagrams/*.html` in a browser.
 
 ## 8. Credit
 
-This capability is inspired by Cathryn Lavery's [diagram-design](https://github.com/cathrynlavery/diagram-design) (a Claude Code skill with 13 editorial diagram types). kami borrowed the **approach** (inline SVG, semantic tokens, complexity budget, anti-slop table). Not the full catalog. Thirteen types would bloat kami; three are enough for every document type kami serves.
+This capability is inspired by Cathryn Lavery's [diagram-design](https://github.com/cathrynlavery/diagram-design) (a Claude Code skill with 13 editorial diagram types). kami borrowed the **approach** (inline SVG, semantic tokens, complexity budget, anti-slop table). Not the full catalog.

@@ -375,75 +375,97 @@ beauty   = constraints × <span class="k">intention</span> ÷ noise</pre>
     <div class="section-head">
       <p class="section-num">07 · Diagrams</p>
       <h2 class="section-title">内联图表</h2>
-      <p class="section-lede">六种内联 SVG 图表类型：架构图、流程图、象限图、柱状图、折线图、环形图。直接告诉 Claude 需要哪种图，会自动嵌入文档，配色与字体沿用 Kami 设计语言。</p>
+      <p class="section-lede">十二种内联 SVG 图表，覆盖架构、流程、数据三大场景。直接告诉 Claude 需要哪种图，会自动嵌入文档，配色与字体沿用 Kami 设计语言。</p>
     </div>
     <div class="chart-showcase">
-      <!-- Bar chart -->
+      <!-- Architecture mini -->
+      <div class="chart-card">
+        <div class="chart-label">架构图 · Architecture</div>
+        <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" style="font-family:'Inter','TsangerJinKai02',sans-serif">
+          <rect width="280" height="160" fill="#f5f4ed"/>
+          <!-- Browser → API -->
+          <path d="M 84,79.5 L 103,79.5 L 103,78 L 107,80 L 103,82 L 103,80.5 L 84,80.5 Z" fill="#87867f"/>
+          <!-- API → Database -->
+          <path d="M 172,79.5 L 191,79.5 L 191,78 L 195,80 L 191,82 L 191,80.5 L 172,80.5 Z" fill="#5e5d59"/>
+          <!-- Node: Client -->
+          <rect x="20" y="58" width="64" height="44" rx="3" fill="#f5f4ed" stroke="#87867f" stroke-width="0.8"/>
+          <text x="52" y="76" text-anchor="middle" font-size="7" letter-spacing="0.5" fill="#87867f">CLIENT</text>
+          <text x="52" y="91" text-anchor="middle" font-size="9" font-weight="600" fill="#141413">Browser</text>
+          <!-- Node: API (focal) -->
+          <rect x="108" y="58" width="64" height="44" rx="3" fill="#EEF2F7" stroke="#1B365D" stroke-width="1"/>
+          <text x="140" y="76" text-anchor="middle" font-size="7" letter-spacing="0.5" fill="#1B365D">SERVICE</text>
+          <text x="140" y="91" text-anchor="middle" font-size="9" font-weight="600" fill="#141413">API</text>
+          <!-- Node: Database -->
+          <rect x="196" y="58" width="64" height="44" rx="3" fill="#f5f4ed" stroke="#5e5d59" stroke-width="0.8"/>
+          <text x="228" y="76" text-anchor="middle" font-size="7" letter-spacing="0.5" fill="#87867f">DATA</text>
+          <text x="228" y="91" text-anchor="middle" font-size="9" font-weight="600" fill="#141413">Database</text>
+        </svg>
+        <p class="chart-caption">系统组件与连接关系，一个焦点节点</p>
+      </div>
+      <!-- Flowchart mini -->
+      <div class="chart-card">
+        <div class="chart-label">流程图 · Flowchart</div>
+        <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" style="font-family:'Inter','TsangerJinKai02',sans-serif">
+          <rect width="280" height="160" fill="#f5f4ed"/>
+          <!-- Start pill -->
+          <rect x="100" y="8" width="80" height="28" rx="14" fill="#141413"/>
+          <text x="140" y="27" text-anchor="middle" font-size="9" font-weight="600" fill="#f5f4ed">Start</text>
+          <!-- Start → diamond (arrow down) -->
+          <path d="M 139.5,36 L 139.5,48 L 138,48 L 140,52 L 142,48 L 140.5,48 L 140.5,36 Z" fill="#5e5d59"/>
+          <!-- Decision diamond -->
+          <polygon points="140,52 172,72 140,92 108,72" fill="#f5f4ed" stroke="#141413" stroke-width="1"/>
+          <text x="140" y="76" text-anchor="middle" font-size="8" fill="#141413">Valid?</text>
+          <!-- Yes arrow right -->
+          <path d="M 172,71.5 L 204,71.5 L 204,70 L 208,72 L 204,74 L 204,72.5 L 172,72.5 Z" fill="#1B365D"/>
+          <text x="186" y="68" text-anchor="middle" font-size="8" fill="#1B365D">Yes</text>
+          <!-- Success node (focal) -->
+          <rect x="208" y="56" width="64" height="32" rx="4" fill="#EEF2F7" stroke="#1B365D" stroke-width="1"/>
+          <text x="240" y="77" text-anchor="middle" font-size="9" font-weight="600" fill="#141413">Process</text>
+          <!-- No arrow down -->
+          <path d="M 139.5,92 L 139.5,112 L 138,112 L 140,116 L 142,112 L 140.5,112 L 140.5,92 Z" fill="#5e5d59"/>
+          <text x="151" y="106" font-size="8" fill="#5e5d59">No</text>
+          <!-- Reject node -->
+          <rect x="96" y="116" width="88" height="32" rx="4" fill="#f5f4ed" stroke="#87867f" stroke-width="0.8"/>
+          <text x="140" y="136" text-anchor="middle" font-size="9" font-weight="600" fill="#5e5d59">Reject</text>
+        </svg>
+        <p class="chart-caption">决策分支，Yes / No 路径，焦点为成功路径</p>
+      </div>
+      <!-- Bar chart (shifted left) -->
       <div class="chart-card">
         <div class="chart-label">柱状图 · Bar Chart</div>
-        <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg">
-          <line x1="28" y1="128" x2="260" y2="128" stroke="#e8e6dc" stroke-width="1"/>
-          <rect x="38" y="78" width="42" height="50" rx="3" fill="#87867f"/>
-          <rect x="98" y="62" width="42" height="66" rx="3" fill="#5e5d59"/>
-          <rect x="158" y="44" width="42" height="84" rx="3" fill="#2d4e7a"/>
-          <rect x="218" y="30" width="42" height="98" rx="3" fill="#1B365D"/>
-          <text x="59" y="145" text-anchor="middle" font-size="10" font-family="Inter,Arial,sans-serif" fill="#87867f">Q1</text>
-          <text x="119" y="145" text-anchor="middle" font-size="10" font-family="Inter,Arial,sans-serif" fill="#5e5d59">Q2</text>
-          <text x="179" y="145" text-anchor="middle" font-size="10" font-family="Inter,Arial,sans-serif" fill="#4d4c48">Q3</text>
-          <text x="239" y="145" text-anchor="middle" font-size="10" font-family="Inter,Arial,sans-serif" fill="#4d4c48">Q4</text>
-          <text x="59" y="73" text-anchor="middle" font-size="9" font-weight="600" font-family="Inter,Arial,sans-serif" fill="#87867f">180</text>
-          <text x="119" y="57" text-anchor="middle" font-size="9" font-weight="600" font-family="Inter,Arial,sans-serif" fill="#5e5d59">220</text>
-          <text x="179" y="39" text-anchor="middle" font-size="9" font-weight="600" font-family="Inter,Arial,sans-serif" fill="#2d4e7a">195</text>
-          <text x="239" y="25" text-anchor="middle" font-size="9" font-weight="600" font-family="Inter,Arial,sans-serif" fill="#1B365D">240</text>
+        <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" style="font-family:'Inter','TsangerJinKai02',sans-serif">
+          <rect width="280" height="160" fill="#f5f4ed"/>
+          <rect x="18" y="78" width="42" height="50" rx="3" fill="#87867f"/>
+          <rect x="78" y="62" width="42" height="66" rx="3" fill="#5e5d59"/>
+          <rect x="138" y="44" width="42" height="84" rx="3" fill="#2d4e7a"/>
+          <rect x="198" y="30" width="42" height="98" rx="3" fill="#1B365D"/>
+          <text x="39" y="145" text-anchor="middle" font-size="10" fill="#87867f">Q1</text>
+          <text x="99" y="145" text-anchor="middle" font-size="10" fill="#5e5d59">Q2</text>
+          <text x="159" y="145" text-anchor="middle" font-size="10" fill="#4d4c48">Q3</text>
+          <text x="219" y="145" text-anchor="middle" font-size="10" fill="#4d4c48">Q4</text>
+          <text x="39" y="73" text-anchor="middle" font-size="9" font-weight="600" fill="#87867f">180</text>
+          <text x="99" y="57" text-anchor="middle" font-size="9" font-weight="600" fill="#5e5d59">220</text>
+          <text x="159" y="39" text-anchor="middle" font-size="9" font-weight="600" fill="#2d4e7a">195</text>
+          <text x="219" y="25" text-anchor="middle" font-size="9" font-weight="600" fill="#1B365D">240</text>
         </svg>
         <p class="chart-caption">季度营收对比，可选颜色渐变或单色</p>
-      </div>
-      <!-- Line chart -->
-      <div class="chart-card">
-        <div class="chart-label">折线图 · Line Chart</div>
-        <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg">
-          <line x1="28" y1="128" x2="260" y2="128" stroke="#e8e6dc" stroke-width="1"/>
-          <line x1="28" y1="88" x2="260" y2="88" stroke="#e8e6dc" stroke-width="0.5" stroke-dasharray="3,3"/>
-          <line x1="28" y1="48" x2="260" y2="48" stroke="#e8e6dc" stroke-width="0.5" stroke-dasharray="3,3"/>
-          <polyline points="44,118 96,100 148,78 200,54 252,32" fill="none" stroke="#1B365D" stroke-width="2" stroke-linejoin="round"/>
-          <circle cx="44" cy="118" r="4" fill="#1B365D"/>
-          <circle cx="96" cy="100" r="4" fill="#1B365D"/>
-          <circle cx="148" cy="78" r="4" fill="#1B365D"/>
-          <circle cx="200" cy="54" r="4" fill="#1B365D"/>
-          <circle cx="252" cy="32" r="4" fill="#1B365D"/>
-          <text x="44" y="145" text-anchor="middle" font-size="10" font-family="Inter,Arial,sans-serif" fill="#87867f">2020</text>
-          <text x="96" y="145" text-anchor="middle" font-size="10" font-family="Inter,Arial,sans-serif" fill="#87867f">2021</text>
-          <text x="148" y="145" text-anchor="middle" font-size="10" font-family="Inter,Arial,sans-serif" fill="#4d4c48">2022</text>
-          <text x="200" y="145" text-anchor="middle" font-size="10" font-family="Inter,Arial,sans-serif" fill="#4d4c48">2023</text>
-          <text x="252" y="145" text-anchor="middle" font-size="10" font-family="Inter,Arial,sans-serif" fill="#4d4c48">2024</text>
-        </svg>
-        <p class="chart-caption">趋势折线图，支持多数据系列</p>
       </div>
       <!-- Donut chart -->
       <div class="chart-card">
         <div class="chart-label">环形图 · Donut Chart</div>
-        <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg">
-          <!-- 60% segment: -90° → 126° (large-arc=1) -->
-          <!-- R=55, r=30, cx=80, cy=80 -->
-          <!-- At -90°: (80,25). At 126°: cos(126°)=-0.5878, sin(126°)=0.8090: x=80+55*(-0.5878)=47.7,y=80+55*0.8090=124.5 -->
-          <!-- inner: at -90°: (80,50). At 126°: x=80+30*(-0.5878)=62.4, y=80+30*0.8090=104.3 -->
+        <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" style="font-family:'Inter','TsangerJinKai02',sans-serif">
+          <rect width="280" height="160" fill="#f5f4ed"/>
           <path d="M 80,25 A 55,55 0 1,1 47.7,124.5 L 62.4,104.3 A 30,30 0 1,0 80,50 Z" fill="#1B365D" stroke="white" stroke-width="1.5"/>
-          <!-- 25% segment: 126° → 216° -->
-          <!-- cos(216°)=-0.8090, sin(216°)=-0.5878: x=80+55*(-0.8090)=35.5,y=80+55*(-0.5878)=47.7 -->
-          <!-- inner: x=80+30*(-0.8090)=55.7, y=80+30*(-0.5878)=62.4 -->
           <path d="M 47.7,124.5 A 55,55 0 0,1 35.5,47.7 L 55.7,62.4 A 30,30 0 0,0 62.4,104.3 Z" fill="#5e5d59" stroke="white" stroke-width="1.5"/>
-          <!-- 15% segment: 216° → 270° -->
           <path d="M 35.5,47.7 A 55,55 0 0,1 80,25 L 80,50 A 30,30 0 0,0 55.7,62.4 Z" fill="#87867f" stroke="white" stroke-width="1.5"/>
-          <!-- Center -->
-          <text x="80" y="77" text-anchor="middle" font-size="18" font-weight="600" font-family="Inter,Arial,sans-serif" fill="#1B365D">60%</text>
-          <text x="80" y="92" text-anchor="middle" font-size="10" font-family="Inter,Arial,sans-serif" fill="#5e5d59">主营</text>
-          <!-- Legend -->
+          <text x="80" y="77" text-anchor="middle" font-size="13" font-weight="600" fill="#1B365D">60%</text>
+          <text x="80" y="92" text-anchor="middle" font-size="10" fill="#5e5d59">主营</text>
           <rect x="150" y="46" width="10" height="10" rx="2" fill="#1B365D"/>
-          <text x="165" y="55" font-size="11" font-family="Inter,Arial,sans-serif" fill="#4d4c48">主营业务 · 60%</text>
+          <text x="165" y="55" font-size="11" fill="#4d4c48">主营业务 · 60%</text>
           <rect x="150" y="72" width="10" height="10" rx="2" fill="#5e5d59"/>
-          <text x="165" y="81" font-size="11" font-family="Inter,Arial,sans-serif" fill="#4d4c48">服务收入 · 25%</text>
+          <text x="165" y="81" font-size="11" fill="#4d4c48">服务收入 · 25%</text>
           <rect x="150" y="98" width="10" height="10" rx="2" fill="#87867f"/>
-          <text x="165" y="107" font-size="11" font-family="Inter,Arial,sans-serif" fill="#4d4c48">其他来源 · 15%</text>
+          <text x="165" y="107" font-size="11" fill="#4d4c48">其他来源 · 15%</text>
         </svg>
         <p class="chart-caption">营收结构拆解，支持 3–6 个分段</p>
       </div>

@@ -165,7 +165,7 @@
 
 ## 图表组件
 
-六种内置图表，嵌入 long-doc / portfolio 的 `<figure>` 中：
+十二种内置图表，嵌入 long-doc / portfolio 的 `<figure>` 中：
 
 | 类型 | 文件 | 用途 |
 |---|---|---|
@@ -175,6 +175,12 @@
 | Bar Chart | `assets/diagrams/bar-chart.html` | 分类对比（最多 8 组 × 3 系列） |
 | Line Chart | `assets/diagrams/line-chart.html` | 趋势时序（最多 12 点 × 3 线） |
 | Donut Chart | `assets/diagrams/donut-chart.html` | 占比分布（最多 6 段） |
+| State Machine | `assets/diagrams/state-machine.html` | 有限状态 + 有向转换 |
+| Timeline | `assets/diagrams/timeline.html` | 时间轴 + 里程碑 |
+| Swimlane | `assets/diagrams/swimlane.html` | 跨责任方的流程 |
+| Tree | `assets/diagrams/tree.html` | 层级关系 / 树状结构 |
+| Layer Stack | `assets/diagrams/layer-stack.html` | 垂直分层架构 |
+| Venn | `assets/diagrams/venn.html` | 集合交集 / 重叠关系 |
 
 用法：从 HTML 文件提取 `<svg>` 块，直接嵌入模板的 `<figure>` 容器。
 

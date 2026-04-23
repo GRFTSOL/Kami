@@ -177,7 +177,7 @@ Screen (px) ≈ pt × 1.33.
 
 ## Diagram components
 
-Six built-in diagram types. Extract the `<svg>` block and embed in a `<figure>` in long-doc / portfolio:
+Twelve built-in diagram types. Extract the `<svg>` block and embed in a `<figure>` in long-doc / portfolio:
 
 | Type | File | Use |
 |---|---|---|
@@ -187,6 +187,12 @@ Six built-in diagram types. Extract the `<svg>` block and embed in a `<figure>` 
 | Bar Chart | `assets/diagrams/bar-chart.html` | Category comparison (up to 8 groups × 3 series) |
 | Line Chart | `assets/diagrams/line-chart.html` | Trends over time (up to 12 points × 3 lines) |
 | Donut Chart | `assets/diagrams/donut-chart.html` | Proportional breakdown (up to 6 segments) |
+| State Machine | `assets/diagrams/state-machine.html` | Finite states + directed transitions |
+| Timeline | `assets/diagrams/timeline.html` | Time axis + milestone events |
+| Swimlane | `assets/diagrams/swimlane.html` | Cross-responsibility process flow |
+| Tree | `assets/diagrams/tree.html` | Hierarchical relationships |
+| Layer Stack | `assets/diagrams/layer-stack.html` | Vertically stacked system layers |
+| Venn | `assets/diagrams/venn.html` | Set intersections and overlaps |
 
 Usage: extract the `<svg>` block from the HTML file and paste into the template's `<figure>` container.
 
