@@ -16,7 +16,7 @@ Kami (紙, かみ) means paper: the surface where a finished idea lands. Most do
 
 Kami holds one design idea across six document types: one-pagers, long docs, formal letters, portfolios, resumes, and slides. Each format shares a warm parchment canvas, a single ink-blue accent, serif for authority, sans for utility, and editorial whitespace tuned for print.
 
-The goal is to make the design system for AI-assisted documents: simple enough for agents to follow, strict enough to keep every output coherent, and practical enough to turn a prompt into a presentable PDF without design cleanup.
+Kami is a document design system for the AI era: simple enough for agents to follow, strict enough to keep every output coherent, and practical enough to turn a prompt into a presentable PDF without design cleanup.
 
 Part of a trilogy: [Kaku](https://github.com/tw93/Kaku) (書く) writes code, [Waza](https://github.com/tw93/Waza) (技) drills habits, [Kami](https://github.com/tw93/Kami) (紙) delivers documents.
 
@@ -61,7 +61,7 @@ npx skills add tw93/kami -a claude-code -g -y
 npx skills add tw93/kami -a codex -g -y
 ```
 
-**Generic agents** (opencode, pi, and other tools that read from `~/.agents/`)
+**Generic agents** (opencode, pi, and other tools that read from `~/.agents/`; `codex` is included, but use `-a codex` if you only target Codex)
 
 ```bash
 npx skills add tw93/kami -a '*' -g -y
@@ -105,7 +105,7 @@ Full spec: [design.md](references/design.md). Cheatsheet: [CHEATSHEET.md](CHEATS
 
 ## Background
 
-I invest in US equities and often ask AI to generate analysis reports. The earliest drafts looked like default Google Docs: plain, inconsistent, and easy to forget. I did not want each document to arrive with a different face, so I kept refining the typography, palette, and spacing until the page became something I wanted to keep reading.
+I invest in US equities and often ask AI to generate analysis reports. The earliest drafts looked like default Google Docs: plain, inconsistent, and easy to forget. I did not want each document to shift style every time, so I kept refining the typography, palette, and spacing until the page became something I wanted to keep reading.
 
 Later, I was invited to give a talk on my article "The Agent You Don't Know: Principles, Architecture, and Engineering Practice" and needed a slide deck that shared the same visual standard. That iteration pushed the system further: inline SVG diagrams, a unified warm palette, and a tighter editorial rhythm. Over time it covered the document formats I use most, so it became kami, a visual language I can reuse with confidence and send out without hesitation.
 
