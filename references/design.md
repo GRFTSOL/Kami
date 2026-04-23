@@ -116,6 +116,13 @@ font-family: "TsangerJinKai02",
              "Songti SC", "STSong",
              Georgia, serif;
 
+/* Japanese serif */
+font-family: "Hiragino Mincho ProN",
+             "Yu Mincho", "YuMincho",
+             "Noto Serif CJK JP", "Source Han Serif JP",
+             "TsangerJinKai02",
+             Georgia, serif;
+
 /* English sans / UI */
 font-family: "Inter",
              -apple-system, BlinkMacSystemFont,
@@ -128,6 +135,14 @@ font-family: "Inter", "TsangerJinKai02",
              "PingFang SC", "Microsoft YaHei",
              Arial, sans-serif;
 
+/* Japanese sans / UI */
+font-family: "Inter",
+             "Hiragino Sans", "Yu Gothic",
+             "Noto Sans CJK JP", "Source Han Sans JP",
+             "TsangerJinKai02",
+             -apple-system, BlinkMacSystemFont,
+             Arial, sans-serif;
+
 /* Mono, with CJK fallback for comments and labels */
 font-family: "JetBrains Mono", "SF Mono", "Fira Code",
              Consolas, Monaco,
@@ -135,7 +150,7 @@ font-family: "JetBrains Mono", "SF Mono", "Fira Code",
              monospace;
 ```
 
-Any font-family that may render Chinese must include a CJK fallback, including `@page` footer text, `pre`, `code`, and SVG labels. A pure mono stack can render missing glyph boxes in WeasyPrint.
+Any font-family that may render Chinese or Japanese must include a CJK fallback, including `@page` footer text, `pre`, `code`, and SVG labels. A pure mono stack can render missing glyph boxes in WeasyPrint.
 
 ### Size scale (pt for print A4, px for screen)
 

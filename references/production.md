@@ -55,6 +55,11 @@ font-family: "Newsreader", "Source Serif 4", "Charter",
 /* Chinese */
 font-family: "TsangerJinKai02", "Source Han Serif SC",
              "Noto Serif CJK SC", "Songti SC", Georgia, serif;
+
+/* Japanese */
+font-family: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho",
+             "Noto Serif CJK JP", "Source Han Serif JP",
+             "TsangerJinKai02", Georgia, serif;
 ```
 
 **Font fallback affects page count**. Any font swap requires re-running the page-count check. If it overflows: lower `font-size` first, then tighten margins, then cut content.
@@ -256,7 +261,7 @@ pdftoppm -png -r 300 out.pdf inspect
 pdffonts output.pdf
 ```
 
-If the output shows `DejaVuSerif` / `Bitstream Vera` - your specified font didn't load, fell through to system ultimate fallback. Expected: `Newsreader`, `Charter`, or `TsangerJinKai02`.
+If the output shows `DejaVuSerif` / `Bitstream Vera` - your specified font didn't load, fell through to system ultimate fallback. Expected: `Newsreader`, `Charter`, `TsangerJinKai02`, or a Japanese Mincho face such as `Hiragino-Mincho`, `YuMincho`, `Noto-Serif-CJK-JP`, or `Source-Han-Serif-JP`.
 
 ### One-step build + validate
 

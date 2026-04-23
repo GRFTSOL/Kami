@@ -100,7 +100,19 @@ Chinese:
          monospace;
 ```
 
-Any font-family that may render Chinese must include a CJK fallback, including `@page` footer text, `pre`, `code`, and SVG labels. A pure mono stack can render missing glyph boxes in WeasyPrint.
+Japanese:
+
+```css
+--serif: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho",
+         "Noto Serif CJK JP", "Source Han Serif JP",
+         "TsangerJinKai02", Georgia, serif;
+--sans:  "Inter", "Hiragino Sans", "Yu Gothic",
+         "Noto Sans CJK JP", "Source Han Sans JP",
+         "TsangerJinKai02", -apple-system, BlinkMacSystemFont,
+         Arial, sans-serif;
+```
+
+Any font-family that may render Chinese or Japanese must include a CJK fallback, including `@page` footer text, `pre`, `code`, and SVG labels. A pure mono stack can render missing glyph boxes in WeasyPrint.
 
 ## Spacing (4pt base)
 

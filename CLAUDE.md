@@ -18,7 +18,7 @@ Warm parchment canvas, ink-blue accent, serif-led hierarchy, and editorial white
 | `scripts/package-skill.sh` | Claude Desktop ZIP packager, excluding large fonts | Low |
 | `dist/kami.zip` | Claude Desktop ZIP artifact, updated from main | Medium |
 
-Reference docs are English-only. Do not recreate `*.en.md` duplicates. Chinese / English output differences belong in the templates. Japanese currently uses a best-effort CJK mapping, no dedicated `-ja` templates yet, and requires visual QA before shipping.
+Reference docs are English-only. Do not recreate `*.en.md` duplicates. Chinese / English output differences belong in the templates. Japanese currently uses a best-effort CJK mapping with JP Mincho-first font stacks, no dedicated `-ja` templates yet, and requires visual QA before shipping.
 Do not use graphic emoticons in docs, template comments, or script output. Use `OK:` / `ERROR:` for status and `Use` / `Avoid` for comparisons.
 
 ## Verification
@@ -100,6 +100,6 @@ Do not mix English and Chinese inside the same numbered item. Keep both lists al
 `TsangerJinKai02-W04.ttf` is a commercial font. Commercial use requires a license from tsanger.cn.
 Fallback without TsangerJinKai: Source Han Serif SC -> Noto Serif CJK SC -> Songti SC -> Georgia.
 English templates use Newsreader serif.
-Japanese output currently uses the CJK template path with Mincho-style fallbacks. Treat it as best-effort and verify rendering before delivery.
+Japanese output currently uses the CJK template path with a JP Mincho-first fallback chain: Hiragino Mincho ProN -> Yu Mincho / YuMincho -> Noto Serif CJK JP -> Source Han Serif JP -> TsangerJinKai02 -> serif. Treat it as best-effort and verify rendering before delivery.
 
 The Claude Desktop ZIP does not bundle TsangerJinKai TTF files. They are about 19MB each and can make upload or execution time out. Before building Chinese documents, the skill checks for missing fonts and downloads them from jsDelivr into `assets/fonts/`. WeasyPrint then uses the existing relative `@font-face` paths without changing HTML.

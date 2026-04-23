@@ -36,7 +36,15 @@
   @font-face {
     font-family: "TsangerJinKai02";
     src: url("assets/fonts/TsangerJinKai02-W04.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "TsangerJinKai02";
+    src: url("assets/fonts/TsangerJinKai02-W05.ttf") format("truetype");
     font-weight: 500;
+    font-style: normal;
     font-display: swap;
   }
   
@@ -69,9 +77,19 @@
     /* Slide-scale spacing */
     --slide-pad:    80px;
 
-    --serif: "TsangerJinKai02", "Newsreader", "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", Georgia, serif;
+    --serif: "Newsreader", "TsangerJinKai02", "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", Georgia, serif;
     --sans: "Inter", "TsangerJinKai02", -apple-system, BlinkMacSystemFont, "Source Han Sans SC", "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
     --mono: "JetBrains Mono", "Fira Code", "SF Mono", Consolas, Monaco, monospace;
+  }
+
+  html[lang="zh-CN"] {
+    --serif: "TsangerJinKai02", "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", Georgia, serif;
+    --sans: "Inter", "TsangerJinKai02", -apple-system, BlinkMacSystemFont, "Source Han Sans SC", "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+  }
+
+  html[lang="ja"] {
+    --serif: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "Noto Serif CJK JP", "Source Han Serif JP", "TsangerJinKai02", Georgia, serif;
+    --sans: "Inter", "Hiragino Sans", "Yu Gothic", "Noto Sans CJK JP", "Source Han Sans JP", "TsangerJinKai02", -apple-system, BlinkMacSystemFont, Arial, sans-serif;
   }
 
   /* Language switcher */
@@ -907,7 +925,7 @@
     display: block;
   }
   .chart-card svg text {
-    font-family: "Inter", "TsangerJinKai02", -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+    font-family: var(--sans);
   }
   .chart-label {
     font-family: var(--sans);

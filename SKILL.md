@@ -1,6 +1,6 @@
 ---
 name: kami
-description: 'Typeset any professional document: resumes, one-pagers, white papers, letters, portfolios, slide decks. Warm parchment design system with ink-blue accent, serif-led hierarchy, and tight editorial spacing. Trilingual best-effort output: Chinese docs use TsangerJinKai02 + Source Han, English docs use Newsreader + Inter, Japanese currently maps to the CJK template path with Mincho fallbacks and requires manual visual QA before shipping, with one shared English reference set. Triggers on "做 PDF / 排版 / 生成报告 / 一页纸 / 白皮书 / 作品集 / 正式信件 / 简历 / PPT / slides / 高质量文档 / 好看的排版", or "build me a resume / make a one-pager / design a slide deck / turn this into a PDF / make this presentable / polish typography", and when raw content is handed over to be "typeset, designed, made presentable".'
+description: 'Typeset any professional document: resumes, one-pagers, white papers, letters, portfolios, slide decks. Warm parchment design system with ink-blue accent, serif-led hierarchy, and tight editorial spacing. Trilingual best-effort output: Chinese docs use TsangerJinKai02 + Source Han, English docs use Newsreader + Inter, Japanese currently maps to the CJK template path with JP Mincho first and Tsanger fallback, and requires manual visual QA before shipping, with one shared English reference set. Triggers on "做 PDF / 排版 / 生成报告 / 一页纸 / 白皮书 / 作品集 / 正式信件 / 简历 / PPT / slides / 高质量文档 / 好看的排版", or "build me a resume / make a one-pager / design a slide deck / turn this into a PDF / make this presentable / polish typography", and when raw content is handed over to be "typeset, designed, made presentable".'
 ---
 
 # kami · 紙
@@ -13,7 +13,7 @@ Part of `Kaku · Waza · Kami` - Kaku writes code, Waza drills habits, **Kami de
 
 ## Step 1 · Decide the language
 
-**Match the user's language**. If they write in Chinese -> use the Chinese templates (`.html` / `slides.py`). If they write in English -> use the English templates (`-en.html` / `slides-en.py`). If they write in Japanese -> use the CJK template path (`.html` / `slides.py`) as best-effort, keep Japanese copy, and run visual QA before shipping. The reference docs are shared English specs for all output languages.
+**Match the user's language**. If they write in Chinese -> use the Chinese templates (`.html` / `slides.py`). If they write in English -> use the English templates (`-en.html` / `slides-en.py`). If they write in Japanese -> use the CJK template path (`.html` / `slides.py`) as best-effort, keep Japanese copy, set JP Mincho first with Tsanger fallback, and run visual QA before shipping. The reference docs are shared English specs for all output languages.
 
 When ambiguous (e.g. a one-word command like "resume"), ask a one-liner rather than guess.
 
@@ -188,7 +188,8 @@ Visual anomalies (tag double rectangle, font fallback, page break issues) -> `pr
 
 **Japanese (best-effort)**
 - Current routing uses the CJK template path (`*.html`, `slides.py`), no dedicated `-ja` templates yet
-- Keep Japanese body copy, prefer Mincho-compatible fallback stacks, and visually verify line breaks, punctuation rhythm, and emphasis weight before shipping
+- Use a JP Mincho-first stack: Hiragino Mincho ProN -> Yu Mincho / YuMincho -> Noto Serif CJK JP -> Source Han Serif JP -> TsangerJinKai02 -> serif
+- Keep Japanese body copy, keep Tsanger as fallback or limited accent only, and visually verify line breaks, punctuation rhythm, and emphasis weight before shipping
 
 **English**
 - Main serif: Newsreader (Google Fonts, open source) - used for both headlines and body
