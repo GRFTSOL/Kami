@@ -83,6 +83,16 @@ gh release upload "$LATEST_TAG" dist/kami.zip --clobber -R tw93/kami
 
 `dist/kami.zip` is a tracked artifact and should be committed with the release changes. README and website download links use `https://cdn.jsdelivr.net/gh/tw93/kami@main/dist/kami.zip`, so users can update from the current `main` branch. For small packaging or documentation fixes, refresh the latest release asset with `--clobber` instead of creating a new version tag. Create a new tag only when the user explicitly wants a versioned release.
 
+Release notes must follow the tw93/Mole format:
+
+1. Centered logo, release title, and one-line tagline.
+2. `### Changelog` with an English numbered list.
+3. `### 更新日志` with the matching Chinese numbered list.
+4. Optional special-thanks paragraph when contributors need credit.
+5. Final blockquote with the repository URL.
+
+Do not mix English and Chinese inside the same numbered item. Keep both lists aligned by number, use 5-8 items, and write one concise sentence per item. Do not use graphic emoticons in the release title or body unless the user explicitly asks for them.
+
 ## Fonts
 
 `TsangerJinKai02-W04.ttf` is a commercial font. Commercial use requires a license from tsanger.cn.
