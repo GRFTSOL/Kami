@@ -89,7 +89,7 @@ Release notes must follow the tw93/Mole format:
 2. `### Changelog` with an English numbered list.
 3. `### 更新日志` with the matching Chinese numbered list.
 4. Optional special-thanks paragraph when contributors need credit.
-5. Final blockquote with the repository URL.
+5. Final blockquote with one concise project description sentence and the repository URL.
 
 Do not mix English and Chinese inside the same numbered item. Keep both lists aligned by number, use 5-8 items, and write one concise sentence per item. Do not use graphic emoticons in the release title or body unless the user explicitly asks for them.
 
