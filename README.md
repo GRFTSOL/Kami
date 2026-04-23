@@ -16,6 +16,8 @@ Kami (紙, かみ) means paper: the surface where a finished idea lands. Most do
 
 Kami holds one design idea across six document types: one-pagers, long docs, formal letters, portfolios, resumes, and slides. Each format shares a warm parchment canvas, a single ink-blue accent, serif for authority, sans for utility, and editorial whitespace tuned for print.
 
+The goal is to make the design system for AI-assisted documents: simple enough for agents to follow, strict enough to keep every output coherent, and practical enough to turn a prompt into a presentable PDF without design cleanup.
+
 Part of a trilogy: [Kaku](https://github.com/tw93/Kaku) (書く) writes code, [Waza](https://github.com/tw93/Waza) (技) drills habits, [Kami](https://github.com/tw93/Kami) (紙) delivers documents.
 
 ## See it
