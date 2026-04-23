@@ -14,6 +14,7 @@ Usage:
 from __future__ import annotations
 
 import json
+import os
 import re
 import subprocess
 import sys
@@ -64,6 +65,79 @@ DIAGRAM_TARGETS: dict[str, str] = {
 
 # ------------------------- build -------------------------
 
+def infer_author() -> str:
+    """Infer author name from git config or environment.
+
+    Priority:
+    1. git config user.name
+    2. KAMI_AUTHOR env var
+    3. fallback to "Kami"
+    """
+    try:
+        result = subprocess.run(
+            ["git", "config", "user.name"],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        if result.returncode == 0 and result.stdout.strip():
+            return result.stdout.strip()
+    except FileNotFoundError:
+        pass
+
+    if env_author := os.environ.get("KAMI_AUTHOR"):
+        return env_author
+
+    return "Kami"
+
+
+def set_pdf_metadata(pdf_path: Path, author: str | None = None) -> None:
+    """Set PDF metadata using pypdf, only if placeholders are still present."""
+    try:
+        from pypdf import PdfReader, PdfWriter
+    except ImportError:
+        return
+
+    if not pdf_path.exists():
+        return
+
+    reader = PdfReader(str(pdf_path))
+
+    # Read existing metadata from WeasyPrint
+    existing = reader.metadata or {}
+
+    # Check if we need to update anything
+    needs_update = False
+    metadata = dict(existing)  # Copy all existing metadata
+
+    # Only override author if it's still a placeholder
+    if author and existing.get("/Author"):
+        author_value = str(existing["/Author"])
+        if "{{" in author_value and "}}" in author_value:
+            metadata["/Author"] = author
+            needs_update = True
+
+    # Always set Producer and Creator to Kami
+    if metadata.get("/Producer") != "Kami":
+        metadata["/Producer"] = "Kami"
+        needs_update = True
+    if metadata.get("/Creator") != "Kami":
+        metadata["/Creator"] = "Kami"
+        needs_update = True
+
+    if not needs_update:
+        return
+
+    writer = PdfWriter()
+    for page in reader.pages:
+        writer.add_page(page)
+
+    writer.add_metadata(metadata)
+
+    with open(pdf_path, "wb") as f:
+        writer.write(f)
+
+
 def build_html(name: str, source: str, max_pages: int,
                src_dir: Path = TEMPLATES) -> bool:
     try:
@@ -84,6 +158,11 @@ def build_html(name: str, source: str, max_pages: int,
     # weasyprint resolves @font-face relative to CWD. Run from the source dir
     # so fonts placed next to the HTML are found.
     HTML(str(src), base_url=str(src.parent)).write_pdf(str(out))
+
+    # Set PDF metadata (only replaces placeholders, preserves filled values)
+    author = infer_author()
+    set_pdf_metadata(out, author=author)
+
     n = len(PdfReader(str(out)).pages)
     msg = f"OK: {name}: {n} pages"
     if max_pages and n > max_pages:
@@ -279,6 +358,10 @@ def verify_target(name: str, source: str, max_pages: int, src_dir: Path) -> list
     EXAMPLES.mkdir(parents=True, exist_ok=True)
     out = EXAMPLES / f"{name}.pdf"
     HTML(str(src), base_url=str(src_dir)).write_pdf(str(out))
+
+    # Set PDF metadata (only replaces placeholders, preserves filled values)
+    author = infer_author()
+    set_pdf_metadata(out, author=author)
 
     # page count check
     n = len(PdfReader(str(out)).pages)

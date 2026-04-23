@@ -12,13 +12,13 @@ Warm parchment canvas, ink-blue accent, serif-led hierarchy, and editorial white
 | `references/design.md` | Design system spec, English-only source | Low |
 | `references/writing.md` | Content strategy spec, English-only source | Low |
 | `references/production.md` | WeasyPrint build and troubleshooting runbook, English-only source | Medium |
-| `assets/templates/` | 6 document templates in 2 output languages | Medium |
+| `assets/templates/` | 6 document templates in 2 base language families, plus Japanese best-effort mapping | Medium |
 | `assets/demos/` | README showcase demos, regenerate after visual changes | Medium |
 | `scripts/build.py` | PDF / PNG / PPTX build and verification script | Low |
 | `scripts/package-skill.sh` | Claude Desktop ZIP packager, excluding large fonts | Low |
 | `dist/kami.zip` | Claude Desktop ZIP artifact, updated from main | Medium |
 
-Reference docs are English-only. Do not recreate `*.en.md` duplicates. Chinese / English output differences belong in the templates.
+Reference docs are English-only. Do not recreate `*.en.md` duplicates. Chinese / English output differences belong in the templates. Japanese currently uses a best-effort CJK mapping, no dedicated `-ja` templates yet, and requires visual QA before shipping.
 Do not use graphic emoticons in docs, template comments, or script output. Use `OK:` / `ERROR:` for status and `Use` / `Avoid` for comparisons.
 
 ## Verification
@@ -31,6 +31,8 @@ python3 scripts/build.py --check-placeholders path/to/filled.html
 ```
 
 Expected page counts: one-pager 1 / letter 1 / resume 2 strict / long-doc 7 +/- 2 / portfolio 6 +/- 2 / slides 7 +/- 3
+
+**PDF metadata**: `build.py` automatically sets `/Author` from `git config user.name` (or `KAMI_AUTHOR` env var) when the HTML template contains a placeholder like `{{作者}}` or `{{AUTHOR}}`. `/Producer` and `/Creator` are always set to `"Kami"`.
 
 ## Demo Screenshots
 
@@ -98,5 +100,6 @@ Do not mix English and Chinese inside the same numbered item. Keep both lists al
 `TsangerJinKai02-W04.ttf` is a commercial font. Commercial use requires a license from tsanger.cn.
 Fallback without TsangerJinKai: Source Han Serif SC -> Noto Serif CJK SC -> Songti SC -> Georgia.
 English templates use Newsreader serif.
+Japanese output currently uses the CJK template path with Mincho-style fallbacks. Treat it as best-effort and verify rendering before delivery.
 
 The Claude Desktop ZIP does not bundle TsangerJinKai TTF files. They are about 19MB each and can make upload or execution time out. Before building Chinese documents, the skill checks for missing fonts and downloads them from jsDelivr into `assets/fonts/`. WeasyPrint then uses the existing relative `@font-face` paths without changing HTML.

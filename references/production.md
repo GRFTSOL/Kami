@@ -268,6 +268,19 @@ python3 scripts/build.py resume-en     # one target + page count + fonts
 python3 scripts/build.py --check       # scan for CSS rule violations
 ```
 
+### Layout stabilizer (HTML templates)
+
+When a constrained template is near page overflow (one-pager, letter, resume, and English variants), run the stabilizer first, then verify:
+
+```bash
+python3 scripts/stabilize.py all --out-dir dist/stabilized --report
+python3 scripts/stabilize.py one-pager letter resume one-pager-en letter-en resume-en --strict --report
+python3 scripts/build.py --check
+python3 scripts/build.py --verify
+```
+
+`scripts/stabilize.py` is intentionally independent from `scripts/build.py`. Thresholds and solver behavior are controlled by `references/stabilizer_profiles.json`.
+
 ### Hi-res visual inspection
 
 ```bash

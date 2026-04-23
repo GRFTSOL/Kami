@@ -8,15 +8,12 @@
   <a href="https://twitter.com/HiTw93"><img src="https://img.shields.io/badge/follow-Tw93-red?style=flat-square&logo=Twitter" alt="Twitter"></a>
 </div>
 
-<br/>
-
 ## Why
 
-Kami (紙, かみ) means paper: the surface where a finished idea lands. Most document design drifts into two failure modes: generic corporate gray, or gradient-heavy SaaS styling. Neither reads like something made with care.
+Kami (紙, かみ) is a Japanese word for paper: the surface where a finished idea lands. Most AI-generated documents drift into generic corporate gray or inconsistent styling that shifts across sessions, requiring manual cleanup before they can be sent.
 
-Kami holds one design idea across six document types: one-pagers, long docs, formal letters, portfolios, resumes, and slides. Each format shares a warm parchment canvas, a single ink-blue accent, serif for authority, sans for utility, and editorial whitespace tuned for print.
-
-Kami is a document design system for the AI era: simple enough for agents to follow, strict enough to keep every output coherent, and practical enough to turn a prompt into a presentable PDF without design cleanup.
+Kami is a document design system built for the AI era: one constraint language across six formats, simple enough for agents to execute reliably, strict enough to keep every output coherent and ready to ship.
+It supports English and Chinese directly, with Japanese available via a best-effort CJK template path plus a final visual QA pass before delivery.
 
 Part of a trilogy: [Kaku](https://github.com/tw93/Kaku) (書く) writes code, [Waza](https://github.com/tw93/Waza) (技) drills habits, [Kami](https://github.com/tw93/Kami) (紙) delivers documents.
 
@@ -41,8 +38,8 @@ Part of a trilogy: [Kaku](https://github.com/tw93/Kaku) (書く) writes code, [W
   </td>
   <td align="center" width="25%">
     <a href="assets/demos/demo-kaku.pdf"><img src="assets/demos/demo-kaku.png" alt="Kaku portfolio"></a>
-    <br><b>Portfolio</b> · 中文
-    <br><sub>Kaku 项目作品集 · 6 页</sub>
+    <br><b>Portfolio</b> · 日本語
+    <br><sub>Kaku 作品集 · 6 ページ</sub>
   </td>
 </tr>
 </table>
@@ -75,7 +72,7 @@ The ZIP is intentionally lightweight: Chinese TsangerJinKai font files are loade
 
 To update: download the same ZIP URL again, click "..." on the kami skill card, choose Replace, and upload the new ZIP.
 
-The skill auto-triggers when you describe what you need, no slash command required. It supports one-pagers, long docs, formal letters, portfolios, resumes, and slides in both Chinese and English.
+The skill auto-triggers when you describe what you need, no slash command required. It supports one-pagers, long docs, formal letters, portfolios, resumes, and slides in English and Chinese, with Japanese available as a best-effort path that should be visually QA-checked before delivery.
 
 > make a one-pager for my startup / turn this research into a long doc / write a formal letter / make a portfolio showcasing my projects / build me a resume / design a slide deck for my talk / 帮我做一份一页纸 / 帮我排版一份长文档 / 帮我写一封正式信件 / 帮我做一份作品集 / 帮我做一份简历 / 帮我做一套演讲幻灯片
 
@@ -87,7 +84,7 @@ To include inline charts, mention the data and chart type in your prompt. Kami e
 
 Warm parchment canvas, ink blue as the sole accent, serif carries hierarchy, no hard shadows or flashy palettes. This is not a UI framework; it is a constraint system for printed matter. Quality documents should read as composed pages, not dashboards.
 
-Six document types (One-Pager, Long Doc, Letter, Portfolio, Resume, Slides), each with Chinese and English variants. Twelve inline SVG diagram types are included: architecture, flowchart, quadrant, bar chart, line chart, donut chart, state machine, timeline, swimlane, tree, layer stack, and Venn. Kami picks the right variant based on the language you write in.
+Six document types (One-Pager, Long Doc, Letter, Portfolio, Resume, Slides), with dedicated English and Chinese templates and a best-effort Japanese path. Twelve inline SVG diagram types are included: architecture, flowchart, quadrant, bar chart, line chart, donut chart, state machine, timeline, swimlane, tree, layer stack, and Venn. Kami picks the right variant based on the language you write in.
 
 | Element | Rule |
 |---|---|
@@ -99,7 +96,7 @@ Six document types (One-Pager, Long Doc, Letter, Portfolio, Resume, Slides), eac
 | Shadows | Ring or whisper only, no hard drop shadows |
 | Tags | Solid hex backgrounds only. `rgba()` triggers a WeasyPrint double-rectangle bug |
 
-**Fonts**: Chinese uses TsangerJinKai02 serif + Source Han Sans. TsangerJinKai is free for personal use, commercial use requires a license from [tsanger.cn](https://tsanger.cn). English uses Newsreader serif + Inter sans, both OFL open source.
+**Fonts**: Chinese uses TsangerJinKai02 serif + Source Han Sans. Japanese currently follows the best-effort CJK path with Mincho-style fallbacks. TsangerJinKai is free for personal use, commercial use requires a license from [tsanger.cn](https://tsanger.cn). English uses Newsreader serif + Inter sans, both OFL open source.
 
 Full spec: [design.md](references/design.md). Cheatsheet: [CHEATSHEET.md](CHEATSHEET.md).
 

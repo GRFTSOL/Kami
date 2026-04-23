@@ -1,6 +1,6 @@
 ---
 name: kami
-description: 'Typeset any professional document: resumes, one-pagers, white papers, letters, portfolios, slide decks. Warm parchment design system with ink-blue accent, serif-led hierarchy, and tight editorial spacing. Bilingual document output: Chinese docs use TsangerJinKai02 + Source Han, English docs use Newsreader + Inter, with one shared English reference set. Triggers on "做 PDF / 排版 / 生成报告 / 一页纸 / 白皮书 / 作品集 / 正式信件 / 简历 / PPT / slides / 高质量文档 / 好看的排版", or "build me a resume / make a one-pager / design a slide deck / turn this into a PDF / make this presentable / polish typography", and when raw content is handed over to be "typeset, designed, made presentable".'
+description: 'Typeset any professional document: resumes, one-pagers, white papers, letters, portfolios, slide decks. Warm parchment design system with ink-blue accent, serif-led hierarchy, and tight editorial spacing. Trilingual best-effort output: Chinese docs use TsangerJinKai02 + Source Han, English docs use Newsreader + Inter, Japanese currently maps to the CJK template path with Mincho fallbacks and requires manual visual QA before shipping, with one shared English reference set. Triggers on "做 PDF / 排版 / 生成报告 / 一页纸 / 白皮书 / 作品集 / 正式信件 / 简历 / PPT / slides / 高质量文档 / 好看的排版", or "build me a resume / make a one-pager / design a slide deck / turn this into a PDF / make this presentable / polish typography", and when raw content is handed over to be "typeset, designed, made presentable".'
 ---
 
 # kami · 紙
@@ -13,7 +13,7 @@ Part of `Kaku · Waza · Kami` - Kaku writes code, Waza drills habits, **Kami de
 
 ## Step 1 · Decide the language
 
-**Match the user's language**. If they write in Chinese -> use the Chinese templates (`.html` / `slides.py`). If they write in English -> use the English templates (`-en.html` / `slides-en.py`). The reference docs are shared English specs for both output languages.
+**Match the user's language**. If they write in Chinese -> use the Chinese templates (`.html` / `slides.py`). If they write in English -> use the English templates (`-en.html` / `slides-en.py`). If they write in Japanese -> use the CJK template path (`.html` / `slides.py`) as best-effort, keep Japanese copy, and run visual QA before shipping. The reference docs are shared English specs for all output languages.
 
 When ambiguous (e.g. a one-word command like "resume"), ask a one-liner rather than guess.
 
@@ -21,6 +21,8 @@ When ambiguous (e.g. a one-word command like "resume"), ask a one-liner rather t
 |---|---|---|
 | Chinese (primary) | `*.html` | `slides.py` |
 | English | `*-en.html` | `slides-en.py` |
+| Japanese (best-effort) | `*.html` | `slides.py` |
+| Other languages (best-effort) | choose CJK or EN path by script coverage, then verify manually | choose `slides.py` or `slides-en.py`, then verify manually |
 
 Always use `CHEATSHEET.md` and `references/*.md` for design, writing, production, and diagram guidance.
 
@@ -148,12 +150,19 @@ Every template has meta placeholders in `<head>`. Fill all four before building:
 
 | Placeholder (CN) | Placeholder (EN) | Rule |
 |---|---|---|
-| `{{作者}}` | `{{AUTHOR}}` | Resume/letter/portfolio: use the person's name from the doc. All others: `"Kami"` |
+| `{{作者}}` | `{{AUTHOR}}` | Resume/letter/portfolio: use the person's name from the doc. All others: leave as-is (build script infers from git config or env) |
 | `{{摘要}}` | `{{DESCRIPTION}}` | Extract one sentence (≤150 chars) from the first 2 paragraphs |
 | `{{关键词}}` | `{{KEYWORDS}}` | 3-5 keywords from the title + section headings, comma-separated |
 | `{{文档标题}}` / `{{信件主题}}` etc. | `{{DOC_TITLE}}` / `{{LETTER_SUBJECT}}` etc. | Infer from the H1 or `.header .title` text |
 
 `<meta name="generator" content="Kami">` is already fixed in the template; do not change it.
+
+**Author inference**: `build.py` automatically sets PDF `/Author` metadata from:
+1. `git config user.name` (primary)
+2. `KAMI_AUTHOR` environment variable (fallback)
+3. `"Kami"` (final fallback)
+
+For personal documents (resume/letter/portfolio), the HTML `<meta name="author">` should match the person's name in the content. For non-personal documents (one-pager/long-doc), leave the placeholder as-is and let the build script infer it.
 
 ## Step 5 · Build & verify
 
@@ -176,6 +185,10 @@ Visual anomalies (tag double rectangle, font fallback, page break issues) -> `pr
 - Templates use dual @font-face declarations: W04 for body text, W05 for headings
 - Both files are commercial fonts. Keep them available in the repository for local preview and CDN fallback, but do not bundle them inside Claude Desktop skill ZIPs
 - Fallback chain baked into templates: Source Han Serif SC -> Noto Serif CJK SC -> Songti SC -> Georgia
+
+**Japanese (best-effort)**
+- Current routing uses the CJK template path (`*.html`, `slides.py`), no dedicated `-ja` templates yet
+- Keep Japanese body copy, prefer Mincho-compatible fallback stacks, and visually verify line breaks, punctuation rhythm, and emphasis weight before shipping
 
 **English**
 - Main serif: Newsreader (Google Fonts, open source) - used for both headlines and body

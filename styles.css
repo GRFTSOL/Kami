@@ -130,7 +130,7 @@
     .page { padding: 0 !important; max-width: 100% !important; }
     section { page-break-inside: auto; margin-bottom: 36px; }
     .hero, .section-head, .family, .comp, .shadow-demo, .tint, .swatch, .radius, blockquote, pre, tr, .anti > div { break-inside: avoid; page-break-inside: avoid; }
-    .hero h1 { font-size: 68px; }
+    .hero h1 { font-size: 76px; }
     h2.section-title { font-size: 26px; }
     .comp-grid, .swatches, .tint-strip, .family-grid, .shadow-row, .anti { break-inside: auto; }
   }
@@ -207,9 +207,9 @@
   .hero h1 {
     font-family: var(--serif);
     font-weight: 500;
-    font-size: 92px;
+    font-size: 106px;
     line-height: 1.05;
-    letter-spacing: -1px;
+    letter-spacing: -1.2px;
     margin: 0 0 14px;
     color: var(--near-black);
   }
@@ -453,6 +453,11 @@
     font-family: var(--serif); font-weight: 500;
     font-size: 48px; line-height: 1.1; color: var(--near-black);
     letter-spacing: -0.5px;
+  }
+  html[lang="ja"] .type-sample.display {
+    font-size: 42px;
+    line-height: 1.12;
+    letter-spacing: -0.3px;
   }
   .type-sample.h1 {
     font-family: var(--serif); font-weight: 500;
@@ -864,6 +869,25 @@
     margin: 2px 0 0;
   }
 
+@media (min-width: 980px) {
+  html[lang="ja"] .section-lede.section-lede-nowrap {
+    white-space: nowrap;
+    font-size: clamp(12.5px, 1.2vw, 14.5px);
+    line-height: 1.45;
+    letter-spacing: 0;
+  }
+
+  html[lang="ja"] .type-sample.display .display-line-nowrap {
+    white-space: nowrap;
+  }
+
+  html[lang="ja"] .demo-desc.demo-desc-nowrap {
+    white-space: nowrap;
+    font-size: 11px;
+    letter-spacing: 0;
+  }
+}
+
   /* Chart showcase */
   .chart-showcase {
     display: grid;
@@ -1004,7 +1028,7 @@
   .section-head { margin-bottom: 20px; }
 
   /* Typography scale */
-  .hero h1 { font-size: 40px; letter-spacing: -0.5px; margin-bottom: 10px; }
+  .hero h1 { font-size: 46px; letter-spacing: -0.6px; margin-bottom: 10px; }
   .hero h1 .cn { margin-left: 8px; }
   .hero .tagline { font-size: 17px; }
   .hero-tokens { gap: 14px; margin-top: 14px; }

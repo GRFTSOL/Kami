@@ -1,15 +1,15 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="utf-8">
   <title>Kami · Design System</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Kami - a warm parchment design system for AI-assisted professional documents, shaped by one accent color, serif-led hierarchy, and editorial whitespace.">
+  <meta name="description" content="Kami（紙）は、AI時代の文書制作に向けた、あたたかな紙面デザインシステムです。単一アクセントカラー、serif中心の階層、編集的な余白で一貫した可読性をつくります。">
   <link rel="icon" href="https://gw.alipayobjects.com/zos/k/vl/logo.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-<nav class="lang-switch"><a href="./index.html" class="active">EN</a><a href="./index-zh.html">中</a><a href="./index-ja.html">日</a></nav>
+<nav class="lang-switch"><a href="./index.html">EN</a><a href="./index-zh.html">中</a><a href="./index-ja.html" class="active">日</a></nav>
 <main class="page">
 
   <!-- ============ HERO ============ -->
@@ -30,7 +30,7 @@
       </span>
     </div>
     <h1>Kami<span class="cn">紙</span></h1>
-    <p class="tagline">Good content deserves good paper. Kami is a layout design system for the AI era, making documents clear, readable, and memorable.</p>
+    <p class="tagline">よい内容には、よい版面を。Kami は AI 時代のための文書組版デザインシステム。文書を明快で読みやすく、記憶に残る形へ整えます。</p>
     <div class="hero-tokens">
       <span><b>Canvas</b>#f5f4ed</span>
       <span><b>Accent</b>#1B365D</span>
@@ -43,29 +43,29 @@
   <section>
     <div class="section-head">
       <p class="section-num">00 · See it</p>
-      <h2 class="section-title">Output Samples</h2>
-      <p class="section-lede">Give Claude the brief: one-pagers, long docs, formal letters, portfolios, resumes, and slides become polished layouts through a small, reliable rule set.</p>
+      <h2 class="section-title">出力サンプル</h2>
+      <p class="section-lede section-lede-nowrap">Claude に要件を渡すだけで、一枚資料、長文、正式書簡、ポートフォリオ、履歴書、スライドまで、少数の明確なルールで整った版面に仕上がります。</p>
     </div>
     <div class="demo-grid">
       <div class="demo-card">
         <a href="assets/demos/demo-tesla.pdf" target="_blank"><img src="assets/demos/demo-tesla.png" alt="Tesla company one-pager"></a>
         <p class="demo-title">One-Pager</p>
-        <p class="demo-desc">Tesla company profile, single A4</p>
+        <p class="demo-desc">Tesla 企業紹介、A4 1ページ</p>
       </div>
       <div class="demo-card">
         <a href="assets/demos/demo-musk-resume.pdf" target="_blank"><img src="assets/demos/demo-musk-resume.png" alt="Musk resume"></a>
         <p class="demo-title">Resume</p>
-        <p class="demo-desc">Founder CV, 2 pages</p>
+        <p class="demo-desc">創業者 CV、2ページ</p>
       </div>
       <div class="demo-card">
         <a href="assets/demos/demo-kaku.pdf" target="_blank"><img src="assets/demos/demo-kaku.png" alt="Kaku portfolio"></a>
         <p class="demo-title">Portfolio</p>
-        <p class="demo-desc">Kaku terminal portfolio, Japanese, 6 pages</p>
+        <p class="demo-desc demo-desc-nowrap">Kaku プログラミング向け端末、6ページ</p>
       </div>
       <div class="demo-card">
         <a href="assets/demos/demo-agent-slides.pdf" target="_blank"><img src="assets/demos/demo-agent-slides.png" alt="Agent slides"></a>
         <p class="demo-title">Slides</p>
-        <p class="demo-desc">Agent keynote, 6 slides</p>
+        <p class="demo-desc">Agent キーノート、6枚</p>
       </div>
     </div>
   </section>
@@ -74,33 +74,33 @@
   <section>
     <div class="section-head">
       <p class="section-num">01 · Usage</p>
-      <h2 class="section-title">Install &amp; Invoke</h2>
-      <p class="section-lede">Tell Claude what you need, for example "build me a resume", "make a one-pager for my startup", or "design a slide deck for my talk". The skill auto-triggers, no slash command needed.</p>
+      <h2 class="section-title">インストールと呼び出し</h2>
+      <p class="section-lede">「履歴書を作って」「スタートアップ紹介の一枚資料を作って」「登壇用スライドを作って」のように要件を伝えるだけで、skill が自動起動します。スラッシュコマンドは不要です。</p>
     </div>
 <pre class="code"><span class="c"># Claude Code</span>
 npx skills add tw93/kami -a claude-code -g -y
 
 <span class="c"># Codex</span>
 npx skills add tw93/kami -a codex -g -y</pre>
-    <p class="section-lede" style="font-size:14px;">Claude Desktop: download <a href="https://cdn.jsdelivr.net/gh/tw93/kami@main/dist/kami.zip" style="color:var(--brand); text-decoration:none; font-weight:500;">kami.zip</a>, then upload it in Customize &gt; Skills &gt; "+" &gt; Create skill.</p>
+    <p class="section-lede" style="font-size:14px;">Claude Desktop の場合は <a href="https://cdn.jsdelivr.net/gh/tw93/kami@main/dist/kami.zip" style="color:var(--brand); text-decoration:none; font-weight:500;">kami.zip</a> をダウンロードし、Customize &gt; Skills &gt; "+" &gt; Create skill からそのままアップロードします。</p>
   </section>
 
   <!-- ============ 02 MANIFESTO ============ -->
   <section>
     <div class="section-head">
       <p class="section-num">02 · Manifesto</p>
-      <h2 class="section-title">Design Principles</h2>
+      <h2 class="section-title">設計原則</h2>
     </div>
-    <p class="manifesto">Warm parchment canvas, <em>ink blue</em> as the sole accent, serif carries hierarchy, while hard shadows and flashy palettes recede. This system is built for printed matter: stable, clear, and composed.</p>
+    <p class="manifesto">暖かい紙色を土台に、強調色は <em>ink blue</em> のみ。階層は serif で作り、強い影や派手な配色は退かせます。印刷文書に向けて、安定し、明快で、読みやすい紙面を保つための設計です。</p>
     <ol class="rules">
-      <li><span class="n">1</span><p>Page background is parchment <code>#f5f4ed</code>, never pure white</p></li>
-      <li><span class="n">2</span><p>Accent color is ink blue <code>#1B365D</code> only; no second chromatic hue</p></li>
-      <li><span class="n">3</span><p>All grays are warm, yellow-brown undertone; no cool blue-grays</p></li>
-      <li><span class="n">4</span><p>English uses serif for headlines and body; Chinese uses serif headlines and sans body</p></li>
-      <li><span class="n">5</span><p>Serif body at 400, headings at 500. Avoid synthetic bold</p></li>
-      <li><span class="n">6</span><p>Three line-height bands: tight titles 1.1-1.3 / dense 1.4-1.45 / reading 1.5-1.55</p></li>
-      <li><span class="n">7</span><p>Tag backgrounds must be solid hex; no rgba, WeasyPrint double-rectangle bug</p></li>
-      <li><span class="n">8</span><p>Shadows: ring or whisper only, no hard drop shadows</p></li>
+      <li><span class="n">1</span><p>ページ背景は parchment <code>#f5f4ed</code>、純白は使わない</p></li>
+      <li><span class="n">2</span><p>強調色は ink blue <code>#1B365D</code> のみ、第二の彩色は入れない</p></li>
+      <li><span class="n">3</span><p>グレーはすべて暖色寄り、冷たいブルーグレーは禁止</p></li>
+      <li><span class="n">4</span><p>英語は見出しと本文を serif、中国語は見出しを serif、本文は読みやすい本文体</p></li>
+      <li><span class="n">5</span><p>serif 本文 400、見出し 500、合成ボールドは使わない</p></li>
+      <li><span class="n">6</span><p>行間は 2 段階、見出し 1.1-1.3 / 本文 1.4-1.45</p></li>
+      <li><span class="n">7</span><p>タグ背景は hex の実色のみ、rgba は使わない。WeasyPrint で二重矩形が出るためです</p></li>
+      <li><span class="n">8</span><p>影は ring か whisper のみ、強い drop shadow は使わない</p></li>
     </ol>
   </section>
 
@@ -108,8 +108,8 @@ npx skills add tw93/kami -a codex -g -y</pre>
   <section>
     <div class="section-head">
       <p class="section-num">03 · Color</p>
-      <h2 class="section-title">Warm Restraint</h2>
-      <p class="section-lede">One accent + warm neutrals + zero cool colors. Ink blue covers no more than <b>5%</b> of any page. Beyond that is clutter, not restraint.</p>
+      <h2 class="section-title">暖色で抑制する</h2>
+      <p class="section-lede">強調色は 1 つ、ニュートラルは暖色のみ、寒色は入れない。Ink blue の使用面積はページ全体の <b>5%</b> 以内に抑えます。超えると統制ではなく過剰になります。</p>
     </div>
 
     <h3 class="subhead">Canvas</h3>
@@ -138,8 +138,8 @@ npx skills add tw93/kami -a codex -g -y</pre>
       <div class="swatch"><div class="chip" style="background:#b0aea5"></div><div class="info"><p class="name">Warm Silver</p><span class="hex">#B0AEA5</span></div></div>
     </div>
 
-    <h3 class="subhead">Tag Tints: rgba to solid hex</h3>
-    <p style="font-size:14px; color: var(--olive); margin: 0 0 16px; line-height: 1.55;">These are the equivalent solid hex values for ink blue <code style="font-family:var(--mono);font-size:12px;background:#EEF2F7;color:var(--brand);padding:1px 5px;border-radius:2px">#1B365D</code> layered on parchment. Tag backgrounds avoid <code style="font-family:var(--mono);font-size:12px;background:#EEF2F7;color:var(--brand);padding:1px 5px;border-radius:2px">rgba()</code> so WeasyPrint will not render double rectangles.</p>
+    <h3 class="subhead">Tag Tints: rgba から実色 hex へ</h3>
+    <p style="font-size:14px; color: var(--olive); margin: 0 0 16px; line-height: 1.55;">下記は ink blue <code style="font-family:var(--mono);font-size:12px;background:#EEF2F7;color:var(--brand);padding:1px 5px;border-radius:2px">#1B365D</code> を parchment 上に重ねたときの等価な実色 hex です。タグ背景は <code style="font-family:var(--mono);font-size:12px;background:#EEF2F7;color:var(--brand);padding:1px 5px;border-radius:2px">rgba()</code> を避け、WeasyPrint の二重矩形を防ぎます。</p>
     <div class="tint-strip">
       <div class="tint"><span class="flag">&nbsp;</span><span class="sample" style="background:#EEF2F7">Tag sample</span><p class="opacity">0.08</p><span class="hex">#EEF2F7</span></div>
       <div class="tint"><span class="flag">&nbsp;</span><span class="sample" style="background:#E4ECF5">Tag sample</span><p class="opacity">0.14</p><span class="hex">#E4ECF5</span></div>
@@ -153,36 +153,36 @@ npx skills add tw93/kami -a codex -g -y</pre>
   <section>
     <div class="section-head">
       <p class="section-num">04 · Typography</p>
-      <h2 class="section-title">Type System</h2>
-      <p class="section-lede">Serif carries hierarchy, sans carries function. Serif body at 400, headings at 500.</p>
+      <h2 class="section-title">タイポグラフィ体系</h2>
+      <p class="section-lede">階層は serif、機能要素は sans。serif は本文 400、見出し 500 を基本にします。</p>
     </div>
 
     <div class="family-grid">
       <div class="family serif">
         <p class="glyph">Aa</p>
-        <p class="role">Serif · Headlines + Body</p>
+        <p class="role">Serif · 見出し + 本文</p>
         <p class="name">Newsreader / TsangerJinKai02</p>
-        <p class="use">Used for headlines, body text, pull quotes, and numeric emphasis. English uses Newsreader, Chinese uses TsangerJinKai02.</p>
+        <p class="use">見出し、本文、引用、数値強調に使用。英語は Newsreader、中国語は TsangerJinKai02 を使用。</p>
       </div>
       <div class="family sans">
         <p class="glyph">Aa</p>
         <p class="role">Sans · UI</p>
         <p class="name">Inter / Source Han Sans</p>
-        <p class="use">Labels, buttons, metadata, eyebrows. Default 400, labels use 500-600. Chinese body text also uses sans.</p>
+        <p class="use">ラベル、ボタン、メタ情報、eyebrow に使用。標準は 400、ラベルは 500-600。中国語本文も sans を使用。</p>
       </div>
       <div class="family mono">
         <p class="glyph">&lt;/&gt;</p>
-        <p class="role">Mono · Code</p>
+        <p class="role">Mono · コード</p>
         <p class="name">JetBrains Mono</p>
-        <p class="use">Code blocks, version numbers, hex values, tabular figures.</p>
+        <p class="use">コードブロック、バージョン番号、hex 値、等幅数字に使用。</p>
       </div>
     </div>
 
-    <h3 class="subhead">Scale (print pt; screen px = pt x 1.33)</h3>
+    <h3 class="subhead">スケール（印刷 pt、画面 px = pt x 1.33）</h3>
     <div class="type-grid">
       <div class="type-row">
         <div class="type-label">Display</div>
-        <div class="type-sample display">Good docs read<br>clear, stable, poised</div>
+        <div class="type-sample display">よい文書は<br><span class="display-line-nowrap">明快で、安定し、読みやすい</span></div>
         <div class="type-specs"><b>36-48 pt</b><br>weight 500<br>line 1.10</div>
       </div>
       <div class="type-row">
@@ -202,12 +202,12 @@ npx skills add tw93/kami -a codex -g -y</pre>
       </div>
       <div class="type-row">
         <div class="type-label">Body</div>
-        <div class="type-sample body">Ink blue covers no more than 5% of any page. Beyond that is clutter, not restraint. All grays have a yellow-brown undertone: R ≈ G > B is the rule of thumb.</div>
+        <div class="type-sample body">Ink blue は各ページで 5% 以内。超えると抑制ではなく過剰になります。グレーは黄褐色の下地を持ち、R ≈ G > B を目安にします。</div>
         <div class="type-specs"><b>9.5-10 pt</b><br>weight 400<br>line 1.55</div>
       </div>
       <div class="type-row">
         <div class="type-label">Caption</div>
-        <div class="type-sample caption">Figure notes, footnotes, annotation text. Color drops to olive or stone.</div>
+        <div class="type-sample caption">図注、脚注、補足説明。色は olive または stone へ一段落とします。</div>
         <div class="type-specs"><b>8.5-9 pt</b><br>weight 400<br>line 1.45</div>
       </div>
       <div class="type-row">
@@ -222,8 +222,8 @@ npx skills add tw93/kami -a codex -g -y</pre>
   <section>
     <div class="section-head">
       <p class="section-num">05 · Spacing &amp; Shape</p>
-      <h2 class="section-title">Rhythm &amp; Form</h2>
-      <p class="section-lede">Base unit: 4pt. Denser layouts get smaller margins; more formal documents get larger ones.</p>
+      <h2 class="section-title">リズムと形</h2>
+      <p class="section-lede">基本単位は 4pt。情報密度が高いほどマージンを詰め、フォーマルな文書ほど広く取ります。</p>
     </div>
 
     <table class="space-table">
@@ -248,20 +248,20 @@ npx skills add tw93/kami -a codex -g -y</pre>
       <div class="radius"><div class="box" style="border-radius:32px"></div><div class="r"><b>32</b> pt</div><div class="label">Hero</div></div>
     </div>
 
-    <h3 class="subhead">Depth: Three Shadow Methods</h3>
-    <p style="font-size:14px; color: var(--olive); margin: 0 0 12px; line-height: 1.55;">Kami avoids traditional hard shadows. Depth comes from ring shadows, whisper shadows, and light-dark alternation.</p>
+    <h3 class="subhead">奥行き: 3 つの影の方法</h3>
+    <p style="font-size:14px; color: var(--olive); margin: 0 0 12px; line-height: 1.55;">Kami は強い影を使いません。奥行きは ring shadow、whisper shadow、明暗切り替えで作ります。</p>
     <div class="shadow-row">
       <div class="shadow-demo sd-ring">
         <p class="t">Ring Shadow</p>
-        <p class="s">0 0 0 1pt var(--ring-warm)<br>&nbsp;<br>Buttons · card hover</p>
+        <p class="s">0 0 0 1pt var(--ring-warm)<br>&nbsp;<br>ボタン・カード hover</p>
       </div>
       <div class="shadow-demo sd-whisper">
         <p class="t">Whisper Shadow</p>
-        <p class="s">0 4pt 24pt rgba(0,0,0,0.05)<br>&nbsp;<br>Gentle elevation · feature cards</p>
+        <p class="s">0 4pt 24pt rgba(0,0,0,0.05)<br>&nbsp;<br>軽い浮き上がり・特集カード</p>
       </div>
       <div class="shadow-demo sd-alt">
         <p class="t">Light ⇌ Dark</p>
-        <p class="s">parchment ⇌ deep-dark<br>&nbsp;<br>Section-level · strongest contrast</p>
+        <p class="s">parchment ⇌ deep-dark<br>&nbsp;<br>セクション単位・最も強い対比</p>
       </div>
     </div>
   </section>
@@ -270,23 +270,23 @@ npx skills add tw93/kami -a codex -g -y</pre>
   <section>
     <div class="section-head">
       <p class="section-num">06 · Components</p>
-      <h2 class="section-title">Atomic Modules</h2>
-      <p class="section-lede">A small fixed set, kept only where it solves a concrete document problem.</p>
+      <h2 class="section-title">モジュール</h2>
+      <p class="section-lede">必要最小限の固定セットを使い、文書上の具体的な課題に効く場面だけで使います。</p>
     </div>
 
     <div class="comp-grid">
       <div class="comp">
         <h4>Buttons</h4>
-        <p class="hint">ring shadow instead of hard drop · 8pt radius</p>
+        <p class="hint">強い drop shadow ではなく ring shadow ・角丸 8pt</p>
         <div class="demo" style="display:flex; gap:10px; flex-wrap:wrap;">
-          <span class="btn btn-primary">Primary CTA</span>
-          <span class="btn btn-secondary">Secondary</span>
+          <span class="btn btn-primary">主要 CTA</span>
+          <span class="btn btn-secondary">副次 CTA</span>
           <span class="btn btn-ghost">Ghost</span>
         </div>
       </div>
       <div class="comp">
-        <h4>Tags, three levels</h4>
-        <p class="hint">solid hex · pick from weak to strong</p>
+        <h4>タグ（3 段階）</h4>
+        <p class="hint">実色 hex ・弱から強へ選択</p>
         <div class="demo" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
           <span class="tag calm">Light 0.08</span>
           <span class="tag standard">Standard 0.18</span>
@@ -294,52 +294,52 @@ npx skills add tw93/kami -a codex -g -y</pre>
         </div>
       </div>
       <div class="comp">
-        <h4>Quote</h4>
-        <p class="hint">left 2pt brand solid + olive text</p>
-        <blockquote class="quote">A thousand no's for every yes, prefer clarity over decoration.</blockquote>
+        <h4>引用</h4>
+        <p class="hint">左 2pt のブランド実線 + olive テキスト</p>
+        <blockquote class="quote">装飾より明快さを優先する。ひとつの Yes のために多くの No を選ぶ。</blockquote>
       </div>
       <div class="comp">
-        <h4>Metric</h4>
-        <p class="hint">serif number + sans label · tabular-nums</p>
+        <h4>指標カード</h4>
+        <p class="hint">serif 数字 + sans ラベル ・ tabular-nums</p>
         <div class="metrics demo">
-          <div class="metric"><span class="metric-value">6</span><span class="metric-label">Doc types</span></div>
-          <div class="metric"><span class="metric-value">1</span><span class="metric-label">Accent</span></div>
-          <div class="metric"><span class="metric-value">8</span><span class="metric-label">Rules</span></div>
+          <div class="metric"><span class="metric-value">6</span><span class="metric-label">文書タイプ</span></div>
+          <div class="metric"><span class="metric-value">1</span><span class="metric-label">強調色</span></div>
+          <div class="metric"><span class="metric-value">8</span><span class="metric-label">基本ルール</span></div>
         </div>
       </div>
       <div class="comp">
-        <h4>Section Title</h4>
-        <p class="hint">serif 500 · 15pt · size-led hierarchy, no decoration</p>
+        <h4>セクション見出し</h4>
+        <p class="hint">serif 500 ・ 15pt ・サイズ主導の階層、装飾は不要</p>
         <div class="demo">
           <span class="sample-section-title">Selected Works · Projects</span>
         </div>
       </div>
       <div class="comp">
         <h4>Dash List</h4>
-        <p class="hint">dash instead of bullet · editorial tone</p>
+        <p class="hint">丸点ではなくダッシュ ・ 編集文体</p>
         <ul class="dash demo">
-          <li>Warm parchment, never pure white</li>
-          <li>Ink blue accent, no second color</li>
-          <li>Serif carries authority</li>
+          <li>紙色は暖色、純白は使わない</li>
+          <li>強調色は ink blue だけ、第二色は入れない</li>
+          <li>階層は serif で担保する</li>
         </ul>
       </div>
       <div class="comp">
-        <h4>Code Block</h4>
-        <p class="hint">ivory bg + 0.5pt border + 6pt radius</p>
-<pre class="code"><span class="c">// warmth from restraint, not from color</span>
+        <h4>コードブロック</h4>
+        <p class="hint">ivory 背景 + 0.5pt 枠線 + 6pt 角丸</p>
+<pre class="code"><span class="c">// 温かみは色数ではなく、抑制で作る</span>
 canvas   = parchment; accent = <span class="k">ink_blue</span>
 palette  = <span class="k">warm_neutrals</span> − cool_grays
 document = <span class="k">serif</span> × hierarchy + generous_space
 beauty   = constraints × <span class="k">intention</span> ÷ noise</pre>
       </div>
       <div class="comp">
-        <h4>Featured Card</h4>
-        <p class="hint">whisper shadow + 16pt radius</p>
+        <h4>特集カード</h4>
+        <p class="hint">whisper shadow + 16pt 角丸</p>
         <div class="demo" style="background:var(--ivory); border-radius:16px; padding:18px 20px; box-shadow: 0 4px 24px rgba(0,0,0,0.05); border: 1px solid var(--border-cream);">
-          <p style="font-family:var(--serif); font-weight:500; font-size:15px; margin:0 0 6px; color:var(--near-black);">Tesla Company Profile · One-Pager</p>
-          <p style="font-size:12px; color:var(--olive); margin:0 0 10px; line-height:1.5;">Single A4 page · 4 metric cards + 3 body sections + timeline</p>
+          <p style="font-family:var(--serif); font-weight:500; font-size:15px; margin:0 0 6px; color:var(--near-black);">Tesla 企業紹介 · One-Pager</p>
+          <p style="font-size:12px; color:var(--olive); margin:0 0 10px; line-height:1.5;">A4 1ページ ・ 指標カード 4 枚 + 本文 3 セクション + タイムライン</p>
           <div style="display:flex; gap:8px; flex-wrap:wrap;">
-            <span class="tag calm">English</span>
+            <span class="tag calm">日本語</span>
             <span class="tag calm">A4 x 1</span>
             <span class="tag calm">Ink Blue</span>
           </div>
@@ -352,13 +352,13 @@ beauty   = constraints × <span class="k">intention</span> ÷ noise</pre>
   <section>
     <div class="section-head">
       <p class="section-num">07 · Diagrams</p>
-      <h2 class="section-title">Inline Charts</h2>
-      <p class="section-lede">Twelve inline SVG diagram types covering architecture, process, and data chart scenarios. Tell Claude which type you need and it embeds directly into the document, colors and fonts following the Kami design language.</p>
+      <h2 class="section-title">インライン図表</h2>
+      <p class="section-lede">アーキテクチャ、フロー、データ可視化をカバーする 12 種の SVG 図表を用意。必要な種類を Claude に伝えると、Kami の色と書体規則に沿って文書へ直接埋め込みます。</p>
     </div>
     <div class="chart-showcase">
       <!-- Architecture mini -->
       <div class="chart-card">
-        <div class="chart-label">Architecture</div>
+        <div class="chart-label">アーキテクチャ図 · Architecture</div>
         <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" style="font-family:'Inter','TsangerJinKai02',sans-serif">
           <rect width="280" height="160" fill="#f5f4ed"/>
           <!-- Browser → API -->
@@ -378,11 +378,11 @@ beauty   = constraints × <span class="k">intention</span> ÷ noise</pre>
           <text x="228" y="76" text-anchor="middle" font-size="7" letter-spacing="0.5" fill="#87867f">DATA</text>
           <text x="228" y="91" text-anchor="middle" font-size="9" font-weight="600" fill="#141413">Database</text>
         </svg>
-        <p class="chart-caption">System components and connections, one focal node</p>
+        <p class="chart-caption">システム構成と接続関係、焦点ノードを 1 つに絞る</p>
       </div>
       <!-- Flowchart mini -->
       <div class="chart-card">
-        <div class="chart-label">Flowchart</div>
+        <div class="chart-label">フローチャート · Flowchart</div>
         <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" style="font-family:'Inter','TsangerJinKai02',sans-serif">
           <rect width="280" height="160" fill="#f5f4ed"/>
           <rect x="100" y="8" width="80" height="28" rx="14" fill="#141413"/>
@@ -402,11 +402,11 @@ beauty   = constraints × <span class="k">intention</span> ÷ noise</pre>
           <rect x="96" y="116" width="88" height="32" rx="4" fill="#f5f4ed" stroke="#87867f" stroke-width="0.8"/>
           <text x="140" y="136" text-anchor="middle" font-size="9" font-weight="600" fill="#5e5d59">Reject</text>
         </svg>
-        <p class="chart-caption">Decision branches, yes/no paths, focal on success</p>
+        <p class="chart-caption">分岐と yes/no の流れ、成功側を主軸に配置</p>
       </div>
       <!-- Bar chart (shifted left) -->
       <div class="chart-card">
-        <div class="chart-label">Bar Chart</div>
+        <div class="chart-label">棒グラフ · Bar Chart</div>
         <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" style="font-family:'Inter','TsangerJinKai02',sans-serif">
           <rect width="280" height="160" fill="#f5f4ed"/>
           <rect x="18" y="78" width="42" height="50" rx="3" fill="#87867f"/>
@@ -422,11 +422,11 @@ beauty   = constraints × <span class="k">intention</span> ÷ noise</pre>
           <text x="159" y="39" text-anchor="middle" font-size="9" font-weight="600" fill="#2d4e7a">195</text>
           <text x="219" y="25" text-anchor="middle" font-size="9" font-weight="600" fill="#1B365D">240</text>
         </svg>
-        <p class="chart-caption">Quarterly revenue comparison, gradient or single color</p>
+        <p class="chart-caption">四半期売上の比較、単色または段階色で表現</p>
       </div>
       <!-- Donut chart -->
       <div class="chart-card">
-        <div class="chart-label">Donut Chart</div>
+        <div class="chart-label">ドーナツチャート · Donut Chart</div>
         <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" style="font-family:'Inter','TsangerJinKai02',sans-serif">
           <rect width="280" height="160" fill="#f5f4ed"/>
           <path d="M 80,25 A 55,55 0 1,1 47.7,124.5 L 62.4,104.3 A 30,30 0 1,0 80,50 Z" fill="#1B365D" stroke="white" stroke-width="1.5"/>
@@ -441,7 +441,7 @@ beauty   = constraints × <span class="k">intention</span> ÷ noise</pre>
           <rect x="150" y="98" width="10" height="10" rx="2" fill="#87867f"/>
           <text x="165" y="107" font-size="11" fill="#4d4c48">Other · 15%</text>
         </svg>
-        <p class="chart-caption">Revenue structure breakdown, supports 3–6 segments</p>
+        <p class="chart-caption">売上構成の内訳、3-6 セグメントに対応</p>
       </div>
     </div>
   </section>
@@ -450,22 +450,22 @@ beauty   = constraints × <span class="k">intention</span> ÷ noise</pre>
   <section>
     <div class="section-head">
       <p class="section-num">08 · Decision Lookup</p>
-      <h2 class="section-title">Quick Reference</h2>
-      <p class="section-lede">When in doubt about what to use, consult this table. If it's not here, go back to first principles.</p>
+      <h2 class="section-title">クイック参照</h2>
+      <p class="section-lede">どの手法を使うか迷ったらこの表を参照。該当がなければ基本原則に戻って判断します。</p>
     </div>
     <table class="decision">
-      <tr><th>Task</th><th>How</th></tr>
-      <tr><td class="task">Large headline</td><td class="how">serif <code>500</code>, size by hierarchy, line-height <code>1.10-1.30</code></td></tr>
-      <tr><td class="task">Reading body</td><td class="how">serif <code>400</code>, <code>9.5-10 pt</code>, line-height <code>1.55</code></td></tr>
-      <tr><td class="task">Emphasize a number</td><td class="how"><code>color: var(--brand)</code>, not bold</td></tr>
-      <tr><td class="task">Separate two sections</td><td class="how"><code>2.5pt</code> brand left bar, or <code>0.5pt</code> warm-gray dashed</td></tr>
-      <tr><td class="task">Quote someone</td><td class="how">Left <code>2pt</code> brand solid + olive text</td></tr>
-      <tr><td class="task">Show code</td><td class="how">Ivory bg + <code>0.5pt</code> border + <code>6pt</code> radius + mono font</td></tr>
-      <tr><td class="task">Primary vs secondary</td><td class="how">Primary: brand fill + ivory text; Secondary: warm-sand + charcoal</td></tr>
-      <tr><td class="task">Mark a special card</td><td class="how"><code>border: 0.5pt solid var(--brand)</code> or <code>border-left: 3pt</code></td></tr>
-      <tr><td class="task">Begin a section</td><td class="how">Serif <code>500</code> · <code>15pt</code> · size-led hierarchy, no decoration needed</td></tr>
-      <tr><td class="task">Document cover</td><td class="how">Single page, Display size + right-aligned author/date + generous whitespace</td></tr>
-      <tr><td class="task">Data card</td><td class="how">Ivory bg + <code>8pt</code> radius + serif large number, ink blue + sans small label</td></tr>
+      <tr><th>場面</th><th>処方</th></tr>
+      <tr><td class="task">大きな見出し</td><td class="how">serif <code>500</code>、サイズで階層化、行間 <code>1.10-1.30</code></td></tr>
+      <tr><td class="task">本文（可読重視）</td><td class="how">serif <code>400</code>、<code>9.5-10 pt</code>、行間 <code>1.55</code></td></tr>
+      <tr><td class="task">数値を強調</td><td class="how"><code>color: var(--brand)</code> を使い、太字には頼らない</td></tr>
+      <tr><td class="task">セクション分離</td><td class="how">左 <code>2.5pt</code> の brand 実線、または <code>0.5pt</code> 暖色破線</td></tr>
+      <tr><td class="task">引用を置く</td><td class="how">左 <code>2pt</code> brand 実線 + olive テキスト</td></tr>
+      <tr><td class="task">コードを載せる</td><td class="how">ivory 背景 + <code>0.5pt</code> 枠線 + <code>6pt</code> 角丸 + mono 書体</td></tr>
+      <tr><td class="task">主ボタンと副ボタン</td><td class="how">主: brand 塗り + ivory 文字、副: warm-sand + charcoal</td></tr>
+      <tr><td class="task">特別カードを示す</td><td class="how"><code>border: 0.5pt solid var(--brand)</code> または <code>border-left: 3pt</code></td></tr>
+      <tr><td class="task">セクション開始</td><td class="how">serif <code>500</code> ・ <code>15pt</code> ・サイズ主導の階層、装飾は不要</td></tr>
+      <tr><td class="task">表紙を作る</td><td class="how">1 ページ構成、Display サイズ + 右寄せの著者/日付 + 広い余白</td></tr>
+      <tr><td class="task">データカード</td><td class="how">ivory 背景 + <code>8pt</code> 角丸 + serif 大数字 + sans 小ラベル</td></tr>
     </table>
   </section>
 
@@ -473,42 +473,42 @@ beauty   = constraints × <span class="k">intention</span> ÷ noise</pre>
   <section>
     <div class="section-head">
       <p class="section-num">08 · Anti-Patterns</p>
-      <h2 class="section-title">What to Avoid</h2>
-      <p class="section-lede">Exceptions are allowed, but the reason should be explicit.</p>
+      <h2 class="section-title">避けるべきこと</h2>
+      <p class="section-lede">例外は許容できますが、理由を明示できる場合に限ります。</p>
     </div>
 
     <div class="anti">
       <div class="no">
         <h5>Don't</h5>
-        <p>Use <code>#ffffff</code> pure white or <code>#f3f4f6</code> cool gray as page background. It makes the page feel brittle and weakens the warm parchment character.</p>
+        <p>ページ背景に <code>#ffffff</code> の純白や <code>#f3f4f6</code> の寒色グレーを使わない。紙面が硬く見え、温かい紙質感が崩れます。</p>
       </div>
       <div class="yes">
         <h5>Do</h5>
-        <p>Always use <code>#f5f4ed</code> parchment. Set <code>@page background</code> to the same color to avoid white edges when printing.</p>
+        <p>常に <code>#f5f4ed</code> の parchment を使う。印刷時の白フチを防ぐため、<code>@page background</code> も同色に設定します。</p>
       </div>
       <div class="no">
         <h5>Don't</h5>
-        <p>Use <code>rgba(27,54,93,0.18)</code> for tags. WeasyPrint renders padding and glyph areas at different opacity, creating double rectangles.</p>
+        <p>タグに <code>rgba(27,54,93,0.18)</code> を使わない。WeasyPrint で文字領域と余白領域の不透明度がずれ、二重矩形が出ます。</p>
       </div>
       <div class="yes">
         <h5>Do</h5>
-        <p>Use the tint lookup table for equivalent solid hex <code>#E4ECF5</code>. The rendering stays clean and the color remains stable.</p>
+        <p>tint 対照表の実色 hex <code>#E4ECF5</code> を使う。描画が安定し、色ぶれを防げます。</p>
       </div>
       <div class="no">
         <h5>Don't</h5>
-        <p>Set headlines to <code>font-weight: 600</code> or heavier synthetic bold. Synthetic bold blurs strokes and degrades typographic quality.</p>
+        <p>見出しに <code>font-weight: 600</code> 以上の合成ボールドを使わない。線が潰れて可読性と品位が落ちます。</p>
       </div>
       <div class="yes">
         <h5>Do</h5>
-        <p>Body 400, headings 500 (real W05). For more presence, use size or a brand left bar, never synthetic bold.</p>
+        <p>本文 400、見出し 500（実フォント W05）。強調が必要ならサイズや左バーで対応し、合成ボールドは使わない。</p>
       </div>
       <div class="no">
         <h5>Don't</h5>
-        <p>Use hard drop shadow <code>0 2px 8px rgba(0,0,0,0.3)</code>. Visually heavy and likely to print as dark blobs.</p>
+        <p>強い drop shadow <code>0 2px 8px rgba(0,0,0,0.3)</code> を使わない。重く見え、印刷時に黒く潰れやすい。</p>
       </div>
       <div class="yes">
         <h5>Do</h5>
-        <p>Ring shadow <code>0 0 0 1pt</code> or whisper <code>rgba 0.05</code>, or simply alternate light and dark sections.</p>
+        <p>ring shadow <code>0 0 0 1pt</code> か whisper <code>rgba 0.05</code> を使う。あるいは明暗の切り替えで階層を作る。</p>
       </div>
     </div>
   </section>
@@ -517,11 +517,11 @@ beauty   = constraints × <span class="k">intention</span> ÷ noise</pre>
   <section>
     <div class="section-head">
       <p class="section-num">09 · Background</p>
-      <h2 class="section-title">Design Origins</h2>
+      <h2 class="section-title">設計の背景</h2>
     </div>
     <div class="background-text">
-      <p>I invest in US equities and often ask AI to generate analysis reports. The earliest drafts looked like default Google Docs: plain, inconsistent, and easy to forget. I did not want each document to arrive with a different face, so I kept refining the typography, palette, and spacing until the page became something I wanted to keep reading.</p>
-      <p>Later, I was invited to give a talk and needed a slide deck that shared the same visual standard. That iteration pushed the system further: inline SVG diagrams, a unified warm palette, and a tighter editorial rhythm. Over time it covered the document formats I use most, so it became kami, a visual language I can reuse with confidence and send out without hesitation.</p>
+      <p>私は米国株投資をしており、AI に分析レポートを作らせることが多くあります。初期の出力は既定の Google Docs のように平板で、統一感がなく、記憶にも残りませんでした。文書ごとに顔が変わる状態を避けるため、書体、配色、余白を繰り返し調整し、読み続けたくなる紙面へ寄せていきました。</p>
+      <p>その後、登壇の機会で同じ視覚基準のスライドが必要になり、設計をさらに前進させました。inline SVG 図表、暖色パレットの統一、編集リズムの引き締めです。使う文書形式を横断して再利用できるようになり、Kami は安心して使い続けられる視覚言語になりました。</p>
     </div>
   </section>
 
@@ -535,13 +535,13 @@ beauty   = constraints × <span class="k">intention</span> ÷ noise</pre>
       </svg>
       <div>
         <p class="wm-name">Kami · 紙</p>
-        <p class="wm-sub">Good content deserves good paper.</p>
+        <p class="wm-sub">よい内容には、よい版面を。</p>
       </div>
     </div>
     <div class="colophon">
       <div><a href="https://github.com/tw93/kami" style="color:var(--brand); text-decoration:none; font-weight:500;">GitHub</a>&nbsp;&nbsp;·&nbsp;&nbsp;One-Pager · Long Doc · Letter · Portfolio · Resume · Slides</div>
       <div style="margin-top:8px; color: var(--olive); font-family: var(--serif);">
-        Serif carries authority, sans function, warm grays rhythm, ink blue focus.
+        Serif が階層を担い、sans が機能を担い、暖色グレーがリズムを作り、ink blue が焦点を作ります。
       </div>
     </div>
   </footer>
