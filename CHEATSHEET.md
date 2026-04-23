@@ -2,7 +2,7 @@
 
 One-page quick reference. Scan before filling a template or tweaking a detail. Full spec in `references/design.md`.
 
-## Nine invariants
+## Ten invariants
 
 1. Page background `#f5f4ed` (parchment), never pure white
 2. Single accent: ink-blue `#1B365D`
@@ -10,9 +10,10 @@ One-page quick reference. Scan before filling a template or tweaking a detail. F
 4. English: serif for headlines and body. Chinese: serif headlines, sans body. Sans for UI only
 5. Serif weight locked at 500, no bold
 6. Line-height: headlines 1.1-1.3 / dense 1.4-1.45 / reading 1.5-1.55
-7. Tag backgrounds solid hex, no rgba (WeasyPrint double-rectangle bug)
-8. Depth via ring / whisper shadow, no hard drop shadows
-9. No italic in templates or demos
+7. Letter-spacing: body and CJK titles stay 0; tracking is only for short labels
+8. Tag backgrounds solid hex, no rgba (WeasyPrint double-rectangle bug)
+9. Depth via ring / whisper shadow, no hard drop shadows
+10. No italic in templates or demos
 
 ## Sources and Materials
 

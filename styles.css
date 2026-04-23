@@ -158,12 +158,16 @@
     font-family: var(--sans);
     font-size: 14px;
     line-height: 1.55;
-    letter-spacing: 0.4px;
+    letter-spacing: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
   html[lang="en"] body { letter-spacing: 0; }
   html[lang="en"] .section-title { letter-spacing: -0.3px; }
+  html[lang="zh-CN"] .section-title,
+  html[lang="ja"] .section-title {
+    letter-spacing: 0;
+  }
 
   .page {
     max-width: 1120px;
@@ -475,8 +479,9 @@
   html[lang="ja"] .type-sample.display {
     font-size: 42px;
     line-height: 1.12;
-    letter-spacing: -0.3px;
+    letter-spacing: 0;
   }
+  html[lang="zh-CN"] .type-sample.display { letter-spacing: 0; }
   .type-sample.h1 {
     font-family: var(--serif); font-weight: 500;
     font-size: 30px; line-height: 1.2; color: var(--near-black);

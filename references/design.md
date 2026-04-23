@@ -6,7 +6,7 @@ kami's aesthetic compresses into one sentence: **warm parchment canvas, ink-blue
 
 This is not a UI framework. It is a constraint system for print, designed to keep pages stable, clear, and readable.
 
-**The nine invariants** (each has a real cost, think before overriding):
+**The ten invariants** (each has a real cost, think before overriding):
 
 1. Page background parchment `#f5f4ed`, never pure white
 2. Single accent: ink-blue `#1B365D`, no second chromatic color
@@ -14,9 +14,10 @@ This is not a UI framework. It is a constraint system for print, designed to kee
 4. English: serif for everything (headlines and body). Chinese: serif headlines, sans body. Sans only for UI elements (labels, eyebrows, meta) in both
 5. Serif weight locked at 500, no bold
 6. Line-heights: tight headlines 1.1-1.3, dense body 1.4-1.45, reading body 1.5-1.55
-7. Tag backgrounds must be solid hex, never rgba (WeasyPrint renders a double rectangle)
-8. Depth via ring shadow or whisper shadow, never hard drop shadows
-9. **No italic anywhere**. No `font-style: italic` in any template or demo. No italic @font-face declarations needed
+7. Letter-spacing: body text and CJK titles stay at 0; tracking is only for short labels and overlines
+8. Tag backgrounds must be solid hex, never rgba (WeasyPrint renders a double rectangle)
+9. Depth via ring shadow or whisper shadow, never hard drop shadows
+10. **No italic anywhere**. No `font-style: italic` in any template or demo. No italic @font-face declarations needed
 
 This system is a fusion of Anthropic's visual language and real Chinese / English resume iteration. Details below.
 
@@ -199,8 +200,9 @@ Print documents are **tighter** than English web body. English web typically run
 
 ### Letter-spacing
 
-- Body text: **0** (or +0.05pt imperceptible)
-- English headings above 20pt: -0.3 to -0.5pt (tighten, English serifs handle it)
+- Body text: **0**
+- Chinese and Japanese body text, section titles, and Mincho samples: **0**
+- English headings may use subtle optical tightening when needed; keep it localized, never inherited by body copy
 - Small labels (< 10pt): +0.2 to +0.5pt for readability
 - All-caps overlines: +0.5 to +1pt mandatory
 
