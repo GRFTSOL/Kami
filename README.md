@@ -110,9 +110,9 @@ Full spec: [design.md](references/design.md). Cheatsheet: [CHEATSHEET.md](CHEATS
 
 ## Background
 
-I trade US equities and ask Claude to write research reports all the time. Every output landed in the same default-doc look: gray, flat, a different layout each session. The structure was hard to scan, the formatting felt dated, and nothing about the page made me want to keep reading. So I started fixing the typography, the palette, the spacing, one rule at a time, until the report became a page I actually enjoyed.
+I like investing in US equities and ask Claude to write research reports all the time. Every output landed in the same default-doc look: gray, flat, a different layout each session. The structure was hard to scan, the formatting felt dated, and nothing about the page made me want to keep reading. So I started fixing the typography, the palette, the spacing, one rule at a time, until the report became a page I actually enjoyed.
 
-Then I got invited to present my article "The Agent You Don't Know" and needed slides with the same visual feel. That round added inline SVG charts, a unified warm palette, and a tighter editorial rhythm. It kept growing until it covered every document I regularly ship, so it became kami: one quiet design system I can hand to any agent and trust the output.
+Later I was invited to present my article "The Agent You Don't Know." I was too lazy to build slides by hand, so I fed the article to Claude and let it design the deck, then kept tweaking until every page felt right. That round added inline SVG charts, a unified warm palette, and a tighter editorial rhythm. It kept growing until it covered every document I regularly ship, so it became kami: one quiet design system I can hand to any agent and trust the output.
 
 ## Support
 
