@@ -80,6 +80,7 @@ See `references/production.md` Part 4.
 5. `height: 100vh` is unreliable under `@page`: use explicit mm values.
 6. SVG marker `orient="auto"` does not rotate in WeasyPrint: draw arrowheads manually.
 7. Section body text should not use `max-width`: `.manifesto`, `.section-lede`, and similar text should fill the `.page` container. Exceptions: `.type-sample` and `.footer .colophon`.
+8. Diagram template changes must sync to index showcase SVGs: any visual fix to `assets/diagrams/*.html` must also be applied to the matching mini SVG in `index.html`, `index-zh.html`, `index-ja.html`.
 
 ## Release Flow
 
