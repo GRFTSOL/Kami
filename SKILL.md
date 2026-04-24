@@ -7,7 +7,7 @@ description: 'Typeset professional documents: resumes, one-pagers, white papers,
 
 **紙 · かみ** - the paper your deliverables land on.
 
-Good content deserves good paper. One design language across six document types: warm parchment canvas, ink-blue accent, serif-led hierarchy, tight editorial rhythm.
+Good content deserves good paper. One design language across eight document types: warm parchment canvas, ink-blue accent, serif-led hierarchy, tight editorial rhythm.
 
 Part of `Kaku · Waza · Kami` - Kaku writes code, Waza drills habits, **Kami delivers documents**.
 
