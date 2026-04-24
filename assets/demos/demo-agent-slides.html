@@ -27,8 +27,8 @@
     --ivory:      #faf9f5;
     --near-black: #141413;
     --dark-warm:  #3d3d3a;
-    --olive:      #5e5d59;
-    --stone:      #87867f;
+    --olive:      #504e49;
+    --stone:      #6b6a64;
     --brand:      #1B365D;
     --brand-tint: #EEF2F7;
     --border:     #e8e6dc;
@@ -279,7 +279,7 @@
     overflow: hidden;
   }
   .code-card .k { color: var(--brand); }
-  .code-card .c { color: #87867f; }
+  .code-card .c { color: #6b6a64; }
 </style>
 </head>
 <body>
@@ -301,9 +301,9 @@
       <circle cx="130" cy="130" r="44" fill="#EEF2F7" stroke="#1B365D" stroke-width="1.2"/>
       <!-- arc segments on outer ring to suggest cycle -->
       <path d="M 130 30 A 100 100 0 0 1 230 130" fill="none" stroke="#1B365D" stroke-width="2.2" stroke-linecap="round"/>
-      <path d="M 230 130 A 100 100 0 0 1 130 230" fill="none" stroke="#87867f" stroke-width="1.2" stroke-linecap="round"/>
-      <path d="M 130 230 A 100 100 0 0 1 30 130" fill="none" stroke="#87867f" stroke-width="1.2" stroke-linecap="round"/>
-      <path d="M 30 130 A 100 100 0 0 1 130 30" fill="none" stroke="#87867f" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M 230 130 A 100 100 0 0 1 130 230" fill="none" stroke="#6b6a64" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M 130 230 A 100 100 0 0 1 30 130" fill="none" stroke="#6b6a64" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M 30 130 A 100 100 0 0 1 130 30" fill="none" stroke="#6b6a64" stroke-width="1.2" stroke-linecap="round"/>
       <!-- center label -->
       <text x="130" y="125" text-anchor="middle" font-size="10" font-weight="500" fill="#141413" font-family="Charter, Georgia, serif">Agent</text>
       <text x="130" y="141" text-anchor="middle" font-size="8" fill="#1B365D" font-family="'JetBrains Mono', monospace" letter-spacing="2">LOOP</text>
@@ -340,7 +340,7 @@
            Chevron marker (open path, not filled polygon). Core is the only focal element. -->
       <svg viewBox="0 0 680 560" xmlns="http://www.w3.org/2000/svg">
         <!-- surroundings label -->
-        <text x="340" y="12" text-anchor="middle" font-size="9" fill="#87867f" font-family="'JetBrains Mono', monospace" letter-spacing="1.5">TOOLS · HARNESS · EVALS · MEMORY</text>
+        <text x="340" y="12" text-anchor="middle" font-size="9" fill="#6b6a64" font-family="'JetBrains Mono', monospace" letter-spacing="1.5">TOOLS · HARNESS · EVALS · MEMORY</text>
 
         <!-- dashed ink-blue ring -->
         <circle cx="340" cy="280" r="192" fill="none" stroke="#1B365D" stroke-width="1" stroke-dasharray="4 3"/>
@@ -368,24 +368,24 @@
         <!-- clockwise arcs (no marker-end; WeasyPrint ignores orient="auto").
              Arrowheads drawn manually as chevron paths below each arc. -->
         <!-- PLAN right-mid (440,52) → ACT top-mid (568,244) via (568,52) -->
-        <path d="M 440 52 Q 568 52 568 244" fill="none" stroke="#5e5d59" stroke-width="1.5"/>
+        <path d="M 440 52 Q 568 52 568 244" fill="none" stroke="#504e49" stroke-width="1.5"/>
         <!-- chevron ↓ at (568, 244) -->
-        <path d="M 560 236 L 568 244 L 576 236" fill="none" stroke="#5e5d59" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M 560 236 L 568 244 L 576 236" fill="none" stroke="#504e49" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 
         <!-- ACT bottom-mid (568,316) → OBSERVE right-mid (440,508) via (568,508) -->
-        <path d="M 568 316 Q 568 508 440 508" fill="none" stroke="#5e5d59" stroke-width="1.5"/>
+        <path d="M 568 316 Q 568 508 440 508" fill="none" stroke="#504e49" stroke-width="1.5"/>
         <!-- chevron ← at (440, 508) -->
-        <path d="M 448 500 L 440 508 L 448 516" fill="none" stroke="#5e5d59" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M 448 500 L 440 508 L 448 516" fill="none" stroke="#504e49" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 
         <!-- OBSERVE left-mid (240,508) → REFLECT bottom-mid (112,316) via (112,508) -->
-        <path d="M 240 508 Q 112 508 112 316" fill="none" stroke="#5e5d59" stroke-width="1.5"/>
+        <path d="M 240 508 Q 112 508 112 316" fill="none" stroke="#504e49" stroke-width="1.5"/>
         <!-- chevron ↑ at (112, 316) -->
-        <path d="M 104 324 L 112 316 L 120 324" fill="none" stroke="#5e5d59" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M 104 324 L 112 316 L 120 324" fill="none" stroke="#504e49" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 
         <!-- REFLECT top-mid (112,244) → PLAN left-mid (240,52) via (112,52) -->
-        <path d="M 112 244 Q 112 52 240 52" fill="none" stroke="#5e5d59" stroke-width="1.5"/>
+        <path d="M 112 244 Q 112 52 240 52" fill="none" stroke="#504e49" stroke-width="1.5"/>
         <!-- chevron → at (240, 52) -->
-        <path d="M 232 44 L 240 52 L 232 60" fill="none" stroke="#5e5d59" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M 232 44 L 240 52 L 232 60" fill="none" stroke="#504e49" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </div>
   </div>
@@ -451,23 +451,23 @@
         <!-- Background -->
         <rect width="280" height="230" fill="#f5f4ed"/>
         <!-- Title -->
-        <text x="140" y="18" text-anchor="middle" font-size="8.5" fill="#87867f" font-family="'JetBrains Mono', monospace" letter-spacing="1.5">LOADING STRATEGY vs ACCURACY</text>
+        <text x="140" y="18" text-anchor="middle" font-size="8.5" fill="#6b6a64" font-family="'JetBrains Mono', monospace" letter-spacing="1.5">LOADING STRATEGY vs ACCURACY</text>
         <!-- Y axis label -->
-        <text x="14" y="130" text-anchor="middle" font-size="8" fill="#5e5d59" font-family="Charter, Georgia, serif" transform="rotate(-90 14 130)">Accuracy</text>
+        <text x="14" y="130" text-anchor="middle" font-size="8" fill="#504e49" font-family="Charter, Georgia, serif" transform="rotate(-90 14 130)">Accuracy</text>
         <!-- Y axis line -->
-        <line x1="36" y1="30" x2="36" y2="180" stroke="#5e5d59" stroke-width="0.8"/>
+        <line x1="36" y1="30" x2="36" y2="180" stroke="#504e49" stroke-width="0.8"/>
         <!-- Y axis ticks -->
-        <line x1="30" y1="56" x2="36" y2="56" stroke="#5e5d59" stroke-width="0.8"/>
-        <text x="26" y="59" text-anchor="end" font-size="8" fill="#87867f" font-family="Charter, Georgia, serif">85%</text>
-        <line x1="30" y1="120" x2="36" y2="120" stroke="#5e5d59" stroke-width="0.8"/>
-        <text x="26" y="123" text-anchor="end" font-size="8" fill="#87867f" font-family="Charter, Georgia, serif">53%</text>
+        <line x1="30" y1="56" x2="36" y2="56" stroke="#504e49" stroke-width="0.8"/>
+        <text x="26" y="59" text-anchor="end" font-size="8" fill="#6b6a64" font-family="Charter, Georgia, serif">85%</text>
+        <line x1="30" y1="120" x2="36" y2="120" stroke="#504e49" stroke-width="0.8"/>
+        <text x="26" y="123" text-anchor="end" font-size="8" fill="#6b6a64" font-family="Charter, Georgia, serif">53%</text>
         <!-- X axis -->
-        <line x1="36" y1="180" x2="256" y2="180" stroke="#5e5d59" stroke-width="0.8"/>
+        <line x1="36" y1="180" x2="256" y2="180" stroke="#504e49" stroke-width="0.8"/>
         <!-- bar 1: flat loading -->
         <rect x="56" y="120" width="68" height="60" fill="#e8e6dc" stroke="none"/>
-        <text x="90" y="112" text-anchor="middle" font-size="8" fill="#87867f" font-family="Charter, Georgia, serif">53%</text>
-        <text x="90" y="198" text-anchor="middle" font-size="8.5" fill="#5e5d59" font-family="Charter, Georgia, serif">Flat</text>
-        <text x="90" y="209" text-anchor="middle" font-size="7.5" fill="#87867f" font-family="'JetBrains Mono', monospace">loading</text>
+        <text x="90" y="112" text-anchor="middle" font-size="8" fill="#6b6a64" font-family="Charter, Georgia, serif">53%</text>
+        <text x="90" y="198" text-anchor="middle" font-size="8.5" fill="#504e49" font-family="Charter, Georgia, serif">Flat</text>
+        <text x="90" y="209" text-anchor="middle" font-size="7.5" fill="#6b6a64" font-family="'JetBrains Mono', monospace">loading</text>
         <!-- bar 2: layered loading (brand) -->
         <rect x="156" y="56" width="68" height="124" fill="#EEF2F7" stroke="#1B365D" stroke-width="1"/>
         <text x="190" y="48" text-anchor="middle" font-size="8" fill="#1B365D" font-family="Charter, Georgia, serif" font-weight="500">85%</text>
