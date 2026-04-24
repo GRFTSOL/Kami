@@ -54,7 +54,7 @@ This system is a fusion of Anthropic's visual language and real Chinese / Englis
 --near-black:  #141413;   /* Primary text - deepest but not pure black, warm olive undertone */
 --dark-warm:   #3d3d3a;   /* Secondary dark / dark link color */
 --charcoal:    #4d4c48;   /* Button text / dense body */
---olive:       #5e5d59;   /* Subtext - descriptions, captions */
+--olive:       #5e5d59;   /* Subtext - descriptions, captions. JA override: #4d4c48 (YuMincho thin strokes need darker text) */
 --stone:       #87867f;   /* Tertiary - dates, metadata */
 --warm-silver: #b0aea5;   /* Light text on dark surfaces */
 ```

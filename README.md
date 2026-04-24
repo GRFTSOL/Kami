@@ -110,9 +110,9 @@ Full spec: [design.md](references/design.md). Cheatsheet: [CHEATSHEET.md](CHEATS
 
 ## Background
 
-I invest in US equities and often ask AI to generate analysis reports. The earliest drafts looked like default Google Docs: plain, inconsistent, and easy to forget. I did not want each document to shift style every time, so I kept refining the typography, palette, and spacing until the page became something I wanted to keep reading.
+I trade US equities and ask Claude to write research reports all the time. Every output landed in the same default-doc look: gray, flat, a different layout each session. The structure was hard to scan, the formatting felt dated, and nothing about the page made me want to keep reading. So I started fixing the typography, the palette, the spacing, one rule at a time, until the report became a page I actually enjoyed.
 
-Later, I was invited to present my article "The Agent You Don't Know" and needed a slide deck with the same visual standard. That iteration pushed the system further: inline SVG diagrams, a unified warm palette, and tighter editorial rhythm. Over time it covered my core document formats, so it became kami, a visual language I can reuse with confidence and ship without hesitation.
+Then I got invited to present my article "The Agent You Don't Know" and needed slides with the same visual feel. That round added inline SVG charts, a unified warm palette, and a tighter editorial rhythm. It kept growing until it covered every document I regularly ship, so it became kami: one quiet design system I can hand to any agent and trust the output.
 
 ## Support
 
