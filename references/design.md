@@ -14,7 +14,7 @@ This is not a UI framework. It is a constraint system for print, designed to kee
 4. English: serif for everything (headlines and body). Chinese: serif headlines, sans body. Sans only for UI elements (labels, eyebrows, meta) in both
 5. Serif weight locked at 500, no bold
 6. Line-heights: tight headlines 1.1-1.3, dense body 1.4-1.45, reading body 1.5-1.55
-7. Letter-spacing: body text and CJK titles stay at 0; tracking is only for short labels and overlines
+7. Letter-spacing: Chinese body 0.3pt for comfortable reading; English body 0; tracking only for short labels and overlines
 8. Tag backgrounds must be solid hex, never rgba (WeasyPrint renders a double rectangle)
 9. Depth via ring shadow or whisper shadow, never hard drop shadows
 10. **No italic anywhere**. No `font-style: italic` in any template or demo. No italic @font-face declarations needed
@@ -52,36 +52,20 @@ This system is a fusion of Anthropic's visual language and real Chinese / Englis
 
 ```css
 --near-black:  #141413;   /* Primary text - deepest but not pure black, warm olive undertone */
---dark-warm:   #3d3d3a;   /* Secondary dark / dark link color */
---charcoal:    #4d4c48;   /* Button text / dense body */
---olive:       #5e5d59;   /* Subtext - descriptions, captions. JA override: #4d4c48 (YuMincho thin strokes need darker text) */
---stone:       #87867f;   /* Tertiary - dates, metadata */
---warm-silver: #b0aea5;   /* Light text on dark surfaces */
+--dark-warm:   #3d3d3a;   /* Secondary text, table headers, links */
+--olive:       #504e49;   /* Subtext - descriptions, captions. JA override: #4d4c48 (YuMincho thin strokes need darker text) */
+--stone:       #6b6a64;   /* Tertiary - dates, metadata */
 ```
+
+Four levels: near-black (primary) > dark-warm (secondary) > olive (subtext) > stone (tertiary). No fifth level needed.
 
 **Mnemonic**: every gray has a **yellow-brown undertone**. In `rgb()`, warm gray is R ≈ G > B (or R > G > B with small gaps). Cool gray is R < G < B or R = G = B (neutral).
 
 ### Border
 
 ```css
---border-cream: #e8e5da;   /* Softest border - default cards */
---border-warm:  #e0ddd2;   /* Prominent border - section dividers */
---border-soft:  #e5e3d8;   /* Dotted divider - between list items */
---border-dark:  #30302e;   /* Border on dark surfaces */
-```
-
-### Ring shadow (not traditional box-shadow)
-
-```css
---ring-warm: #d1cfc5;   /* Button hover / focus */
---ring-deep: #c2c0b6;   /* Pressed state */
-```
-
-### Functional (use sparingly)
-
-```css
---error: #b53333;   /* Deep warm red - serious without alarming */
---focus: #3898ec;   /* Focus ring blue - the only cool color, strictly for accessibility */
+--border:      #e8e6dc;   /* Primary border - section dividers, table headers, card borders */
+--border-soft: #e5e3d8;   /* Secondary border - row separators, subtle dividers */
 ```
 
 ### Translucent -> Solid conversion (TAGS MUST BE SOLID)
@@ -139,15 +123,15 @@ Any font-family that may render Chinese or Japanese must include a CJK fallback,
 
 | Role | Size | Weight | Line-height | Use |
 |---|---|---|---|---|
-| Display | 36-48pt | 500 | 1.10 | Cover title, one-pager hero |
-| H1 Section | 18-22pt | 500 | 1.20 | Chapter titles |
-| H2 | 14-16pt | 500 | 1.25 | Subsection |
-| H3 | 12-13pt | 500 | 1.30 | Item titles |
+| Display | 36pt | 500 | 1.10 | Cover title, one-pager hero |
+| H1 Section | 22pt | 500 | 1.20 | Chapter titles |
+| H2 | 16pt | 500 | 1.25 | Subsection |
+| H3 | 13pt | 500 | 1.30 | Item titles |
 | Body Lead | 11pt | 400 | 1.55 | Intro paragraphs |
-| Body | 9.5-10pt | 400 | 1.55 | Reading body |
-| Body Dense | 9-9.4pt | 400 | 1.42 | Dense body (resume, one-pager) |
-| Caption | 9-9.5pt | 400 | 1.45 | Notes, figure captions |
-| Label | 9-10pt | 600 | 1.35 | Small labels, corner tags |
+| Body | 10pt | 400 | 1.55 | Reading body |
+| Body Dense | 9.2pt | 400 | 1.42 | Dense body (resume, one-pager) |
+| Caption | 9pt | 400 | 1.45 | Notes, figure captions |
+| Label | 9pt | 600 | 1.35 | Small labels, corner tags |
 | Tiny | 9pt | 400 | 1.40 | Footer, minor metadata |
 
 **Screen (px)** ≈ pt × 1.33 (9pt ≈ 12px, 18pt ≈ 24px).
@@ -271,10 +255,10 @@ Radius scale: 4pt -> 6pt -> 8pt (default) -> 12pt -> 16pt -> 24pt -> 32pt (hero 
 /* Secondary - warm-sand */
 .btn-secondary {
   background: var(--warm-sand);
-  color: var(--charcoal);
+  color: var(--dark-warm);
   padding: 8pt 16pt;
   border-radius: 8pt;
-  box-shadow: 0 0 0 1pt var(--ring-warm);
+  box-shadow: 0 0 0 1pt var(--border);
 }
 ```
 
@@ -379,6 +363,45 @@ ul.dash li::before {
   border-radius: 1.5pt;
   padding-left: 8pt;
 }
+```
+
+### Table (kami-table)
+
+Unified table component across all templates. Base class applies to bare `<table>` or `.kami-table`.
+
+```css
+table, .kami-table {
+  width: 100%; border-collapse: collapse;
+  font-size: 9.5pt; margin: 12pt 0; break-inside: avoid;
+}
+table th, .kami-table th {
+  text-align: left; font-weight: 500; color: var(--dark-warm);
+  padding: 6pt 8pt; border-bottom: 1pt solid var(--border);
+}
+table td, .kami-table td {
+  padding: 5pt 8pt; border-bottom: 0.3pt solid var(--border-soft);
+  vertical-align: top;
+}
+```
+
+**Variants** (combine freely on the same element):
+
+| Class | Purpose |
+|---|---|
+| `.compact` | 8pt font, tighter padding. For data-dense tables in resume/one-pager. |
+| `.financial` | Right-align all columns except the first, enable `tabular-nums`. For revenue, pricing, metrics. |
+| `.striped` | Alternating `var(--ivory)` background on even rows. Improves scanability for wide tables. |
+
+**Total row**: add `.total` to the final `<tr>` for a bold summary row with a `1pt` brand top border.
+
+```html
+<table class="kami-table financial striped">
+  <thead><tr><th>Category</th><th>Q1</th><th>Q2</th></tr></thead>
+  <tbody>
+    <tr><td>Revenue</td><td>$12.4M</td><td>$14.1M</td></tr>
+    <tr class="total"><td>Total</td><td>$12.4M</td><td>$14.1M</td></tr>
+  </tbody>
+</table>
 ```
 
 ### Metric
@@ -576,7 +599,7 @@ When you're not sure "what should I use":
 | Divide two sections | 2.5pt brand left bar, or 0.5pt warm-gray dotted |
 | Quote someone | 2pt brand left border + olive color |
 | Show code | ivory background + 0.5pt border + 6pt radius + mono |
-| Primary vs secondary button | Primary = brand fill + ivory text; Secondary = warm-sand + charcoal |
+| Primary vs secondary button | Primary = brand fill + ivory text; Secondary = warm-sand + dark-warm |
 | Highlight one card in a list | `border: 0.5pt solid var(--brand)` or `border-left: 3pt solid var(--brand)` |
 | Start a chapter | serif heading + 2.5pt brand left bar |
 | Cover page | Display-size heading + right-aligned author/date + heavy whitespace |

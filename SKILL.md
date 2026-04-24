@@ -36,6 +36,8 @@ Always use `CHEATSHEET.md` and `references/*.md` for design, writing, production
 | "portfolio / 作品集 / case studies" | Portfolio | `portfolio.html` | `portfolio-en.html` |
 | "resume / resume / CV / 简历" | Resume | `resume.html` | `resume-en.html` |
 | "slides / PPT / deck / 演示" | Slides | `slides.py` | `slides-en.py` |
+| "个股研报 / equity report / 估值分析 / investment memo / 股票分析" | Equity Report | `equity-report.html` | `equity-report-en.html` |
+| "更新日志 / changelog / release notes / 版本记录" | Changelog | `changelog.html` | `changelog-en.html` |
 
 > Long deck (>20 slides): also read Deck Recipe (design.md section 8).
 
@@ -59,6 +61,8 @@ When the user asks for **a diagram inside** a long-doc / portfolio / slide (not 
 | "树状图 / tree / hierarchy / 层级 / 组织架构" | Tree | `assets/diagrams/tree.html` |
 | "分层图 / layer stack / 分层架构 / OSI / stack" | Layer Stack | `assets/diagrams/layer-stack.html` |
 | "维恩图 / venn / 交集 / overlap / 集合关系" | Venn | `assets/diagrams/venn.html` |
+| "K 线 / candlestick / OHLC / 股价走势 / price history" | Candlestick | `assets/diagrams/candlestick.html` |
+| "瀑布图 / waterfall / 收入桥 / revenue bridge / decomposition" | Waterfall | `assets/diagrams/waterfall.html` |
 
 Read `references/diagrams.md` before drawing - it has the selection guide, kami token map, and the AI-slop anti-pattern table. Extract the `<svg>` block from the template and drop it into a `<figure>` inside long-doc / portfolio.
 
@@ -143,6 +147,7 @@ The full spec files for reference:
 - Copy the template into your working directory; don't write HTML from scratch
 - **CSS stays untouched**, only edit the body
 - Content follows `writing.md`: data over adjectives, distinctive phrasing over industry clichés
+- **Before filling, read the quality bar for your document type** in `writing.md` section "Quality bars by document type". Structure is necessary but not sufficient: a resume bullet needs Action + Scope + Result + Business Outcome; an equity report needs variant perception + quantified catalysts; slides need assertion-evidence titles. Meeting the quality bar is as important as filling every placeholder.
 
 ### Fill PDF metadata (WeasyPrint reads these into the PDF)
 

@@ -161,6 +161,134 @@ The most constrained document type in kami.
 
 ---
 
+## Quality bars by document type
+
+Structure is necessary but not sufficient. These bars define what separates compelling content from template-filling.
+
+### Resume
+
+**Impact formula**: Action + Scope + Measurable Result + Business Outcome. Every bullet must answer "what did I do, at what scale, with what result, and why did it matter?"
+
+| Avoid | Use |
+|---|---|
+| "Worked on backend services" | "Redesigned order pipeline serving 2M daily txns, cut p99 latency from 800ms to 120ms, saved $340K/yr in infra costs" |
+| "Led a team to deliver features" | "Led 5-engineer squad that shipped real-time collaboration (3-month timeline), adopted by 40% of enterprise accounts within one quarter" |
+| "Improved performance" | "Reduced cold-start time 62% across 14 Lambda functions by replacing runtime init with pre-baked layers, cutting median API response from 1.2s to 0.45s" |
+
+**Rules**:
+1. Start every bullet with a strong past-tense verb (designed, led, reduced, migrated). Never "Responsible for" or "Helped with"
+2. Every bullet needs at least one number. If no hard metric exists, use scope (team size, user count, codebase size)
+3. Connect technical work to business outcomes: revenue, cost, reliability, user retention, time-to-market
+4. Include before/after pairs when possible: "from X to Y" is more credible than "improved by Z%"
+5. Use precise numbers over round ones: "$280K" reads as measured, "$300K" reads as estimated
+6. Distinguish ownership: "owned" vs "contributed to" vs "coordinated". Inflating scope is the fastest way to lose credibility in an interview
+
+**Senior vs junior**: junior resumes show execution ("built X"). Senior resumes show judgment ("evaluated 3 approaches, chose Y because of tradeoff Z") and multiplier effect ("mentored 4 engineers, 2 promoted within 12 months")
+
+### Portfolio
+
+**Core rule**: open every case study with the problem and its stakes, not with your role or the project name.
+
+| Avoid | Use |
+|---|---|
+| "I redesigned the dashboard" | "Enterprise users abandoned the analytics dashboard at 73% rate within the first session. I led the redesign that cut abandonment to 31%." |
+| "The client was happy" | "Task completion time dropped from 4.2 min to 1.8 min. NPS increased from 22 to 51 over 3 months." |
+
+**Rules**:
+1. Show 2-3 decision points where you chose between alternatives. Explain the tradeoff, not just the winner
+2. Three-layer outcomes: quantitative metric (conversion rate +80%) + qualitative evidence (user quote) + business context ($1.2M additional annual revenue)
+3. State your exact role and scope: "I designed" vs "I led" vs "I contributed to" are very different signals
+4. 3-5 deep case studies beats 12 shallow ones. Depth is credibility
+5. Always close the loop: every problem introduced must have a measured resolution
+6. Prefer final product screenshots over mockups. If product images are missing, mark the gap rather than filling with unrelated imagery
+
+### Slides
+
+**Core rule**: every slide title should be a full declarative sentence (an assertion), not a topic label. The body provides one piece of evidence supporting the assertion.
+
+| Avoid | Use |
+|---|---|
+| Title: "Q3 Performance" | Title: "Q3 revenue grew 23% because enterprise deals closed 2x faster" |
+| 7 bullet fragments per slide | One chart proving the assertion |
+| "Key Takeaways" slide with 8 points | One clear ask or recommendation |
+
+**Rules**:
+1. 20-40 words per slide maximum. If a slide has more than 40 words, split it or convert text to a visual
+2. 5 items per list maximum (working memory capacity)
+3. Three-act structure: Setup (slides 1-4, establish stakes) -> Evidence (slides 5-12, build the case) -> Resolution (slides 13-16, deliver the payoff)
+4. Reading just the slide titles in sequence should tell the full argument
+5. Include a "so what" moment every 3-4 slides to re-anchor the audience
+6. End with one clear ask, not a bullet list of "key points"
+
+### Equity Report
+
+**Core rule**: lead with the variant perception (what you see that the market doesn't) and tie every thesis driver to a measurable financial impact.
+
+| Avoid | Use |
+|---|---|
+| "Strong management team" | "Management delivered 23% revenue CAGR over 5 years while keeping debt-to-equity below 0.4" |
+| "Massive opportunity" | "We estimate 25% upside to $X based on DCF with 12% WACC and 3% terminal growth" |
+| Vague "risks include competition" | "BYD's 35% unit cost advantage in the $20-30K segment threatens 15% of addressable volume by 2027" |
+
+**Rules**:
+1. Investment thesis on page 1, above the fold. Rating + price target (if applicable) + 3-5 bullet thesis drivers
+2. Every claim backed by a number or a source. No unquantified superlatives
+3. At least two valuation methods with sensitivity ranges. Single-method valuation is amateur
+4. Catalysts must have dates and expected magnitude: "Robotaxi launch in Dallas, June 2025, adding estimated $X to revenue run-rate by Q4"
+5. Competitive positioning with market share numbers, not narrative: "23% share of the $45B market, up from 18% in 2022"
+6. Risk factors quantified and connected to the financial model, not generic disclaimers
+7. Professional tone: "we estimate" / "our base case" / "we see upside to". Never "this stock will moon" or "buy the dip"
+8. Acknowledge counter-arguments before dismissing them. One-sided analysis signals bias, not conviction
+9. Separate GAAP from non-GAAP clearly. Flag one-time items (warranty reserves, tax benefits, restructuring charges)
+
+### Long Document
+
+**Core rule**: each chapter's claim paragraph must survive the "so what?" test. If the reader asks "why should I care?", the first paragraph must have the answer.
+
+**Rules**:
+1. Evidence density: at least one data point per paragraph. A paragraph with zero numbers is an opinion paragraph and should be rare
+2. Callout or figure after every 3-4 paragraphs of dense text. Long unbroken prose causes eye fatigue in print
+3. Counter-arguments addressed before they become reader objections. If you can predict the pushback, address it proactively
+4. Source cues preserved inline: "(Gartner, 2025)" or "according to the company's 10-K" so readers can distinguish fact from inference
+5. Each chapter should stand alone as a mini-essay with its own arc: claim -> evidence -> conclusion
+
+### One-Pager
+
+**Core rule**: the reader grasps the point in 30 seconds. Every element that doesn't serve 30-second comprehension is bloat.
+
+**Rules**:
+1. Metrics are the headline, not supporting evidence. If your 4 metric cards don't tell the story, the metrics are wrong
+2. The lead paragraph must contain the single sharpest claim, not context-setting
+3. Bullet points should be evidence, not restated arguments. Each bullet: fact + number + "so what"
+4. Footer is for contact and classification, not for squeezing in one more argument
+
+### Letter
+
+**Core rule**: first paragraph states purpose in one sentence. Last paragraph states the specific ask or next step. Everything in between is evidence.
+
+**Rules**:
+1. One point per middle paragraph, each with its own evidence
+2. Tone calibration per use case: resignation (grateful + clear), recommendation (specific + enthusiastic), proposal (value-first + concrete), personal statement (authentic + structured)
+3. Sign-off matches formality: "Sincerely" for formal, "Best regards" for professional-warm, "Warm regards" for personal
+4. Under no circumstances exceed one page. If you need two pages, it's a memo or a proposal, not a letter
+
+### Changelog
+
+**Core rule**: one sentence per change, verb-led, user-facing language. If the user cannot understand the change from the sentence alone, rewrite it.
+
+| Avoid | Use |
+|---|---|
+| "Refactored internal state management module" | "Fix crash when switching tabs rapidly on iPad" |
+| "Updated dependencies" | "Upgrade OpenSSL to 3.2.1 (patches CVE-2026-1234)" |
+
+**Rules**:
+1. Breaking changes always first, with migration path ("Replace `config.old` with `config.new`; run `migrate.sh` to convert")
+2. 5-8 items per section. If more, this is probably 2 releases
+3. Group by user impact (Breaking / Features / Fixes), not by component or file
+4. No internal jargon. "Fix memory leak in image decoder" is clear. "Fix retain cycle in UIImageDecoderBridge" is not
+
+---
+
 ## Coupling rules (layout × content)
 
 ### Emphasis rhythm

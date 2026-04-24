@@ -1,6 +1,6 @@
 # Diagrams
 
-kami's drawing capability. **12 diagram types** covering structural, process, and data chart scenarios. All wear kami's skin (parchment + ink-blue + warm grays). No second design system.
+kami's drawing capability. **14 diagram types** covering structural, process, and data chart scenarios. All wear kami's skin (parchment + ink-blue + warm grays). No second design system.
 
 Every diagram is a **self-contained HTML + inline SVG**. No Mermaid, no JS, no build step. Browse them as standalone pages, or copy the `<svg>...</svg>` block into a long-doc `<figure>` to embed.
 
@@ -22,6 +22,8 @@ Every diagram is a **self-contained HTML + inline SVG**. No Mermaid, no JS, no b
 | Hierarchical relationships (org chart, module deps, directory tree) | **Tree** | `assets/diagrams/tree.html` |
 | Vertically stacked system layers (OSI, application stack) | **Layer Stack** | `assets/diagrams/layer-stack.html` |
 | Set intersections (feature overlap, audience comparison, capability map) | **Venn** | `assets/diagrams/venn.html` |
+| OHLC price action (stock price, trading days, up/down candles) | **Candlestick** | `assets/diagrams/candlestick.html` |
+| Revenue bridge, valuation decomposition, cash flow breakdown | **Waterfall** | `assets/diagrams/waterfall.html` |
 
 Not on the list:
 - **Compare two things**: use a table. A three-column table beats any diagram of a binary contrast.
@@ -93,18 +95,18 @@ Shared tokens across the three diagrams, mapping directly to kami's design syste
 | Standard node fill | (white) | `#ffffff` |
 | Standard node stroke | `--near-black` | `#141413` |
 | Store node fill | near-black 5% | `rgba(20,20,19,0.05)` |
-| Store node stroke | `--olive` | `#5e5d59` |
+| Store node stroke | `--olive` | `#504e49` |
 | Cloud node fill | near-black 3% | `rgba(20,20,19,0.03)` |
 | Cloud node stroke | near-black 30% | `rgba(20,20,19,0.30)` |
 | External node fill | olive 8% | `rgba(94,93,89,0.08)` |
-| External node stroke | `--stone` | `#87867f` |
+| External node stroke | `--stone` | `#6b6a64` |
 | **Focal fill** | `--brand-tint` | `#EEF2F7` |
 | **Focal stroke** | `--brand` | `#1B365D` |
-| Standard arrow | `--olive` | `#5e5d59` |
+| Standard arrow | `--olive` | `#504e49` |
 | Focal arrow | `--brand` | `#1B365D` |
 | Primary text | `--near-black` | `#141413` |
-| Secondary text | `--olive` | `#5e5d59` |
-| Tertiary text / small mono label | `--stone` | `#87867f` |
+| Secondary text | `--olive` | `#504e49` |
+| Tertiary text / small mono label | `--stone` | `#6b6a64` |
 
 Don't add a fourth state ("warning amber", "success green"). kami has one accent.
 
@@ -162,15 +164,15 @@ Scan for these when drawing or reviewing:
 
 ## 6. Data charts (bar / line / donut)
 
-Three data-driven chart types for investment reports, financial comparisons, and market-share breakdowns. Like the first three diagram types, all are self-contained HTML + inline SVG, embeddable in any kami document.
+Five data-driven chart types for investment reports, financial comparisons, and market-share breakdowns. Like the first three diagram types, all are self-contained HTML + inline SVG, embeddable in any kami document.
 
 ### Color palette (derived from kami warm palette)
 
 | Role | Value | Use |
 |---|---|---|
 | Primary series | `#1B365D` ink-blue | First group / focal data |
-| Series 2 | `#5e5d59` olive | Second group |
-| Series 3 | `#87867f` stone | Third group |
+| Series 2 | `#504e49` olive | Second group |
+| Series 3 | `#6b6a64` stone | Third group |
 | Series 4 | `#b8b7b0` light-stone | Fourth group |
 | Series 5 | `#d4d3cd` mist | Fifth group |
 | Series 6 | `#EEF2F7` brand-tint | Sixth group |
@@ -184,6 +186,8 @@ Three data-driven chart types for investment reports, financial comparisons, and
 | Bar chart | 8 groups | 3 series | `assets/diagrams/bar-chart.html` |
 | Line chart | 12 points | 3 lines | `assets/diagrams/line-chart.html` |
 | Donut chart | 6 segments | n/a | `assets/diagrams/donut-chart.html` |
+| Candlestick | 30 days | n/a | `assets/diagrams/candlestick.html` |
+| Waterfall | 8 segments | n/a | `assets/diagrams/waterfall.html` |
 
 ### Editing data
 
@@ -212,6 +216,22 @@ inner_x = 300 + 76  × cos(angle_deg × π/180)
 inner_y = 200 + 76  × sin(angle_deg × π/180)
 ```
 
+**Candlestick Y-axis formula** (default: price range 100-160, chart-height=280, scale=4.67):
+```
+candle_y = 320 - (price - 100) * 4.67
+Up candle: fill=#1B365D (close > open), body from open_y to close_y
+Down candle: fill=#6b6a64 (close < open), body from close_y to open_y
+Wick: 1.2px stroke from high_y to low_y, centered on candle
+```
+
+**Waterfall formula** (default: max=200, chart-height=280, scale=1.4):
+```
+bar_y = 320 - value * 1.4
+Floating bars: top = running_total_y, height = abs(delta) * 1.4
+Positive: fill=#1B365D · Negative: fill=#6b6a64 · Total: fill=#4d4c48
+Connector: dashed 0.8px #b8b7b0 between adjacent bar edges
+```
+
 ---
 
 ## 7. Build / preview
@@ -229,6 +249,8 @@ python3 scripts/build.py diagram-swimlane
 python3 scripts/build.py diagram-tree
 python3 scripts/build.py diagram-layer-stack
 python3 scripts/build.py diagram-venn
+python3 scripts/build.py diagram-candlestick
+python3 scripts/build.py diagram-waterfall
 
 # or all
 python3 scripts/build.py

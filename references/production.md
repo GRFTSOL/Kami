@@ -83,11 +83,11 @@ font-family: "YuMincho", "Yu Mincho", "Hiragino Mincho ProN",
 @page {
   @top-right {
     content: counter(page);
-    font-family: serif; font-size: 9pt; color: #87867f;
+    font-family: serif; font-size: 9pt; color: #6b6a64;
   }
   @bottom-center {
     content: "{{DOC_NAME}} · {{AUTHOR}}";
-    font-size: 9pt; color: #87867f;
+    font-size: 9pt; color: #6b6a64;
   }
 }
 
@@ -553,8 +553,8 @@ pdftoppm -png -r 300 out.pdf inspect    # when in doubt
 <path d="M 440 52 Q 568 52 568 244" marker-end="url(#a)"/>
 
 <!-- Good: manual chevron, direction per endpoint -->
-<path d="M 440 52 Q 568 52 568 244" fill="none" stroke="#5e5d59" stroke-width="1.5"/>
-<path d="M 560 236 L 568 244 L 576 236" fill="none" stroke="#5e5d59" stroke-width="1.5"
+<path d="M 440 52 Q 568 52 568 244" fill="none" stroke="#504e49" stroke-width="1.5"/>
+<path d="M 560 236 L 568 244 L 576 236" fill="none" stroke="#504e49" stroke-width="1.5"
       stroke-linecap="round" stroke-linejoin="round"/>
 ```
 

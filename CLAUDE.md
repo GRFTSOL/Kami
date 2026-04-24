@@ -1,7 +1,7 @@
 # Kami
 
 Kami is one project in the Kaku (write code), Waza (practice craft), and Kami (ship documents) trilogy.
-Warm parchment canvas, ink-blue accent, serif-led hierarchy, and editorial whitespace across six document templates.
+Warm parchment canvas, ink-blue accent, serif-led hierarchy, and editorial whitespace across eight document templates and fourteen diagram types.
 
 ## Structure
 
@@ -10,9 +10,9 @@ Warm parchment canvas, ink-blue accent, serif-led hierarchy, and editorial white
 | `SKILL.md` | Claude routing and operating rules | Low |
 | `CHEATSHEET.md` | Quick design reference, English-only source | Low |
 | `references/design.md` | Design system spec, English-only source | Low |
-| `references/writing.md` | Content strategy spec, English-only source | Low |
+| `references/writing.md` | Content strategy + quality bars per document type, English-only source | Low |
 | `references/production.md` | WeasyPrint build and troubleshooting runbook, English-only source | Medium |
-| `assets/templates/` | 6 document templates in 2 base language families, plus Japanese best-effort mapping | Medium |
+| `assets/templates/` | 8 document templates in 2 base language families, plus Japanese best-effort mapping | Medium |
 | `assets/demos/` | README showcase demos, regenerate after visual changes | Medium |
 | `scripts/build.py` | PDF / PNG / PPTX build and verification script | Low |
 | `scripts/package-skill.sh` | Claude Desktop ZIP packager, excluding large fonts | Low |
@@ -28,17 +28,27 @@ python3 scripts/build.py          # build all outputs
 python3 scripts/build.py --check  # scan CSS invariants and token drift
 python3 scripts/build.py --verify # verify templates, page counts, fonts, and slides
 python3 scripts/build.py --check-placeholders path/to/filled.html
+python3 scripts/build.py --check-orphans [path/to/doc.pdf]  # scan for orphan text (last line <= 2 words)
 ```
 
-Expected page counts: one-pager 1 / letter 1 / resume 2 strict / long-doc 7 +/- 2 / portfolio 6 +/- 2 / slides 7 +/- 3
+Expected page counts: one-pager 1 / letter 1 / resume 2 strict / long-doc 7 +/- 2 / portfolio 6 +/- 2 / slides 7 +/- 3 / equity-report 2-3 / changelog 1-2
 
 **PDF metadata**: `build.py` automatically sets `/Author` from `git config user.name` (or `KAMI_AUTHOR` env var) when the HTML template contains a placeholder like `{{作者}}` or `{{AUTHOR}}`. `/Producer` and `/Creator` are always set to `"Kami"`.
 
 ## Demo Screenshots
 
+Current demos in `assets/demos/`:
+
+| Demo | Source | Type |
+|---|---|---|
+| `demo-tesla.*` | Tesla Q1 2026 equity report (CN) | equity-report |
+| `demo-kaku.*` | Kaku portfolio (JP) | portfolio |
+| `demo-musk-resume.*` | Elon Musk resume (EN) | resume |
+| `demo-agent-slides.*` | Agent development slides (EN) | slides |
+
 All demo PNG files use **1241x1754px** (first A4 portrait page at 150dpi).
 
-For one-page and multi-page documents (one-pager / letter / resume / portfolio / long-doc), capture page 1:
+For one-page and multi-page documents (one-pager / letter / resume / portfolio / long-doc / equity-report), capture page 1:
 ```bash
 pdftoppm -r 150 -f 1 -l 1 -png <pdf> /tmp/p && cp /tmp/p-1.png <target>.png
 ```

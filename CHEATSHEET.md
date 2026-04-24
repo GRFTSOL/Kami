@@ -10,7 +10,7 @@ One-page quick reference. Scan before filling a template or tweaking a detail. F
 4. English: serif for headlines and body. Chinese: serif headlines, sans body. Sans for UI only
 5. Serif weight locked at 500, no bold
 6. Line-height: headlines 1.1-1.3 / dense 1.4-1.45 / reading 1.5-1.55
-7. Letter-spacing: body and CJK titles stay 0; tracking is only for short labels
+7. Letter-spacing: Chinese body 0.3pt; English body 0; tracking for short labels only
 8. Tag backgrounds solid hex, no rgba (WeasyPrint double-rectangle bug)
 9. Depth via ring / whisper shadow, no hard drop shadows
 10. No italic in templates or demos
@@ -36,14 +36,11 @@ One-page quick reference. Scan before filling a template or tweaking a detail. F
 | **Brand** | **`#1B365D`** | **Accent · CTA · title left bar (≤ 5% of surface)** |
 | Ink Light | `#2D5A8A` | Links on dark surfaces |
 | Near Black | `#141413` | Primary text |
-| Dark Warm | `#3d3d3a` | Secondary dark / link |
-| Charcoal | `#4d4c48` | Button text / dense body |
-| Olive | `#5e5d59` | Subtext · descriptions |
-| Stone | `#87867f` | Tertiary · metadata |
-| Warm Silver | `#b0aea5` | Light text on dark surfaces |
-| Border Cream | `#e8e5da` | Default card border |
-| Border Warm | `#e8e6dc` | Section divider |
-| Ring Warm | `#d1cfc5` | Button hover/focus ring (not for cards) |
+| Dark Warm | `#3d3d3a` | Secondary text · table headers · links |
+| Olive | `#504e49` | Subtext · descriptions |
+| Stone | `#6b6a64` | Tertiary · metadata |
+| Border | `#e8e6dc` | Primary border · section divider |
+| Border Soft | `#e5e3d8` | Secondary border · row separator |
 
 **rgba -> solid** (parchment base + ink-blue):
 
@@ -59,15 +56,15 @@ One-page quick reference. Scan before filling a template or tweaking a detail. F
 
 | Role | Size | Weight | Line-height |
 |---|---|---|---|
-| Display | 36-48 | 500 | 1.10 |
-| H1 | 18-22 | 500 | 1.20 |
-| H2 | 14-16 | 500 | 1.25 |
-| H3 | 12-13 | 500 | 1.30 |
+| Display | 36 | 500 | 1.10 |
+| H1 | 22 | 500 | 1.20 |
+| H2 | 16 | 500 | 1.25 |
+| H3 | 13 | 500 | 1.30 |
 | Body Lead | 11 | 400 | 1.55 |
-| Body | 9.5-10 | 400 | 1.55 |
-| Body Dense | 9-9.4 | 400 | 1.42 |
-| Caption | 9-9.5 | 400 | 1.45 |
-| Label | 9-10 | 600 | 1.35 |
+| Body | 10 | 400 | 1.55 |
+| Body Dense | 9.2 | 400 | 1.42 |
+| Caption | 9 | 400 | 1.45 |
+| Label | 9 | 600 | 1.35 |
 | Tiny | 9 | 400 | 1.40 |
 
 Screen (px) ≈ pt × 1.33.
@@ -181,6 +178,31 @@ Any font-family that may render Chinese or Japanese must include a CJK fallback,
 }
 ```
 
+### Table (kami-table)
+
+Base class works on bare `<table>` or `.kami-table`. Add variant classes for density/alignment:
+
+```css
+/* Base */
+table, .kami-table {
+  width: 100%; border-collapse: collapse;
+  font-size: 9.5pt; margin: 12pt 0; break-inside: avoid;
+}
+table th { text-align: left; font-weight: 500; color: var(--dark-warm);
+  padding: 6pt 8pt; border-bottom: 1pt solid var(--border); }
+table td { padding: 5pt 8pt; border-bottom: 0.3pt solid var(--border-soft);
+  vertical-align: top; }
+```
+
+| Variant | Class | Effect |
+|---|---|---|
+| Compact | `.compact` | 8pt font, tight padding (data-dense tables) |
+| Financial | `.financial` | Right-align all columns except first, `tabular-nums` |
+| Striped | `.striped` | Alternating `var(--ivory)` row background |
+| Total row | `.total` on `<tr>` | Bold, brand top border, no bottom border |
+
+Combine freely: `<table class="kami-table financial striped">`.
+
 ### Metric (data card)
 
 ```css
@@ -222,10 +244,12 @@ Twelve built-in diagram types. Extract the `<svg>` block and embed in a `<figure
 | Tree | `assets/diagrams/tree.html` | Hierarchical relationships |
 | Layer Stack | `assets/diagrams/layer-stack.html` | Vertically stacked system layers |
 | Venn | `assets/diagrams/venn.html` | Set intersections and overlaps |
+| Candlestick | `assets/diagrams/candlestick.html` | OHLC price history (up to 30 days) |
+| Waterfall | `assets/diagrams/waterfall.html` | Revenue bridge / decomposition |
 
 Usage: extract the `<svg>` block from the HTML file and paste into the template's `<figure>` container.
 
-**Data chart colors**: primary series `#1B365D` · secondary `#5e5d59` → `#87867f` → `#b8b7b0` → `#d4d3cd` → `#EEF2F7`.
+**Data chart colors**: primary series `#1B365D` · secondary `#504e49` → `#6b6a64` → `#b8b7b0` → `#d4d3cd` → `#EEF2F7`.
 
 **Editing data**: only modify elements between `<!-- DATA START -->` / `<!-- DATA END -->`, leave CSS untouched. All coordinates must be divisible by 4.
 
@@ -251,6 +275,21 @@ Alternate light/dark rhythm: add `.sd-alt` to any section container.
 
 Source templates intentionally keep `{{...}}` fields. Run `python3 scripts/build.py --check-placeholders path/to/filled.html` on completed documents.
 
+## Content quality (one rule per type)
+
+Full quality bars in `references/writing.md`. The single most important rule for each document type:
+
+| Document | Core quality rule |
+|---|---|
+| Resume | Every bullet: Action + Scope + Measurable Result + Business Outcome |
+| Portfolio | Open with the problem and stakes, not the project name |
+| Slides | Slide titles are full sentences (assertions), not topic labels |
+| Equity Report | Lead with variant perception: what you see that the market doesn't |
+| Long Document | Each chapter claim paragraph must survive the "so what?" test |
+| One-Pager | Metrics are the headline; if the 4 cards don't tell the story, the metrics are wrong |
+| Letter | First paragraph states purpose in one sentence |
+| Changelog | One sentence per change, verb-led, user-facing language |
+
 ## Quick decisions
 
 | Need | Use |
@@ -263,7 +302,7 @@ Source templates intentionally keep `{{...}}` fields. Run `python3 scripts/build
 | Quote | 2pt brand left border + olive color |
 | Code | ivory bg + 0.5pt border + 6pt radius + mono |
 | Primary button | brand fill + ivory text |
-| Secondary button | warm-sand + charcoal |
+| Secondary button | warm-sand + dark-warm |
 | Chapter start | serif heading + 2.5pt brand left bar |
 | Cover | Display heading + right-aligned author/date + heavy whitespace |
 
