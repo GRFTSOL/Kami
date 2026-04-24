@@ -2,7 +2,7 @@
 """kami build & check
 
 Usage:
-    python3 scripts/build.py                      # build all 24 examples (10 HTML + 12 diagrams + 2 PPTX)
+    python3 scripts/build.py                      # build all examples (HTML + diagrams + PPTX)
     python3 scripts/build.py resume               # build one template, print pages + fonts
     python3 scripts/build.py --check              # scan templates for CSS rule violations
     python3 scripts/build.py --check -v           # verbose (show each scanned file)
@@ -10,6 +10,8 @@ Usage:
     python3 scripts/build.py --verify             # build all + page count + font checks
     python3 scripts/build.py --verify resume-en   # single target full verification
     python3 scripts/build.py --check-placeholders path/to/doc.html
+    python3 scripts/build.py --check-orphans      # scan example PDFs for orphan text
+    python3 scripts/build.py --check-orphans path/to/doc.pdf
 """
 from __future__ import annotations
 
@@ -40,6 +42,12 @@ HTML_TARGETS: dict[str, tuple[str, int]] = {
     "long-doc-en":  ("long-doc-en.html", 0),
     "portfolio-en": ("portfolio-en.html", 0),
     "resume-en":    ("resume-en.html", 2),
+    # Equity Report
+    "equity-report":    ("equity-report.html", 3),
+    "equity-report-en": ("equity-report-en.html", 3),
+    # Changelog
+    "changelog":    ("changelog.html", 2),
+    "changelog-en": ("changelog-en.html", 2),
 }
 PPTX_TARGETS: dict[str, str] = {
     "slides":    "slides.py",
@@ -60,6 +68,8 @@ DIAGRAM_TARGETS: dict[str, str] = {
     "diagram-tree":          "tree.html",
     "diagram-layer-stack":   "layer-stack.html",
     "diagram-venn":          "venn.html",
+    "diagram-candlestick":   "candlestick.html",
+    "diagram-waterfall":     "waterfall.html",
 }
 
 
@@ -466,6 +476,56 @@ def check_placeholders(paths: list[str]) -> int:
     return 0 if failures == 0 else 1
 
 
+# ------------------------- orphan check -------------------------
+
+def check_orphans(paths: list[str]) -> int:
+    """Scan PDF for text blocks whose last line has <= 2 words and < 15 chars."""
+    try:
+        import fitz  # PyMuPDF
+    except ImportError:
+        print("ERROR: PyMuPDF required: pip install pymupdf --break-system-packages")
+        return 2
+
+    if not paths:
+        # Default: scan all example PDFs
+        if EXAMPLES.exists():
+            paths = [str(p) for p in sorted(EXAMPLES.glob("*.pdf"))]
+        if not paths:
+            print("ERROR: no PDF files to scan")
+            return 2
+
+    total = 0
+    for raw in paths:
+        path = Path(raw)
+        if not path.exists():
+            print(f"ERROR: {raw}: not found")
+            continue
+        doc = fitz.open(str(path))
+        rel = path.relative_to(ROOT) if path.is_relative_to(ROOT) else path
+        for page_num in range(len(doc)):
+            page = doc[page_num]
+            blocks = page.get_text("blocks")
+            for bx0, by0, bx1, by1, text, block_no, block_type in blocks:
+                if block_type != 0:  # text blocks only
+                    continue
+                lines = text.strip().splitlines()
+                if len(lines) < 2:
+                    continue
+                last = lines[-1].strip()
+                words = last.split()
+                if len(words) <= 2 and len(last) < 15:
+                    total += 1
+                    print(f"  {rel} p{page_num + 1}: orphan: \"{last}\" ({len(words)} word(s), {len(last)} chars)")
+        doc.close()
+
+    if total == 0:
+        print(f"OK: no orphans found across {len(paths)} PDF(s)")
+        return 0
+
+    print(f"\n{total} orphan(s) found across {len(paths)} PDF(s)")
+    return 1
+
+
 # ------------------------- check -------------------------
 
 # Cool / neutral gray hex values that violate the "warm undertone only" rule.
@@ -614,6 +674,8 @@ def main(argv: list[str]) -> int:
     if args[0] == "--verify":
         target = args[1] if len(args) > 1 and not args[1].startswith("-") else None
         return verify_all(target)
+    if args[0] == "--check-orphans":
+        return check_orphans(args[1:])
     if args[0] in ("--check-placeholders", "--verify-filled"):
         return check_placeholders(args[1:])
     return build_single(args[0])
