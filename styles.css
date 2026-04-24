@@ -1,31 +1,4 @@
-@font-face {
-    font-family: "Newsreader";
-    src: url("assets/fonts/Newsreader.woff2") format("woff2");
-    font-weight: 400 500;
-    font-style: normal;
-    font-display: swap;
-  }
-@font-face {
-    font-family: "Inter";
-    src: url("assets/fonts/Inter.woff2") format("woff2");
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: "Inter";
-    src: url("assets/fonts/Inter-500.woff2") format("woff2");
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: "Inter";
-    src: url("assets/fonts/Inter-600.woff2") format("woff2");
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-  }
+  /* Palatino is a system font, no @font-face needed */
   @font-face {
     font-family: "JetBrains Mono";
     src: url("assets/fonts/JetBrainsMono.woff2") format("woff2");
@@ -36,14 +9,7 @@
   @font-face {
     font-family: "TsangerJinKai02";
     src: url("assets/fonts/TsangerJinKai02-W04.ttf") format("truetype");
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: "TsangerJinKai02";
-    src: url("assets/fonts/TsangerJinKai02-W05.ttf") format("truetype");
-    font-weight: 500;
+    font-weight: 400 500;
     font-style: normal;
     font-display: swap;
   }
@@ -77,19 +43,19 @@
     /* Slide-scale spacing */
     --slide-pad:    80px;
 
-    --serif: "Newsreader", "TsangerJinKai02", "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", Georgia, serif;
-    --sans: "Inter", "TsangerJinKai02", -apple-system, BlinkMacSystemFont, "Source Han Sans SC", "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+    --serif: Charter, Georgia, "TsangerJinKai02", "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", Palatino, serif;
+    --sans: var(--serif);
     --mono: "JetBrains Mono", "Fira Code", "SF Mono", Consolas, Monaco, monospace;
   }
 
   html[lang="zh-CN"] {
     --serif: "TsangerJinKai02", "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", Georgia, serif;
-    --sans: "Inter", "TsangerJinKai02", -apple-system, BlinkMacSystemFont, "Source Han Sans SC", "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+    --sans: var(--serif);
   }
 
   html[lang="ja"] {
-    --serif: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "Noto Serif CJK JP", "Source Han Serif JP", "TsangerJinKai02", Georgia, serif;
-    --sans: "Inter", "Hiragino Sans", "Yu Gothic", "Noto Sans CJK JP", "Source Han Sans JP", "TsangerJinKai02", -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+    --serif: "YuMincho", "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif CJK JP", "Source Han Serif JP", "TsangerJinKai02", Georgia, serif;
+    --sans: var(--serif);
   }
 
   /* Language switcher */
@@ -163,7 +129,10 @@
     -moz-osx-font-smoothing: grayscale;
   }
   html[lang="en"] body { letter-spacing: 0; }
+  html[lang="ja"] body { letter-spacing: 0.02em; }
   html[lang="en"] .section-title { letter-spacing: -0.3px; }
+  html[lang="en"] .manifesto,
+  html[lang="ja"] .manifesto { letter-spacing: 0; }
   html[lang="zh-CN"] .section-title,
   html[lang="ja"] .section-title {
     letter-spacing: 0;
@@ -206,7 +175,7 @@
     gap: 8px;
     font-family: var(--sans);
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: 1.2px;
     text-transform: uppercase;
     color: var(--stone);
@@ -238,6 +207,7 @@
   .hero h1 .cn {
     display: inline-block;
     margin-left: 16px;
+    letter-spacing: 0;
     color: var(--brand);
   }
   .hero .tagline {
@@ -283,10 +253,11 @@
   .manifesto {
     font-family: var(--serif);
     font-size: 20px;
-    line-height: 1.5;
+    line-height: 1.65;
+    letter-spacing: 0.05em;
     color: var(--near-black);
     margin: 0 0 28px;
-    font-weight: 500;
+    font-weight: 400;
   }
   .manifesto em {
     color: var(--brand);
@@ -429,7 +400,7 @@
   .tint.default .opacity { color: var(--brand); }
   .tint .flag {
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: 0.8px;
     color: var(--brand);
     margin-bottom: 8px;
@@ -473,15 +444,18 @@
   .type-specs b { color: var(--charcoal); font-weight: 500; }
   .type-sample.display {
     font-family: var(--serif); font-weight: 500;
-    font-size: 48px; line-height: 1.1; color: var(--near-black);
+    font-size: 54px; line-height: 1.1; color: var(--near-black);
     letter-spacing: -0.5px;
+  }
+  html[lang="zh-CN"] .type-sample.display {
+    font-size: 48px;
   }
   html[lang="ja"] .type-sample.display {
     font-size: 42px;
     line-height: 1.12;
-    letter-spacing: 0;
+    letter-spacing: 0.3px;
   }
-  html[lang="zh-CN"] .type-sample.display { letter-spacing: 0; }
+  html[lang="zh-CN"] .type-sample.display { letter-spacing: 0.5px; }
   .type-sample.h1 {
     font-family: var(--serif); font-weight: 500;
     font-size: 30px; line-height: 1.2; color: var(--near-black);
@@ -523,7 +497,7 @@
   /* family cards */
   .family-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 16px;
     margin-top: 24px;
   }
@@ -843,7 +817,7 @@
     letter-spacing: 0.8px;
     text-transform: uppercase;
     color: var(--stone);
-    font-weight: 600;
+    font-weight: 500;
     padding-top: 0;
   }
   .decision td.task {
@@ -935,7 +909,7 @@
   .chart-label {
     font-family: var(--sans);
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--brand);
     letter-spacing: 0.3px;
     margin-bottom: 10px;
@@ -1024,7 +998,7 @@
   .anti h5 {
     font-family: var(--sans);
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: 1.2px;
     text-transform: uppercase;
     margin: 0 0 8px;

@@ -7,7 +7,7 @@ Usage:
   python3 slides-en.py
 
 Output:
-  output.pptx (16:9, parchment aesthetic, Inter + Newsreader fonts)
+  output.pptx (16:9, parchment aesthetic, Georgia serif)
 
 This is a template. Fill in your content and run it directly.
 """
@@ -36,8 +36,8 @@ WHITE       = RGBColor(0xff, 0xff, 0xff)
 
 # English Silicon Valley stack. PowerPoint falls back silently if the
 # primary face is not installed on the viewing machine.
-SERIF = "Newsreader"    # fallback: Charter -> Georgia
-SANS  = "Inter"         # fallback: Helvetica Neue -> Arial
+SERIF = "Charter"
+SANS  = SERIF
 
 SLIDE_W = Inches(13.33)
 SLIDE_H = Inches(7.5)

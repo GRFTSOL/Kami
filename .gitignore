@@ -8,7 +8,6 @@ __pycache__/
 
 # Font build artifacts
 assets/fonts/*.otf
-assets/fonts/Newsreader-italic.woff
 
 # Template examples with placeholder content, regenerate via: python3 scripts/build.py
 assets/examples/

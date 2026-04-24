@@ -38,10 +38,11 @@ python3 -c "from weasyprint import HTML; HTML('doc.html').write_pdf('out.pdf')"
 ```html
 <style>
 @font-face {
-  font-family: "Newsreader";
-  src: url("Newsreader-VariableFont.ttf");
+  font-family: "TsangerJinKai02";
+  src: url("TsangerJinKai02-W04.ttf");
+  font-weight: 400 500;
 }
-body { font-family: "Newsreader", serif; }
+body { font-family: Charter, Georgia, Palatino, serif; }
 </style>
 ```
 
@@ -49,15 +50,15 @@ body { font-family: "Newsreader", serif; }
 
 ```css
 /* English */
-font-family: "Newsreader", "Source Serif 4", "Charter",
-             Georgia, serif;
+font-family: Charter, Georgia, Palatino,
+             "Times New Roman", serif;
 
 /* Chinese */
 font-family: "TsangerJinKai02", "Source Han Serif SC",
              "Noto Serif CJK SC", "Songti SC", Georgia, serif;
 
 /* Japanese */
-font-family: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho",
+font-family: "YuMincho", "Yu Mincho", "Hiragino Mincho ProN",
              "Noto Serif CJK JP", "Source Han Serif JP",
              "TsangerJinKai02", Georgia, serif;
 ```
@@ -176,24 +177,24 @@ TAG_BG      = RGBColor(0xee, 0xf2, 0xf7)
 | Role | Size | Font |
 |---|---|---|
 | Title | 48pt | Serif 500 |
-| Subtitle | 24pt | Sans 400 |
+| Subtitle | 24pt | Serif 400 |
 | H2 chapter | 32pt | Serif 500 |
 | H3 subtitle | 20pt | Serif 500 |
-| Body | 18pt | Sans 400 |
-| Caption | 14pt | Sans 400 |
-| Footer | 12pt | Sans 400 |
+| Body | 18pt | Serif 400 |
+| Caption | 14pt | Serif 400 |
+| Footer | 12pt | Serif 400 |
 
 English stack on PowerPoint:
-- Serif: `Newsreader` -> `Charter` -> `Georgia`
-- Sans: `Inter` -> `Helvetica Neue` -> `Arial`
+- Serif: `Charter` -> `Georgia` -> `Palatino`
+- Sans: same as serif (single-font-per-page rule)
 
 ### Eight standard layouts
 
 1. **Cover**: parchment background, centered display title + brand-colored short line + subtitle / author / date
 2. **Contents**: parchment, left-aligned `01  Chapter title` (number serif brand-colored)
 3. **Chapter divider**: full brand ink-blue background, centered white title - the **only** fully chromatic slide in the deck
-4. **Content slide**: eyebrow (sans stone) + core claim (serif near-black) + brand line + body (sans dark-warm)
-5. **Data slide**: top takeaway + 2-4 metric cards (big number serif brand + small label sans olive)
+4. **Content slide**: eyebrow (serif stone) + core claim (serif near-black) + brand line + body (serif dark-warm)
+5. **Data slide**: top takeaway + 2-4 metric cards (big number serif brand + small label serif olive)
 6. **Comparison**: two columns with a 0.5pt warm-gray divider
 7. **Quote**: parchment, minimal, centered serif quote + `- Source`
 8. **Closing**: parchment, centered "Thank you / Q&A / Contact"
@@ -210,9 +211,9 @@ from pptx.enum.shapes import MSO_SHAPE
 from pptx.enum.text import PP_ALIGN
 
 PARCHMENT = RGBColor(0xf5, 0xf4, 0xed)
-BRAND     = RGBColor(0xc9, 0x64, 0x42)
-SERIF = "Newsreader"
-SANS  = "Inter"
+BRAND     = RGBColor(0x1B, 0x36, 0x5D)
+SERIF = "Charter"
+SANS  = SERIF
 
 prs = Presentation()
 prs.slide_width  = Inches(13.33)
@@ -235,6 +236,25 @@ def blank_slide():
 4. **Export to PDF** for sharing - cross-machine consistency is better than .pptx
  - macOS: Keynote -> Export to PDF
  - Linux: `libreoffice --headless --convert-to pdf output.pptx`
+
+### Slide scale rules (from production decks)
+
+Print and slide share the same palette and serif, but sizing is different.
+One rule covers most adjustments: **macro spacing x1.6, micro details x0.5** (letter-spacing, border weight, border-radius).
+
+| Item | Print | Slide | Why |
+|---|---|---|---|
+| Container | A4 portrait | 1920x1080 or A4 landscape | Fixed ratio, never `100vw x 100vh` |
+| Title size | 30-34pt | 48-64pt | Projection needs larger display |
+| Slide padding | N/A | 72-80px top, 80px sides | Less than 72px top feels cramped |
+| Eyebrow tracking | 0.5-1pt | 3px max | Print tracking looks scattered at slide scale |
+| Display tracking | 0 to -0.2pt | -0.5pt | Tighten large titles to prevent letter gaps |
+| Header gap | 8-14pt | 36px+ between rule and H1 | Below 36px the rule looks like an underline |
+| Line-height titles | 1.1-1.3 | 1.3 minimum | CJK characters collide below 1.3 at slide sizes |
+| Code blocks | Full runnable code | Pseudocode + `.hl` keywords | Slide code is for structure, not execution |
+| Images | Inline with text | `width:100%; object-fit:contain; max-height:780px` | Avoid fixed height that clips different ratios |
+| Footer | Per-template | Single component, CSS-injected text | Prevents drift across 50+ slides |
+| Punctuation | Standard | Use ` - ` for short joins, `<ol>` for parallel items | CJK commas break visual rhythm at slide scale |
 
 ---
 
@@ -261,7 +281,7 @@ pdftoppm -png -r 300 out.pdf inspect
 pdffonts output.pdf
 ```
 
-If the output shows `DejaVuSerif` / `Bitstream Vera` - your specified font didn't load, fell through to system ultimate fallback. Expected: `Newsreader`, `Charter`, `TsangerJinKai02`, or a Japanese Mincho face such as `Hiragino-Mincho`, `YuMincho`, `Noto-Serif-CJK-JP`, or `Source-Han-Serif-JP`.
+If the output shows `DejaVuSerif` / `Bitstream Vera` - your specified font didn't load, fell through to system ultimate fallback. Expected: `Charter`, `Georgia`, `TsangerJinKai02`, or a Japanese Mincho face such as `YuMincho`, `Hiragino-Mincho`, `Noto-Serif-CJK-JP`, or `Source-Han-Serif-JP`.
 
 ### One-step build + validate
 
@@ -385,7 +405,7 @@ For resume, one-pager, and other length-capped docs.
 
 ```bash
 # Put .ttf alongside the HTML
-cp Newsreader.ttf workspace/
+cp TsangerJinKai02-W04.ttf workspace/
 
 # Or system install (Linux)
 apt install fonts-noto-cjk

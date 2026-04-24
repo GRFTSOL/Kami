@@ -57,6 +57,8 @@
     --border:    #e8e6dc;
     --border-soft:#e5e3d8;
     --tag-bg:    #E4ECF5;
+    --serif: "TsangerJinKai02", "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", "STSong", Georgia, serif;
+    --sans: var(--serif);
   }
 
   html, body { background: var(--parchment); }
@@ -67,15 +69,14 @@
 
   body {
     color: var(--near-black);
-    font-family: "TsangerJinKai02", "Source Han Serif SC",
-                 "Noto Serif CJK SC", "Songti SC", Georgia, serif;
+    font-family: var(--serif);
     font-size: 10pt;
     line-height: 1.45;
+    letter-spacing: 0.1pt;
   }
 
   .serif {
-    font-family: "TsangerJinKai02", "Source Han Serif SC",
-                 "Noto Serif CJK SC", "Songti SC", Georgia, serif;
+    font-family: var(--serif);
   }
 
   /* ════════════ COVER ════════════ */
@@ -89,7 +90,7 @@
     break-after: page;
   }
   .cover-top {
-    font-family: "TsangerJinKai02", "Source Han Serif SC", Georgia, serif;
+    font-family: var(--serif);
     font-size: 10pt;
     color: var(--brand);
     letter-spacing: 2pt;
@@ -101,15 +102,15 @@
     gap: 14pt;
   }
   .cover-name {
-    font-family: "TsangerJinKai02", "Source Han Serif SC", Georgia, serif;
+    font-family: var(--serif);
     font-size: 58pt;
     font-weight: 500;
     line-height: 1.05;
     color: var(--near-black);
-    letter-spacing: 2pt;
+    letter-spacing: 1pt;
   }
   .cover-tagline {
-    font-family: "TsangerJinKai02", "Source Han Serif SC", Georgia, serif;
+    font-family: var(--serif);
     font-size: 18pt;
     color: var(--olive);
     line-height: 1.4;
@@ -146,7 +147,7 @@
     margin-bottom: 8pt;
   }
   .about-title {
-    font-family: "TsangerJinKai02", "Source Han Serif SC", Georgia, serif;
+    font-family: var(--serif);
     font-size: 32pt;
     font-weight: 500;
     line-height: 1.2;
@@ -156,7 +157,7 @@
     padding-left: 8pt;
   }
   .about-lead {
-    font-family: "TsangerJinKai02", "Source Han Serif SC", Georgia, serif;
+    font-family: var(--serif);
     font-size: 15pt;
     line-height: 1.5;
     color: var(--dark-warm);
@@ -169,11 +170,11 @@
     gap: 24pt;
   }
   .about-body p {
-    line-height: 1.5;
+    line-height: 1.45;
     margin-bottom: 10pt;
   }
   .about-body h3 {
-    font-family: "TsangerJinKai02", "Source Han Serif SC", Georgia, serif;
+    font-family: var(--serif);
     font-size: 13pt;
     font-weight: 500;
     color: var(--near-black);
@@ -196,7 +197,7 @@
     padding-left: 8pt;
   }
   .project-num {
-    font-family: "TsangerJinKai02", "Source Han Serif SC", Georgia, serif;
+    font-family: var(--serif);
     font-size: 42pt;
     font-weight: 500;
     color: var(--brand);
@@ -215,7 +216,7 @@
     margin-bottom: 3pt;
   }
   .project-title {
-    font-family: "TsangerJinKai02", "Source Han Serif SC", Georgia, serif;
+    font-family: var(--serif);
     font-size: 22pt;
     font-weight: 500;
     color: var(--near-black);
@@ -280,7 +281,7 @@
     gap: 16pt;
   }
   .project-block h3 {
-    font-family: "TsangerJinKai02", "Source Han Serif SC", Georgia, serif;
+    font-family: var(--serif);
     font-size: 11pt;
     font-weight: 500;
     color: var(--brand);
@@ -309,7 +310,7 @@
     flex: 1;
   }
   .result-value {
-    font-family: "TsangerJinKai02", "Source Han Serif SC", Georgia, serif;
+    font-family: var(--serif);
     font-size: 18pt;
     font-weight: 500;
     color: var(--brand);
@@ -341,7 +342,7 @@
     padding-top: 10mm;
   }
   .more-works-title {
-    font-family: "TsangerJinKai02", "Source Han Serif SC", Georgia, serif;
+    font-family: var(--serif);
     font-size: 24pt;
     font-weight: 500;
     margin-bottom: 16pt;
@@ -358,12 +359,12 @@
     align-items: baseline;
   }
   .work-year {
-    font-family: "TsangerJinKai02", "Source Han Serif SC", Georgia, serif;
+    font-family: var(--serif);
     color: var(--brand);
     font-size: 11pt;
   }
   .work-title-block .title {
-    font-family: "TsangerJinKai02", "Source Han Serif SC", Georgia, serif;
+    font-family: var(--serif);
     font-size: 11pt;
     font-weight: 500;
     color: var(--near-black);
@@ -396,7 +397,7 @@
     margin-bottom: 12pt;
   }
   .contact-title {
-    font-family: "TsangerJinKai02", "Source Han Serif SC", Georgia, serif;
+    font-family: var(--serif);
     font-size: 48pt;
     font-weight: 500;
     line-height: 1.1;

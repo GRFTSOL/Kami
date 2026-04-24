@@ -35,16 +35,14 @@ STONE       = RGBColor(0x87, 0x86, 0x7f)
 BORDER      = RGBColor(0xe8, 0xe6, 0xdc)
 WHITE       = RGBColor(0xff, 0xff, 0xff)
 
-# Fonts. PPT accepts one requested face and falls back on the viewer's system.
+# Fonts. Single serif per page. PPT falls back on the viewer's system.
 # For Japanese best-effort output, set LANG = "ja" before generating.
 LANG = "zh"
 CN_SERIF = "Source Han Serif SC"
-CN_SANS  = "Source Han Sans SC"
-JA_SERIF = "Hiragino Mincho ProN"  # Windows fallback: YuMincho; Linux: Noto Serif CJK JP
-JA_SANS  = "Hiragino Sans"         # Windows fallback: Yu Gothic; Linux: Noto Sans CJK JP
+JA_SERIF = "YuMincho"  # Windows: Yu Mincho; Linux: Noto Serif CJK JP
 
 SERIF = JA_SERIF if LANG == "ja" else CN_SERIF
-SANS  = JA_SANS if LANG == "ja" else CN_SANS
+SANS  = SERIF
 
 # 16:9 宽屏
 SLIDE_W = Inches(13.33)

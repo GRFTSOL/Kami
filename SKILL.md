@@ -1,6 +1,6 @@
 ---
 name: kami
-description: 'Typeset any professional document: resumes, one-pagers, white papers, letters, portfolios, slide decks. Warm parchment design system with ink-blue accent, serif-led hierarchy, and tight editorial spacing. Trilingual best-effort output: Chinese docs use TsangerJinKai02 + Source Han, English docs use Newsreader + Inter, Japanese currently maps to the CJK template path with JP Mincho first and Tsanger fallback, and requires manual visual QA before shipping, with one shared English reference set. Triggers on "做 PDF / 排版 / 生成报告 / 一页纸 / 白皮书 / 作品集 / 正式信件 / 简历 / PPT / slides / 高质量文档 / 好看的排版", or "build me a resume / make a one-pager / design a slide deck / turn this into a PDF / make this presentable / polish typography", and when raw content is handed over to be "typeset, designed, made presentable".'
+description: 'Typeset any professional document: resumes, one-pagers, white papers, letters, portfolios, slide decks. Warm parchment design system with ink-blue accent, serif-led hierarchy, and tight editorial spacing. Trilingual best-effort output: Chinese docs use TsangerJinKai02 + Source Han, English docs use Charter serif, Japanese currently maps to the CJK template path with JP Mincho first and Tsanger fallback, and requires manual visual QA before shipping, with one shared English reference set. Triggers on "做 PDF / 排版 / 生成报告 / 一页纸 / 白皮书 / 作品集 / 正式信件 / 简历 / PPT / slides / 高质量文档 / 好看的排版", or "build me a resume / make a one-pager / design a slide deck / turn this into a PDF / make this presentable / polish typography", and when raw content is handed over to be "typeset, designed, made presentable".'
 ---
 
 # kami · 紙
@@ -184,17 +184,17 @@ Visual anomalies (tag double rectangle, font fallback, page break issues) -> `pr
 - Main serif: TsangerJinKai02-W04.ttf (400 weight) + TsangerJinKai02-W05.ttf (500 weight, real bold)
 - Templates use dual @font-face declarations: W04 for body text, W05 for headings
 - Both files are commercial fonts. Keep them available in the repository for local preview and CDN fallback, but do not bundle them inside Claude Desktop skill ZIPs
-- Fallback chain baked into templates: Source Han Serif SC -> Noto Serif CJK SC -> Songti SC -> Georgia
+- Fallback chain baked into templates: Source Han Serif SC -> Noto Serif CJK SC -> Songti SC -> STSong -> Georgia
 
 **Japanese (best-effort)**
 - Current routing uses the CJK template path (`*.html`, `slides.py`), no dedicated `-ja` templates yet
-- Use a JP Mincho-first stack: Hiragino Mincho ProN -> Yu Mincho / YuMincho -> Noto Serif CJK JP -> Source Han Serif JP -> TsangerJinKai02 -> serif
+- Use a JP Mincho-first stack: YuMincho -> Yu Mincho -> Hiragino Mincho ProN -> Noto Serif CJK JP -> Source Han Serif JP -> TsangerJinKai02 -> serif
 - Keep Japanese body copy, keep Tsanger as fallback or limited accent only, and visually verify line breaks, punctuation rhythm, and emphasis weight before shipping
 
 **English**
-- Main serif: Newsreader (Google Fonts, open source) - used for both headlines and body
-- Sans: Inter (open source) - used for UI elements only (labels, eyebrows, meta)
-- Fallback: Charter (macOS) / Georgia (cross-platform), Helvetica Neue / system-ui
+- Single serif: Charter (system-bundled, macOS/iOS), used for both headlines and body
+- No separate sans: `--sans: var(--serif)`, one font per page
+- Fallback: Georgia (cross-platform) / Palatino / Times New Roman
 
 Font files next to HTML and `@font-face` relative paths is the most stable setup. For Claude Desktop releases, run `scripts/package-skill.sh`; it excludes `assets/fonts/TsangerJinKai02-W04.ttf` and `assets/fonts/TsangerJinKai02-W05.ttf` while keeping the smaller open-source font files.
 

@@ -52,6 +52,8 @@
     --border:    #e8e6dc;
     --border-soft:#e5e3d8;
     --tag-bg:    #E4ECF5;
+    --serif: "TsangerJinKai02", "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", "STSong", Georgia, serif;
+    --sans: var(--serif);
   }
 
   html, body { background: var(--parchment); }
@@ -62,15 +64,14 @@
 
   body {
     color: var(--near-black);
-    font-family: "TsangerJinKai02", "Source Han Serif SC",
-                 "Noto Serif CJK SC", "Songti SC", Georgia, serif;
+    font-family: var(--serif);
     font-size: 10pt;
     line-height: 1.45;
+    letter-spacing: 0.1pt;
   }
 
   .serif {
-    font-family: "TsangerJinKai02", "Source Han Serif SC",
-                 "Noto Serif CJK SC", "Songti SC", Georgia, serif;
+    font-family: var(--serif);
   }
 
   /* ========== HEADER ========== */
@@ -90,13 +91,12 @@
   .eyebrow {
     font-size: 9pt;
     color: var(--brand);
-    letter-spacing: 0.5pt;
+    letter-spacing: 1pt;
     text-transform: uppercase;
     margin-bottom: 4pt;
   }
   h1 {
-    font-family: "TsangerJinKai02", "Source Han Serif SC",
-                 "Noto Serif CJK SC", Georgia, serif;
+    font-family: var(--serif);
     font-size: 24pt;
     font-weight: 500;
     color: var(--near-black);
@@ -136,7 +136,7 @@
     break-inside: avoid;
   }
   .metric-value {
-    font-family: "TsangerJinKai02", "Source Han Serif SC", Georgia, serif;
+    font-family: var(--serif);
     font-size: 20pt;
     font-weight: 500;
     color: var(--brand);
@@ -155,7 +155,7 @@
   section:last-of-type { margin-bottom: 0; }
 
   h2 {
-    font-family: "TsangerJinKai02", "Source Han Serif SC", Georgia, serif;
+    font-family: var(--serif);
     font-size: 15pt;
     font-weight: 500;
     color: var(--near-black);
@@ -217,7 +217,7 @@
     break-inside: avoid;
   }
   .tl-year {
-    font-family: "TsangerJinKai02", "Source Han Serif SC", Georgia, serif;
+    font-family: var(--serif);
     font-size: 11pt;
     font-weight: 500;
     color: var(--brand);

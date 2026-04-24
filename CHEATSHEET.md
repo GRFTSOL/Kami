@@ -75,13 +75,14 @@ Minimum floor: web text >= 12px, PDF text >= 9pt.
 
 ## Font stacks
 
+Each language uses a single serif for the entire page. `--sans` always equals `var(--serif)`.
+
 English:
 
 ```css
---serif: "Newsreader", "Source Serif 4", "Charter",
-         Georgia, "Times New Roman", serif;
---sans:  "Inter", -apple-system, BlinkMacSystemFont,
-         "Helvetica Neue", Arial, sans-serif;
+--serif: Charter, Georgia, Palatino,
+         "Times New Roman", serif;
+--sans:  var(--serif);
 --mono:  "JetBrains Mono", "SF Mono", "Fira Code",
          Consolas, Monaco, monospace;
 ```
@@ -92,10 +93,7 @@ Chinese:
 --serif: "TsangerJinKai02", "Source Han Serif SC",
          "Noto Serif CJK SC", "Songti SC", "STSong",
          Georgia, serif;
---sans:  "Inter", "TsangerJinKai02", -apple-system,
-         BlinkMacSystemFont, "Source Han Sans SC",
-         "Noto Sans CJK SC", "PingFang SC",
-         "Microsoft YaHei", Arial, sans-serif;
+--sans:  var(--serif);
 --mono:  "JetBrains Mono", "SF Mono", Consolas,
          "TsangerJinKai02", "Source Han Serif SC",
          monospace;
@@ -104,13 +102,10 @@ Chinese:
 Japanese:
 
 ```css
---serif: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho",
+--serif: "YuMincho", "Yu Mincho", "Hiragino Mincho ProN",
          "Noto Serif CJK JP", "Source Han Serif JP",
          "TsangerJinKai02", Georgia, serif;
---sans:  "Inter", "Hiragino Sans", "Yu Gothic",
-         "Noto Sans CJK JP", "Source Han Sans JP",
-         "TsangerJinKai02", -apple-system, BlinkMacSystemFont,
-         Arial, sans-serif;
+--sans:  var(--serif);
 ```
 
 Any font-family that may render Chinese or Japanese must include a CJK fallback, including `@page` footer text, `pre`, `code`, and SVG labels. A pure mono stack can render missing glyph boxes in WeasyPrint.

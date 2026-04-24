@@ -47,6 +47,8 @@
     --brand:     #1B365D;
     --brand-tint: #EEF2F7;          /* solid equivalent of rgba(1B365D, 0.08), avoids tag double-rectangle bug */
     --brand-tint-strong: #E4ECF5;   /* solid equivalent of rgba(1B365D, 0.14) */
+    --serif: "TsangerJinKai02", "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", "STSong", Georgia, serif;
+    --sans: var(--serif);
   }
 
   html, body { background: var(--parchment); }
@@ -57,14 +59,14 @@
 
   body {
     color: var(--near-black);
-    font-family: "TsangerJinKai02", "Noto Serif CJK SC", "DejaVu Serif", "PingFang SC", Georgia, serif;
+    font-family: var(--serif);
     font-size: 9.2pt;
-    line-height: 1.38;
+    line-height: 1.42;
     letter-spacing: 0.15pt;
   }
 
   .serif {
-    font-family: "TsangerJinKai02", "DejaVu Serif", "Noto Serif CJK SC", Georgia, serif;
+    font-family: var(--serif);
   }
 
   a { color: var(--brand); text-decoration: none; }
@@ -80,10 +82,10 @@
   }
   .header > div:first-child { flex-shrink: 0; }
   .name {
-    font-family: "TsangerJinKai02", "DejaVu Serif", "Noto Serif CJK SC", Georgia, serif;
+    font-family: var(--serif);
     font-size: 26.5pt;
     font-weight: 500;
-    letter-spacing: 1pt;
+    letter-spacing: 0.5pt;
     color: var(--near-black);
     line-height: 1;
     margin-bottom: 0;
@@ -126,7 +128,7 @@
     break-inside: avoid;
   }
   .metric-value {
-    font-family: "TsangerJinKai02", "DejaVu Serif", Georgia, serif;
+    font-family: var(--serif);
     font-size: 13pt;
     font-weight: 500;
     color: var(--brand);
@@ -144,7 +146,7 @@
 
   /* SECTION */
   .section-title {
-    font-family: "TsangerJinKai02", "DejaVu Serif", "Noto Serif CJK SC", Georgia, serif;
+    font-family: var(--serif);
     font-size: 12.5pt;
     font-weight: 500;
     color: var(--near-black);
@@ -158,7 +160,7 @@
   }
   .section-title .sub {
     margin-left: auto;
-    font-family: "TsangerJinKai02", "Noto Serif CJK SC", Georgia, serif;
+    font-family: var(--serif);
     font-weight: 400;
     font-size: 9pt;
     color: var(--stone);
@@ -174,7 +176,7 @@
   .section-title + .edu-row { padding-top: 1.2mm; }
 
   /* SUMMARY */
-  .summary { font-size: 9.2pt; line-height: 1.40; color: var(--near-black); }
+  .summary { font-size: 9.2pt; line-height: 1.42; color: var(--near-black); }
   .summary .em-brand { color: var(--brand); }
   .summary .hl { color: var(--brand); }
 
@@ -190,7 +192,7 @@
     margin-bottom: 0.5mm;
   }
   .tl-year {
-    font-family: "TsangerJinKai02", "DejaVu Serif", Georgia, serif;
+    font-family: var(--serif);
     font-size: 11pt; font-weight: 500;
     color: var(--brand); line-height: 1;
   }
@@ -212,7 +214,7 @@
     gap: 2mm; margin-bottom: 0.75mm;
   }
   .proj-name {
-    font-family: "TsangerJinKai02", "DejaVu Serif", "Noto Serif CJK SC", Georgia, serif;
+    font-family: var(--serif);
     font-size: 11pt; font-weight: 500; color: var(--near-black);
   }
   .proj-kind { font-size: 11pt; color: var(--olive); }
@@ -272,7 +274,7 @@
     break-inside: avoid;
   }
   .os-name {
-    font-family: "TsangerJinKai02", "DejaVu Serif", Georgia, serif;
+    font-family: var(--serif);
     font-size: 10pt; font-weight: 500;
     flex-shrink: 0; min-width: 14mm;
   }
@@ -320,7 +322,7 @@
     break-inside: avoid;
   }
   .ai-card-head {
-    font-family: "TsangerJinKai02", "DejaVu Serif", "Noto Serif CJK SC", Georgia, serif;
+    font-family: var(--serif);
     font-size: 9.8pt; font-weight: 500;
     color: var(--near-black); margin-bottom: 0.9mm;
     display: flex; align-items: baseline; gap: 1.5mm;
@@ -344,7 +346,7 @@
     break-inside: avoid;
   }
   .twitter-strip .handle {
-    font-family: "TsangerJinKai02", "DejaVu Serif", Georgia, serif;
+    font-family: var(--serif);
     font-size: 9.8pt; font-weight: 500; color: var(--brand);
     flex-shrink: 0;
   }
@@ -354,7 +356,7 @@
   .influence-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 5.5mm; }
   .inf-block-title {
     margin-top: 2.5mm;
-    font-family: "TsangerJinKai02", "DejaVu Serif", "Noto Serif CJK SC", Georgia, serif;
+    font-family: var(--serif);
     font-size: 9.8pt; font-weight: 500;
     color: var(--near-black);
     margin-bottom: 1.5mm; padding-bottom: 0.5mm;
@@ -362,7 +364,7 @@
     display: flex; align-items: baseline; gap: 2mm;
   }
   .inf-block-title .small {
-    font-family: "TsangerJinKai02", "Noto Serif CJK SC", Georgia, serif;
+    font-family: var(--serif);
     font-size: 9pt; color: var(--stone);
     font-weight: 400; margin-left: 0; letter-spacing: 0.2pt;
   }
@@ -428,13 +430,15 @@
   .skill-body { font-size: 9pt; color: var(--near-black); line-height: 1.40; letter-spacing: 0; flex: 1; }
   .skill-body .em-brand { color: var(--brand); }
 
+  .no-break { break-inside: avoid; }
+
   /* EDUCATION */
   .edu-row {
     display: flex; justify-content: space-between;
     align-items: baseline; font-size: 9.5pt; padding: 1.7mm 0;
   }
   .edu-row .school {
-    font-family: "TsangerJinKai02", "DejaVu Serif", "Noto Serif CJK SC", Georgia, serif;
+    font-family: var(--serif);
     font-weight: 500; font-size: 10.7pt;
   }
   .edu-row .major { color: var(--olive); font-size: 9.5pt; }
@@ -643,7 +647,7 @@
   <div class="section-title">对外影响力</div>
 
   <div class="twitter-strip">
-    <span class="handle serif">{{平台}} · <a href="{{URL}}" style="color: var(--brand); border-bottom: none;">@{{HANDLE}}</a></span>
+    <span class="handle serif">{{平台}} · <a href="{{URL}}">@{{HANDLE}}</a></span>
     <span class="follower">{{粉丝数}} 粉丝</span>
     <span class="desc">{{博客 / 周刊 / 其他内容产品简介}}</span>
   </div>
@@ -653,14 +657,14 @@
       <div class="inf-block-title">代表性技术长文<span class="small">{{副标题}}</span></div>
       <div class="art-row">
         <div class="art-header">
-          <a class="art-title" href="{{URL}}" style="text-decoration: none;">《{{文章标题}}》</a>
+          <a class="art-title" href="{{URL}}">《{{文章标题}}》</a>
           <span class="art-date">{{日期}}</span>
         </div>
         <div class="art-stats">{{浏览量 / 赞数 / 影响力指标}}</div>
       </div>
       <div class="art-row">
         <div class="art-header">
-          <a class="art-title" href="{{URL}}" style="text-decoration: none;">《{{文章标题}}》</a>
+          <a class="art-title" href="{{URL}}">《{{文章标题}}》</a>
           <span class="art-date">{{日期}}</span>
         </div>
         <div class="art-stats">{{浏览量 / 赞数}}</div>
@@ -712,7 +716,7 @@
   </div>
 </section>
 
-<section style="break-inside: avoid;">
+<section class="no-break">
   <div class="section-title">教育背景</div>
   <div class="edu-row">
     <div>

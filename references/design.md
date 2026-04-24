@@ -105,44 +105,24 @@ Ink Blue `#1B365D` over parchment `#f5f4ed`:
 ### Stacks
 
 ```css
-/* English serif */
-font-family: "Newsreader",
-             "Source Serif 4", "Source Serif Pro",
-             "Charter",
-             Georgia, "Times New Roman", serif;
+/* Single serif per page. --sans always equals var(--serif). */
 
-/* Chinese serif */
+/* English */
+font-family: Charter, Georgia, Palatino,
+             "Times New Roman", serif;
+
+/* Chinese */
 font-family: "TsangerJinKai02",
              "Source Han Serif SC", "Noto Serif CJK SC",
              "Songti SC", "STSong",
              Georgia, serif;
 
-/* Japanese serif */
-font-family: "Hiragino Mincho ProN",
-             "Yu Mincho", "YuMincho",
+/* Japanese */
+font-family: "YuMincho", "Yu Mincho",
+             "Hiragino Mincho ProN",
              "Noto Serif CJK JP", "Source Han Serif JP",
              "TsangerJinKai02",
              Georgia, serif;
-
-/* English sans / UI */
-font-family: "Inter",
-             -apple-system, BlinkMacSystemFont,
-             "Helvetica Neue", Arial, sans-serif;
-
-/* Chinese sans / UI */
-font-family: "Inter", "TsangerJinKai02",
-             -apple-system, BlinkMacSystemFont,
-             "Source Han Sans SC", "Noto Sans CJK SC",
-             "PingFang SC", "Microsoft YaHei",
-             Arial, sans-serif;
-
-/* Japanese sans / UI */
-font-family: "Inter",
-             "Hiragino Sans", "Yu Gothic",
-             "Noto Sans CJK JP", "Source Han Sans JP",
-             "TsangerJinKai02",
-             -apple-system, BlinkMacSystemFont,
-             Arial, sans-serif;
 
 /* Mono, with CJK fallback for comments and labels */
 font-family: "JetBrains Mono", "SF Mono", "Fira Code",
@@ -183,6 +163,9 @@ Any font-family that may render Chinese or Japanese must include a CJK fallback,
 
 **Design principle**: Serif uses only two weights (400/500), no synthetic bold (600/700), maintaining restrained typography.
 
+- `strong { font-weight: 500 }` in long-doc templates locks bold to W05, preventing browsers from synthesizing 700 on top of W05
+- **Web only**: W04 covers weight 400-500 (single `font-weight: 400 500` declaration); W05 is PDF-only because WeasyPrint cannot synthesize bold
+
 ### Line-height
 
 Print documents are **tighter** than English web body. English web typically runs 1.6-1.75; in print at pt sizes that feels loose and floats.
@@ -201,10 +184,13 @@ Print documents are **tighter** than English web body. English web typically run
 ### Letter-spacing
 
 - Body text: **0**
-- Chinese and Japanese body text, section titles, and Mincho samples: **0**
+- Chinese and Japanese body text with TsangerJinKai02: **0.1–0.2pt** to compensate for the font's natural density; section titles and Mincho samples: **0**
+- Chinese lede text (14–22pt) with TsangerJinKai02: **0.03–0.06em** to open up large-body paragraphs without breaking density; EN and JA lede: **0** (only TsangerJinKai02 needs density compensation)
+- Chinese and Japanese display text (24pt+): **0.2–1pt** optical spacing for visual breathing room at large sizes; scale with font size
 - English headings may use subtle optical tightening when needed; keep it localized, never inherited by body copy
 - Small labels (< 10pt): +0.2 to +0.5pt for readability
 - All-caps overlines: +0.5 to +1pt mandatory
+- **Slide-specific**: print tracking x0.5 at slide scale. Eyebrow max 3px (not 8px), display titles -0.5pt. Large type at 40pt+ will look scattered at print tracking values
 
 ---
 

@@ -306,7 +306,7 @@ PLACEHOLDER = re.compile(r"\{\{[^}]+\}\}")
 
 # Primary fonts expected in embedded PDF font names
 CN_PRIMARY_FONTS = {"TsangerJinKai02"}
-EN_PRIMARY_FONTS = {"Newsreader", "Inter"}
+EN_PRIMARY_FONTS = {"Charter"}
 
 
 def _pdf_font_names(pdf_path: Path) -> set[str]:
@@ -372,7 +372,7 @@ def verify_target(name: str, source: str, max_pages: int, src_dir: Path) -> list
     embedded = _pdf_font_names(out)
     fallback_present = any(
         kw in font for font in embedded
-        for kw in ("Newsreader", "Inter", "TsangerJinKai", "SourceHan", "Noto", "Georgia", "Charter", "Songti")
+        for kw in ("Georgia", "Palatino", "TsangerJinKai", "YuMincho", "Hiragino", "SourceHan", "Noto", "Charter", "Songti")
     )
 
     # Diagram templates are language-neutral and often rely on fallback stacks,

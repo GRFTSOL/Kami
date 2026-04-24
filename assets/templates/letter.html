@@ -46,6 +46,8 @@
     --stone:     #87867f;
     --brand:     #1B365D;
     --border:    #e8e6dc;
+    --serif: "TsangerJinKai02", "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", "STSong", Georgia, serif;
+    --sans: var(--serif);
   }
 
   html, body { background: var(--parchment); }
@@ -56,8 +58,7 @@
 
   body {
     color: var(--near-black);
-    font-family: "TsangerJinKai02", "Source Han Serif SC",
-                 "Noto Serif CJK SC", "Songti SC", Georgia, serif;
+    font-family: var(--serif);
     font-size: 11.5pt;
     line-height: 1.55;
     letter-spacing: 0.2pt;
@@ -120,10 +121,10 @@
     padding-left: 8pt;
   }
   .subject .label {
-    font-family: "Source Han Sans SC", sans-serif;
+    font-family: var(--sans);
     font-size: 9pt;
     color: var(--brand);
-    letter-spacing: 0.8pt;
+    letter-spacing: 1pt;
     text-transform: uppercase;
     margin-bottom: 3pt;
   }
@@ -184,7 +185,7 @@
     border-top: 0.5pt dotted var(--border);
     font-size: 9.5pt;
     color: var(--stone);
-    font-family: "Source Han Sans SC", sans-serif;
+    font-family: var(--sans);
     line-height: 1.55;
   }
   .attachments .label {
@@ -196,7 +197,7 @@
   /* ========== 一些特殊变体 ========== */
   /* 如果是 memo（备忘录），用 sans 字体，去掉首行缩进 */
   body.memo {
-    font-family: "Source Han Sans SC", -apple-system, sans-serif;
+    font-family: var(--sans);
     line-height: 1.55;
   }
   body.memo .body-content p { text-indent: 0; margin-bottom: 10pt; }
