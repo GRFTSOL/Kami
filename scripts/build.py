@@ -270,7 +270,11 @@ def sync_check(verbose: bool = False) -> int:
         print(f"ERROR: tokens.json not found at {TOKENS_FILE.relative_to(ROOT)}")
         return 1
 
-    canonical: dict[str, str] = json.loads(TOKENS_FILE.read_text())
+    try:
+        canonical: dict[str, str] = json.loads(TOKENS_FILE.read_text())
+    except json.JSONDecodeError as exc:
+        print(f"ERROR: tokens.json is malformed: {exc}")
+        return 1
 
     targets: list[Path] = list(TEMPLATES.glob("*.html"))
     if DIAGRAMS.exists():
@@ -347,7 +351,8 @@ def _pdf_font_names(pdf_path: Path) -> set[str]:
                 if base:
                     fonts.add(str(base).lstrip("/"))
         return fonts
-    except Exception:
+    except Exception as exc:
+        print(f"  WARN: could not read font names from PDF: {exc}")
         return set()
 
 
@@ -367,7 +372,7 @@ def verify_target(name: str, source: str, max_pages: int, src_dir: Path) -> list
 
     EXAMPLES.mkdir(parents=True, exist_ok=True)
     out = EXAMPLES / f"{name}.pdf"
-    HTML(str(src), base_url=str(src_dir)).write_pdf(str(out))
+    HTML(str(src), base_url=str(src.parent)).write_pdf(str(out))
 
     # Set PDF metadata (only replaces placeholders, preserves filled values)
     author = infer_author()

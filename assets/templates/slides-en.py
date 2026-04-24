@@ -7,7 +7,7 @@ Usage:
   python3 slides-en.py
 
 Output:
-  output.pptx (16:9, parchment aesthetic, Georgia serif)
+  output.pptx (16:9, parchment aesthetic, Charter serif)
 
 This is a template. Fill in your content and run it directly.
 """

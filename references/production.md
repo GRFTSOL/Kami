@@ -1,6 +1,6 @@
 # Production (Build · Verify · Troubleshoot)
 
-The engineering runbook for kami: from HTML / Python templates to PDF / PPTX deliverables. Four parts: **HTML -> PDF** · **Python -> PPTX** · **Verify & Debug** · **15 known pitfalls**.
+The engineering runbook for kami: from HTML / Python templates to PDF / PPTX deliverables. Four parts: **HTML -> PDF** · **Python -> PPTX** · **Verify & Debug** · **16 known pitfalls**.
 
 ---
 
@@ -330,7 +330,7 @@ If any row fails, fix it before delivery.
 
 ---
 
-## Part 4 · 15 known pitfalls
+## Part 4 · 16 known pitfalls
 
 Every entry below came from a real failure. Check here first when something looks wrong.
 
