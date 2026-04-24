@@ -73,7 +73,7 @@ The skill auto-triggers from natural requests, no slash command needed. Optimize
 
 Example prompts by language:
 
-- English: `make a one-pager for my startup` / `turn this research into a long doc` / `write a formal letter` / `make a portfolio showcasing my projects` / `build me a resume` / `design a slide deck for my talk`
+- English: `make a one-pager for my startup` / `turn this research into a long doc` / `write a formal letter` / `make a portfolio of my projects` / `build me a resume` / `design a slide deck for my talk`
 - 中文: `帮我做一份一页纸` / `帮我排版一份长文档` / `帮我写一封正式信件` / `帮我做一份作品集` / `帮我做一份简历` / `帮我做一套演讲幻灯片`
 - 日本語: `スタートアップ向けの一枚資料を作って` / `この調査を長文レポートに整えて` / `正式な依頼文を作って` / `プロジェクト作品集を作って` / `履歴書を作って` / `登壇用スライドを作って`
 
@@ -81,7 +81,7 @@ Inline charts: mention the data and chart type. Kami embeds bar, line, and donut
 
 - English: `add a revenue breakdown donut chart` / `show the quarterly delivery trend as a bar chart` / `draw a line chart of user growth`
 - 中文: `加一个营收结构环形图` / `用柱状图展示季度交付量` / `画一条用户增长折线`
-- 日本語: `売上構成のドーナツチャートを追加して` / `四半期の出荷推移を棒グラフで示して` / `ユーザー成長の折れ線グラフを入れて`
+- 日本語: `売上構成ドーナツチャートを追加して` / `四半期の出荷推移を棒グラフで示して` / `ユーザー成長の折れ線グラフを入れて`
 
 ## Design
 
