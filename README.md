@@ -10,10 +10,9 @@
 
 ## Why
 
-Kami (紙, かみ) is a Japanese word for paper: the surface where a finished idea lands. Most AI-generated documents drift into generic corporate gray or inconsistent styling that shifts across sessions, requiring manual cleanup before they can be sent.
+Kami (紙, かみ) means paper in Japanese: the surface where a finished idea lands. AI-generated documents keep drifting into generic gray, inconsistent styling, and layouts that change every session.
 
-Kami is a document design system for the AI era: one constraint language for six formats, simple for agents to run reliably and strict enough to keep outputs coherent and ready to ship.
-It supports English and Chinese directly, with Japanese via a best-effort CJK template path and a final visual QA pass before delivery.
+Kami is a document design system for the AI era: one constraint language, six formats, simple enough for agents to run reliably, strict enough to keep every output coherent and ready to ship. English and Chinese are first-class; Japanese works via a best-effort CJK path with visual QA before delivery.
 
 Part of a trilogy: [Kaku](https://github.com/tw93/Kaku) (書く) writes code, [Waza](https://github.com/tw93/Waza) (技) drills habits, [Kami](https://github.com/tw93/Kami) (紙) delivers documents.
 
@@ -68,11 +67,9 @@ npx skills add tw93/kami -a '*' -g -y
 
 Download [kami.zip](https://cdn.jsdelivr.net/gh/tw93/kami@main/dist/kami.zip), open Customize > Skills > "+" > Create skill, and upload the ZIP directly (no need to unzip).
 
-The ZIP is intentionally lightweight: TsangerJinKai Chinese fonts load from local checkout first, then jsDelivr CDN, not bundled inside. If rendering is off, Claude downloads them automatically on the next run.
+The ZIP is lightweight: Chinese fonts load from local checkout first, then jsDelivr CDN. If rendering is off, Claude downloads them on the next run. To update: download the same URL, click "..." on the skill card, choose Replace, upload.
 
-To update: download the same ZIP URL, click "..." on the kami skill card, choose Replace, and upload the new ZIP.
-
-The skill auto-triggers from natural requests, no slash command required. It is optimized for English and Chinese across one-pagers, long docs, formal letters, portfolios, resumes, and slides. Japanese is also supported via a best-effort CJK path, with a final visual QA pass before delivery.
+The skill auto-triggers from natural requests, no slash command needed. Optimized for English and Chinese; Japanese supported via a best-effort CJK path with visual QA before delivery.
 
 Example prompts by language:
 
@@ -80,9 +77,7 @@ Example prompts by language:
 - 中文: `帮我做一份一页纸` / `帮我排版一份长文档` / `帮我写一封正式信件` / `帮我做一份作品集` / `帮我做一份简历` / `帮我做一套演讲幻灯片`
 - 日本語: `スタートアップ向けの一枚資料を作って` / `この調査を長文レポートに整えて` / `正式な依頼文を作って` / `プロジェクト作品集を作って` / `履歴書を作って` / `登壇用スライドを作って`
 
-To include inline charts, mention the data and chart type in your prompt. Kami embeds bar charts, line charts, and donut charts directly into the document as SVG, no external tools needed.
-
-Chart prompts by language:
+Inline charts: mention the data and chart type. Kami embeds bar, line, and donut charts as SVG, no external tools needed.
 
 - English: `add a revenue breakdown donut chart` / `show the quarterly delivery trend as a bar chart` / `draw a line chart of user growth`
 - 中文: `加一个营收结构环形图` / `用柱状图展示季度交付量` / `画一条用户增长折线`
@@ -90,9 +85,9 @@ Chart prompts by language:
 
 ## Design
 
-Warm parchment canvas, ink blue as the sole accent, serif carries hierarchy, no hard shadows or flashy palettes. This is not a UI framework; it is a constraint system for printed matter. Quality documents should read as composed pages, not dashboards.
+Warm parchment canvas, ink blue as the sole accent, serif carries hierarchy, no hard shadows or flashy palettes. Not a UI framework; a constraint system for printed matter. Documents should read as composed pages, not dashboards.
 
-Six document types (One-Pager, Long Doc, Letter, Portfolio, Resume, Slides), with dedicated English and Chinese templates and a best-effort Japanese path. Twelve inline SVG diagram types are included: architecture, flowchart, quadrant, bar chart, line chart, donut chart, state machine, timeline, swimlane, tree, layer stack, and Venn. Kami picks the right variant based on the language you write in.
+Six document types (One-Pager, Long Doc, Letter, Portfolio, Resume, Slides) with dedicated EN/CN templates and a best-effort Japanese path. Twelve inline SVG diagram types included. Kami picks the right variant based on the language you write in.
 
 | Element | Rule |
 |---|---|

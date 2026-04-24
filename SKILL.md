@@ -1,6 +1,6 @@
 ---
 name: kami
-description: 'Typeset any professional document: resumes, one-pagers, white papers, letters, portfolios, slide decks. Warm parchment design system with ink-blue accent, serif-led hierarchy, and tight editorial spacing. Trilingual best-effort output: Chinese docs use TsangerJinKai02 + Source Han, English docs use Charter serif, Japanese currently maps to the CJK template path with JP Mincho first and Tsanger fallback, and requires manual visual QA before shipping, with one shared English reference set. Triggers on "做 PDF / 排版 / 生成报告 / 一页纸 / 白皮书 / 作品集 / 正式信件 / 简历 / PPT / slides / 高质量文档 / 好看的排版", or "build me a resume / make a one-pager / design a slide deck / turn this into a PDF / make this presentable / polish typography", and when raw content is handed over to be "typeset, designed, made presentable".'
+description: 'Typeset professional documents: resumes, one-pagers, white papers, letters, portfolios, slide decks. Warm parchment, ink-blue accent, serif-led hierarchy. CN uses TsangerJinKai02, EN uses Charter, JA uses YuMincho (best-effort). Triggers on "做 PDF / 排版 / 一页纸 / 白皮书 / 作品集 / 简历 / PPT / slides", or "build me a resume / make a one-pager / design a slide deck / turn this into a PDF / make this presentable".'
 ---
 
 # kami · 紙
@@ -13,7 +13,7 @@ Part of `Kaku · Waza · Kami` - Kaku writes code, Waza drills habits, **Kami de
 
 ## Step 1 · Decide the language
 
-**Match the user's language**. If they write in Chinese -> use the Chinese templates (`.html` / `slides.py`). If they write in English -> use the English templates (`-en.html` / `slides-en.py`). If they write in Japanese -> use the CJK template path (`.html` / `slides.py`) as best-effort, keep Japanese copy, set JP Mincho first with Tsanger fallback, and run visual QA before shipping. The reference docs are shared English specs for all output languages.
+**Match the user's language.** Chinese -> `*.html` / `slides.py`. English -> `*-en.html` / `slides-en.py`. Japanese -> CJK path (`.html` / `slides.py`) as best-effort, JP Mincho first, visual QA before shipping. Reference docs are shared English specs.
 
 When ambiguous (e.g. a one-word command like "resume"), ask a one-liner rather than guess.
 
@@ -187,20 +187,20 @@ Visual anomalies (tag double rectangle, font fallback, page break issues) -> `pr
 - Fallback chain baked into templates: Source Han Serif SC -> Noto Serif CJK SC -> Songti SC -> STSong -> Georgia
 
 **Japanese (best-effort)**
-- Current routing uses the CJK template path (`*.html`, `slides.py`), no dedicated `-ja` templates yet
-- Use a JP Mincho-first stack: YuMincho -> Yu Mincho -> Hiragino Mincho ProN -> Noto Serif CJK JP -> Source Han Serif JP -> TsangerJinKai02 -> serif
-- Keep Japanese body copy, keep Tsanger as fallback or limited accent only, and visually verify line breaks, punctuation rhythm, and emphasis weight before shipping
+- Uses CJK template path, no dedicated `-ja` templates yet
+- JP Mincho-first stack: YuMincho -> Hiragino Mincho ProN -> Noto Serif CJK JP -> Source Han Serif JP -> TsangerJinKai02 -> serif
+- Visually verify line breaks, punctuation rhythm, and emphasis weight before shipping
 
 **English**
 - Single serif: Charter (system-bundled, macOS/iOS), used for both headlines and body
 - No separate sans: `--sans: var(--serif)`, one font per page
 - Fallback: Georgia (cross-platform) / Palatino / Times New Roman
 
-Font files next to HTML and `@font-face` relative paths is the most stable setup. For Claude Desktop releases, run `scripts/package-skill.sh`; it excludes `assets/fonts/TsangerJinKai02-W04.ttf` and `assets/fonts/TsangerJinKai02-W05.ttf` while keeping the smaller open-source font files.
+Font files next to HTML with relative `@font-face` paths is the most stable setup. `scripts/package-skill.sh` excludes TsangerJinKai TTFs from the Claude Desktop ZIP.
 
 **Font auto-recovery (Claude Desktop)**
 
-When building a Chinese document, check whether the font files are present before running the build. If they are missing, download them directly into `assets/fonts/` so WeasyPrint picks them up via the existing relative `@font-face` path, no HTML changes needed:
+Before building Chinese documents, check font files. If missing, download into `assets/fonts/`:
 
 ```bash
 # Check
@@ -212,13 +212,11 @@ test -f assets/fonts/TsangerJinKai02-W04.ttf || {
 }
 ```
 
-Run this check once before `python3 scripts/build.py`. If the network is unavailable, WeasyPrint falls back to Source Han Serif SC; warn the user but still deliver the PDF.
+Run once before building. If network is unavailable, WeasyPrint falls back to Source Han Serif SC.
 
 ## Feedback protocol
 
-When the user gives **vague visual feedback** ("looks off", "不对劲", "spacing weird", "too cramped", "not elegant"):
-
-Do not guess. Ask back using kami vocabulary, with current values included.
+When the user gives **vague visual feedback** ("looks off", "太挤了", "not elegant"), do not guess. Ask back with current values:
 
 | User says | Ask about |
 |---|---|
