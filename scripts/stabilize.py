@@ -31,13 +31,13 @@ DEFAULT_OUT_DIR = ROOT / "dist" / "stabilized"
 HTML_TARGETS: dict[str, tuple[str, int]] = {
     "one-pager": ("one-pager.html", 1),
     "letter": ("letter.html", 1),
-    "long-doc": ("long-doc.html", 0),
-    "portfolio": ("portfolio.html", 0),
+    "long-doc": ("long-doc.html", 9),
+    "portfolio": ("portfolio.html", 8),
     "resume": ("resume.html", 2),
     "one-pager-en": ("one-pager-en.html", 1),
     "letter-en": ("letter-en.html", 1),
-    "long-doc-en": ("long-doc-en.html", 0),
-    "portfolio-en": ("portfolio-en.html", 0),
+    "long-doc-en": ("long-doc-en.html", 9),
+    "portfolio-en": ("portfolio-en.html", 8),
     "resume-en": ("resume-en.html", 2),
 }
 

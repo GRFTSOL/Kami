@@ -262,7 +262,24 @@ def show_fonts(pdf: Path) -> None:
 
 ROOT_BLOCK = re.compile(r":root\s*\{([^}]*)\}", re.DOTALL)
 CSS_VAR = re.compile(r"--([\w-]+)\s*:\s*([^;]+);")
+PY_RGB = re.compile(
+    r"^([A-Z][A-Z_]+)\s*=\s*RGBColor\(\s*0x([0-9a-fA-F]{2})\s*,"
+    r"\s*0x([0-9a-fA-F]{2})\s*,\s*0x([0-9a-fA-F]{2})\s*\)",
+    re.MULTILINE,
+)
 TOKENS_FILE = ROOT / "references" / "tokens.json"
+
+# Python const name -> tokens.json key. Only constants that mirror a CSS token.
+PY_TOKEN_MAP = {
+    "PARCHMENT": "--parchment",
+    "IVORY": "--ivory",
+    "BRAND": "--brand",
+    "NEAR_BLACK": "--near-black",
+    "DARK_WARM": "--dark-warm",
+    "CHARCOAL": "--charcoal",
+    "OLIVE": "--olive",
+    "STONE": "--stone",
+}
 
 
 def sync_check(verbose: bool = False) -> int:
@@ -279,6 +296,7 @@ def sync_check(verbose: bool = False) -> int:
     targets: list[Path] = list(TEMPLATES.glob("*.html"))
     if DIAGRAMS.exists():
         targets.extend(DIAGRAMS.glob("*.html"))
+    py_targets: list[Path] = list(TEMPLATES.glob("*.py"))
 
     drift: list[tuple[str, str, str, str]] = []  # (file, token, expected, actual)
 
@@ -303,8 +321,24 @@ def sync_check(verbose: bool = False) -> int:
             if actual is not None and actual.lower() != expected.lower():
                 drift.append((str(rel), token, expected, actual))
 
+    for path in sorted(py_targets):
+        text = path.read_text(encoding="utf-8", errors="replace")
+        rel = path.relative_to(ROOT)
+        for m in PY_RGB.finditer(text):
+            name = m.group(1)
+            token = PY_TOKEN_MAP.get(name)
+            if token is None:
+                continue
+            expected = canonical.get(token)
+            if expected is None:
+                continue
+            actual = f"#{m.group(2)}{m.group(3)}{m.group(4)}"
+            if actual.lower() != expected.lower():
+                drift.append((str(rel), token, expected, actual))
+
     if not drift:
-        print(f"OK: tokens in sync across {len(targets)} template(s)")
+        scanned = len(targets) + len(py_targets)
+        print(f"OK: tokens in sync across {scanned} template(s)")
         return 0
 
     print(f"\n[token-drift] {len(drift)}")

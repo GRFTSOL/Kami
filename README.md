@@ -105,4 +105,6 @@ Later I needed to present "The Agent You Don't Know: Principles, Architecture an
 
 ## License
 
-MIT License. Feel free to use kami and contribute.
+MIT License for kami code and templates. Feel free to use and contribute.
+
+**Fonts**: TsangerJinKai02 (Chinese) is free for personal use only; commercial use requires a license from [tsanger.cn](https://tsanger.cn). Charter (English), YuMincho (Japanese), and CJK fallbacks are system-bundled or open-licensed.
