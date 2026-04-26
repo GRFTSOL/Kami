@@ -49,6 +49,7 @@ Branded documents should first make the subject recognizable, then use decoratio
 - If a key material is missing, mark the gap or ask the user. Do not fill the page with unrelated imagery
 - Physical products prefer official product images; digital products prefer real UI screenshots
 - If brand color is unknown, keep kami ink-blue rather than inventing a new color
+- **Third-party figures**: when redrawing a paper figure, patent illustration, or official architecture diagram for visual consistency, mark the redraw as `Schematic redrawn` /「示意重绘」in the caption. Do not style a redrawn version to look like the original screenshot. If the figure carries primary evidentiary value (patent, official spec), embed the original with attribution rather than redrawing it
 
 ---
 
@@ -286,6 +287,36 @@ Structure is necessary but not sufficient. These bars define what separates comp
 2. 5-8 items per section. If more, this is probably 2 releases
 3. Group by user impact (Breaking / Features / Fixes), not by component or file
 4. No internal jargon. "Fix memory leak in image decoder" is clear. "Fix retain cycle in UIImageDecoderBridge" is not
+
+---
+
+## Diagrams and infographics
+
+Words inside a diagram or infographic (title, eyebrow, node label, summary line) follow tighter rules than body prose. Readers process them in seconds, so rhetorical flourish reads as noise. This applies whether the figure is a Kami SVG embedded in a long-doc or an external image rendered elsewhere.
+
+### Avoid colloquial slogan-words
+
+| Avoid | Why it fails |
+|---|---|
+| 白搭 / 立住 / 才顺 / 回炉 / 闸 | Slang verbs; rewrite as a literal claim |
+| 必看 / 一图看懂 / 彻底搞懂 | Bait phrasing; state the figure's actual content |
+| 爆款 / 神器 | Marketing tone in an engineering figure |
+| 飞轮 / 闭环 (unless audience is fluent) | Use 数据循环 / 持续改进 / 四类入口 |
+
+### Avoid product-specific judgments that date fast
+
+Pinning a category to a current product name ages the figure within a quarter, because tools evolve faster than diagrams ship. Frame the paradigm and let the reader map products themselves: prefer 「上一代工具范式 / 新一代执行范式」over 「Cursor 是副驾驶 / Claude Code 是自动驾驶」.
+
+### Slogan to neutral rewrites
+
+| Before (slogan) | After (neutral) |
+|---|---|
+| 没对完，不算完成 | 交付前，过三遍 |
+| 任一不过则回炉 | 任一步不通过，回到修改 |
+| 交付前最后一道闸 | 交付前最后检查 |
+| 订阅前先把这些习惯立住 | 订阅前的基础检查 |
+
+The principle: a diagram caption is engineering documentation, not marketing copy. Restraint reads as competence; bravado reads as filler.
 
 ---
 

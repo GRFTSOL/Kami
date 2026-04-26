@@ -112,7 +112,42 @@ Don't add a fourth state ("warning amber", "success green"). kami has one accent
 
 ---
 
-## 4. AI-slop anti-patterns
+## 4. Icon style
+
+Icons live inside `<svg>` blocks alongside diagram nodes. Draw them with the same primitives (`rect`, `circle`, `line`, `path`) used for nodes - no imported icon fonts, no SVG sprites.
+
+**Rules**:
+- Single line, stroke 1pt-1.5pt, no fill
+- Stroke weight stays consistent within one diagram. Never mix 1pt and 1.5pt icons in the same figure
+- No drop shadow, gradient, 3D, or glassmorphism
+- No emoji-style faces, mascots, or expressive characters - this is editorial schematic, not playful
+- Focal icons may use `--brand` stroke or fill, but the figure's total ink-blue area still respects the 5% cap
+
+### Canonical shapes
+
+When an icon represents a recurring concept, use the canonical form rather than inventing a new one:
+
+| Concept | Shape |
+|---|---|
+| Terminal / CLI | rounded rectangle, three dots top-left |
+| Document / spec | rectangle, three short horizontal lines |
+| Checklist / verification | rectangle, two check marks |
+| Gear / system | 8-tooth gear outline |
+| Magnifier / inspect | circle with 45° handle |
+| Shield / safety | shield silhouette |
+| Cloud / hosted service | three-arc cloud outline |
+| Chip / hardware | square with leg lines on four sides |
+| GPU / compute rack | rectangular stack with port indicators |
+
+### Human and robot figures
+
+Avoid human figures and anthropomorphic AI in editorial diagrams. If a person must appear, use a minimal line drawing without facial detail. Industrial robots may be line-art mechanical structures, but stop short of patent-illustration density.
+
+When in doubt, omit the icon entirely. A clean text label beats a cute icon in editorial schematic style. Add an icon only when it carries information the label cannot (e.g. distinguishing "cloud service" from "on-device compute" at a glance).
+
+---
+
+## 5. AI-slop anti-patterns
 
 Scan for these when drawing or reviewing:
 
@@ -140,7 +175,7 @@ Scan for these when drawing or reviewing:
 
 ---
 
-## 5. Common pairings
+## 6. Common pairings
 
 ### Technical white paper
 - Architecture (system overview) + built-in timeline (from long-doc)
@@ -162,7 +197,7 @@ Scan for these when drawing or reviewing:
 
 ---
 
-## 6. Data charts (bar / line / donut)
+## 7. Data charts (bar / line / donut)
 
 Five data-driven chart types for investment reports, financial comparisons, and market-share breakdowns. Like the first three diagram types, all are self-contained HTML + inline SVG, embeddable in any kami document.
 
@@ -234,7 +269,7 @@ Connector: dashed 0.8px #b8b7b0 between adjacent bar edges
 
 ---
 
-## 7. Build / preview
+## 8. Build / preview
 
 ```bash
 python3 scripts/build.py diagram-architecture
@@ -260,6 +295,6 @@ Or just open `assets/diagrams/*.html` in a browser.
 
 ---
 
-## 8. Credit
+## 9. Credit
 
 This capability is inspired by Cathryn Lavery's [diagram-design](https://github.com/cathrynlavery/diagram-design) (a Claude Code skill with 13 editorial diagram types). kami borrowed the **approach** (inline SVG, semantic tokens, complexity budget, anti-slop table). Not the full catalog.

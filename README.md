@@ -91,6 +91,34 @@ Six document types (One-Pager, Long Doc, Letter, Portfolio, Resume, Slides) with
 
 Full spec: [design.md](references/design.md). Cheatsheet: [CHEATSHEET.md](CHEATSHEET.md).
 
+## Travel
+
+The same constraint system doubles as a brief you can hand to any drawing tool. Point it at [diagrams.md](references/diagrams.md) and [writing.md](references/writing.md), and the output inherits warm parchment, ink-blue restraint, single-line geometric icons, and editorial typography. Append this snippet after your drawing request:
+
+> Apply the Kami design system from https://cdn.jsdelivr.net/gh/tw93/kami@main/references/diagrams.md and https://cdn.jsdelivr.net/gh/tw93/kami@main/references/writing.md.
+
+<table>
+<tr>
+  <td align="center" width="33%">
+    <img src="assets/illustrations/travel-tesla-optimus.png" alt="Tesla Optimus patent overview">
+    <br><b>Evidence layout</b> · 中文
+    <br><sub>Tesla Optimus 手部和前臂专利图一览</sub>
+  </td>
+  <td align="center" width="33%">
+    <img src="assets/illustrations/travel-spatialvla.png" alt="SpatialVLA architecture redraw">
+    <br><b>Architecture redraw</b> · English
+    <br><sub>SpatialVLA Figure 1, schematic</sub>
+  </td>
+  <td align="center" width="33%">
+    <img src="assets/illustrations/travel-3d-representations.png" alt="3D representation tradeoffs">
+    <br><b>Concept tradeoff</b> · 中文
+    <br><sub>3D 表示的算力-推理性取舍</sub>
+  </td>
+</tr>
+</table>
+
+<sub>Rendered by ChatGPT Images 2.0 in a single pass with no manual touch-up. Kami specifies, the renderer draws.</sub>
+
 ## Background
 
 I like investing in US equities and ask Claude to write research reports all the time. Every output landed in the same default-doc look: gray, flat, a different layout each session. The structure was hard to scan, the formatting felt dated, and nothing about the page made me want to keep reading. So I started fixing the typography, the palette, the spacing, one rule at a time, until the report became a page I actually enjoyed.
