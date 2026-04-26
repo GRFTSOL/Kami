@@ -21,10 +21,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-ROOT = Path(__file__).resolve().parent.parent
-TEMPLATES = ROOT / "assets" / "templates"
+from shared import COOL_GRAY_BLOCKLIST, ROOT, TEMPLATES, TOKENS_FILE
+
 PROFILES_FILE = ROOT / "references" / "stabilizer_profiles.json"
-TOKENS_FILE = ROOT / "references" / "tokens.json"
 DEFAULT_OUT_DIR = ROOT / "dist" / "stabilized"
 
 # HTML targets only. Diagrams/slides are intentionally excluded from stabilize v0.
@@ -60,55 +59,6 @@ PAGE_MARGIN_MM_RE = re.compile(
     r"(margin\s*:\s*)([0-9]*\.?[0-9]+)mm\s+([0-9]*\.?[0-9]+)mm\s+([0-9]*\.?[0-9]+)mm\s+([0-9]*\.?[0-9]+)mm(\s*;)",
     re.IGNORECASE,
 )
-
-COOL_GRAY_BLOCKLIST = {
-    "#888",
-    "#888888",
-    "#666",
-    "#666666",
-    "#999",
-    "#999999",
-    "#ccc",
-    "#cccccc",
-    "#ddd",
-    "#dddddd",
-    "#eee",
-    "#eeeeee",
-    "#111",
-    "#111111",
-    "#222",
-    "#222222",
-    "#333",
-    "#333333",
-    "#444",
-    "#444444",
-    "#555",
-    "#555555",
-    "#777",
-    "#777777",
-    "#aaa",
-    "#aaaaaa",
-    "#bbb",
-    "#bbbbbb",
-    "#6b7280",
-    "#9ca3af",
-    "#d1d5db",
-    "#e5e7eb",
-    "#f3f4f6",
-    "#4b5563",
-    "#374151",
-    "#1f2937",
-    "#111827",
-    "#f8f9fa",
-    "#e9ecef",
-    "#dee2e6",
-    "#ced4da",
-    "#adb5bd",
-    "#6c757d",
-    "#495057",
-    "#343a40",
-    "#212529",
-}
 
 PARCHMENT_RGB = (245, 244, 237)
 
