@@ -676,3 +676,33 @@ Key rules:
 - Use the three-column grid, not flex. The third column is always 40pt wide; the percentage never moves regardless of bar length.
 - Color: single `--brand` fill only. No color gradients or per-row hues. Vary opacity (e.g. `opacity: 0.7`) if a visual ranking is needed, not hue.
 - Inline labels inside the bar (count, name) go in an absolutely positioned child inside `.funnel-track`, not in the grid's third column.
+
+---
+
+## 10. Image Aspect Ratios and Cropping
+
+Use this table when placing images in any Kami template. The ratios are defaults, not constraints; adjust by one step if the source image differs significantly.
+
+| Context | Preferred ratio | Notes |
+|---|---|---|
+| Hero full-bleed (slides / cover) | 16:9 | One image fills the slide; use `object-fit: cover` |
+| Main document image (long-doc / portfolio spread) | 4:3 or 16:10 | Standard editorial proportion |
+| Side-by-side grid (two images per row) | 3:2 | Even weight, comfortable scanning |
+| Magazine inset (text wraps around) | 3:2 or 3:4 | Portrait works when the subject is a person |
+| Square thumbnail (icon grid, avatar, logo) | 1:1 | Enforced with `aspect-ratio: 1/1` |
+| Slide image grid (26vh fixed-height row) | Fixed height, free width | Grid items share a row height; clip width to fit |
+
+**Cropping rule**: always `object-position: top center`. Crop from the bottom first, then from the sides. Never crop from the top; heads, titles, and focal points live there.
+
+```css
+.frame-img,
+figure img,
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+```
+
+Apply this rule to any `<img>` placed inside a fixed-size container. For `object-fit: contain` (slides, logos), `object-position` has no visible effect; omit it.

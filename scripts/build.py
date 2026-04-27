@@ -12,6 +12,8 @@ Usage:
     python3 scripts/build.py --check-placeholders path/to/doc.html
     python3 scripts/build.py --check-orphans      # scan example PDFs for orphan text
     python3 scripts/build.py --check-orphans path/to/doc.pdf
+    python3 scripts/build.py --check-rhythm       # warn on monotonous slide sequences
+    python3 scripts/build.py --check-rhythm slides slides-en
 """
 from __future__ import annotations
 
@@ -726,6 +728,93 @@ def check_all(verbose: bool) -> int:
     return 1
 
 
+# ------------------------- rhythm check -------------------------
+
+# Layout functions that count as "divider" slides (break monotony).
+_DIVIDER_FUNCS = {"chapter_slide"}
+# Layout functions that count as "density variation" slides.
+_DENSITY_VARIATION_FUNCS = {"quote_slide", "metrics_slide"}
+# Layout function call pattern in slides.py source.
+_SLIDE_CALL = re.compile(r"^\s*(\w+_slide)\s*\(")
+
+
+def _parse_slide_sequence(src: Path) -> list[str]:
+    """Return the ordered list of slide-function names called in main()."""
+    text = src.read_text(encoding="utf-8", errors="replace")
+    in_main = False
+    sequence: list[str] = []
+    for line in text.splitlines():
+        if re.match(r"^def main\s*\(", line):
+            in_main = True
+            continue
+        if in_main and re.match(r"^def \w", line):
+            break
+        if in_main:
+            m = _SLIDE_CALL.match(line)
+            if m:
+                sequence.append(m.group(1))
+    return sequence
+
+
+def check_rhythm(targets: list[str]) -> int:
+    """Scan slide templates for monotony: too many consecutive content_slides,
+    missing dividers, and missing density variation.
+
+    Usage: python3 scripts/build.py --check-rhythm [slides] [slides-en]
+    When no targets are given, checks all PPTX_TARGETS.
+    """
+    names = targets if targets else list(PPTX_TARGETS.keys())
+    failures = 0
+
+    for name in names:
+        source = PPTX_TARGETS.get(name)
+        if source is None:
+            print(f"ERROR: {name}: not a known slides target")
+            failures += 1
+            continue
+        src = TEMPLATES / source
+        if not src.exists():
+            print(f"ERROR: {name}: source not found ({src})")
+            failures += 1
+            continue
+
+        seq = _parse_slide_sequence(src)
+        if not seq:
+            print(f"WARN: {name}: no slide calls found in main()")
+            continue
+
+        issues: list[str] = []
+
+        # Rule 1: no run of more than 5 consecutive content_slides.
+        run = 0
+        max_run = 0
+        for fn in seq:
+            if fn == "content_slide":
+                run += 1
+                max_run = max(max_run, run)
+            else:
+                run = 0
+        if max_run > 5:
+            issues.append(f"longest content_slide run is {max_run} (limit 5)")
+
+        # Rule 2: decks >= 12 slides need at least one chapter_slide divider.
+        if len(seq) >= 12 and not any(fn in _DIVIDER_FUNCS for fn in seq):
+            issues.append(f"{len(seq)} slides with no chapter_slide divider")
+
+        # Rule 3: deck must contain at least one density-variation slide.
+        if not any(fn in _DENSITY_VARIATION_FUNCS for fn in seq):
+            issues.append("no quote_slide or metrics_slide for density variation")
+
+        if issues:
+            for issue in issues:
+                print(f"WARN: {name}: {issue}")
+            failures += 1
+        else:
+            print(f"OK: {name}: rhythm ok ({len(seq)} slides, max run {max_run})")
+
+    return 0 if failures == 0 else 1
+
+
 # ------------------------- entry -------------------------
 
 def main(argv: list[str]) -> int:
@@ -750,6 +839,9 @@ def main(argv: list[str]) -> int:
         return check_orphans(args[1:])
     if args[0] in ("--check-placeholders", "--verify-filled"):
         return check_placeholders(args[1:])
+    if args[0] == "--check-rhythm":
+        slide_targets = [a for a in args[1:] if not a.startswith("-")]
+        return check_rhythm(slide_targets)
     return build_single(args[0])
 
 

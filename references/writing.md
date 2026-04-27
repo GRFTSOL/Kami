@@ -221,6 +221,12 @@ Structure is necessary but not sufficient. These bars define what separates comp
 5. Include a "so what" moment every 3-4 slides to re-anchor the audience
 6. End with one clear ask, not a bullet list of "key points"
 
+**Eyebrow vs title non-duplication**: the eyebrow is a stable, cross-slide section label ("Growth / Q3 Results"). The title is a page-unique declarative claim ("Revenue grew 23% because enterprise deals closed 2x faster"). They must never say the same thing in different words. If removing the eyebrow would make the title ambiguous, the title is too weak. If reading the title makes the eyebrow redundant, the eyebrow is a topic label masquerading as context.
+
+**Deck rhythm (>=12 slides)**: before writing any slide, sketch a layout-type sequence. Rules: every 4-6 slides must include a `chapter_slide` (ink-blue full-bleed divider); never run more than 5 consecutive `content_slides` without a divider; the deck must include at least one `quote_slide` or `metrics_slide` to vary density. Monotony is a structure failure, not a content one.
+
+**Term consistency self-check**: after drafting, list every domain term that appears 3 or more times (product names, feature names, roles, metrics). Confirm there is exactly one spelling and capitalization for each. Inconsistent casing ("LLM" vs "llm" vs "large language model") signals an unreviewed draft.
+
 ### Equity Report
 
 **Core rule**: lead with the variant perception (what you see that the market doesn't) and tie every thesis driver to a measurable financial impact.
