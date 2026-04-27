@@ -199,16 +199,17 @@ English stack on PowerPoint:
 - Serif: `Charter` -> `Georgia` -> `Palatino`
 - Sans: same as serif (single-font-per-page rule)
 
-### Eight standard layouts
+### Nine standard layouts
 
 1. **Cover**: parchment background, centered display title + brand-colored short line + subtitle / author / date
 2. **Contents**: parchment, left-aligned `01  Chapter title` (number serif brand-colored)
 3. **Chapter divider**: full brand ink-blue background, centered white title - the **only** fully chromatic slide in the deck
 4. **Content slide**: eyebrow (serif stone) + core claim (serif near-black) + brand line + body (serif dark-warm)
 5. **Data slide**: top takeaway + 2-4 metric cards (big number serif brand + small label serif olive)
-6. **Comparison**: two columns with a 0.5pt warm-gray divider
-7. **Quote**: parchment, minimal, centered serif quote + `- Source`
-8. **Closing**: parchment, centered "Thank you / Q&A / Contact"
+6. **Comparison**: eyebrow + left column (muted, OLIVE/STONE) vs. right column (full-weight, DARK_WARM/NEAR_BLACK), separated by a 1pt BORDER warm-gray vertical divider. Left = "Before/Old/Problem"; right = "After/New/Solution". Use `comparison_slide()`.
+7. **Pipeline**: eyebrow + title + serif numerals 01/02/03 + step title + step description, laid out in equal-width columns. All steps visible at once (no click-reveal). Use `pipeline_slide()`.
+8. **Quote**: parchment, minimal, centered serif quote + `- Source`
+9. **Closing**: parchment, centered "Thank you / Q&A / Contact"
 
 ### Script skeleton
 
@@ -345,7 +346,9 @@ If any row fails, fix it before delivery.
 
 Every entry below came from a real failure. Check here first when something looks wrong.
 
-### 1. Tag / Badge double-rectangle bug (the worst)
+Severity scale: **(P0)** render-breaking, must fix before delivery. **(P1)** breaks the design contract (rhythm, spec). **(P2)** visible to a careful reader, but not blocking. **(P3)** operational: affects workflow, not visual output.
+
+### 1. (P0) Tag / Badge double-rectangle bug (the worst)
 
 **Symptom**: PDFs show two concentric rectangles on tag backgrounds at zoom - an outer softer one and an inner tighter one. Especially visible on mobile PDF viewers.
 
@@ -378,7 +381,7 @@ Formula: `solid_channel = base + (foreground - base) × alpha`. Different base c
 
 **Aesthetic warning**: gradients work engineering-wise but usually oversell the tag. Priority order: lightest solid (`#EEF2F7`) > standard solid (`#E4ECF5`) > gradient (rarely). If the reader's eye lands on the tag background shape before the text inside - you went too far.
 
-### 2. Thin border + radius = double circle
+### 2. (P0) Thin border + radius = double circle
 
 **Symptom**: `border: 0.4pt solid ...` + `border-radius: 2pt` shows two parallel arcs on zoom.
 
@@ -389,7 +392,7 @@ Formula: `solid_channel = base + (foreground - base) × alpha`. Different base c
 2. Border ≥ 1pt
 3. Drop `border-radius`
 
-### 3. 2-page hard-limit overflow
+### 3. (P1) 2-page hard-limit overflow
 
 For resume, one-pager, and other length-capped docs.
 
@@ -417,7 +420,7 @@ For resume, one-pager, and other length-capped docs.
 
 Apply dense mode only when the 4-project layout already overflows. Do not use it as a default; the visual rhythm is noticeably tighter.
 
-### 4. Font fallback causes page count inconsistency
+### 4. (P1) Font fallback causes page count inconsistency
 
 **Symptom**: 2 pages locally, 4 pages in CI / on server.
 
@@ -434,7 +437,7 @@ apt install fonts-noto-cjk
 mkdir -p ~/.fonts && cp *.ttf ~/.fonts/ && fc-cache -f
 ```
 
-### 5. CJK and Latin crowding (Chinese mode only)
+### 5. (P2) CJK and Latin crowding (Chinese mode only)
 
 **Symptom**: "125.4k GitHub Stars" - k and G feel glued.
 
@@ -452,13 +455,13 @@ mkdir -p ~/.fonts && cp *.ttf ~/.fonts/ && fc-cache -f
 .metric { display: flex; align-items: baseline; gap: 6pt; }
 ```
 
-### 6. Full-width vs half-width spaces (Chinese mode)
+### 6. (P2) Full-width vs half-width spaces (Chinese mode)
 
 - **Between Chinese characters**: U+3000 full-width space + `·` + space
 - **Between Latin words**: half-width space + `·` + space
 - **Mixed**: prefer flex gap, don't hand-type spaces
 
-### 7. Thousands / percent / arrows - be consistent
+### 7. (P2) Thousands / percent / arrows - be consistent
 
 | Use | Avoid |
 |---|---|
@@ -472,7 +475,7 @@ grep -oE '->|->|⟶|⇒' doc.html | sort | uniq -c
 grep -oE '[0-9]{4,}' doc.html | sort -u
 ```
 
-### 8. Too much / too little emphasis
+### 8. (P2) Too much / too little emphasis
 
 - Four or five ink-blue runs in one line -> visual fatigue, no focal point
 - Entire section with none -> flat, no scan handles
@@ -481,7 +484,7 @@ grep -oE '[0-9]{4,}' doc.html | sort -u
 
 Healthy ratio: one emphasis per 80-150 words.
 
-### 9. `height: 100vh` doesn't work
+### 9. (P0) `height: 100vh` doesn't work
 
 **Symptom**: full-bleed cover using `height: 100vh` renders empty.
 
@@ -498,7 +501,7 @@ Healthy ratio: one emphasis per 80-150 words.
 }
 ```
 
-### 10. `break-inside` fails inside flex
+### 10. (P1) `break-inside` fails inside flex
 
 **Symptom**: `.card { break-inside: avoid }` still splits across pages.
 
@@ -516,7 +519,7 @@ Healthy ratio: one emphasis per 80-150 words.
 .card-wrapper { break-inside: avoid; }
 ```
 
-### 11. Hide page number on the first page
+### 11. (P3) Hide page number on the first page
 
 ```css
 @page:first {
@@ -524,7 +527,7 @@ Healthy ratio: one emphasis per 80-150 words.
 }
 ```
 
-### 12. Printed white margin around the page
+### 12. (P2) Printed white margin around the page
 
 **Symptom**: printing produces a white border even though `background` is set.
 
@@ -539,7 +542,7 @@ Healthy ratio: one emphasis per 80-150 words.
 }
 ```
 
-### 13. Blurry images
+### 13. (P2) Blurry images
 
 **Symptom**: images in PDF look soft.
 
@@ -547,7 +550,7 @@ Healthy ratio: one emphasis per 80-150 words.
 
 **Fix**: source images at 2x or 3x.
 
-### 14. Verification loop (catch-all)
+### 14. (P3) Verification loop (catch-all)
 
 ```bash
 python3 -c "from weasyprint import HTML; HTML('doc.html').write_pdf('out.pdf')"
@@ -557,7 +560,7 @@ pdftoppm -png -r 300 out.pdf inspect    # when in doubt
 
 **Not verified = not done.**
 
-### 15. SVG marker `orient="auto"` ignored
+### 15. (P0) SVG marker `orient="auto"` ignored
 
 **Symptom**: SVG arrows using `<marker orient="auto">` or `orient="auto-start-reverse"` all point right (the marker's default drawing direction), regardless of the path's tangent angle.
 
@@ -589,7 +592,7 @@ Chevron templates (tip at endpoint, 8px arm length):
 | up | `M (x-8) (y+8) L x y L (x+8) (y+8)` |
 | right | `M (x-8) (y-8) L x y L (x-8) (y+8)` |
 
-### 16. Slide letter-spacing must be halved
+### 16. (P1) Slide letter-spacing must be halved
 
 **Symptom**: Slide text looks "scattered" or over-spaced when print letter-spacing values (e.g. `letter-spacing: 8px`) are used directly.
 
