@@ -190,14 +190,14 @@ Skip this step for every doc type except slides.
 
 Before drafting any slide, confirm these six points with the user. Ask all six in one shot, not one at a time:
 
-| # | Question | Why it matters |
-|---|---|---|
-| 1 | **Audience + venue** - who is in the room and in what format (live keynote, investor 1:1, async share link)? | Determines hierarchy depth and how much context each slide must carry |
-| 2 | **Length target** - presentation time or slide count? (15 min: ~10 slides / 30 min: ~20 slides / 45 min: ~25-30 slides) | Prevents scope creep; sets the rhythm budget |
-| 3 | **Source material** - what content is already ready (outline, doc, notes, data)? | Determines how much distillation vs. generation is needed |
-| 4 | **Image availability** - are screenshots, charts, logos, or product images available? | Missing images change layout choices; gaps must be marked, not invented |
-| 5 | **Hard constraints** - brand colors, required logo, PPTX-only vs. PDF+PPTX, any slides that must exist? | Avoids a rebuild after layout is set |
-| 6 | **Format confirmation** - slides deck vs. a one-pager that looks like a deck? | Rules out routing to the wrong template |
+| # | Question |
+|---|---|
+| 1 | **Audience + venue** - who is in the room, and is it live keynote, investor 1:1, or async share link? |
+| 2 | **Length target** - presentation time or slide count? (15 min: ~10 slides / 30 min: ~20 slides / 45 min: ~25-30 slides) |
+| 3 | **Source material** - what content is already ready: outline, doc, notes, data? |
+| 4 | **Images** - are screenshots, charts, logos, or product images available, or are gaps expected? |
+| 5 | **Hard constraints** - brand colors, required logo, PPTX-only vs. PDF+PPTX, any slides that must exist? |
+| 6 | **Format confirmation** - slides deck, or a one-pager that looks like a deck? |
 
 If the user has already answered any of these in the conversation, skip only those questions.
 
