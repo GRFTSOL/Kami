@@ -94,7 +94,7 @@ LATEST_TAG="$(gh release list -R tw93/kami --limit 1 --json tagName -q '.[0].tag
 gh release upload "$LATEST_TAG" dist/kami.zip --clobber -R tw93/kami
 ```
 
-`dist/kami.zip` is a tracked artifact and should be committed with the release changes. README and website download links use `https://cdn.jsdelivr.net/gh/tw93/kami@main/dist/kami.zip`, so users can update from the current `main` branch. For small packaging or documentation fixes, refresh the latest release asset with `--clobber` instead of creating a new version tag. Create a new tag only when the user explicitly wants a versioned release.
+`dist/kami.zip` is a tracked artifact and should be committed with the release changes. README and website download links use `https://github.com/tw93/kami/releases/latest/download/kami.zip`, so GitHub tracks download counts and users always get the latest release asset. For small packaging or documentation fixes, refresh the latest release asset with `--clobber` instead of creating a new version tag. Create a new tag only when the user explicitly wants a versioned release.
 
 Release notes must follow the tw93/Mole format:
 
