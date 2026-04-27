@@ -67,7 +67,9 @@ font-family: "YuMincho", "Yu Mincho", "Hiragino Mincho ProN",
 
 **Claude Desktop skill ZIPs do not bundle large Chinese font files**: `TsangerJinKai02-W04.ttf` and `TsangerJinKai02-W05.ttf` are close to 19MB each and can make Claude.ai / Desktop skill upload or execution time out. Release ZIPs must be generated with `scripts/package-skill.sh`, which excludes both TTF files. Templates still keep local-first and jsDelivr fallback `@font-face` paths.
 
-**Standalone HTML export** (sending a filled HTML file to someone else): the font file and the HTML must live in the same directory. Change the `@font-face src` to a bare filename with no path prefix:
+**Standalone HTML export** (sending a filled HTML file to someone else): this is not guaranteed to work outside the project tree. If the recipient cannot set up the font environment, use the PDF output instead.
+
+If you do need to share HTML: the font file and the HTML must live in the same directory, and the `@font-face src` must use a bare filename with no path prefix:
 
 ```css
 @font-face {
@@ -76,7 +78,7 @@ font-family: "YuMincho", "Yu Mincho", "Hiragino Mincho ProN",
 }
 ```
 
-Remove the `../fonts/` prefix that templates use when fonts are in the project tree. The recipient must place the `.ttf` file alongside the `.html` file before running WeasyPrint.
+Remove the `../fonts/` prefix that templates use when fonts are in the project tree. The recipient must place the `.ttf` file alongside the `.html` file before running WeasyPrint. When in doubt, deliver the PDF.
 
 ### Page spec
 

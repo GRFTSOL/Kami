@@ -420,7 +420,7 @@ def verify_target(name: str, source: str, max_pages: int, src_dir: Path) -> list
     # Warn about missing local font files before rendering
     missing_fonts = _check_font_sources(src)
     for mf in missing_fonts:
-        print(f"  WARN: {name}: font src not found: {mf}")
+        print(f"  [FONT MISS] {name}: {mf} not found — render will fall back to Source Han Serif SC → Noto Serif CJK SC → Songti SC → Georgia")
 
     HTML(str(src), base_url=str(src.parent)).write_pdf(str(out))
 
@@ -431,7 +431,11 @@ def verify_target(name: str, source: str, max_pages: int, src_dir: Path) -> list
     # page count check
     n = len(PdfReader(str(out)).pages)
     if max_pages and n > max_pages:
-        issues.append(f"page overflow: {n} pages (limit {max_pages})")
+        over = n - max_pages
+        hint = ""
+        if "resume" in name and over == 1:
+            hint = '; add class="resume--dense" to <body> or tighten .proj-text line-height to 1.38'
+        issues.append(f"page overflow: {n} pages (limit {max_pages}){hint}")
 
     # font check
     embedded = _pdf_font_names(out)

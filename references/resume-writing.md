@@ -34,6 +34,31 @@ Each project row uses a fixed three-part structure. The word and character targe
 
 ---
 
+## Metrics: horizontal vs vertical layout
+
+Each project card has a `.metrics` row that shows key numbers. Two layout modes are available.
+
+**Horizontal (default, `flex-direction: row`)**: numbers side by side, good for 2-3 short metrics.
+
+**Vertical (`flex-direction: column`)**: metrics stack one per line. Use when:
+- Any single metric label exceeds 18 characters
+- Three or more metrics are present and labels are of unequal length
+- The project card already has long Role / Actions / Impact rows that crowd the line
+
+Use | Avoid
+---|---
+Horizontal for two short metrics: `38% reduce latency · 12k daily users` | Horizontal for long labels: `reduced p95 latency from 820ms to 110ms · 12k active users`
+Vertical when three or more metrics exist | Vertical for exactly two short metrics (wastes space)
+
+To switch to vertical:
+```css
+.metrics { flex-direction: column; gap: 0.8mm; }
+```
+
+Do not add `flex-wrap: wrap`; it causes uneven line splits that look like layout errors.
+
+---
+
 ## Key-number highlight density
 
 `.hl` applies brand-blue color to mark the single most important figure or phrase in a line. It is not a general emphasis tool.
@@ -93,6 +118,23 @@ Use | Avoid
 
 ---
 
+## Density tuning by project count
+
+When page 1 carries 3-6 projects, adjust these three CSS properties. Do not change line-heights on page 2 or touch header typography.
+
+| Projects on page 1 | `body font-size` | `.proj-text line-height` | `.section-title margin-top` |
+|---|---|---|---|
+| 3 | 9.4pt | 1.42 | 6mm |
+| 4 (default) | 9.2pt | 1.40 | 5mm |
+| 5 (dense) | 9pt | 1.38 (CN) / 1.40 (EN) | 3.5mm |
+| 6 | 9pt | 1.36 (CN) / 1.38 (EN) | 3mm |
+
+For 5-project layouts, add `class="resume--dense"` to `<body>` instead of manually adjusting CSS. The `resume--dense` class applies the row-5 values above.
+
+For 6 projects there is no pre-built variant; apply the row-6 values directly and run `--verify` after. Six projects on one page is a strong signal the project list needs editing, not just tightening.
+
+---
+
 ## Page 2 rhythm
 
 Page 2 has more space than page 1. Do not compress it to match page 1 density.
@@ -101,3 +143,16 @@ Page 2 has more space than page 1. Do not compress it to match page 1 density.
 - Convictions: each card is one judgment call + one piece of downstream evidence. Not a project summary.
 - Skills: each row names one capability area and demonstrates it with one concrete example. No abstract claims.
 - Education: one line. If there is a judgment-flavored note (declined grad school, switched majors), include it. That note signals self-direction better than GPA.
+
+**Font size and spacing reference** (5 projects on page 1 + complete page 2):
+
+| Property | Value |
+|---|---|
+| `body font-size` | 9pt (dense) / 9.2pt (default) |
+| `.os-intro` line-height | 1.55 |
+| `.conv-body` line-height | 1.40 |
+| Page 2 top buffer | 4mm minimum between header and first section |
+
+This configuration fits 2 pages when TsangerJinKai02 is available. Font fallback to Source Han Serif adds roughly 0.3pt per line; run `--verify` after any font environment change.
+
+Do not scale page 2 font below 9pt to save space. If page 2 still overflows, cut one Convictions card or reduce Skills to 2 rows.
