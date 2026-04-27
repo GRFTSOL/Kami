@@ -73,7 +73,7 @@ Example prompts by language:
 
 **Optional: brand profile**
 
-Drop a `.kami/brand.md` in your project (or `~/.kami/brand.md` globally) to persist author name, logo path, brand color, and default language. Kami loads it automatically before each render. Explicit prompts override profile defaults.
+Create `~/.config/kami/brand.md` to persist your preferences across all documents. Supported fields: `author`, `language`, `logo`, `brand_color`, `company`, `tagline`, `default_doc_type`, `output_format`, `page_size`, `footer_note`, `always_include_toc`. Kami loads it automatically before each render. Explicit prompts override profile defaults.
 
 ## Design
 

@@ -15,8 +15,8 @@ Part of `Kaku · Waza · Kami` - Kaku writes code, Waza drills habits, **Kami de
 
 Before anything else, check for a brand profile:
 
-1. `.kami/brand.md` in the current project directory
-2. `~/.kami/brand.md` (global fallback)
+1. `~/.config/kami/brand.md` (global user config, XDG-compliant)
+2. `~/.kami/brand.md` (legacy fallback, kept for compatibility)
 
 If found, silently load it. Profile fields:
 
@@ -28,6 +28,11 @@ If found, silently load it. Profile fields:
 | `brand_color` | Hex to map to `--brand` (warm palette constraint still applies) |
 | `company` | Company or project name for headers and footers |
 | `tagline` | Default one-liner for one-pager / long-doc footers |
+| `default_doc_type` | Preferred document type when intent is ambiguous (`one-pager` / `long-doc` / `slides` etc.) |
+| `output_format` | Preferred output (`pdf` / `pptx` / `both`); default is `pdf` except for slides |
+| `page_size` | `a4` (default) or `letter` |
+| `footer_note` | Standing disclaimer or confidentiality line appended to all footers |
+| `always_include_toc` | `true` to auto-add table of contents in long-doc and portfolio |
 
 Profile values are defaults only. Explicit instructions in the current conversation always win. If no profile exists, continue without interruption.
 
