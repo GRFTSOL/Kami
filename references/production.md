@@ -67,6 +67,17 @@ font-family: "YuMincho", "Yu Mincho", "Hiragino Mincho ProN",
 
 **Claude Desktop skill ZIPs do not bundle large Chinese font files**: `TsangerJinKai02-W04.ttf` and `TsangerJinKai02-W05.ttf` are close to 19MB each and can make Claude.ai / Desktop skill upload or execution time out. Release ZIPs must be generated with `scripts/package-skill.sh`, which excludes both TTF files. Templates still keep local-first and jsDelivr fallback `@font-face` paths.
 
+**Standalone HTML export** (sending a filled HTML file to someone else): the font file and the HTML must live in the same directory. Change the `@font-face src` to a bare filename with no path prefix:
+
+```css
+@font-face {
+  font-family: "TsangerJinKai02";
+  src: url("TsangerJinKai02-W04.ttf") format("truetype");
+}
+```
+
+Remove the `../fonts/` prefix that templates use when fonts are in the project tree. The recipient must place the `.ttf` file alongside the `.html` file before running WeasyPrint.
+
 ### Page spec
 
 ```css
@@ -394,6 +405,17 @@ For resume, one-pager, and other length-capped docs.
 5. Last resort: shrink font by 0.1-0.2pt
 
 **Don't**: cut cover / education / timeline structural blocks; cut emphasis (resume becomes flat).
+
+**5-project high-density layout** (when content legitimately needs 5 projects on page 1): add `class="resume--dense"` to `<body>`. This activates a built-in CSS variant that applies the following adjustments without touching any content:
+
+| Property | Default | Dense |
+|---|---|---|
+| `body font-size` | 9.2pt | 9pt |
+| `.proj-text line-height` | 1.40 | 1.38 (CN) / 1.40 (EN) |
+| `.tl-body font-size` | 9pt | 8.5pt (CN only) |
+| `.section-title margin-top` | 5mm | 3.5mm |
+
+Apply dense mode only when the 4-project layout already overflows. Do not use it as a default; the visual rhythm is noticeably tighter.
 
 ### 4. Font fallback causes page count inconsistency
 

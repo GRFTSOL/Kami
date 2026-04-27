@@ -385,6 +385,19 @@ def _pdf_font_names(pdf_path: Path) -> set[str]:
         return set()
 
 
+def _check_font_sources(html_path: Path) -> list[str]:
+    """Return list of local @font-face src files that are missing on disk."""
+    text = html_path.read_text(encoding="utf-8", errors="replace")
+    missing: list[str] = []
+    for url in re.findall(r"""url\(["']?([^"')]+)["']?\)""", text):
+        if url.startswith(("http://", "https://", "data:")):
+            continue
+        resolved = (html_path.parent / url).resolve()
+        if not resolved.exists():
+            missing.append(url)
+    return missing
+
+
 def verify_target(name: str, source: str, max_pages: int, src_dir: Path) -> list[str]:
     issues: list[str] = []
     src = src_dir / source
@@ -401,6 +414,12 @@ def verify_target(name: str, source: str, max_pages: int, src_dir: Path) -> list
 
     EXAMPLES.mkdir(parents=True, exist_ok=True)
     out = EXAMPLES / f"{name}.pdf"
+
+    # Warn about missing local font files before rendering
+    missing_fonts = _check_font_sources(src)
+    for mf in missing_fonts:
+        print(f"  WARN: {name}: font src not found: {mf}")
+
     HTML(str(src), base_url=str(src.parent)).write_pdf(str(out))
 
     # Set PDF metadata (only replaces placeholders, preserves filled values)
