@@ -12,6 +12,8 @@ Usage:
     python3 scripts/build.py --check-placeholders path/to/doc.html
     python3 scripts/build.py --check-orphans      # scan example PDFs for orphan text
     python3 scripts/build.py --check-orphans path/to/doc.pdf
+    python3 scripts/build.py --check-density       # warn on pages with >25% trailing whitespace
+    python3 scripts/build.py --check-density path/to/doc.pdf
     python3 scripts/build.py --check-rhythm       # warn on monotonous slide sequences
     python3 scripts/build.py --check-rhythm slides slides-en
 """
@@ -585,6 +587,81 @@ def check_orphans(paths: list[str]) -> int:
     return 1
 
 
+# ------------------------- density check -------------------------
+
+# Parchment background RGB for pixel comparison.
+_BG_R, _BG_G, _BG_B = 0xF5, 0xF4, 0xED
+_BG_TOLERANCE = 10
+
+
+def check_density(paths: list[str]) -> int:
+    """Scan PDF pages for sparse content (large trailing whitespace from
+    break-inside:avoid pushing content to the next page)."""
+    try:
+        import fitz  # PyMuPDF
+    except ImportError:
+        print("ERROR: PyMuPDF required: pip install pymupdf --break-system-packages")
+        return 2
+
+    if not paths:
+        if EXAMPLES.exists():
+            paths = [str(p) for p in sorted(EXAMPLES.glob("*.pdf"))]
+        if not paths:
+            print("ERROR: no PDF files to scan")
+            return 2
+
+    warnings = 0
+    for raw in paths:
+        path = Path(raw)
+        if not path.exists():
+            print(f"ERROR: {raw}: not found")
+            continue
+        doc = fitz.open(str(path))
+        rel = path.relative_to(ROOT) if path.is_relative_to(ROOT) else path
+        for page_num in range(len(doc)):
+            if page_num == 0:
+                continue
+            page = doc[page_num]
+            pix = page.get_pixmap(dpi=36)
+            w, h = pix.width, pix.height
+            if h == 0:
+                continue
+            samples = pix.samples
+            stride = pix.stride
+            n = pix.n
+
+            last_content_y = 0
+            for y in range(h - 1, -1, -1):
+                row_start = y * stride
+                is_bg = True
+                for x in range(0, w, 4):
+                    offset = row_start + x * n
+                    if (abs(samples[offset] - _BG_R) > _BG_TOLERANCE
+                            or abs(samples[offset + 1] - _BG_G) > _BG_TOLERANCE
+                            or abs(samples[offset + 2] - _BG_B) > _BG_TOLERANCE):
+                        is_bg = False
+                        break
+                if not is_bg:
+                    last_content_y = y
+                    break
+
+            empty = (h - last_content_y) / h
+            if empty > 0.50:
+                print(f"  SPARSE: {rel} p{page_num + 1}: {empty:.0%} trailing whitespace")
+                warnings += 1
+            elif empty > 0.25:
+                print(f"  WARN: {rel} p{page_num + 1}: {empty:.0%} trailing whitespace")
+                warnings += 1
+        doc.close()
+
+    if warnings == 0:
+        print(f"OK: no density issues across {len(paths)} PDF(s)")
+        return 0
+
+    print(f"\n{warnings} density warning(s) across {len(paths)} PDF(s)")
+    return 1
+
+
 # ------------------------- check -------------------------
 
 RGBA_BG_DIRECT = re.compile(r"background(?:-color)?\s*:\s*[^;]*rgba\s*\(", re.IGNORECASE)
@@ -841,6 +918,8 @@ def main(argv: list[str]) -> int:
         return verify_all(target)
     if args[0] == "--check-orphans":
         return check_orphans(args[1:])
+    if args[0] == "--check-density":
+        return check_density(args[1:])
     if args[0] in ("--check-placeholders", "--verify-filled"):
         return check_placeholders(args[1:])
     if args[0] == "--check-rhythm":
