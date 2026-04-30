@@ -509,6 +509,179 @@ For displaying pseudocode or code snippets in slides. More structured than a pla
 
 **Content philosophy**: use pseudocode style. Comments should outnumber code lines. The reader sees logic, not syntax.
 
+### Glance Grid
+
+Four key-number cells, placed after the TOC or on a chapter-opening page of a long-doc / proposal.
+
+```html
+<div class="glance-grid">
+  <div class="glance-cell">
+    <div class="glance-label">REPORTING PERIOD</div>
+    <div class="glance-value">Q1 2026</div>
+    <div class="glance-note">Three core themes</div>
+  </div>
+  <!-- 4 cells total -->
+</div>
+```
+
+```css
+.glance-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14pt;
+  margin: 18pt 0;
+}
+.glance-cell {
+  padding: 12pt 0 10pt 14pt;
+  border-left: 2pt solid var(--brand);
+  border-radius: 1.5pt;
+}
+.glance-label {
+  font-family: var(--mono);
+  font-size: 8.5pt;
+  color: var(--brand);
+  letter-spacing: 1pt;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.glance-value {
+  font-size: 18pt;
+  font-weight: 500;
+  color: var(--near-black);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.5pt;
+}
+.glance-note {
+  font-size: 9pt;
+  color: var(--olive);
+  line-height: 1.4;
+}
+```
+
+### Module Block
+
+Proposal A / B / C structure: each module gets a brand-colored letter, a Chinese title, and an uppercase English subtitle.
+
+```html
+<div class="module">
+  <div class="module-head">
+    <div class="module-letter">A</div>
+    <div class="module-title">模块标题</div>
+    <div class="module-sub">MODULE SUBTITLE</div>
+  </div>
+  <p>...</p>
+  <ul>...</ul>
+</div>
+```
+
+Visual recipe: letter at 28pt brand, title at 17pt, English subtitle at 10pt mono brand `letter-spacing: 2pt`, head separated from body by a 0.3pt warm-gray hairline (not brand color).
+
+### Module Note (group explanation)
+
+A short note that explains the relationship between two or more modules. Same family as `.callout`, lighter weight, no decorative bar.
+
+```html
+<div class="module-note">
+  <div class="module-note-label">ABOUT B + C</div>
+  <p>B 是上游能力建设，C 是下游验证。两者构成一个最小闭环。</p>
+</div>
+```
+
+ivory background + 4pt radius + `module-note-label` at 8.5pt brand uppercase mono.
+
+### Position Table
+
+Three-column industry-comparison table whose final row highlights the current project / subject.
+
+```html
+<table class="position-table">
+  <thead>
+    <tr><th>Direction</th><th>Reference project</th><th>Approach</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>...</td><td>...</td><td>...</td></tr>
+    <tr class="highlight"><td><strong>本项目</strong></td>...</tr>
+  </tbody>
+</table>
+```
+
+`.highlight` row: ivory fill + brand text. Do not bold the entire row; let the `<strong>` carry the emphasis.
+
+### Pricing Card
+
+Headline-figure price block. Eyebrow + price + short note.
+
+```html
+<div class="pricing-card">
+  <div class="pricing-eyebrow">PROJECT TERM</div>
+  <div class="pricing-price">
+    <span class="currency">¥</span>
+    <span class="amount">XXX,XXX</span>
+    <span class="unit">/ term</span>
+  </div>
+  <div class="pricing-note">Paid by milestone</div>
+</div>
+```
+
+Digits: serif 500, 44pt, `tabular-nums`, `letter-spacing: 0.5pt`. Without the letter-spacing, large digits crowd each other and read as too dense.
+
+For the without-price variant (see writing.md "Proposal voice"), drop the `.pricing-price` block and follow the eyebrow with the Value Anchors list below.
+
+### Value Anchors
+
+Replaces pricing line-item breakdowns with a short list of capability anchors. Pairs with Pricing Card or stands alone in the without-price variant.
+
+```html
+<ul class="value-anchors">
+  <li><strong>能力锚点 A</strong>：一句具体说明能力来源的事实陈述</li>
+  <li><strong>能力锚点 B</strong>：一句具体说明锚点稀缺性的事实陈述</li>
+  <!-- 4-6 items -->
+</ul>
+```
+
+```css
+.value-anchors {
+  list-style: none;
+  padding: 0;
+  margin: 12pt 0 18pt 0;
+}
+.value-anchors li {
+  position: relative;
+  padding: 9pt 0 9pt 18pt;
+  border-bottom: 0.3pt solid var(--border-soft);
+  line-height: 1.55;
+  font-size: 10.5pt;
+}
+.value-anchors li:last-child { border-bottom: none; }
+.value-anchors li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 17pt;
+  width: 8pt;
+  height: 1.5pt;
+  background: var(--brand);
+}
+.value-anchors li strong {
+  color: var(--brand);
+  font-weight: 500;
+  margin-right: 6pt;
+}
+```
+
+The 8pt × 1.5pt brand bar (`::before`) replaces the round `<ul>` bullet. A round bullet next to CJK body reads juvenile; the bar reads editorial.
+
+### Decoration density: editorial vs structured
+
+Long-doc / proposal layouts have two acceptable decoration densities. Pick one and stay consistent across the whole document.
+
+| Context | Mode | Pattern |
+|---|---|---|
+| Data report, white paper, technical brief | **Structured** | Top hairlines (0.6-0.8pt brand) on callouts, glance cells, and pricing blocks. Roughly 5-8 brand lines per page. |
+| Proposal, advisory pitch, founder-facing brief | **Editorial** (default) | No decorative lines. Brand color appears only in text (chapter number, `.hl`, `<strong>`, digits, labels). Containers use ivory fill + 4pt radius. |
+
+The editorial mode reads as "content speaks"; the structured mode reads as "structure helps". The wrong mode is the third one: brand lines plus ivory plus radius plus borders, which signals over-packaging. When unsure, default to editorial.
+
 ---
 
 ## 5. Depth & Shadow
@@ -563,10 +736,21 @@ Long docs alternate parchment `#f5f4ed` and `#141413` dark sections. This sectio
 ### break-inside protection
 
 ```css
-.card, .metric, .project-item, .quote, .code-block, figure, .callout {
+.card, .metric, .project-item, .quote, .code-block, figure, .callout,
+.takeaway, .module, .module-note, .glance-grid, .pricing-card,
+table.compact {
   break-inside: avoid;
 }
+
+/* Headings should never sit alone at the bottom of a page */
+h1, h2, h3 { break-after: avoid; }
+
+/* Widow / orphan minimums for body text */
+body { widows: 3; orphans: 3; }
+p    { widows: 2; orphans: 2; }
 ```
+
+CSS alone cannot prevent "the last two lines of a chapter pushed onto a fresh page". For long-doc / proposal output, follow up with a render-time density check (see production.md "Verify & Debug").
 
 ### Force break
 

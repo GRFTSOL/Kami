@@ -110,6 +110,42 @@ Shared tokens across the three diagrams, mapping directly to kami's design syste
 
 Don't add a fourth state ("warning amber", "success green"). kami has one accent.
 
+### Embedded font calibration (override standalone sizes)
+
+Standalone diagram sizes (`7 / 9 / 12`) are too small once embedded in A4 long-doc / portfolio. The render width drops to about 470pt while the viewBox stays at 1000, so the scale factor is roughly `0.47`. To keep diagram text aligned with the 11pt body baseline, raise the SVG `font-size` values when embedding:
+
+| Visual target | Visual weight | SVG `font-size` |
+|---|---|---|
+| Same as h2 / focal node name | 11pt | **24** |
+| Same as body | 11pt | **22-24** |
+| Same as h3 / sub-label | 9-10pt | **18-20** |
+| Same as caption | 8pt | **15-16** |
+| Mono uppercase tag (letter-spacing 2.5) | 7pt | **14** |
+
+Compensation factor is roughly `1.8-2.0x` over standalone. `font-size: 24` with `font-weight: 600` and the body serif renders at about 1.05x the body, which reads as h2-equivalent without dominating the page.
+
+For tall diagrams (e.g. 5-layer stack), a working layout is `viewBox: 0 0 1000 560`, layer height `88`, gap `8`, and inside each layer:
+
+- Tag baseline `y+24`, font-size `14`, mono, letter-spacing `2.5`
+- Name baseline `y+54`, font-size `24`, serif weight `600`
+- Description baseline `y+76`, font-size `14`, mono, normal
+- Right-side role tag `x=900`, `text-anchor=end`, font-size `13`
+
+### In-SVG header line (figure number + title)
+
+For embedded diagrams, put the "FIGURE N · TITLE" header inside the SVG instead of using `<figcaption>`. The diagram becomes a self-contained editorial unit, and the brand-colored header doubles as a section anchor.
+
+```svg
+<text x="80" y="38" fill="#1B365D" font-size="13" font-weight="600"
+      font-family="mono" letter-spacing="3">FIGURE  1</text>
+<text x="195" y="38" fill="#504e49" font-size="13"
+      font-family="mono" letter-spacing="3">DIAGRAM TITLE GOES HERE</text>
+<line x1="80" y1="52" x2="920" y2="52"
+      stroke="#1B365D" stroke-width="0.8"/>
+```
+
+Two spaces between `FIGURE` and the number. With `letter-spacing: 3`, a single space lets the digit collide with the preceding letter.
+
 ---
 
 ## 4. Icon style
