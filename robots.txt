@@ -1,6 +1,9 @@
 User-agent: *
 Allow: /
 
+# Sitemap
+Sitemap: https://kami.tw93.fun/sitemap.xml
+
 # Search Engines
 User-agent: Googlebot
 Allow: /
