@@ -21,4 +21,4 @@ Kami is a layout design system for the AI era. Give Claude (or any LLM) a brief,
 ## Links
 - GitHub: https://github.com/tw93
 - Blog: https://tw93.fun
-- AI Profile: https://yobi.tw93.fun/llms-full.txt
+- AI Profile: https://tw93.fun/llms-full.txt
