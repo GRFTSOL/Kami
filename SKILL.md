@@ -305,6 +305,7 @@ python3 scripts/build.py --verify           # build all templates + page count +
 python3 scripts/build.py --verify resume-en # single target full verification
 python3 scripts/build.py --verify slides    # single slide deck verification
 python3 scripts/build.py --check-placeholders path/to/filled.html
+python3 scripts/build.py --check-density              # page whitespace scanner (skips cover)
 python3 scripts/build.py --check            # CSS rule violations only (fast, no build)
 ```
 

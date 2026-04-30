@@ -305,6 +305,7 @@ Project script `scripts/build.py` is the productized version of the three-step l
 python3 scripts/build.py               # all 12 examples
 python3 scripts/build.py resume-en     # one target + page count + fonts
 python3 scripts/build.py --check       # scan for CSS rule violations
+python3 scripts/build.py --check-density       # warn on pages with >25% trailing whitespace
 ```
 
 ### Layout stabilizer (HTML templates)

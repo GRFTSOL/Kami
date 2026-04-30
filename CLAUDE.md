@@ -29,6 +29,7 @@ python3 scripts/build.py --check  # scan CSS invariants and token drift
 python3 scripts/build.py --verify # verify templates, page counts, fonts, and slides
 python3 scripts/build.py --check-placeholders path/to/filled.html
 python3 scripts/build.py --check-orphans [path/to/doc.pdf]  # scan for orphan text (last line <= 2 words)
+python3 scripts/build.py --check-density [path/to/doc.pdf]  # warn on pages with >25% trailing whitespace (skips cover)
 ```
 
 Expected page counts: one-pager 1 / letter 1 / resume 2 strict / long-doc 7 +/- 2 / portfolio 6 +/- 2 / slides 7 +/- 3 / equity-report 2-3 / changelog 1-2
