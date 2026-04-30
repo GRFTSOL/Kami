@@ -609,3 +609,65 @@ Chevron templates (tip at endpoint, 8px arm length):
 /* Slide eyebrow */
 .slide .eyebrow { letter-spacing: 3px; }   /* halved */
 ```
+
+---
+
+## Part 5 · HTML -> DOCX (pandoc + SVG-to-PNG)
+
+PDF is the delivery format; DOCX is the collaboration format. For proposal / report scenarios where the recipient needs to edit, comment, or forward to their team, ship a `.docx` alongside the PDF.
+
+### Why two-step
+
+`pandoc input.html -o output.docx` looks straightforward, but inline `<svg>` blocks fail Word's OOXML validation. Word treats them as unknown content and either drops them or refuses to open the file. The fix is to bake every SVG to PNG first, swap the `<svg>` blocks for `<img>` tags, then run pandoc.
+
+### Install
+
+```bash
+# macOS
+brew install pandoc librsvg
+
+# Linux
+apt install pandoc librsvg2-bin
+```
+
+### Workflow
+
+```bash
+# 1. Extract every SVG to its own file, ensuring xmlns is set
+python3 - << 'EOF'
+import re
+src = open('input.html').read()
+for i, m in enumerate(re.finditer(r'<svg[^>]*>.*?</svg>', src, re.DOTALL)):
+    svg = m.group(0)
+    if 'xmlns=' not in svg[:200]:
+        svg = svg.replace('<svg ', '<svg xmlns="http://www.w3.org/2000/svg" ', 1)
+    with open(f'/tmp/diagram-{i}.svg', 'w') as f:
+        f.write('<?xml version="1.0"?>\n' + svg)
+EOF
+
+# 2. Rasterize each SVG to a wide PNG
+for f in /tmp/diagram-*.svg; do
+    rsvg-convert "$f" -o "${f%.svg}.png" -w 1600
+done
+
+# 3. Replace each <svg>...</svg> in the HTML with <img src="/tmp/diagram-N.png">
+#    (do this with the same regex iteration that produced the indices above)
+
+# 4. Convert
+pandoc input-with-png.html -o output.docx
+```
+
+### What carries over
+
+| Carries over | Lost |
+|---|---|
+| Headings, body, lists, tables | Grid layouts, custom positioning |
+| Brand color on headings, `<strong>`, `.hl` | Subtle borders and shadows |
+| PNG figures at full width | SVG editability |
+| Page breaks via `<hr class="page-break">` | `@page` margins |
+
+The recipient gets a Word document they can edit text in and replace figures in (drag a new PNG over the existing one). Complex layout differences are expected; the goal is editability, not visual fidelity.
+
+### When not to ship a DOCX
+
+Skip this for resume, one-pager, slides, and portfolio. They are visual artifacts; converting them produces a degraded version with no editability gain. Long-doc / proposal / equity-report are the document types where a DOCX companion has a real audience.
