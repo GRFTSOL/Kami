@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Kami · Design System</title>
+  <title>Kami: Document Design System for AI-Generated PDFs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Kami - a warm parchment design system for AI-assisted professional documents, shaped by one accent color, serif-led hierarchy, and editorial whitespace.">
   <link rel="icon" href="https://gw.alipayobjects.com/zos/k/vl/logo.svg" type="image/svg+xml">
@@ -27,6 +27,46 @@
       "price": "0",
       "priceCurrency": "USD"
     }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Kami?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A document design system that turns AI-generated content into polished PDFs. One accent color, serif-led hierarchy, warm parchment canvas."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What documents can Kami produce?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Eight types: one-pagers, long documents, letters, portfolios, resumes, slides, equity reports, and changelogs. Plus 14 inline SVG diagram types."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I use Kami with Claude?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Install via Waza: npx skills add tw93/Waza -a claude-code -g -y. Then type /kami in Claude Code, describe what you need, and it fills the matching template."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Kami support Chinese and English?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Chinese uses TsangerJinKai02 + Source Han Serif, English uses Charter. Japanese is best-effort with YuMincho."
+        }
+      }
+    ]
   }
   </script>
 </head>
@@ -537,6 +577,32 @@ beauty   = constraints × <span class="k">intention</span> ÷ noise</pre>
       <p>I like investing in US equities and ask Claude to write research reports all the time. Every output landed in the same default-doc look: gray, flat, a different layout each session. The structure was hard to scan, the formatting felt dated, and nothing about the page made me want to keep reading. So I started fixing the typography, the palette, the spacing, one rule at a time, until the report became a page I actually enjoyed.</p>
       <p>Later I needed to present "The Agent You Don't Know: Principles, Architecture and Engineering Practice." I already had the document and didn't want to build slides from scratch, so I used Claude Design to lay it out in my own style, tweaked it round after round, and eventually got it to a place I was happy with. That process added inline SVG charts, a unified warm palette, and a tighter editorial rhythm. It kept growing until it covered every document I regularly ship, so I kept abstracting the process, and it became kami: one quiet design system I can hand to any agent and trust the output.</p>
     </div>
+  </section>
+
+  <!-- ============ 10 FAQ ============ -->
+  <section>
+    <div class="section-head">
+      <p class="section-num">10 · Questions</p>
+      <h2 class="section-title">FAQ</h2>
+    </div>
+    <dl class="faq">
+      <div class="faq-pair">
+        <dt>What is Kami?</dt>
+        <dd>A document design system that turns AI-generated content into polished PDFs. One accent color, serif-led hierarchy, warm parchment canvas. Give Claude a brief and a template, get a print-ready layout back.</dd>
+      </div>
+      <div class="faq-pair">
+        <dt>What documents can it produce?</dt>
+        <dd>Eight types: one-pagers, long documents, letters, portfolios, resumes, slides, equity reports, and changelogs. Plus 14 inline SVG diagram types for visual explanations.</dd>
+      </div>
+      <div class="faq-pair">
+        <dt>How do I use it with Claude?</dt>
+        <dd>Install via Waza: <code style="font-family:var(--mono); font-size:0.9em; color:var(--brand);">npx skills add tw93/Waza -a claude-code -g -y</code>. Then type /kami in Claude Code, describe what you need, and it fills the matching template.</dd>
+      </div>
+      <div class="faq-pair">
+        <dt>Does it support Chinese and English?</dt>
+        <dd>Yes. Chinese uses TsangerJinKai02 + Source Han Serif, English uses Charter. Each language has tuned letter-spacing, line-height, and font sizes for print quality. Japanese is best-effort with YuMincho.</dd>
+      </div>
+    </dl>
   </section>
 
   <!-- ============ FOOTER ============ -->
