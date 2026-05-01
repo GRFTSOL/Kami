@@ -49,6 +49,9 @@ HTML_TARGETS: dict[str, tuple[str, int]] = {
     # Changelog
     "changelog":    ("changelog.html", 2),
     "changelog-en": ("changelog-en.html", 2),
+    # Slides (WeasyPrint)
+    "slides-weasy":    ("slides-weasy.html", 0),
+    "slides-weasy-en": ("slides-weasy-en.html", 0),
 }
 PPTX_TARGETS: dict[str, str] = {
     "slides":    "slides.py",

@@ -793,21 +793,129 @@ Not on this table -> return to first principles: **serif carries authority, sans
 
 ---
 
-## 8. Deck Recipe (long deck rules)
+## 8. Deck Recipe
 
-For decks longer than 20 slides, the following rules apply. Each came from real production work.
+Slides in kami use WeasyPrint HTML to PDF as the primary rendering path. The pptx path (`slides.py`) is available as a fallback when the user explicitly requires an editable PPTX file.
 
-| Rule | Content |
-|------|---------|
-| R1 | Slide container fixed at 1920×1080, scaled externally. No dynamic vh/vw units |
-| R2 | Slide titles use Display (64px), not H1 (30px). H1 is a print hierarchy level |
-| R4 | Slide letter-spacing = print value / 2. 8px tracking "falls apart" on screen |
-| R5 | Section header: gap below rule ≥ 36px (at least 2x the gap above) |
-| R6 | Eyebrow dot uses `align-items: center`, not baseline (dot is geometric, not text) |
-| R7 | Slide padding-top 72-80px (print is 96-120px; slides are more compact) |
-| R8 | Images use `object-fit: contain` + flex centering. Never stretch or crop |
-| R9 | Use `.kami-slide-footer` for page number and deck mark, absolutely positioned to bottom |
-| R10 | Code uses pseudocode style: more comment lines than code lines. Show logic, not syntax |
+### Architecture
+
+**Why WeasyPrint over python-pptx:** pptx output passed through LibreOffice loses CJK font weight, tracking, and glyph spacing. WeasyPrint embeds fonts exactly, giving pixel-level CSS control.
+
+Use `assets/templates/slides-weasy.html` (CN) or `assets/templates/slides-weasy-en.html` (EN) as the starting point.
+
+### Page size
+
+Default `280mm 158mm`. Change in `@page` and `.slide` together.
+
+| Size | `@page` | Use when |
+|---|---|---|
+| Compact (default) | `280mm 158mm` | Standard density, fits most content |
+| Standard | `297mm 167mm` | Slightly more room per slide |
+| Wide | `338mm 190mm` | Heavy content, many data points |
+
+### Typography
+
+Global parameters for the slide body:
+
+```css
+body {
+  font-size: 13pt;
+  line-height: 1.65;
+  letter-spacing: 0.3pt;   /* CJK: critical for breathing room */
+}
+```
+
+Heading scale:
+
+| Element | Size | Weight | Notes |
+|---|---|---|---|
+| `h2` | 24pt | 500 | Page title; `margin-bottom: 14pt` |
+| `h3` | 15pt | 500 | Section heading; `color: var(--brand)` |
+| `.eyebrow` | 9.5pt | 400 | Mono, `letter-spacing: 2pt`, `color: var(--stone)` |
+| `.lead` | 12pt | 400 | Below `h2`; `color: var(--olive)` |
+
+Content element scale:
+
+| Class | Size | Notes |
+|---|---|---|
+| `.mt` | 16pt | Module title, used with `.ml` |
+| `.ml` | 24pt | Large letter prefix in `var(--brand)`, paired with `.mt` |
+| `.ms` | 7.5pt mono | Module sub-label; `border-bottom` separator |
+| `.mb` | 11pt | Module body description |
+| `.mi` | 11pt | Module line item; `padding: 8pt 0` |
+| `.mc` | 9.5pt | Delivery rhythm or cadence note; `border-top` |
+| `.co` | 11pt bold | Bottom callout; `position: absolute; bottom: 12mm` |
+
+### Layout patterns
+
+**Two-column (`.c2`)**: CSS Grid, `grid-template-columns: 1fr 1fr; gap: 22pt`. Use for side-by-side modules with independent heights.
+
+**2×2 aligned (`.t2x2`)**: HTML `<table>`, not CSS Grid. Grid does not guarantee row alignment across cells; table rows share height naturally.
+
+```html
+<table class="t2x2">
+  <tr>
+    <td> <!-- top-left --> </td>
+    <td> <!-- top-right --> </td>
+  </tr>
+  <tr>
+    <td> <!-- bottom-left --> </td>
+    <td> <!-- bottom-right --> </td>
+  </tr>
+</table>
+```
+
+**Pinned callout (`.co`)**: `position: absolute; bottom: 12mm; left: 20mm; right: 20mm`. The whitespace above it is intentional, not empty.
+
+### Table styles
+
+```css
+table.data td {
+  padding: 8pt;
+  border-bottom: 0.3pt solid var(--border);
+  font-size: 11pt;
+}
+table.data td:first-child {
+  font-weight: 500;
+  color: var(--brand);   /* first column: brand blue bold */
+}
+```
+
+### SVG constraints
+
+- `viewBox` width fixed at `920`; adjust height to content
+- `max-height: 105mm` on `svg` element to prevent overflow
+- WeasyPrint does not support `fill="url(#gradient)"` or CSS Grid inside SVG
+- Draw arrowheads as explicit `<path>` elements; `marker-end` with `orient="auto"` does not rotate in WeasyPrint
+
+### Content rules
+
+| Rule | Detail |
+|---|---|
+| No section divider slides | Use `.eyebrow` for section numbering instead; saves one slide per section |
+| No CJK parentheses | Replace `（...）` with `·` or `,` |
+| One line per bullet | Trim until each item fits on one line; never let it wrap |
+| Empty space handling | Priority: shrink page size > pin `.co` callout > add content > merge slides |
+| Cover | No horizontal rule; title centered `38pt`; subtitle on one line; bottom meta centered |
+
+### Troubleshooting
+
+| Symptom | Fix |
+|---|---|
+| Content overflows to next page | Add `max-height` or trim content |
+| 2×2 columns misaligned | Switch from CSS Grid to `table.t2x2` |
+| Large blank at slide bottom | Reduce to `280mm 158mm` or pin `.co` callout |
+| CJK text looks tight | Add `letter-spacing: 0.3pt` |
+
+### Core principles
+
+1. `letter-spacing` matters more than `font-size` for CJK density
+2. 2×2 layouts use `table`, not grid
+3. No section divider slides
+4. No white card panels on parchment; use border lines to divide
+5. Callout pins to bottom; whitespace above is the design
+6. Each bullet fits one line
+7. Shrink page first before adding more content
 
 ---
 

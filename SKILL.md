@@ -62,13 +62,15 @@ Rules:
 | "formal letter / 信件 / 辞职信 / 推荐信 / memo" | Letter | `letter.html` | `letter-en.html` |
 | "portfolio / 作品集 / case studies" | Portfolio | `portfolio.html` | `portfolio-en.html` |
 | "resume / resume / CV / 简历" | Resume | `resume.html` | `resume-en.html` |
-| "slides / PPT / deck / 演示" | Slides | `slides.py` | `slides-en.py` |
+| "slides / PPT / deck / 演示" | Slides | `slides-weasy.html` | `slides-weasy-en.html` |
 | "个股研报 / equity report / 估值分析 / investment memo / 股票分析" | Equity Report | `equity-report.html` | `equity-report-en.html` |
 | "更新日志 / changelog / release notes / 版本记录" | Changelog | `changelog.html` | `changelog-en.html` |
 
 > **Changelog vs. release notes**: The changelog template above is for styled document output. GitHub release notes are a separate deliverable; use `/write` with Release Note Template Mode.
 
-> Long deck (>20 slides): also read Deck Recipe (design.md section 8).
+> Slides: default to `slides-weasy.html` / `slides-weasy-en.html` (WeasyPrint HTML → PDF). Use `slides.py` / `slides-en.py` only when the user explicitly requires an editable PPTX file.
+
+> Deck recipe: read design.md Section 8 before drafting slides.
 
 If unsure, ask a one-liner about the scenario rather than guess.
 
@@ -195,7 +197,28 @@ Then proceed to Step 2.6 (slides) or the layout note (all other doc types) with 
 
 Skip this step for every doc type except slides.
 
-Before drafting any slide, confirm these six points with the user. Ask all six in one shot, not one at a time:
+### Path selection
+
+Default to the WeasyPrint HTML path. Switch to pptx only if the user explicitly requires an editable PPTX file.
+
+| Path | Template | When |
+|---|---|---|
+| WeasyPrint HTML → PDF (default) | `slides-weasy.html` / `slides-weasy-en.html` | All cases unless PPTX is required |
+| python-pptx → PPTX (fallback) | `slides.py` / `slides-en.py` | User explicitly requires editable PPTX |
+
+### Page size
+
+Default is `280mm 158mm`. Ask only if the user has mentioned length or density constraints.
+
+| Size | When |
+|---|---|
+| `280mm 158mm` | Default; fits most decks |
+| `297mm 167mm` | User wants a bit more room |
+| `338mm 190mm` | Heavy content slide or many data points per page |
+
+### Content pre-flight
+
+Before drafting any slide, confirm these points with the user. Ask all at once, skip any already answered:
 
 | # | Question |
 |---|---|
@@ -203,10 +226,16 @@ Before drafting any slide, confirm these six points with the user. Ask all six i
 | 2 | **Length target** - presentation time or slide count? (15 min: ~10 slides / 30 min: ~20 slides / 45 min: ~25-30 slides) |
 | 3 | **Source material** - what content is already ready: outline, doc, notes, data? |
 | 4 | **Images** - are screenshots, charts, logos, or product images available, or are gaps expected? |
-| 5 | **Hard constraints** - brand colors, required logo, PPTX-only vs. PDF+PPTX, any slides that must exist? |
+| 5 | **Hard constraints** - brand colors, required logo, PPTX required, any slides that must exist? |
 | 6 | **Format confirmation** - slides deck, or a one-pager that looks like a deck? |
 
-If the user has already answered any of these in the conversation, skip only those questions.
+### Content rules for slides
+
+- No section divider slides: use `.eyebrow` for section numbering, not a dedicated blue-background page
+- No CJK parentheses: replace `（...）` with `·` or `,`
+- Each bullet fits one line: trim until it does
+- 2×2 layouts: use `table.t2x2`, not CSS Grid
+- Pinned conclusions: use `.co` at `position: absolute; bottom: 12mm`
 
 ## Step 2.7 · Layout note (transparent, non-blocking)
 
