@@ -242,7 +242,7 @@ Combine freely: `<table class="kami-table financial striped">`.
 
 ## Diagram components
 
-Twelve built-in diagram types. Extract the `<svg>` block and embed in a `<figure>` in long-doc / portfolio:
+Fourteen built-in diagram types. Extract the `<svg>` block and embed in a `<figure>` in long-doc / portfolio:
 
 
 | Type          | File                                 | Use                                             |
