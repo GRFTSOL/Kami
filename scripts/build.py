@@ -27,7 +27,15 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
-from shared import COOL_GRAY_BLOCKLIST, DIAGRAMS, EXAMPLES, ROOT, TEMPLATES, TOKENS_FILE
+from shared import (
+    COOL_GRAY_BLOCKLIST,
+    DIAGRAMS,
+    EXAMPLES,
+    ROOT,
+    TEMPLATES,
+    TOKENS_FILE,
+    configure_weasyprint_runtime,
+)
 
 # name -> (source, max_pages). max_pages=0 means no hard check.
 HTML_TARGETS: dict[str, tuple[str, int]] = {
@@ -154,6 +162,7 @@ def set_pdf_metadata(pdf_path: Path, author: str | None = None) -> None:
 
 def build_html(name: str, source: str, max_pages: int,
                src_dir: Path = TEMPLATES) -> bool:
+    configure_weasyprint_runtime()
     try:
         from weasyprint import HTML
         from pypdf import PdfReader
@@ -412,6 +421,7 @@ def verify_target(name: str, source: str, max_pages: int, src_dir: Path) -> list
         issues.append(f"source not found: {src}")
         return issues
 
+    configure_weasyprint_runtime()
     try:
         from weasyprint import HTML
         from pypdf import PdfReader
