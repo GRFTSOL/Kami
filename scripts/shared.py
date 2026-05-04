@@ -11,7 +11,7 @@ DIAGRAMS = ROOT / "assets" / "diagrams"
 EXAMPLES = ROOT / "assets" / "examples"
 TOKENS_FILE = ROOT / "references" / "tokens.json"
 FONTCONFIG_CACHE = Path("/private/tmp/kami-fontconfig-cache")
-HOMEBREW_LIB = Path("/opt/homebrew/lib")
+_HOMEBREW_PREFIXES = (Path("/opt/homebrew"), Path("/usr/local"))
 
 
 def configure_weasyprint_runtime() -> None:
@@ -21,16 +21,20 @@ def configure_weasyprint_runtime() -> None:
     if sys.platform != "darwin":
         return
 
-    if not (HOMEBREW_LIB / "libgobject-2.0.dylib").exists():
+    brew_lib = next(
+        (p / "lib" for p in _HOMEBREW_PREFIXES if (p / "lib" / "libgobject-2.0.dylib").exists()),
+        None,
+    )
+    if brew_lib is None:
         return
 
     existing = os.environ.get("DYLD_FALLBACK_LIBRARY_PATH", "")
     paths = [path for path in existing.split(":") if path]
-    brew_lib = str(HOMEBREW_LIB)
-    if brew_lib in paths:
+    brew_lib_str = str(brew_lib)
+    if brew_lib_str in paths:
         return
 
-    os.environ["DYLD_FALLBACK_LIBRARY_PATH"] = ":".join([brew_lib, *paths])
+    os.environ["DYLD_FALLBACK_LIBRARY_PATH"] = ":".join([brew_lib_str, *paths])
 
 # Cool / neutral gray hex values that violate the "warm undertone only" rule.
 COOL_GRAY_BLOCKLIST = {
