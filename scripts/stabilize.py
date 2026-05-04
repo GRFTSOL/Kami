@@ -21,7 +21,13 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from shared import COOL_GRAY_BLOCKLIST, ROOT, TEMPLATES, TOKENS_FILE
+from shared import (
+    COOL_GRAY_BLOCKLIST,
+    ROOT,
+    TEMPLATES,
+    TOKENS_FILE,
+    configure_weasyprint_runtime,
+)
 
 PROFILES_FILE = ROOT / "references" / "stabilizer_profiles.json"
 DEFAULT_OUT_DIR = ROOT / "dist" / "stabilized"
@@ -394,6 +400,7 @@ def tighten_page_margin(
 
 
 def count_pages(html: str, base_dir: Path) -> int:
+    configure_weasyprint_runtime()
     try:
         from weasyprint import HTML
         from pypdf import PdfReader
