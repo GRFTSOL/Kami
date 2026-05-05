@@ -345,7 +345,7 @@ If any row fails, fix it before delivery.
 
 ---
 
-## Part 4 · 16 known pitfalls
+## Part 4 · 22 known pitfalls
 
 Every entry below came from a real failure. Check here first when something looks wrong.
 
@@ -616,6 +616,116 @@ Chevron templates (tip at endpoint, 8px arm length):
 /* Slide eyebrow */
 .slide .eyebrow { letter-spacing: 3px; }   /* halved */
 ```
+
+### 17. (P1) Figure SVG `max-height` starves width
+
+**Symptom**: An inline `<svg>` inside `<figure>` sits at less than the page content width, leaving a visible parchment gap on the right while the surrounding title and table run full-width.
+
+**Root cause**: When a figure SVG declares `max-height` without an explicit `width: 100%`, browsers and WeasyPrint preserve the viewBox aspect ratio and shrink width to honor the height cap. For wide viewBoxes (aspect > 1.5) the height cap becomes the binding constraint and width starves.
+
+**Fix**: Always set both width and height behavior. Use `max-height` only as a safety ceiling, never as the primary sizing rule.
+
+```css
+/* avoid */
+figure svg { max-height: 45mm; }
+
+/* use */
+figure svg { width: 100%; height: auto; max-height: 70mm; }
+```
+
+Quick check: if `viewBox` aspect ratio × current `max-height` < page content width, the chart is starved. Bump `max-height` until `aspect × max-height >= content width` or remove the cap.
+
+### 18. (P1) Multi-column metric labels need word-budget discipline
+
+**Symptom**: One or more labels in a 3-4 column metric row wrap to two lines while siblings stay on one line, breaking the baseline rhythm and pushing the value/label out of alignment.
+
+**Root cause**: Equal-flex columns at gap `G` and content width `W` give each column `(W - G·(N-1)) / N` total. After the metric value (typically 12-18mm at 14pt Charter), the label has only what remains - usually 22-28mm for 4 columns at 184mm width.
+
+**Fix**: Plan label text against the available budget before layout. Approximate budget at 9pt Charter:
+
+| Layout | Per-column total | Label budget after value | Soft char limit |
+|---|---|---|---|
+| 4 columns, gap 7mm, content 184mm | ~40.7mm | ~22-26mm | 14-18 chars |
+| 3 columns, gap 7mm, content 184mm | ~56.7mm | ~38-42mm | 24-28 chars |
+| 4 columns, gap 5mm, content 184mm | ~42.7mm | ~24-28mm | 16-20 chars |
+
+When the natural label is longer (e.g. "Falcon launches, lifetime"), trim to the data essential ("Falcon launches"); supporting context belongs in nearby body copy, not in a metric chip.
+
+### 19. (P2) Multi-column body density imbalance
+
+**Symptom**: A row of N parallel body columns (timeline cards, conviction cards, feature blurbs) renders with one column wrapping to one extra line while the others wrap evenly. The rhythm reads broken even when each individual cell looks fine.
+
+**Root cause**: Equal-width columns wrap based on character count, not "ideas". A column with 88 chars next to siblings at 67-81 chars at the same width will spill to one extra line.
+
+**Fix**: Hold body length within ±10 chars across parallel columns of the same width. Rewrite the longest column tighter rather than padding the shorter ones.
+
+```text
+col 1:  67 chars (2 lines)
+col 2:  81 chars (2 lines)
+col 3:  88 chars (3 lines)   <- breaks rhythm
+col 3': 66 chars (2 lines)   <- fixed by trimming "general intelligence" -> "AGI"
+```
+
+### 20. (P0) Demo / template HTML must reference assets inside the kami repo
+
+**Symptom**: Image slot renders as a missing-image placeholder in the PDF; rendered demo PNG looks empty where a screenshot should be.
+
+**Root cause**: An `<img src="../../../sibling-project/asset.jpg">` reaches outside the kami repo. The path resolves on the maintainer's laptop where the sibling project happens to be checked out, but breaks for every other user, breaks the packaged skill ZIP, and breaks any CI that doesn't recreate the maintainer's working tree.
+
+**Fix**: Every image referenced by a demo or template must live under `assets/demos/images/` or `assets/illustrations/`. Copy the source into the kami repo, then reference it with a relative path inside the repo.
+
+```html
+<!-- avoid -->
+<img src="../../../kaku/website/public/shots/kaku-light.webp" alt="...">
+
+<!-- use -->
+<img src="images/kaku-hero.jpg" alt="...">
+```
+
+Quick check before building any demo: `rg 'src="(\.\./|/Users/|file://)' assets/demos/` should return zero matches.
+
+### 21. (P1) Metric row baseline-align breaks when labels wrap
+
+**Symptom**: A horizontal metric row with `display: flex; align-items: baseline` looks fine when every label is one line, but ugly when one label wraps. The big number "10×" sits at the visual top of its column while the multi-line label flows downward; sibling columns with one-line labels look balanced but the wrapped column reads broken.
+
+**Root cause**: `align-items: baseline` aligns each metric to the **first line** of its label. When labels have different line counts, the visible heights differ but the numbers all sit at the same baseline (= top), making the row look uneven.
+
+**Fix**: Stack vertically (`flex-direction: column`). All numbers sit on the same top edge, all labels start at the same y below the numbers, and label wrap only extends each column's bottom — which is invisible on a slide / page.
+
+```css
+/* avoid: breaks visually when one label wraps */
+.metric { display: flex; align-items: baseline; gap: 8pt; }
+
+/* use: vertical stack, number above label */
+.metric { display: flex; flex-direction: column; gap: 6pt; }
+```
+
+This is especially important on slides where metrics often sit on a baseline strip at the bottom of the page; even a single multi-line label among 3 columns breaks the rhythm.
+
+### 22. (P2) Slide bullets: prefer short numerals or `•` over en-dash
+
+**Symptom**: A bulleted list on a slide with `–` (en-dash, U+2013) markers reads heavy and informal, especially at large slide font sizes (12-14pt body). The en-dash is wide and creates a visible gap between marker and text.
+
+**Root cause**: En-dash is a typographic primitive, originally meant for ranges ("1995–1997"), not list markers. At slide scale it looks elongated and informal.
+
+**Fix**: Use either small numerals (`1.`, `2.`, `3.`) or a standard bullet (`•`) in brand color. Numerals are tighter horizontally and signal sequence; bullets are tightest visually and signal "items in any order".
+
+```css
+/* avoid on slides: en-dash reads informal at large font sizes */
+ul.pts li::before { content: "\2013"; }
+
+/* use: numbered, mono digit, brand color */
+ul.pts { counter-reset: pts; }
+ul.pts li { counter-increment: pts; padding-left: 18pt; }
+ul.pts li::before {
+  content: counter(pts) ".";
+  color: var(--brand);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+```
+
+Print docs (long-doc, equity-report) keep the editorial en-dash style; slides switch to numerals.
 
 ---
 

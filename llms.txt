@@ -12,6 +12,7 @@ Kami is a layout design system for the AI era. Give Claude (or any LLM) a brief,
 ## Key Pages
 - [English showcase](https://kami.tw93.fun): Design system overview with live demos
 - [Chinese showcase](https://kami.tw93.fun/index-zh.html): Chinese version
+- [Japanese showcase](https://kami.tw93.fun/index-ja.html): Japanese version (best-effort CJK path)
 - [GitHub](https://github.com/tw93/kami): Source code and templates
 
 ## Install

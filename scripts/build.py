@@ -31,36 +31,17 @@ from shared import (
     COOL_GRAY_BLOCKLIST,
     DIAGRAMS,
     EXAMPLES,
+    PARCHMENT_RGB,
     ROOT,
     TEMPLATES,
     TOKENS_FILE,
+    build_targets,
     configure_weasyprint_runtime,
 )
 
 # name -> (source, max_pages). max_pages=0 means no hard check.
-HTML_TARGETS: dict[str, tuple[str, int]] = {
-    # Chinese
-    "one-pager":    ("one-pager.html", 1),
-    "letter":       ("letter.html", 1),
-    "long-doc":     ("long-doc.html", 0),
-    "portfolio":    ("portfolio.html", 0),
-    "resume":       ("resume.html", 2),
-    # English
-    "one-pager-en": ("one-pager-en.html", 1),
-    "letter-en":    ("letter-en.html", 1),
-    "long-doc-en":  ("long-doc-en.html", 0),
-    "portfolio-en": ("portfolio-en.html", 0),
-    "resume-en":    ("resume-en.html", 2),
-    # Equity Report
-    "equity-report":    ("equity-report.html", 3),
-    "equity-report-en": ("equity-report-en.html", 3),
-    # Changelog
-    "changelog":    ("changelog.html", 2),
-    "changelog-en": ("changelog-en.html", 2),
-    # Slides (WeasyPrint)
-    "slides-weasy":    ("slides-weasy.html", 0),
-    "slides-weasy-en": ("slides-weasy-en.html", 0),
-}
+# Sourced from shared.HTML_TEMPLATES so build.py and stabilize.py never drift.
+HTML_TARGETS: dict[str, tuple[str, int]] = build_targets()
 PPTX_TARGETS: dict[str, str] = {
     "slides":    "slides.py",
     "slides-en": "slides-en.py",
@@ -572,11 +553,15 @@ def check_orphans(paths: list[str]) -> int:
             return 2
 
     total = 0
+    missing = 0
+    scanned = 0
     for raw in paths:
         path = Path(raw)
         if not path.exists():
             print(f"ERROR: {raw}: not found")
+            missing += 1
             continue
+        scanned += 1
         doc = fitz.open(str(path))
         rel = path.relative_to(ROOT) if path.is_relative_to(ROOT) else path
         for page_num in range(len(doc)):
@@ -595,18 +580,25 @@ def check_orphans(paths: list[str]) -> int:
                     print(f"  {rel} p{page_num + 1}: orphan: \"{last}\" ({len(words)} word(s), {len(last)} chars)")
         doc.close()
 
-    if total == 0:
-        print(f"OK: no orphans found across {len(paths)} PDF(s)")
+    if scanned == 0:
+        print(f"ERROR: no PDFs scanned ({missing} missing)")
+        return 2
+
+    if total == 0 and missing == 0:
+        print(f"OK: no orphans found across {scanned} PDF(s)")
         return 0
 
-    print(f"\n{total} orphan(s) found across {len(paths)} PDF(s)")
+    if total:
+        print(f"\n{total} orphan(s) found across {scanned} PDF(s)")
+    if missing:
+        print(f"{missing} input(s) missing")
     return 1
 
 
 # ------------------------- density check -------------------------
 
-# Parchment background RGB for pixel comparison.
-_BG_R, _BG_G, _BG_B = 0xF5, 0xF4, 0xED
+# Parchment background RGB for pixel comparison (sourced from shared.PARCHMENT_RGB).
+_BG_R, _BG_G, _BG_B = PARCHMENT_RGB
 _BG_TOLERANCE = 10
 
 
@@ -627,11 +619,15 @@ def check_density(paths: list[str]) -> int:
             return 2
 
     warnings = 0
+    missing = 0
+    scanned = 0
     for raw in paths:
         path = Path(raw)
         if not path.exists():
             print(f"ERROR: {raw}: not found")
+            missing += 1
             continue
+        scanned += 1
         doc = fitz.open(str(path))
         rel = path.relative_to(ROOT) if path.is_relative_to(ROOT) else path
         for page_num in range(len(doc)):
@@ -670,11 +666,18 @@ def check_density(paths: list[str]) -> int:
                 warnings += 1
         doc.close()
 
-    if warnings == 0:
-        print(f"OK: no density issues across {len(paths)} PDF(s)")
+    if scanned == 0:
+        print(f"ERROR: no PDFs scanned ({missing} missing)")
+        return 2
+
+    if warnings == 0 and missing == 0:
+        print(f"OK: no density issues across {scanned} PDF(s)")
         return 0
 
-    print(f"\n{warnings} density warning(s) across {len(paths)} PDF(s)")
+    if warnings:
+        print(f"\n{warnings} density warning(s) across {scanned} PDF(s)")
+    if missing:
+        print(f"{missing} input(s) missing")
     return 1
 
 
@@ -720,9 +723,19 @@ def scan_file(path: Path) -> list[Finding]:
     is_en = path.name.endswith("-en.html")
 
     # Pass 2: per-line rule checks
+    is_python = path.suffix == ".py"
     for i, raw in enumerate(lines, start=1):
         line = raw.strip()
-        if not line or line.startswith("//") or line.startswith("#"):
+        if not line:
+            continue
+        # Skip comment lines. Note: '#' alone is NOT a CSS or HTML comment; it
+        # is the start of a CSS id selector (e.g. `#hero-bg { … }`) or part of
+        # a hex literal. Only treat '#' as a comment when scanning Python.
+        if line.startswith("//"):
+            continue
+        if line.startswith("<!--"):
+            continue
+        if is_python and line.startswith("#"):
             continue
 
         if RGBA_BG_DIRECT.search(raw):
@@ -877,7 +890,8 @@ def check_rhythm(targets: list[str]) -> int:
 
         seq = _parse_slide_sequence(src)
         if not seq:
-            print(f"WARN: {name}: no slide calls found in main()")
+            print(f"ERROR: {name}: no slide calls found in main() (deck unparseable)")
+            failures += 1
             continue
 
         issues: list[str] = []

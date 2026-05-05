@@ -7,10 +7,10 @@ One-page quick reference. Scan before filling a template or tweaking a detail. F
 1. Page background `#f5f4ed` (parchment), never pure white
 2. Single accent: ink-blue `#1B365D`
 3. All grays **warm-toned** (yellow-brown undertone), no cool blue-gray
-4. English: serif for headlines and body. Chinese: serif headlines, sans body. Sans for UI only
+4. One serif font per page (headings + body). `--sans` is a CSS alias for the same family; introduce a real sans only for genuinely UI-style chrome
 5. Serif weight locked at 500, no bold
 6. Line-height: headlines 1.1-1.3 / dense 1.4-1.45 / reading 1.5-1.55
-7. Letter-spacing: Chinese body 0.3pt; English body 0; tracking for short labels only
+7. Letter-spacing: Chinese body with TsangerJinKai 0.1-0.2pt (dense layouts may push to 0.3pt); English body 0; small labels and all-caps overlines get +0.2-1pt
 8. Tag backgrounds solid hex, no rgba (WeasyPrint double-rectangle bug)
 9. Depth via ring / whisper shadow, no hard drop shadows
 10. No italic in templates or demos
@@ -132,13 +132,15 @@ Any font-family that may render Chinese or Japanese must include a CJK fallback,
 **Page margins (A4)**
 
 
-| Document  | T · R · B · L        |
-| --------- | -------------------- |
-| Resume    | 11 · 13 · 11 · 13 mm |
-| One-Pager | 15 · 18 · 15 · 18 mm |
-| Long Doc  | 20 · 22 · 22 · 22 mm |
-| Letter    | 25 mm all sides      |
-| Portfolio | 12 · 15 · 12 · 15 mm |
+| Document      | T · R · B · L        |
+| ------------- | -------------------- |
+| Resume        | 11 · 13 · 11 · 13 mm |
+| One-Pager     | 15 · 18 · 15 · 18 mm |
+| Long Doc      | 20 · 22 · 22 · 22 mm |
+| Letter        | 25 mm all sides      |
+| Portfolio     | 12 · 15 · 12 · 15 mm |
+| Equity Report | 16 · 18 · 18 · 18 mm |
+| Changelog     | 20 · 22 · 22 · 22 mm |
 
 
 ## Radius scale
@@ -349,6 +351,12 @@ Page 2 font sizes stay at template defaults. The density variant only tightens p
 | Secondary button    | warm-sand + dark-warm                                          |
 | Chapter start       | serif heading + 2.5pt brand left bar                           |
 | Cover               | Display heading + right-aligned author/date + heavy whitespace |
+| Figure SVG          | `width: 100%; height: auto; max-height: <safe>`. Never `max-height` alone (starves width on wide viewBoxes; production.md #17). |
+| Metric labels (4-col) | Soft cap 14-18 chars at 9pt Charter; trim context, don't wrap (production.md #18). |
+| Multi-column body   | Hold lengths within ±10 chars across parallel columns (production.md #19). |
+| Image references    | Always inside `assets/demos/images/` or `assets/illustrations/`; never `../../sibling-project/...` (production.md #20). |
+| Metric row layout   | Vertical stack (`flex-direction: column`); horizontal baseline-align breaks when any label wraps (production.md #21). |
+| Slide bullets       | Numerals `1. 2. 3.` or `•`; en-dash `–` reads informal at slide scale (production.md #22). Print docs keep en-dash. |
 
 
 Not on the table -> first principles: **serif carries authority, sans carries utility, warm gray carries rhythm, ink-blue carries focus**.

@@ -8,9 +8,14 @@ Kami is a document-generation skill and template system. It ships editorial HTML
 
 - `SKILL.md` - skill routing and operating rules.
 - `CHEATSHEET.md` - quick design reference.
+- `CLAUDE.md` - Claude-specific notes pointing to AGENTS.md.
 - `references/` - design, writing, diagram, and production guidance.
+- `references/design.md`, `writing.md`, `production.md`, `diagrams.md` - full specs.
+- `references/resume-writing.md` - resume-specific bullet/project framing rules.
+- `references/anti-patterns.md` - six-category checklist for reviewing drafts.
 - `references/tokens.json` and `references/stabilizer_profiles.json` - canonical tokens and HTML stabilization profiles.
 - `references/brand-profile.md` and `references/brand.example.md` - optional brand profile behavior and public example.
+- `.claude-plugin/marketplace.json` - Claude Code plugin marketplace metadata.
 - `assets/templates/` - document templates.
 - `assets/demos/` - README showcase demos.
 - `assets/diagrams/` - diagram prototypes and generated diagram assets.
@@ -20,8 +25,8 @@ Kami is a document-generation skill and template system. It ships editorial HTML
 - `robots.txt`, `sitemap.xml`, and `vercel.json` - public crawler, deployment, and AI visibility files.
 - `llms.txt` - AI crawler and model-facing project summary.
 - `scripts/build.py` - PDF, PNG, PPTX, and verification workflow.
-- `scripts/shared.py` - shared constants for build and stabilization scripts.
-- `scripts/ensure-fonts.sh` - verified font recovery helper.
+- `scripts/shared.py` - shared constants and the canonical `HTML_TEMPLATES` registry used by build and stabilize scripts.
+- `scripts/ensure-fonts.sh` - verified font recovery helper (portable across bash 3.2+).
 - `scripts/stabilize.py` - deterministic HTML template normalization and overflow solving.
 - `scripts/package-skill.sh` - package builder for the release archive.
 - `dist/kami.zip` - tracked release archive.
@@ -40,6 +45,7 @@ python3 scripts/build.py --check-density path/to/doc.pdf
 python3 scripts/build.py --check-rhythm slides slides-en
 python3 scripts/stabilize.py all --report
 python3 scripts/stabilize.py one-pager --write --strict --report
+python3 scripts/tests/test_build.py
 bash scripts/ensure-fonts.sh
 bash scripts/package-skill.sh
 ```
@@ -57,6 +63,8 @@ bash scripts/package-skill.sh
 - Keep multilingual public pages, `llms.txt`, `robots.txt`, sitemap, JSON-LD, and FAQ content aligned when changing public positioning or install instructions.
 - Brand profile support is optional context. Keep public examples in `references/`; do not hard-code a maintainer's private local profile content.
 - Slides default to WeasyPrint HTML-to-PDF templates unless the user explicitly needs editable PPTX output.
+- Templates intentionally inline their CSS rather than share a `_kami.css` partial: each template must remain a single self-contained HTML file so users can copy-paste it without a build step. When fixing CSS drift, apply the same change across affected templates rather than introducing a build-time include.
+- The canonical `HTML_TEMPLATES` registry lives in `scripts/shared.py`; `build.py` and `stabilize.py` derive their target dicts from it. Update the registry, not the per-script dicts, when adding or removing templates.
 
 ## Current Risk Areas
 
@@ -65,6 +73,7 @@ bash scripts/package-skill.sh
 - AI/public visibility spans `index*.html`, `llms.txt`, `robots.txt`, `sitemap.xml`, FAQ JSON-LD, README install text, diagram counts, and release archive links.
 - `scripts/shared.py` centralizes constants used by build and stabilization scripts; keep paths and target names in sync before adding templates or diagrams.
 - `dist/kami.zip` is a tracked release archive. Packaging changes must update and inspect it deliberately.
+- `stabilize.py` only targets templates with `stabilize_max_pages > 0` in `HTML_TEMPLATES`. The `slides-weasy`, `equity-report`, and `changelog` templates are intentionally excluded: the overflow solver is not appropriate for multi-page decks or paginated reports.
 
 ## Verification Details
 

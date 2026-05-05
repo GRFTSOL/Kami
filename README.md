@@ -21,9 +21,9 @@ Part of a trilogy: [Kaku](https://github.com/tw93/Kaku) (書く) writes code, [W
 <table>
 <tr>
   <td align="center" width="25%">
-    <a href="assets/demos/demo-tesla.pdf"><img src="assets/demos/demo-tesla.png" alt="Tesla company one-pager"></a>
-    <br><b>One-Pager</b> · 中文
-    <br><sub>Tesla 公司介绍 · 单页</sub>
+    <a href="assets/demos/demo-tesla.pdf"><img src="assets/demos/demo-tesla.png" alt="Tesla equity report"></a>
+    <br><b>Equity Report</b> · 中文
+    <br><sub>Tesla Q1 2026 财报点评</sub>
   </td>
   <td align="center" width="25%">
     <a href="assets/demos/demo-agent-slides.pdf"><img src="assets/demos/demo-agent-slides.png" alt="Agent keynote slides" /></a>
@@ -88,7 +88,7 @@ The file has YAML frontmatter (structured fields: name, role, email, website, Gi
 
 Warm parchment canvas, ink blue as the sole accent, serif carries hierarchy, no hard shadows or flashy palettes. Not a UI framework; a constraint system for printed matter. Documents should read as composed pages, not dashboards.
 
-Six document types (One-Pager, Long Doc, Letter, Portfolio, Resume, Slides) with dedicated EN/CN templates and a best-effort Japanese path. Fourteen inline SVG diagram types included. Kami picks the right variant based on the language you write in.
+Eight document types (One-Pager, Long Doc, Letter, Portfolio, Resume, Slides, Equity Report, Changelog) with dedicated EN/CN templates and a best-effort Japanese path. Fourteen inline SVG diagram types included. Kami picks the right variant based on the language you write in.
 
 | Element | Rule |
 |---|---|

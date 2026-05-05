@@ -1,15 +1,21 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Portable across bash 3.2+ (macOS stock /bin/bash) and bash 4+ (Linux, Homebrew).
+# Avoids `declare -A` so the script runs on a fresh macOS without `brew install bash`.
+
 FONT_DIR="$(cd "$(dirname "$0")/../assets/fonts" && pwd)"
 MIN_SIZE=10000000  # 10MB, prevents truncated downloads
 
-# font_name -> local_filename mapping
-declare -A FONT_MAP=(
-  ["仓耳今楷02-W04.ttf"]="TsangerJinKai02-W04.ttf"
-  ["仓耳今楷02-W05.ttf"]="TsangerJinKai02-W05.ttf"
-)
+# Parallel arrays: index N pairs CN_NAMES[N] with LOCAL_NAMES[N].
+CN_NAMES=("仓耳今楷02-W04.ttf" "仓耳今楷02-W05.ttf")
+LOCAL_NAMES=("TsangerJinKai02-W04.ttf" "TsangerJinKai02-W05.ttf")
 
+# Mirror order is intentionally jsdmirror-first here, opposite of the
+# templates' @font-face fallback (which lists jsdelivr first). Reasoning:
+# this script runs interactively when fonts are missing locally, often from
+# China where jsdmirror is reachable and faster than jsdelivr; templates run
+# anywhere and prioritize jsdelivr's broader global coverage.
 MIRROR_SOURCES=(
   "https://cdn.jsdmirror.com/gh/tw93/Kami@main/assets/fonts"
   "https://cdn.jsdelivr.net/gh/tw93/Kami@main/assets/fonts"
@@ -25,7 +31,7 @@ check_size() {
 
 download_font() {
   local cn_name="$1"
-  local local_name="${FONT_MAP[$cn_name]}"
+  local local_name="$2"
   local target="$FONT_DIR/$local_name"
 
   # Source 1: official tsanger.cn
@@ -67,7 +73,7 @@ download_font() {
 mkdir -p "$FONT_DIR"
 
 all_present=true
-for local_name in "${FONT_MAP[@]}"; do
+for local_name in "${LOCAL_NAMES[@]}"; do
   if ! check_size "$FONT_DIR/$local_name"; then
     all_present=false
     break
@@ -81,13 +87,14 @@ fi
 
 echo "Downloading TsangerJinKai fonts..."
 failed=0
-for cn_name in "${!FONT_MAP[@]}"; do
-  local_name="${FONT_MAP[$cn_name]}"
+for i in "${!CN_NAMES[@]}"; do
+  cn_name="${CN_NAMES[$i]}"
+  local_name="${LOCAL_NAMES[$i]}"
   if check_size "$FONT_DIR/$local_name"; then
     echo "  OK: $local_name already present"
     continue
   fi
-  if ! download_font "$cn_name"; then
+  if ! download_font "$cn_name" "$local_name"; then
     failed=$((failed + 1))
   fi
 done
