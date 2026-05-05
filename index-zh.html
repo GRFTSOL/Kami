@@ -7,6 +7,21 @@
   <meta name="description" content="Kami 紙：面向 AI 文档生成的温暖纸质感设计系统，以单一强调色、serif 层级与编辑级留白，收束成稳定的排版。">
   <link rel="icon" href="https://gw.alipayobjects.com/zos/k/vl/logo.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./styles.css">
+  <link rel="canonical" href="https://kami.tw93.fun/index-zh.html">
+  <link rel="alternate" hreflang="en" href="https://kami.tw93.fun/">
+  <link rel="alternate" hreflang="zh-CN" href="https://kami.tw93.fun/index-zh.html">
+  <link rel="alternate" hreflang="ja" href="https://kami.tw93.fun/index-ja.html">
+  <link rel="alternate" hreflang="x-default" href="https://kami.tw93.fun/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Kami 紙：面向 AI Agent 的文档设计系统">
+  <meta property="og:description" content="Kami 紙：面向 AI 文档生成的温暖纸质感设计系统，以单一强调色、serif 层级与编辑级留白，收束成稳定的排版。">
+  <meta property="og:url" content="https://kami.tw93.fun/index-zh.html">
+  <meta property="og:image" content="https://gw.alipayobjects.com/zos/k/vl/logo.svg">
+  <meta property="og:locale" content="zh_CN">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Kami 紙：面向 AI Agent 的文档设计系统">
+  <meta name="twitter:description" content="Kami 紙：面向 AI 文档生成的温暖纸质感设计系统，以单一强调色、serif 层级与编辑级留白，收束成稳定的排版。">
+  <meta name="twitter:image" content="https://gw.alipayobjects.com/zos/k/vl/logo.svg">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -15,10 +30,17 @@
     "description": "面向 AI 文档生成的温暖纸质感设计系统，以单一强调色、serif 层级与编辑级留白，收束成稳定的排版。",
     "url": "https://kami.tw93.fun/index-zh.html",
     "applicationCategory": "DesignApplication",
+    "operatingSystem": "Any",
     "author": {
       "@type": "Person",
       "name": "Tw93",
-      "url": "https://tw93.fun"
+      "url": "https://tw93.fun",
+      "sameAs": ["https://github.com/tw93", "https://twitter.com/HiTw93", "https://tw93.fun", "https://weekly.tw93.fun", "https://yobi.tw93.fun"]
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
     }
   }
   </script>
@@ -35,7 +57,12 @@
       {
         "@type": "Question",
         "name": "Kami 能生成什么？",
-        "acceptedAnswer": { "@type": "Answer", "text": "六种文档：一页纸、长文档、信件、作品集、简历、幻灯片。外加 14 种内联 SVG 图表。输出为 HTML，可导出为 PDF、PNG 或幻灯片。" }
+        "acceptedAnswer": { "@type": "Answer", "text": "八种文档：一页纸、长文档、信件、作品集、简历、幻灯片、个股研报、更新日志。外加 14 种内联 SVG 图表。输出为 HTML，可导出为 PDF、PNG 或幻灯片。" }
+      },
+      {
+        "@type": "Question",
+        "name": "怎么安装 Kami？",
+        "acceptedAnswer": { "@type": "Answer", "text": "四种方式。Claude Code: npx skills add tw93/kami -a claude-code -g -y，或插件市场：/plugin marketplace add tw93/Kami 后执行 /plugin install kami@kami。通用 agent：npx skills add tw93/kami -a '*' -g -y。Claude Desktop：从 GitHub Releases 下载 kami.zip，在 Skills 设置中上传即可。" }
       },
       {
         "@type": "Question",
@@ -86,22 +113,22 @@
     </div>
     <div class="demo-grid">
       <div class="demo-card">
-        <a href="assets/demos/demo-tesla.pdf" target="_blank"><img src="assets/demos/demo-tesla.png" alt="Tesla 公司介绍"></a>
-        <p class="demo-title">One-Pager · 中文</p>
-        <p class="demo-desc">Tesla 公司介绍，单页 A4</p>
+        <a href="assets/demos/demo-tesla.pdf" target="_blank"><img src="assets/demos/demo-tesla.png" alt="Tesla Q1 2026 财报点评" loading="lazy" decoding="async"></a>
+        <p class="demo-title">Equity Report · 中文</p>
+        <p class="demo-desc">Tesla Q1 2026 财报点评</p>
       </div>
       <div class="demo-card">
-        <a href="assets/demos/demo-musk-resume.pdf" target="_blank"><img src="assets/demos/demo-musk-resume.png" alt="Musk resume"></a>
+        <a href="assets/demos/demo-musk-resume.pdf" target="_blank"><img src="assets/demos/demo-musk-resume.png" alt="Musk resume" loading="lazy" decoding="async"></a>
         <p class="demo-title">Resume · English</p>
         <p class="demo-desc">创始人简历，2 页</p>
       </div>
       <div class="demo-card">
-        <a href="assets/demos/demo-kaku.pdf" target="_blank"><img src="assets/demos/demo-kaku.png" alt="Kaku 作品集"></a>
+        <a href="assets/demos/demo-kaku.pdf" target="_blank"><img src="assets/demos/demo-kaku.png" alt="Kaku 作品集" loading="lazy" decoding="async"></a>
         <p class="demo-title">作品集 · 日本語</p>
         <p class="demo-desc">Kaku 终端作品集（日文版），7 页</p>
       </div>
       <div class="demo-card">
-        <a href="assets/demos/demo-agent-slides.pdf" target="_blank"><img src="assets/demos/demo-agent-slides.png" alt="Agent slides"></a>
+        <a href="assets/demos/demo-agent-slides.pdf" target="_blank"><img src="assets/demos/demo-agent-slides.png" alt="Agent slides" loading="lazy" decoding="async"></a>
         <p class="demo-title">Slides · English</p>
         <p class="demo-desc">Agent keynote, 6 slides</p>
       </div>
@@ -146,7 +173,7 @@ npx skills add tw93/kami -a codex -g -y</pre>
     </ol>
   </section>
 
-  <!-- ============ 01 COLOR ============ -->
+  <!-- ============ 03 COLOR ============ -->
   <section>
     <div class="section-head">
       <p class="section-num">03 · Color</p>
@@ -189,7 +216,7 @@ npx skills add tw93/kami -a codex -g -y</pre>
     </div>
   </section>
 
-  <!-- ============ 02 TYPE ============ -->
+  <!-- ============ 04 TYPE ============ -->
   <section>
     <div class="section-head">
       <p class="section-num">04 · Typography</p>
@@ -264,7 +291,7 @@ npx skills add tw93/kami -a codex -g -y</pre>
     </div>
   </section>
 
-  <!-- ============ 03 SPACING ============ -->
+  <!-- ============ 05 SPACING ============ -->
   <section>
     <div class="section-head">
       <p class="section-num">05 · Spacing &amp; Shape</p>
@@ -314,7 +341,7 @@ npx skills add tw93/kami -a codex -g -y</pre>
     </div>
   </section>
 
-  <!-- ============ 04 COMPONENTS ============ -->
+  <!-- ============ 06 COMPONENTS ============ -->
   <section>
     <div class="section-head">
       <p class="section-num">06 · Components</p>
@@ -405,7 +432,7 @@ beauty   = constraints × <span class="k">intention</span> ÷ noise</pre>
     </div>
   </section>
 
-  <!-- ============ 05b DIAGRAMS ============ -->
+  <!-- ============ 07 DIAGRAMS ============ -->
   <section>
     <div class="section-head">
       <p class="section-num">07 · Diagrams</p>
@@ -507,7 +534,7 @@ beauty   = constraints × <span class="k">intention</span> ÷ noise</pre>
     </div>
   </section>
 
-  <!-- ============ 05 DECISION TABLE ============ -->
+  <!-- ============ 08 DECISION TABLE ============ -->
   <section>
     <div class="section-head">
       <p class="section-num">08 · Decision Lookup</p>
@@ -530,7 +557,7 @@ beauty   = constraints × <span class="k">intention</span> ÷ noise</pre>
     </table>
   </section>
 
-  <!-- ============ 06 ANTI ============ -->
+  <!-- ============ 09 ANTI ============ -->
   <section>
     <div class="section-head">
       <p class="section-num">09 · Anti-Patterns</p>
@@ -577,7 +604,7 @@ beauty   = constraints × <span class="k">intention</span> ÷ noise</pre>
     </div>
   </section>
 
-  <!-- ============ 09 BACKGROUND ============ -->
+  <!-- ============ 10 BACKGROUND ============ -->
   <section>
     <div class="section-head">
       <p class="section-num">10 · Background</p>
@@ -602,7 +629,7 @@ beauty   = constraints × <span class="k">intention</span> ÷ noise</pre>
       </div>
       <div class="faq-pair">
         <dt>能生成什么？</dt>
-        <dd>六种文档类型：一页纸、长文档、信件、作品集、简历、幻灯片。外加 14 种内联 SVG 图表用于可视化说明。输出为 HTML，可导出为 PDF、PNG 或幻灯片。</dd>
+        <dd>八种文档类型：一页纸、长文档、信件、作品集、简历、幻灯片、个股研报、更新日志。外加 14 种内联 SVG 图表用于可视化说明。输出为 HTML，可导出为 PDF、PNG 或幻灯片。</dd>
       </div>
       <div class="faq-pair">
         <dt>怎么安装？</dt>

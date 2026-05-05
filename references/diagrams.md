@@ -87,18 +87,18 @@ Edit the `<text>` and `<rect>` values directly. Rules:
 
 ### Color token map
 
-Shared tokens across the three diagrams, mapping directly to kami's design system:
+Shared tokens across kami's diagram set, mapping directly to the design system. All fills are solid hex values pre-blended on parchment; never use `rgba()` in SVG fills or strokes (it disagrees with the warm-tone palette and complicates WeasyPrint output).
 
 | SVG role | kami token | Value |
 |---|---|---|
 | Canvas | `--parchment` | `#f5f4ed` |
-| Standard node fill | (white) | `#ffffff` |
+| Standard node fill | `--ivory` | `#faf9f5` |
 | Standard node stroke | `--near-black` | `#141413` |
-| Store node fill | near-black 5% | `rgba(20,20,19,0.05)` |
+| Store node fill | near-black 5% (solid) | `#EAE9E2` |
 | Store node stroke | `--olive` | `#504e49` |
-| Cloud node fill | near-black 3% | `rgba(20,20,19,0.03)` |
-| Cloud node stroke | near-black 30% | `rgba(20,20,19,0.30)` |
-| External node fill | olive 8% | `rgba(94,93,89,0.08)` |
+| Cloud node fill | near-black 3% (solid) | `#EEEDE6` |
+| Cloud node stroke | near-black 30% (solid) | `#B2B1AC` |
+| External node fill | olive 8% (solid) | `#E9E8E1` |
 | External node stroke | `--stone` | `#6b6a64` |
 | **Focal fill** | `--brand-tint` | `#EEF2F7` |
 | **Focal stroke** | `--brand` | `#1B365D` |
@@ -109,6 +109,23 @@ Shared tokens across the three diagrams, mapping directly to kami's design syste
 | Tertiary text / small mono label | `--stone` | `#6b6a64` |
 
 Don't add a fourth state ("warning amber", "success green"). kami has one accent.
+
+### Shared `<defs>` fragment
+
+Every diagram opens with the same parchment + dotted-noise overlay. Copy this block verbatim into new diagrams so the texture stays uniform:
+
+```html
+<defs>
+  <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+    <circle cx="1" cy="1" r="0.9" fill="#E3E2DC"/>
+  </pattern>
+</defs>
+
+<rect width="100%" height="100%" fill="#f5f4ed"/>
+<rect width="100%" height="100%" fill="url(#dots)" opacity="0.55"/>
+```
+
+`#E3E2DC` is the parchment-blended solid for `rgba(20,20,19,0.08)`; the `opacity="0.55"` on the overlay rect is a deliberate decoration, not a violation of the no-rgba-on-tag-backgrounds rule (which targets CSS tag fills, not SVG dot textures).
 
 ### Embedded font calibration (override standalone sizes)
 

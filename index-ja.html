@@ -7,6 +7,21 @@
   <meta name="description" content="Kami（紙）は、AI時代の文書制作に向けた、あたたかな紙面デザインシステムです。単一アクセントカラー、serif中心の階層、編集的な余白で一貫した可読性をつくります。">
   <link rel="icon" href="https://gw.alipayobjects.com/zos/k/vl/logo.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./styles.css">
+  <link rel="canonical" href="https://kami.tw93.fun/index-ja.html">
+  <link rel="alternate" hreflang="en" href="https://kami.tw93.fun/">
+  <link rel="alternate" hreflang="zh-CN" href="https://kami.tw93.fun/index-zh.html">
+  <link rel="alternate" hreflang="ja" href="https://kami.tw93.fun/index-ja.html">
+  <link rel="alternate" hreflang="x-default" href="https://kami.tw93.fun/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Kami 紙：AIエージェント向けドキュメントデザインシステム">
+  <meta property="og:description" content="Kami（紙）は、AI時代の文書制作に向けた、あたたかな紙面デザインシステムです。単一アクセントカラー、serif中心の階層、編集的な余白で一貫した可読性をつくります。">
+  <meta property="og:url" content="https://kami.tw93.fun/index-ja.html">
+  <meta property="og:image" content="https://gw.alipayobjects.com/zos/k/vl/logo.svg">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Kami 紙：AIエージェント向けドキュメントデザインシステム">
+  <meta name="twitter:description" content="Kami（紙）は、AI時代の文書制作に向けた、あたたかな紙面デザインシステムです。単一アクセントカラー、serif中心の階層、編集的な余白で一貫した可読性をつくります。">
+  <meta name="twitter:image" content="https://gw.alipayobjects.com/zos/k/vl/logo.svg">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -15,10 +30,17 @@
     "description": "AI時代の文書制作に向けた、あたたかな紙面デザインシステム。",
     "url": "https://kami.tw93.fun/index-ja.html",
     "applicationCategory": "DesignApplication",
+    "operatingSystem": "Any",
     "author": {
       "@type": "Person",
       "name": "Tw93",
-      "url": "https://tw93.fun"
+      "url": "https://tw93.fun",
+      "sameAs": ["https://github.com/tw93", "https://twitter.com/HiTw93", "https://tw93.fun", "https://weekly.tw93.fun", "https://yobi.tw93.fun"]
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
     }
   }
   </script>
@@ -35,7 +57,12 @@
       {
         "@type": "Question",
         "name": "どんなドキュメントを作れますか？",
-        "acceptedAnswer": { "@type": "Answer", "text": "6種類：ワンページャー、長文ドキュメント、レター、ポートフォリオ、履歴書、スライド。加えて14種のインラインSVG図表。HTML出力でPDF、PNG、スライドに変換可能です。" }
+        "acceptedAnswer": { "@type": "Answer", "text": "8種類：ワンページャー、長文ドキュメント、レター、ポートフォリオ、履歴書、スライド、個別株レポート、変更履歴。加えて14種のインラインSVG図表。HTML出力でPDF、PNG、スライドに変換可能です。" }
+      },
+      {
+        "@type": "Question",
+        "name": "セットアップ方法は？",
+        "acceptedAnswer": { "@type": "Answer", "text": "4通り。Claude Code: npx skills add tw93/kami -a claude-code -g -y、またはプラグインマーケットプレイスで /plugin marketplace add tw93/Kami のあと /plugin install kami@kami。汎用エージェント：npx skills add tw93/kami -a '*' -g -y。Claude Desktop：GitHub Releases から kami.zip をダウンロードし、Skills 設定でアップロード。" }
       },
       {
         "@type": "Question",
@@ -87,22 +114,22 @@
     </div>
     <div class="demo-grid">
       <div class="demo-card">
-        <a href="assets/demos/demo-tesla.pdf" target="_blank"><img src="assets/demos/demo-tesla.png" alt="Tesla company one-pager"></a>
-        <p class="demo-title">One-Pager</p>
-        <p class="demo-desc">Tesla 企業紹介、A4 1ページ</p>
+        <a href="assets/demos/demo-tesla.pdf" target="_blank"><img src="assets/demos/demo-tesla.png" alt="Tesla Q1 2026 個別株レポート" loading="lazy" decoding="async"></a>
+        <p class="demo-title">Equity Report</p>
+        <p class="demo-desc">Tesla Q1 2026 決算レポート</p>
       </div>
       <div class="demo-card">
-        <a href="assets/demos/demo-musk-resume.pdf" target="_blank"><img src="assets/demos/demo-musk-resume.png" alt="Musk resume"></a>
+        <a href="assets/demos/demo-musk-resume.pdf" target="_blank"><img src="assets/demos/demo-musk-resume.png" alt="Musk resume" loading="lazy" decoding="async"></a>
         <p class="demo-title">Resume</p>
         <p class="demo-desc">創業者 CV、2ページ</p>
       </div>
       <div class="demo-card">
-        <a href="assets/demos/demo-kaku.pdf" target="_blank"><img src="assets/demos/demo-kaku.png" alt="Kaku portfolio"></a>
+        <a href="assets/demos/demo-kaku.pdf" target="_blank"><img src="assets/demos/demo-kaku.png" alt="Kaku portfolio" loading="lazy" decoding="async"></a>
         <p class="demo-title">Portfolio</p>
         <p class="demo-desc demo-desc-nowrap">Kaku ターミナル作品集、7ページ</p>
       </div>
       <div class="demo-card">
-        <a href="assets/demos/demo-agent-slides.pdf" target="_blank"><img src="assets/demos/demo-agent-slides.png" alt="Agent slides"></a>
+        <a href="assets/demos/demo-agent-slides.pdf" target="_blank"><img src="assets/demos/demo-agent-slides.png" alt="Agent slides" loading="lazy" decoding="async"></a>
         <p class="demo-title">Slides</p>
         <p class="demo-desc">Agent キーノート、6枚</p>
       </div>
@@ -504,10 +531,10 @@ beauty   = constraints × <span class="k">intention</span> ÷ noise</pre>
     </table>
   </section>
 
-  <!-- ============ 08 ANTI ============ -->
+  <!-- ============ 09 ANTI ============ -->
   <section>
     <div class="section-head">
-      <p class="section-num">08 · Anti-Patterns</p>
+      <p class="section-num">09 · Anti-Patterns</p>
       <h2 class="section-title">避けるべきこと</h2>
       <p class="section-lede">例外は許容できますが、理由を明示できる場合に限ります。</p>
     </div>
@@ -548,10 +575,10 @@ beauty   = constraints × <span class="k">intention</span> ÷ noise</pre>
     </div>
   </section>
 
-  <!-- ============ 09 BACKGROUND ============ -->
+  <!-- ============ 10 BACKGROUND ============ -->
   <section>
     <div class="section-head">
-      <p class="section-num">09 · Background</p>
+      <p class="section-num">10 · Background</p>
       <h2 class="section-title">設計の背景</h2>
     </div>
     <div class="background-text">
@@ -560,10 +587,10 @@ beauty   = constraints × <span class="k">intention</span> ÷ noise</pre>
     </div>
   </section>
 
-  <!-- ============ 10 FAQ ============ -->
+  <!-- ============ 11 FAQ ============ -->
   <section>
     <div class="section-head">
-      <p class="section-num">10 · よくある質問</p>
+      <p class="section-num">11 · よくある質問</p>
       <h2 class="section-title">FAQ</h2>
     </div>
     <dl class="faq">
@@ -573,7 +600,7 @@ beauty   = constraints × <span class="k">intention</span> ÷ noise</pre>
       </div>
       <div class="faq-pair">
         <dt>どんなドキュメントを作れますか？</dt>
-        <dd>6種類のドキュメント：ワンページャー、長文ドキュメント、レター、ポートフォリオ、履歴書、スライド。加えて14種のインラインSVG図表で視覚的な説明も可能です。出力はHTMLで、PDF、PNG、スライドに変換できます。</dd>
+        <dd>8種類のドキュメント：ワンページャー、長文ドキュメント、レター、ポートフォリオ、履歴書、スライド、個別株レポート、変更履歴。加えて14種のインラインSVG図表で視覚的な説明も可能です。出力はHTMLで、PDF、PNG、スライドに変換できます。</dd>
       </div>
       <div class="faq-pair">
         <dt>セットアップ方法は？</dt>

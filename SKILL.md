@@ -21,16 +21,18 @@ Key rule: explicit prompt > editorial judgment > habit notes > frontmatter defau
 
 ## Step 1 · Decide the language
 
-**Match the user's language.** Chinese -> `*.html` / `slides.py`. English -> `*-en.html` / `slides-en.py`. Japanese -> CJK path (`.html` / `slides.py`) as best-effort, JP Mincho first, visual QA before shipping. Reference docs are shared English specs.
+**Match the user's language.** Chinese -> `*.html` / `slides-weasy.html`. English -> `*-en.html` / `slides-weasy-en.html`. Japanese -> CJK path (`.html` / `slides-weasy.html`) as best-effort, JP Mincho first, visual QA before shipping. Reference docs are shared English specs.
 
 When ambiguous (e.g. a one-word command like "resume"), ask a one-liner rather than guess.
 
-| User language | HTML templates | Slides template |
-|---|---|---|
-| Chinese (primary) | `*.html` | `slides.py` |
-| English | `*-en.html` | `slides-en.py` |
-| Japanese (best-effort) | `*.html` | `slides.py` |
-| Other languages (best-effort) | choose CJK or EN path by script coverage, then verify manually | choose `slides.py` or `slides-en.py`, then verify manually |
+| User language | HTML templates | Slides (PDF default) | Slides (PPTX fallback) |
+|---|---|---|---|
+| Chinese (primary) | `*.html` | `slides-weasy.html` | `slides.py` |
+| English | `*-en.html` | `slides-weasy-en.html` | `slides-en.py` |
+| Japanese (best-effort) | `*.html` | `slides-weasy.html` | `slides.py` |
+| Other languages (best-effort) | choose CJK or EN path by script coverage, then verify manually | choose `slides-weasy.html` or `slides-weasy-en.html`, then verify manually | use `slides.py` / `slides-en.py` only if PPTX is required |
+
+> Default to the WeasyPrint HTML path; fall back to PPTX (`slides*.py`) only when the user explicitly needs an editable deck.
 
 Always use `CHEATSHEET.md` and `references/*.md` for design, writing, production, and diagram guidance.
 
@@ -61,7 +63,7 @@ Rules:
 | "white paper / 白皮书 / 长文 / 年度总结 / technical report" | Long Doc | `long-doc.html` | `long-doc-en.html` |
 | "formal letter / 信件 / 辞职信 / 推荐信 / memo" | Letter | `letter.html` | `letter-en.html` |
 | "portfolio / 作品集 / case studies" | Portfolio | `portfolio.html` | `portfolio-en.html` |
-| "resume / resume / CV / 简历" | Resume | `resume.html` | `resume-en.html` |
+| "resume / CV / 简历 / 履歴書" | Resume | `resume.html` | `resume-en.html` |
 | "slides / PPT / deck / 演示" | Slides | `slides-weasy.html` | `slides-weasy-en.html` |
 | "个股研报 / equity report / 估值分析 / investment memo / 股票分析" | Equity Report | `equity-report.html` | `equity-report-en.html` |
 | "更新日志 / changelog / release notes / 版本记录" | Changelog | `changelog.html` | `changelog-en.html` |
@@ -74,7 +76,7 @@ Rules:
 
 If unsure, ask a one-liner about the scenario rather than guess.
 
-### Diagrams (primitives, not a 7th doc type)
+### Diagrams (primitives, not a separate template type)
 
 When the user asks for **a diagram inside** a long-doc / portfolio / slide (not a standalone document), route to `assets/diagrams/` rather than a template:
 
@@ -262,18 +264,22 @@ Pick the tier that matches the task. Default to the lowest tier that covers the 
 | **Content-only** | Updating text, swapping bullets, translating an existing doc. CSS stays untouched. | `CHEATSHEET.md` only |
 | **Layout tweak** | Adjusting spacing, moving sections, changing font size within spec. CSS touched. | `CHEATSHEET.md` + template (tokens already inline) |
 | **New document** | Building from scratch or from raw content. | Full design spec + writing spec + template |
+| **Resume content** | Resume-specific bullet structure, project framing, scope-result-outcome rules. | `resume-writing.md` + template |
 | **Sources / materials** | Company, product, market, launch, funding, specs, or branded subject. | `writing.md` source rules + user/source material |
 | **Deck (>20 slides)** | Long presentation needing Part Divider, Code Cards, section headers. | Full design spec + Deck Recipe (design.md section 8) |
 | **Troubleshoot** | Rendering bug, font issue, page overflow. | `production.md` (+ design spec if CSS is the cause) |
+| **Anti-patterns** | Reviewing AI-generated drafts before shipping. | `anti-patterns.md` (six-category checklist) |
 | **Diagram** | Embedding SVG in a doc. | `diagrams.md` only (has its own token map) |
 
 You can always escalate mid-task if the work turns out to need more than the initial tier.
 
 The full spec files for reference:
 - Design: `references/design.md`
-- Writing: `references/writing.md`
+- Writing (general): `references/writing.md`
+- Writing (resume-specific): `references/resume-writing.md`
 - Production: `references/production.md`
 - Diagrams: `references/diagrams.md`
+- Anti-patterns: `references/anti-patterns.md`
 
 ## Step 4 · Fill content into the template
 
