@@ -40,6 +40,8 @@ _FOOTER = dedent("""\
 # Conventional-commit prefix to a short product label, used as a hint when
 # the user reorganizes the auto-listed commits into themed bullets.
 _PREFIX_HINT = {
+    "build": "build",
+    "ci": "ci",
     "feat": "feature",
     "fix": "fix",
     "docs": "docs",
