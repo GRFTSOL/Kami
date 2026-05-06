@@ -29,6 +29,10 @@ Kami is a document-generation skill and template system. It ships editorial HTML
 - `scripts/ensure-fonts.sh` - verified font recovery helper (portable across bash 3.2+).
 - `scripts/stabilize.py` - deterministic HTML template normalization and overflow solving.
 - `scripts/package-skill.sh` - package builder for the release archive.
+- `scripts/draft-release-notes.py` - bilingual release notes scaffold from `git log`.
+- `scripts/tests/test_build.py` - zero-dependency test suite for build, stabilize, and shared helpers.
+- `.github/workflows/check.yml` - PR/push CI that runs `--check` and the test suite.
+- `.github/workflows/release.yml` - tag-triggered workflow that builds and attaches `dist/kami.zip` to the release.
 - `dist/kami.zip` - tracked release archive.
 
 Reference docs are English-only. Language-specific output differences belong in templates, not duplicated reference files.
@@ -46,6 +50,7 @@ python3 scripts/build.py --check-rhythm slides slides-en
 python3 scripts/stabilize.py all --report
 python3 scripts/stabilize.py one-pager --write --strict --report
 python3 scripts/tests/test_build.py
+python3 scripts/draft-release-notes.py V1.4.0..HEAD --version V1.4.1 --title "Steadier Hand"
 bash scripts/ensure-fonts.sh
 bash scripts/package-skill.sh
 ```
