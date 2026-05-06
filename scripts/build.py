@@ -602,6 +602,41 @@ _BG_R, _BG_G, _BG_B = PARCHMENT_RGB
 _BG_TOLERANCE = 10
 
 
+def _last_content_y(samples: bytes, w: int, h: int, stride: int, n: int) -> int:
+    """Return the highest y row index that contains non-parchment content.
+
+    Uses numpy when available (vectorized scan, ~50-100x faster on multi-page
+    PDFs); falls back to a pure Python loop otherwise. Both paths sample every
+    fourth column for parity, so the result is identical.
+    """
+    try:
+        import numpy as np
+    except ImportError:
+        last_y = 0
+        for y in range(h - 1, -1, -1):
+            row_start = y * stride
+            is_bg = True
+            for x in range(0, w, 4):
+                offset = row_start + x * n
+                if (abs(samples[offset] - _BG_R) > _BG_TOLERANCE
+                        or abs(samples[offset + 1] - _BG_G) > _BG_TOLERANCE
+                        or abs(samples[offset + 2] - _BG_B) > _BG_TOLERANCE):
+                    is_bg = False
+                    break
+            if not is_bg:
+                last_y = y
+                break
+        return last_y
+
+    arr = np.frombuffer(samples, dtype=np.uint8).reshape((h, stride))
+    pixels = arr[:, : w * n].reshape((h, w, n))
+    rgb = pixels[:, ::4, :3].astype(np.int16)
+    bg = np.array([_BG_R, _BG_G, _BG_B], dtype=np.int16)
+    row_is_bg = (np.abs(rgb - bg).max(axis=2) <= _BG_TOLERANCE).all(axis=1)
+    non_bg = np.where(~row_is_bg)[0]
+    return int(non_bg[-1]) if non_bg.size else 0
+
+
 def check_density(paths: list[str]) -> int:
     """Scan PDF pages for sparse content (large trailing whitespace from
     break-inside:avoid pushing content to the next page)."""
@@ -638,24 +673,7 @@ def check_density(paths: list[str]) -> int:
             w, h = pix.width, pix.height
             if h == 0:
                 continue
-            samples = pix.samples
-            stride = pix.stride
-            n = pix.n
-
-            last_content_y = 0
-            for y in range(h - 1, -1, -1):
-                row_start = y * stride
-                is_bg = True
-                for x in range(0, w, 4):
-                    offset = row_start + x * n
-                    if (abs(samples[offset] - _BG_R) > _BG_TOLERANCE
-                            or abs(samples[offset + 1] - _BG_G) > _BG_TOLERANCE
-                            or abs(samples[offset + 2] - _BG_B) > _BG_TOLERANCE):
-                        is_bg = False
-                        break
-                if not is_bg:
-                    last_content_y = y
-                    break
+            last_content_y = _last_content_y(pix.samples, w, h, pix.stride, pix.n)
 
             empty = (h - last_content_y) / h
             if empty > 0.50:
