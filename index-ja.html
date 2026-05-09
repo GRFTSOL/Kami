@@ -62,7 +62,7 @@
       {
         "@type": "Question",
         "name": "セットアップ方法は？",
-        "acceptedAnswer": { "@type": "Answer", "text": "4通り。Claude Code: npx skills add tw93/kami -a claude-code -g -y、またはプラグインマーケットプレイスで /plugin marketplace add tw93/Kami のあと /plugin install kami@kami。汎用エージェント：npx skills add tw93/kami -a '*' -g -y。Claude Desktop：GitHub Releases から kami.zip をダウンロードし、Skills 設定でアップロード。" }
+        "acceptedAnswer": { "@type": "Answer", "text": "Claude Code: npx skills add tw93/kami -a claude-code -g -y。プラグインマーケットプレイス経由のインストールは Claude Code 2.1.136-2.1.138 で一時的に影響を受けています。汎用エージェント：npx skills add tw93/kami -a '*' -g -y。Claude Desktop：GitHub Releases から kami.zip をダウンロードし、Skills 設定でアップロード。" }
       },
       {
         "@type": "Question",
@@ -146,12 +146,9 @@
 <pre class="code"><span class="c"># Claude Code</span>
 npx skills add tw93/kami -a claude-code -g -y
 
-<span class="c"># Claude Code plugin marketplace</span>
-/plugin marketplace add tw93/Kami
-/plugin install kami@kami
-
 <span class="c"># Codex</span>
 npx skills add tw93/kami -a codex -g -y</pre>
+    <p class="section-lede" style="font-size:14px;">Claude Code 2.1.136-2.1.138 ではプラグインマーケットプレイス経由のインストールが一時的に影響を受けています。上流のルート skill パス検証が修正されるまでは、上の Claude Code コマンドを使ってください。</p>
     <p class="section-lede" style="font-size:14px;">Claude Desktop の場合は <a href="https://github.com/tw93/kami/releases/latest/download/kami.zip" style="color:var(--brand); text-decoration:none; font-weight:500;">kami.zip</a> をダウンロードし、Customize &gt; Skills &gt; "+" &gt; Create skill からそのままアップロードします。</p>
   </section>
 
@@ -604,7 +601,7 @@ beauty   = constraints × <span class="k">intention</span> ÷ noise</pre>
       </div>
       <div class="faq-pair">
         <dt>セットアップ方法は？</dt>
-        <dd>4通り。Claude Code：<code style="font-family:var(--mono); font-size:0.9em; color:var(--brand);">npx skills add tw93/kami -a claude-code -g -y</code>、またはプラグインマーケットプレイスで <code style="font-family:var(--mono); font-size:0.9em; color:var(--brand);">/plugin marketplace add tw93/Kami</code> のあと <code style="font-family:var(--mono); font-size:0.9em; color:var(--brand);">/plugin install kami@kami</code>。汎用エージェント：<code style="font-family:var(--mono); font-size:0.9em; color:var(--brand);">npx skills add tw93/kami -a '*' -g -y</code>。Claude Desktop：GitHub Releasesからkami.zipをダウンロードし、カスタマイズ &gt; スキルでアップロード。</dd>
+        <dd>Claude Code：<code style="font-family:var(--mono); font-size:0.9em; color:var(--brand);">npx skills add tw93/kami -a claude-code -g -y</code>。プラグインマーケットプレイス経由のインストールは Claude Code 2.1.136-2.1.138 で一時的に影響を受けています。汎用エージェント：<code style="font-family:var(--mono); font-size:0.9em; color:var(--brand);">npx skills add tw93/kami -a '*' -g -y</code>。Claude Desktop：GitHub Releasesからkami.zipをダウンロードし、カスタマイズ &gt; スキルでアップロード。</dd>
       </div>
       <div class="faq-pair">
         <dt>対応言語は？</dt>

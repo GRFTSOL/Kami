@@ -32,6 +32,7 @@ from build import (  # noqa: E402
 from shared import (  # noqa: E402
     HTML_TEMPLATES,
     PARCHMENT_RGB,
+    TEMPLATES,
     build_targets,
     stabilize_targets,
 )
@@ -93,6 +94,28 @@ def test_registry_consistency() -> None:
     check("PPTX_TARGETS has 2 entries", len(PPTX_TARGETS) == 2,
           f"got {len(PPTX_TARGETS)}")
     check("PARCHMENT_RGB is canonical", PARCHMENT_RGB == (0xF5, 0xF4, 0xED))
+
+
+def test_chinese_html_templates_keep_single_serif_stack() -> None:
+    """Chinese templates must keep --sans pinned to --serif for PDF glyph safety."""
+    offenders: list[str] = []
+    for name, (source, _build_max, _stabilize_max) in HTML_TEMPLATES.items():
+        if name.endswith("-en"):
+            continue
+        text = (TEMPLATES / source).read_text(encoding="utf-8")
+        if "--sans: var(--serif)" not in text and "--sans:  var(--serif)" not in text:
+            offenders.append(source)
+
+    check("Chinese HTML templates keep --sans: var(--serif)",
+          not offenders,
+          f"offenders: {', '.join(offenders)}")
+
+
+def test_chinese_slides_mono_has_cjk_fallback() -> None:
+    """Slide labels may mix mono Latin and CJK; the mono stack needs CJK fallback."""
+    text = (TEMPLATES / "slides-weasy.html").read_text(encoding="utf-8")
+    check("slides-weasy mono stack includes TsangerJinKai02 fallback",
+          '"TsangerJinKai02"' in text and '"Source Han Serif SC"' in text)
 
 
 # --------------------------- scan_file ---------------------------
@@ -387,6 +410,8 @@ def test_last_content_y_blank_page() -> None:
 
 def main() -> int:
     test_registry_consistency()
+    test_chinese_html_templates_keep_single_serif_stack()
+    test_chinese_slides_mono_has_cjk_fallback()
     test_scan_file_skip_bug()
     test_scan_file_arrow_in_en()
     test_scan_file_clean_template()
