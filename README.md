@@ -51,12 +51,7 @@ Part of a trilogy: [Kaku](https://github.com/tw93/Kaku) (書く) writes code, [W
 npx skills add tw93/kami -a claude-code -g -y
 ```
 
-Or via the Claude Code plugin marketplace:
-
-```bash
-/plugin marketplace add tw93/Kami
-/plugin install kami@kami
-```
+Note: Claude Code 2.1.136-2.1.138 currently rejects root skill paths during marketplace install. Use the `npx skills` command above until the upstream path validation regression is fixed.
 
 **Generic agents** (Codex, OpenCode, Pi, and other tools that read from `~/.agents/`)
 
