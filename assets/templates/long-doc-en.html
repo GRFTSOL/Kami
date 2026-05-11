@@ -60,6 +60,9 @@
     --sans: var(--serif);
     --mono:  "JetBrains Mono", "SF Mono", "Fira Code",
              Consolas, Monaco, monospace;
+
+    --rhythm-module:  14pt;
+    --rhythm-section: 18pt;
   }
 
   html, body { background: var(--parchment); }
@@ -127,7 +130,7 @@
   .toc h2 {
     font-size: 22pt;
     font-weight: 500;
-    margin-bottom: 14pt;
+    margin-bottom: var(--rhythm-module);
     border-left: 2.5pt solid var(--brand);
     border-radius: 1.5pt;
     padding-left: 8pt;
@@ -205,7 +208,7 @@
     font-size: 12pt;
     line-height: 1.55;
     color: var(--dark-warm);
-    margin-bottom: 14pt;
+    margin-bottom: var(--rhythm-module);
   }
 
   .hl { color: var(--brand); font-weight: 500; }

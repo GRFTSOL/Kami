@@ -58,6 +58,9 @@
     --tag-bg:    #E4ECF5;
     --serif: "TsangerJinKai02", "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", "STSong", Georgia, serif;
     --sans: var(--serif);
+
+    --rhythm-module:  14pt;
+    --rhythm-section: 18pt;
   }
 
   html, body { background: var(--parchment); }
@@ -192,7 +195,7 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    margin-bottom: 14pt;
+    margin-bottom: var(--rhythm-module);
     border-left: 2.5pt solid var(--brand);
     border-radius: 1.5pt;
     padding-left: 8pt;
@@ -244,7 +247,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 4pt;
-    margin-bottom: 14pt;
+    margin-bottom: var(--rhythm-module);
   }
   .tag {
     background: var(--tag-bg);
@@ -261,7 +264,7 @@
     height: 110mm;
     background: var(--ivory);
     border-radius: 6pt;
-    margin-bottom: 14pt;
+    margin-bottom: var(--rhythm-module);
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -303,7 +306,7 @@
   .project-results {
     display: flex;
     gap: 14pt;
-    margin-top: 14pt;
+    margin-top: var(--rhythm-module);
     padding-top: 10pt;
     border-top: 0.5pt dotted var(--border);
   }
@@ -330,7 +333,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10pt;
-    margin-bottom: 14pt;
+    margin-bottom: var(--rhythm-module);
   }
   .project-visuals-2col .project-hero {
     height: 80mm;

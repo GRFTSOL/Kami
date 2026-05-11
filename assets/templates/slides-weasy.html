@@ -31,6 +31,9 @@
     --serif: "TsangerJinKai02", "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", "STSong", Georgia, serif;
     --sans:  var(--serif);
     --mono:  "JetBrains Mono", "SF Mono", "Fira Code", Consolas, Monaco, "TsangerJinKai02", "Source Han Serif SC", monospace;
+
+    --rhythm-module:  14pt;
+    --rhythm-section: 18pt;
   }
 
   body {
@@ -90,7 +93,7 @@
     line-height: 1.2;
     letter-spacing: 0.3pt;
     color: var(--near-black);
-    margin-bottom: 14pt;
+    margin-bottom: var(--rhythm-module);
   }
 
   h3 {
@@ -139,7 +142,7 @@
     color: var(--stone);
     border-bottom: 0.3pt solid var(--border);
     padding-bottom: 4pt;
-    margin-bottom: 14pt;
+    margin-bottom: var(--rhythm-module);
   }
 
   .mb {
@@ -148,7 +151,7 @@
     line-height: 1.55;
     letter-spacing: 0.3pt;
     color: var(--dark-warm);
-    margin-bottom: 18pt;
+    margin-bottom: var(--rhythm-section);
   }
 
   .mi {
@@ -168,7 +171,7 @@
     color: var(--olive);
     border-top: 0.3pt solid var(--border);
     padding-top: 8pt;
-    margin-top: 18pt;
+    margin-top: var(--rhythm-section);
   }
 
   .co {
