@@ -236,6 +236,8 @@ Structure is necessary but not sufficient. These bars define what separates comp
 
 **Core rule**: open every case study with the problem and its stakes, not with your role or the project name.
 
+**Density bar**: each project page reads as a complete case study. At target font size, a body page that renders under half-full is a draft defect, not a design choice. Merge upward into the previous project or downward into the next; do not pad with filler prose. See SKILL.md Step 4.1 for the items-per-page contract.
+
 | Avoid | Use |
 |---|---|
 | "I redesigned the dashboard" | "Enterprise users abandoned the analytics dashboard at 73% rate within the first session. I led the redesign that cut abandonment to 31%." |
@@ -252,6 +254,8 @@ Structure is necessary but not sufficient. These bars define what separates comp
 ### Slides
 
 **Core rule**: every slide title should be a full declarative sentence (an assertion), not a topic label. The body provides one piece of evidence supporting the assertion.
+
+**Density bar**: each body slide carries one assertion + 3-5 supporting items (or 1 chart + 2-3 callouts). Slides with fewer than 3 items and no chart must merge into an adjacent slide. Pinned `.co` callouts at bottom are intentional; bare trailing whitespace on a slide is a draft defect. See SKILL.md Step 4.1.
 
 | Avoid | Use |
 |---|---|
@@ -277,6 +281,8 @@ Structure is necessary but not sufficient. These bars define what separates comp
 
 **Core rule**: lead with the variant perception (what you see that the market doesn't) and tie every thesis driver to a measurable financial impact.
 
+**Density bar**: a body page with only a 2-row table and a sentence is too thin. Each page should carry one section + one table/chart + supporting prose. Combine sections rather than leaving a page half-empty. See SKILL.md Step 4.1.
+
 | Avoid | Use |
 |---|---|
 | "Strong management team" | "Management delivered 23% revenue CAGR over 5 years while keeping debt-to-equity below 0.4" |
@@ -297,6 +303,8 @@ Structure is necessary but not sufficient. These bars define what separates comp
 ### Long Document
 
 **Core rule**: each chapter's claim paragraph must survive the "so what?" test. If the reader asks "why should I care?", the first paragraph must have the answer.
+
+**Density bar**: each body page carries 1 chapter heading + 2-4 paragraphs + at most 1 figure. A chapter that fits in under 40% of a page must merge into the next chapter rather than claiming its own page. Trailing whitespace at the bottom of a body page is a draft defect. See SKILL.md Step 4.1.
 
 **Rules**:
 1. Evidence density: at least one data point per paragraph. A paragraph with zero numbers is an opinion paragraph and should be rare
@@ -328,6 +336,8 @@ Structure is necessary but not sufficient. These bars define what separates comp
 ### Changelog
 
 **Core rule**: one sentence per change, verb-led, user-facing language. If the user cannot understand the change from the sentence alone, rewrite it.
+
+**Density bar**: each version block carries 4-8 entries. A version with fewer than 4 entries should sit on the same page as the prior version rather than triggering a near-empty page. See SKILL.md Step 4.1.
 
 | Avoid | Use |
 |---|---|

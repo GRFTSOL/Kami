@@ -17,6 +17,22 @@ Check `~/.config/kami/brand.md` (preferred) or `~/.kami/brand.md` (legacy fallba
 
 Key rule: explicit prompt > editorial judgment > habit notes > frontmatter defaults > built-in defaults. Profile fills gaps silently; it never overrides the current conversation.
 
+## Step 0.5 · User project style scan (opt-in)
+
+Run this only when the user explicitly references a sibling project as a visual reference: "like my <project> site", "match the style of <repo>", "use the look from <directory>". Skip silently when no such reference exists.
+
+When triggered, before generating:
+
+1. Locate the referenced project's style files:
+   ```bash
+   find <referenced-path> -maxdepth 4 \( -name "*.css" -o -name "tailwind.config.*" -o -name "theme.*" -o -name "tokens.*" \) | head -20
+   ```
+2. Extract: dominant color values (hex / hsl), font stack, spacing scale, border-radius scale. Prefer values declared in CSS variables or design tokens over inline literals.
+3. Merge into the in-session brand profile as Layer C (visual customization), not Layer B (session defaults). Do not override an explicit `--brand` flag or values that the user typed in this turn.
+4. Report back in one line before continuing: "scanned <project>, extracted N colors / M fonts; using as visual reference."
+
+Skip and fall back to the brand profile defaults if the referenced path does not exist, no CSS-like files are found, or the extraction would conflict with the user's explicit values in the current message.
+
 ---
 
 ## Step 1 · Decide the language
@@ -74,7 +90,28 @@ Rules:
 
 > Deck recipe: read design.md Section 8 before drafting slides.
 
-If unsure, ask a one-liner about the scenario rather than guess.
+### Decision tree (use before asking)
+
+Walk this tree before reaching for a one-liner question. Ask only when two cells genuinely both fit.
+
+| Signal | Document |
+|---|---|
+| Length target unknown | Ask "how many pages" before classifying |
+| ≤ 1 page + investor / recruiter / exec summary audience | one-pager |
+| ≤ 1 page + formal correspondence (sales, hiring, resignation, memo) | letter |
+| 1.5-2 pages + career narrative + project bullets | resume |
+| 3-6 pages + project showcase + visual heavy | portfolio |
+| 6-15 pages + sustained argument + low visual density | long-doc |
+| Presentation flow + speaker support + per-slide assertion | slides |
+| Financial / metrics dashboard + thesis + price or risk view | equity-report |
+| Version-by-version log + release facts | changelog |
+
+Ambiguity examples that justify a one-liner:
+- "1.5 page career story with heavy visuals" -> ask "resume or portfolio?"
+- "2 page exec summary with metric tiles" -> ask "one-pager or equity-report?"
+- "5 page argument with several charts" -> ask "long-doc or portfolio?"
+
+Pick from the tree first. Ask only when the tree is genuinely silent.
 
 ### Diagrams (primitives, not a separate template type)
 
@@ -318,6 +355,45 @@ Every template has meta placeholders in `<head>`. Fill all four before building:
 3. `"Kami"` (final fallback)
 
 For personal documents (resume/letter/portfolio), the HTML `<meta name="author">` should match the person's name in the content. For non-personal documents (one-pager/long-doc), leave the placeholder as-is and let the build script infer it.
+
+## Step 4.1 · Per-page density target (multi-page templates only)
+
+适用：slides-weasy / long-doc / portfolio / equity-report / changelog。不适用 resume / one-pager / letter（这些有独立的长度合约）。
+
+正文页填充率目标 60-80%。封面 / 目录 / 末尾署名页豁免。这条规则解决的是 AI 生成多页文档时最常见的 draft 缺陷：把内容拆得太散，结果几页都填不满。
+
+### Items-per-page contract
+
+| Template | Typical body page | Hard floor (merge if below) |
+|---|---|---|
+| slides-weasy | 1 assertion title + 3-5 supporting items, or 1 chart + 2-3 callouts | <3 items and no chart → merge into adjacent slide |
+| long-doc | 1 chapter heading + 2-4 paragraphs + at most 1 figure | Chapter renders to <40% page → merge into neighbor chapter |
+| portfolio | 1 project header + 1 hero image + 3-5 outcome bullets | No image and <3 outcomes → merge with adjacent project |
+| equity-report | 1 section + 1 table/chart + supporting prose | Only a 2-row table on the page → combine sections |
+| changelog | 1 version block + 4-8 entries | Version has <4 entries → place on the same page as the prior version |
+
+### Sparse-page merge rule
+
+Before finalizing, scan the draft. Any body page that would render under 50% full → apply one of, in order:
+
+1. Merge upward into the previous section.
+2. Merge downward into the next section.
+3. Promote a list to a small diagram or table that earns the space.
+4. Pin a `.co` callout to bottom (slides-weasy only). Whitespace above a pinned callout is intentional, not sparse.
+
+Forbidden ways to "fill" a sparse page: padding with filler prose, repeating the heading as a sentence, inventing statistics, restating the prior page in different words. If the merge options don't apply, the page itself shouldn't exist.
+
+### Last-page exemption
+
+The last body page is allowed to run 40-60% fill. Forcing balance on the last page usually means padding. The colophon / closing slide may have any fill level.
+
+### Verify after build
+
+```bash
+python3 scripts/build.py --check-density   # flags >25% (WARN) / >50% (SPARSE) trailing whitespace
+```
+
+If a body page (not cover, not last page) gets a SPARSE warning, treat it as a draft defect and re-author with the merge rule.
 
 ## Step 4.5 · Auto-select output format
 
