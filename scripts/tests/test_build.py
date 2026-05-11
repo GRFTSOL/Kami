@@ -406,6 +406,34 @@ def test_last_content_y_blank_page() -> None:
     check("_last_content_y blank page returns 0", y == 0, f"got {y}")
 
 
+def test_density_threshold_buckets() -> None:
+    """Verify the SPARSE (>50%) / WARN (>25%) / OK categorization that
+    _scan_density applies after computing empty = (h - last_content_y) / h."""
+    w, h, n = 80, 100, 3
+    cases = [
+        (h,    0.0,  "OK"),       # full page
+        (80,   0.20, "OK"),       # 20% trailing
+        (70,   0.30, "WARN"),     # 30% trailing
+        (49,   0.51, "SPARSE"),   # 51% trailing
+        (0,    1.0,  "SPARSE"),   # blank page
+    ]
+    for content_rows, expected_empty, expected_bucket in cases:
+        samples = _make_samples(rows_with_content=content_rows, w=w, h=h, n=n)
+        y = _last_content_y(samples, w, h, w * n, n)
+        empty = (h - y) / h if content_rows > 0 else 1.0
+        if empty > 0.50:
+            bucket = "SPARSE"
+        elif empty > 0.25:
+            bucket = "WARN"
+        else:
+            bucket = "OK"
+        check(
+            f"density threshold rows={content_rows} -> {expected_bucket}",
+            bucket == expected_bucket,
+            f"empty={empty:.2f} bucket={bucket}",
+        )
+
+
 # --------------------------- runner ---------------------------
 
 def main() -> int:
@@ -435,6 +463,7 @@ def main() -> int:
     test_last_content_y_dense_page()
     test_last_content_y_sparse_page()
     test_last_content_y_blank_page()
+    test_density_threshold_buckets()
     print()
     print(f"Passed: {_PASS} | Failed: {_FAIL}")
     return 0 if _FAIL == 0 else 1

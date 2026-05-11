@@ -505,6 +505,23 @@ def verify_all(target: str | None = None) -> int:
     for status, detail in rows:
         print(f"{status}: {detail}")
 
+    if target is None and EXAMPLES.exists():
+        pdfs = [str(p) for p in sorted(EXAMPLES.glob("*.pdf"))]
+        if pdfs:
+            print()
+            print("Density scan (advisory):")
+            scan = _scan_density(pdfs)
+            if scan is not None:
+                sparse, warn, _, scanned = scan
+                if sparse + warn == 0:
+                    print(f"  OK: no density issues across {scanned} PDF(s)")
+                else:
+                    if sparse:
+                        print(f"  {sparse} SPARSE page(s) (>50% trailing whitespace) across {scanned} PDF(s)")
+                    if warn:
+                        print(f"  {warn} WARN page(s) (>25%) across {scanned} PDF(s)")
+                    print("  (advisory: re-author with SKILL.md Step 4.1 merge rule. Does not fail --verify.)")
+
     return 0 if failures == 0 else 1
 
 
@@ -637,23 +654,20 @@ def _last_content_y(samples: bytes, w: int, h: int, stride: int, n: int) -> int:
     return int(non_bg[-1]) if non_bg.size else 0
 
 
-def check_density(paths: list[str]) -> int:
-    """Scan PDF pages for sparse content (large trailing whitespace from
-    break-inside:avoid pushing content to the next page)."""
+def _scan_density(paths: list[str]) -> tuple[int, int, int, int] | None:
+    """Scan PDFs and print SPARSE/WARN lines.
+
+    Returns (sparse, warn, missing, scanned), or None if PyMuPDF is missing.
+    Sparse: trailing whitespace > 50%. Warn: > 25%.
+    """
     try:
         import fitz  # PyMuPDF
     except ImportError:
         print("ERROR: PyMuPDF required: pip install pymupdf --break-system-packages")
-        return 2
+        return None
 
-    if not paths:
-        if EXAMPLES.exists():
-            paths = [str(p) for p in sorted(EXAMPLES.glob("*.pdf"))]
-        if not paths:
-            print("ERROR: no PDF files to scan")
-            return 2
-
-    warnings = 0
+    sparse = 0
+    warn = 0
     missing = 0
     scanned = 0
     for raw in paths:
@@ -678,22 +692,40 @@ def check_density(paths: list[str]) -> int:
             empty = (h - last_content_y) / h
             if empty > 0.50:
                 print(f"  SPARSE: {rel} p{page_num + 1}: {empty:.0%} trailing whitespace")
-                warnings += 1
+                sparse += 1
             elif empty > 0.25:
                 print(f"  WARN: {rel} p{page_num + 1}: {empty:.0%} trailing whitespace")
-                warnings += 1
+                warn += 1
         doc.close()
+    return sparse, warn, missing, scanned
+
+
+def check_density(paths: list[str]) -> int:
+    """Scan PDF pages for sparse content (large trailing whitespace from
+    break-inside:avoid pushing content to the next page)."""
+    if not paths:
+        if EXAMPLES.exists():
+            paths = [str(p) for p in sorted(EXAMPLES.glob("*.pdf"))]
+        if not paths:
+            print("ERROR: no PDF files to scan")
+            return 2
+
+    result = _scan_density(paths)
+    if result is None:
+        return 2
+    sparse, warn, missing, scanned = result
 
     if scanned == 0:
         print(f"ERROR: no PDFs scanned ({missing} missing)")
         return 2
 
-    if warnings == 0 and missing == 0:
+    total = sparse + warn
+    if total == 0 and missing == 0:
         print(f"OK: no density issues across {scanned} PDF(s)")
         return 0
 
-    if warnings:
-        print(f"\n{warnings} density warning(s) across {scanned} PDF(s)")
+    if total:
+        print(f"\n{total} density warning(s) across {scanned} PDF(s)")
     if missing:
         print(f"{missing} input(s) missing")
     return 1
