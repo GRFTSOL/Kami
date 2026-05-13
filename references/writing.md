@@ -438,6 +438,55 @@ Run through before every draft:
 
 ---
 
+## Landing Page
+
+A landing page is not a brochure. It is a conversion surface. Every element either builds trust or wastes attention.
+
+### Global: no italic
+
+Invariant #10 applies to landing pages too. No `font-style: italic` anywhere. Poetic lines, captions, and footer ethos use color hierarchy (olive/stone) for differentiation, not style change.
+
+### Hero rules
+
+- **Tagline is one sentence, not a paragraph.** If it needs a comma, it is too long. The user decides in 3 seconds whether to scroll.
+- **Tokens (key facts) are scannable proof.** Price, platform, refund policy, compatibility. No adjectives. `$9 lifetime` beats `Affordable pricing for everyone`.
+- **CTA pair: secondary (try) + primary (buy).** Ghost button for low-commitment action, filled button for revenue action. Never three buttons.
+
+### Gallery rules
+
+- **Show, don't describe.** Screenshots replace feature paragraphs. Each panel is one tool or one workflow.
+- **Poetic captions, not marketing copy.** The line under each screenshot should evoke, not explain. `Rainwater clears the soil` over `Efficiently clean your system caches`.
+- **3-6 panels maximum.** More than 6 and the auto-rotate becomes noise. Users remember 4.
+
+### Features list rules
+
+- **Name is the tool, subtitle is the metaphor.** Feature name in brand color, subtitle in italic/small text.
+- **Description answers "so what?"** Not what it does, but why the user should care. One paragraph, 2-3 sentences.
+
+### Principles rules
+
+- **Title is the commitment, description is the proof.** "Nothing leaves your Mac" is the title. How you enforce it is the description.
+- **4-6 principles.** More than 6 dilutes the message. If you have 8, two are redundant.
+
+### Pricing rules
+
+- **Price is the headline.** 112px, not buried in a paragraph. Users look for the number.
+- **Compare honestly.** Name the competitors, show their subscription price with `<s>`, then your one-time price. No vague "other tools charge more".
+- **Terms at the bottom.** Payment methods, refund policy, device limit. Factual, not promotional.
+
+### FAQ rules
+
+- **Lead with the question the user is actually thinking.** "Is it free?" before "What's the refund policy?".
+- **Answers in 1-2 sentences.** A FAQ answer longer than 3 sentences belongs in the docs page, not here.
+- **6-8 questions maximum.** Cover: free tier, comparison, permissions/privacy, data collection, purchase flow, licensing.
+
+### Footer rules
+
+- **Brand mark + closing ethos.** The footer is the last impression. A poetic closing line beats a copyright notice.
+- **Links are navigation, not decoration.** Only link to pages that exist. Dead links destroy trust faster than missing links.
+
+---
+
 ## Writing references
 
 - **Paul Graham's essays** - short, direct, judgmental. The gold standard for essayistic writing.

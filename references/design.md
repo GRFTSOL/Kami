@@ -1021,3 +1021,88 @@ figure img,
 ```
 
 Apply this rule to any `<img>` placed inside a fixed-size container. For `object-fit: contain` (slides, logos), `object-position` has no visible effect; omit it.
+
+---
+
+## 11. Landing Page (screen-first)
+
+The landing-page template is the only kami template designed for browser delivery, not PDF. It inherits the full parchment design system but adds interactive and responsive patterns.
+
+### Layout
+
+- `max-width: 1120px` centered, padding `88px 64px 120px`
+- Sections numbered `00 · Label` through `04 · Label` with `section-num` / `section-title` / `section-lede` pattern
+- Two responsive breakpoints: `880px` (tablet) and `480px` (phone)
+
+### Hero
+
+- Title: 96px (EN) / 88px (CN), weight 500, letter-spacing -0.5px (EN) / 0 (CN)
+- Entrance animation: `translateY(10px) + blur(6px)` fading in over 900ms with 120ms delay
+- Tagline: 21px (EN) / 20px (CN), olive color, letter-spacing 0.2px (EN) / 0.4px (CN), max-width 820px
+- Tokens row: small key facts as `<span><b>value</b> label</span>`, 13px stone, `--latin-ui` font
+- CTA: pill buttons (border-radius 999px), primary filled + ghost outlined, 15px, 13px 28px padding
+
+### Gallery
+
+- Grid: `minmax(0, 1fr) auto`, frame spans full width, caption and tabs on row 2
+- Frame: dark background `--shot-bg: #141318`, rounded 10px, 1px border
+- Transition: direction-aware slide + scale(0.985), 620-880ms cubic-bezier(0.22, 1, 0.36, 1)
+- Sweep overlay: diagonal light gradient that slides across on switch (540-920ms)
+- Auto-rotate: 4500ms interval, pauses on hover/focus, respects prefers-reduced-motion
+- Tabs: pill buttons 12px `--latin-ui`, active state uses brand-tint background
+- Click navigation: left half = previous, right half = next
+
+### Buttons
+
+Two variants only:
+
+| Variant | Background | Border | Text | Hover |
+|---|---|---|---|---|
+| `.btn-primary` | `--brand` | `--brand` | `--ivory` | `--brand-light`, translateY(-1px) |
+| `.btn-ghost` | transparent | `--brand` | `--brand` | `--brand-tint` bg, translateY(-1px) |
+
+Both: pill shape (999px radius), 15px `--latin-ui`, weight 500, 1.5px border, min-width 158px.
+
+### Pricing
+
+- Amount: 112px serif, letter-spacing -2.8px
+- Comparison: 18px, use `<s>` for competitor prices (stone color, 1px underline)
+- Highlight: `.hl` class for brand-colored emphasis
+- Terms: 13.5px olive, centered, max-width 640px
+
+### Manifesto
+
+- Brand philosophy paragraph: 20px, weight 400, line-height 1.65, letter-spacing 0.05em
+- `<em>` renders in brand color with `font-style: normal` (not italic, per invariant #10)
+
+### Code Block
+
+- `pre.code`: ivory background, 1px border, 6px radius, 18px 22px padding
+- Font: `--mono` 13.5px, tabular-nums, line-height 1.55
+- Syntax: `.c` (comments) in stone, `.k` (keywords) in brand
+
+### Metrics
+
+- Flex row with 32px gap, each metric is value (36px serif 500) + label (13px `--latin-ui` stone)
+- `font-variant-numeric: tabular-nums` on values
+
+### Demo Card Grid
+
+- `auto-fill, minmax(240px, 1fr)` grid, 18px gap
+- Cards: ivory bg, 1px border, 8px radius, whisper shadow on hover
+- Image fills top, title 15px weight 500 + desc 12px olive below
+
+### FAQ
+
+- Wrap each dt/dd pair in `<div class="faq-pair">` for spacing (24px margin-bottom)
+- `<dt>` question: 16px, weight 500, no top margin
+- `<dd>` answer: 14px olive
+- Code spans: mono 12px on brand-tint background, 3px radius
+
+### Footer
+
+- Two-column flex: brand mark (icon + name + tagline) left, colophon (links + ethos) right
+- Mark icon: 56px rounded 12px
+- Links: flex-wrap row, 20px gap, dark-warm color
+- Ethos: closing line, stone color, max-width 360px (no italic per invariant #10)
+- Collapses to single column below 880px

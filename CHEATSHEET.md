@@ -141,6 +141,7 @@ Any font-family that may render Chinese or Japanese must include a CJK fallback,
 | Portfolio     | 12 · 15 · 12 · 15 mm |
 | Equity Report | 16 · 18 · 18 · 18 mm |
 | Changelog     | 20 · 22 · 22 · 22 mm |
+| Landing Page  | N/A (screen-first, max-width: 1120px, padding: 88px 64px) |
 
 
 ## Radius scale
