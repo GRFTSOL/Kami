@@ -36,6 +36,7 @@ from shared import (  # noqa: E402
     build_targets,
     stabilize_targets,
 )
+from highlight import highlight_code_blocks  # noqa: E402
 from stabilize import (  # noqa: E402
     blend_rgba_on_parchment,
     clamp,
@@ -436,6 +437,24 @@ def test_density_threshold_buckets() -> None:
 
 # --------------------------- runner ---------------------------
 
+def test_highlight_with_language() -> None:
+    html = '<pre><code class="language-python">def foo():\n    pass</code></pre>'
+    out = highlight_code_blocks(html)
+    check("highlight adds style spans to language-tagged block",
+          "<span" in out and "style=" in out,
+          f"out: {out[:200]}")
+    check("highlight preserves pre/code wrapper",
+          "<pre" in out and "</code>" in out)
+
+
+def test_highlight_without_language() -> None:
+    html = '<pre><code>def foo():\n    pass</code></pre>'
+    out = highlight_code_blocks(html)
+    check("highlight does not modify plain code block",
+          out == html,
+          f"out differs: {out[:200]}")
+
+
 def main() -> int:
     test_registry_consistency()
     test_chinese_html_templates_keep_single_serif_stack()
@@ -464,6 +483,8 @@ def main() -> int:
     test_last_content_y_sparse_page()
     test_last_content_y_blank_page()
     test_density_threshold_buckets()
+    test_highlight_with_language()
+    test_highlight_without_language()
     print()
     print(f"Passed: {_PASS} | Failed: {_FAIL}")
     return 0 if _FAIL == 0 else 1

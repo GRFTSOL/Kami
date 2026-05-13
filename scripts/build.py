@@ -27,6 +27,7 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
+from highlight import highlight_code_blocks
 from shared import (
     COOL_GRAY_BLOCKLIST,
     DIAGRAMS,
@@ -159,9 +160,9 @@ def build_html(name: str, source: str, max_pages: int,
     EXAMPLES.mkdir(parents=True, exist_ok=True)
     out = EXAMPLES / f"{name}.pdf"
 
-    # weasyprint resolves @font-face relative to CWD. Run from the source dir
-    # so fonts placed next to the HTML are found.
-    HTML(str(src), base_url=str(src.parent)).write_pdf(str(out))
+    html_text = src.read_text(encoding="utf-8")
+    html_text = highlight_code_blocks(html_text)
+    HTML(string=html_text, base_url=str(src.parent)).write_pdf(str(out))
 
     # Set PDF metadata (only replaces placeholders, preserves filled values)
     author = infer_author()
@@ -421,7 +422,9 @@ def verify_target(name: str, source: str, max_pages: int, src_dir: Path) -> list
         print(f"  [FONT MISS] To fix: bash scripts/ensure-fonts.sh")
         print(f"  [FONT MISS] Or install fallback: brew install --cask font-source-han-serif-sc")
 
-    HTML(str(src), base_url=str(src.parent)).write_pdf(str(out))
+    html_text = src.read_text(encoding="utf-8")
+    html_text = highlight_code_blocks(html_text)
+    HTML(string=html_text, base_url=str(src.parent)).write_pdf(str(out))
 
     # Set PDF metadata (only replaces placeholders, preserves filled values)
     author = infer_author()

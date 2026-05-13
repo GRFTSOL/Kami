@@ -509,6 +509,26 @@ For displaying pseudocode or code snippets in slides. More structured than a pla
 
 **Content philosophy**: use pseudocode style. Comments should outnumber code lines. The reader sees logic, not syntax.
 
+### Syntax Highlighting
+
+Code blocks with `class="language-*"` on the `<code>` element get Pygments-based highlighting at build time. The palette uses existing tokens only:
+
+| Token | Hex | Token var |
+|---|---|---|
+| Keyword | `#1B365D` | `--brand` |
+| Comment | `#6b6a64` | `--stone` |
+| String | `#504e49` | `--olive` |
+| Number | `#3d3d3a` | `--dark-warm` |
+| Function/Class | `#141413` | `--near-black` |
+
+```html
+<pre><code class="language-python">def analyze(data):
+    """Transform raw data."""
+    return transform(data)</code></pre>
+```
+
+Blocks without `class="language-*"` stay monochrome. Requires `pip install Pygments`; without it, blocks pass through unstyled.
+
 ### Glance Grid
 
 Four key-number cells, placed after the TOC or on a chapter-opening page of a long-doc / proposal.
