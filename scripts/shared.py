@@ -108,10 +108,20 @@ HTML_TEMPLATES: dict[str, tuple[str, int, int]] = {
     "slides-weasy-en": ("slides-weasy-en.html", 0, 0),
 }
 
+SCREEN_TEMPLATES: dict[str, str] = {
+    "landing-page":    "landing-page.html",
+    "landing-page-en": "landing-page-en.html",
+}
+
 
 def build_targets() -> dict[str, tuple[str, int]]:
     """Return target -> (source, max_pages) mapping for build.py."""
     return {name: (src, build_max) for name, (src, build_max, _) in HTML_TEMPLATES.items()}
+
+
+def screen_targets() -> dict[str, str]:
+    """Return target -> source mapping for browser-only HTML templates."""
+    return dict(SCREEN_TEMPLATES)
 
 
 def stabilize_targets() -> dict[str, tuple[str, int]]:

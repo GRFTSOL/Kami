@@ -294,7 +294,7 @@ section { margin-bottom: 72px; }
   color: var(--stone);
   margin: 14px 0 0;
   letter-spacing: 0.1px;
-  line-height: 1.6;
+  line-height: 1.55;
 }
 .section-versus b {
   color: var(--brand);
@@ -331,7 +331,7 @@ section { margin-bottom: 72px; }
   position: relative;
   background: var(--shot-bg);
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 1px 3px rgba(20, 19, 19, 0.10);
   cursor: ew-resize;
@@ -494,7 +494,7 @@ section { margin-bottom: 72px; }
 .features .what {
   font-family: var(--serif);
   font-size: 15px;
-  line-height: 1.65;
+  line-height: 1.55;
   letter-spacing: 0.4px;
   color: var(--dark-warm);
   margin: 0;
@@ -558,7 +558,7 @@ section { margin-bottom: 72px; }
 .manifesto {
   font-family: var(--serif);
   font-size: 20px;
-  line-height: 1.65;
+  line-height: 1.55;
   letter-spacing: 0.05em;
   color: var(--near-black);
   margin: 0 0 28px;
@@ -670,14 +670,14 @@ pre.code .k { color: var(--brand); }
   line-height: 1;
   color: var(--near-black);
   margin: 0 0 24px;
-  letter-spacing: -2.8px;
+  letter-spacing: 0;
 }
 .price-vs {
   font-family: var(--serif);
   font-size: 17px;
   color: var(--dark-warm);
   margin: 0 0 40px;
-  line-height: 1.6;
+  line-height: 1.55;
   max-width: 580px;
 }
 .price-vs s {
@@ -715,7 +715,7 @@ pre.code .k { color: var(--brand); }
   color: var(--olive);
   margin: 28px 0 0;
   max-width: 640px;
-  line-height: 1.8;
+  line-height: 1.5;
   text-align: center;
 }
 .price-terms .sep {
@@ -738,7 +738,7 @@ pre.code .k { color: var(--brand); }
 .faq dd {
   font-family: var(--serif);
   font-size: 14px;
-  line-height: 1.65;
+  line-height: 1.55;
   letter-spacing: 0.4px;
   color: var(--olive);
   margin: 0;
@@ -778,7 +778,7 @@ footer.foot {
   width: 56px;
   height: 56px;
   flex-shrink: 0;
-  border-radius: 12px;
+  border-radius: 8px;
   object-fit: cover;
 }
 .foot .mark .wm-name {
@@ -812,7 +812,7 @@ footer.foot {
 .foot .colophon .links a:hover { color: var(--brand); }
 .foot .colophon .ethos {
   color: var(--stone);
-  line-height: 1.65;
+  line-height: 1.55;
   max-width: 360px;
   margin-left: auto;
 }
@@ -855,10 +855,10 @@ footer.foot {
   .principles li:nth-child(even) { padding-left: 0; }
 
   .price-card { padding: 48px 16px 40px; }
-  .price-amount { font-size: 72px; letter-spacing: -1.8px; margin-bottom: 18px; }
+  .price-amount { font-size: 72px; letter-spacing: 0; margin-bottom: 18px; }
   .price-vs { font-size: 15px; margin-bottom: 32px; }
   .price-card .btn-primary { min-width: 240px; }
-  .price-terms { font-size: 12.5px; line-height: 1.8; margin-top: 24px; }
+  .price-terms { font-size: 12.5px; line-height: 1.5; margin-top: 24px; }
 
   .foot {
     flex-direction: column;
@@ -1030,6 +1030,19 @@ footer.foot {
   var timer = null;
   var transitionTimer = null;
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (panels.length === 0) return;
+  if (panels.length === 1) {
+    panels[0].classList.add('is-active');
+    panels[0].setAttribute('aria-hidden', 'false');
+    if (title) title.textContent = panels[0].dataset.title || '';
+    if (line) line.textContent = panels[0].dataset.line || '';
+    tabs.forEach(function(t) {
+      t.classList.add('is-active');
+      t.setAttribute('aria-pressed', 'true');
+    });
+    return;
+  }
 
   if (panels.length > 0 && title) {
     title.textContent = panels[0].dataset.title || '';

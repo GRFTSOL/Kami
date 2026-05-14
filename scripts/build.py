@@ -4,6 +4,7 @@
 Usage:
     python3 scripts/build.py                      # build all examples (HTML + diagrams + PPTX)
     python3 scripts/build.py resume               # build one template, print pages + fonts
+    python3 scripts/build.py landing-page         # check one browser-only static template
     python3 scripts/build.py --check              # scan templates for CSS rule violations
     python3 scripts/build.py --check -v           # verbose (show each scanned file)
     python3 scripts/build.py --sync               # check CSS token drift across templates
@@ -38,11 +39,13 @@ from shared import (
     TOKENS_FILE,
     build_targets,
     configure_weasyprint_runtime,
+    screen_targets,
 )
 
 # name -> (source, max_pages). max_pages=0 means no hard check.
 # Sourced from shared.HTML_TEMPLATES so build.py and stabilize.py never drift.
 HTML_TARGETS: dict[str, tuple[str, int]] = build_targets()
+SCREEN_TARGETS: dict[str, str] = screen_targets()
 PPTX_TARGETS: dict[str, str] = {
     "slides":    "slides.py",
     "slides-en": "slides-en.py",
@@ -209,10 +212,28 @@ def build_slides(name: str = "slides") -> bool:
     return False
 
 
+def build_screen_template(name: str, source: str) -> bool:
+    src = TEMPLATES / source
+    if not src.exists():
+        print(f"ERROR: {name}: source not found ({src})")
+        return False
+
+    findings = scan_file(src)
+    if findings:
+        print(f"ERROR: {name}: {len(findings)} template violation(s)")
+        return False
+
+    print(f"OK: {name}: static HTML template")
+    return True
+
+
 def build_all() -> int:
     failures = 0
     for name, (source, max_pages) in HTML_TARGETS.items():
         if not build_html(name, source, max_pages):
+            failures += 1
+    for name, source in SCREEN_TARGETS.items():
+        if not build_screen_template(name, source):
             failures += 1
     for name, source in DIAGRAM_TARGETS.items():
         if not build_html(name, source, 0, src_dir=DIAGRAMS):
@@ -230,13 +251,16 @@ def build_single(name: str) -> int:
         if ok:
             show_fonts(EXAMPLES / f"{name}.pdf")
         return 0 if ok else 1
+    if name in SCREEN_TARGETS:
+        ok = build_screen_template(name, SCREEN_TARGETS[name])
+        return 0 if ok else 1
     if name in DIAGRAM_TARGETS:
         source = DIAGRAM_TARGETS[name]
         ok = build_html(name, source, 0, src_dir=DIAGRAMS)
         return 0 if ok else 1
     if name in PPTX_TARGETS:
         return 0 if build_slides(name) else 1
-    known = list(HTML_TARGETS) + list(DIAGRAM_TARGETS) + list(PPTX_TARGETS)
+    known = list(HTML_TARGETS) + list(SCREEN_TARGETS) + list(DIAGRAM_TARGETS) + list(PPTX_TARGETS)
     print(f"ERROR: unknown target: {name}. Known: {', '.join(known)}")
     return 2
 
@@ -470,12 +494,25 @@ def verify_slides_target(name: str) -> list[str]:
     return [] if build_slides(name) else ["slides build failed"]
 
 
+def verify_screen_target(name: str, source: str) -> list[str]:
+    src = TEMPLATES / source
+    if not src.exists():
+        return [f"source not found: {src}"]
+    findings = scan_file(src)
+    if findings:
+        return [f"{len(findings)} template violation(s)"]
+    return []
+
+
 def verify_all(target: str | None = None) -> int:
     targets_to_run: dict[str, tuple[str, int, Path] | None] = {}
+    screen_targets_to_run: dict[str, str] = {}
     if target:
         if target in HTML_TARGETS:
             src, mp = HTML_TARGETS[target]
             targets_to_run[target] = (src, mp, TEMPLATES)
+        elif target in SCREEN_TARGETS:
+            screen_targets_to_run[target] = SCREEN_TARGETS[target]
         elif target in DIAGRAM_TARGETS:
             targets_to_run[target] = (DIAGRAM_TARGETS[target], 0, DIAGRAMS)
         elif target in PPTX_TARGETS:
@@ -486,6 +523,8 @@ def verify_all(target: str | None = None) -> int:
     else:
         for name, (src, mp) in HTML_TARGETS.items():
             targets_to_run[name] = (src, mp, TEMPLATES)
+        for name, src in SCREEN_TARGETS.items():
+            screen_targets_to_run[name] = src
         for name, src in DIAGRAM_TARGETS.items():
             targets_to_run[name] = (src, 0, DIAGRAMS)
         for name in PPTX_TARGETS:
@@ -504,6 +543,14 @@ def verify_all(target: str | None = None) -> int:
             failures += 1
         else:
             rows.append((f"OK: {name}", "ok"))
+
+    for name, source in screen_targets_to_run.items():
+        issues = verify_screen_target(name, source)
+        if issues:
+            rows.append((f"ERROR: {name}", "; ".join(issues)))
+            failures += 1
+        else:
+            rows.append((f"OK: {name}", "static HTML template"))
 
     for status, detail in rows:
         print(f"{status}: {detail}")

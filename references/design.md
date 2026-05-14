@@ -1036,7 +1036,7 @@ The landing-page template is the only kami template designed for browser deliver
 
 ### Hero
 
-- Title: 96px (EN) / 88px (CN), weight 500, letter-spacing -0.5px (EN) / 0 (CN)
+- Title: 96px (EN) / 88px (CN), weight 500, letter-spacing 0
 - Entrance animation: `translateY(10px) + blur(6px)` fading in over 900ms with 120ms delay
 - Tagline: 21px (EN) / 20px (CN), olive color, letter-spacing 0.2px (EN) / 0.4px (CN), max-width 820px
 - Tokens row: small key facts as `<span><b>value</b> label</span>`, 13px stone, `--latin-ui` font
@@ -1045,10 +1045,11 @@ The landing-page template is the only kami template designed for browser deliver
 ### Gallery
 
 - Grid: `minmax(0, 1fr) auto`, frame spans full width, caption and tabs on row 2
-- Frame: dark background `--shot-bg: #141318`, rounded 10px, 1px border
+- Frame: dark background `--shot-bg: #141318`, rounded 8px, 1px border
 - Transition: direction-aware slide + scale(0.985), 620-880ms cubic-bezier(0.22, 1, 0.36, 1)
 - Sweep overlay: diagonal light gradient that slides across on switch (540-920ms)
 - Auto-rotate: 4500ms interval, pauses on hover/focus, respects prefers-reduced-motion
+- Empty gallery: script exits cleanly; single-image gallery initializes caption/tab state without starting auto-rotate
 - Tabs: pill buttons 12px `--latin-ui`, active state uses brand-tint background
 - Click navigation: left half = previous, right half = next
 
@@ -1065,14 +1066,14 @@ Both: pill shape (999px radius), 15px `--latin-ui`, weight 500, 1.5px border, mi
 
 ### Pricing
 
-- Amount: 112px serif, letter-spacing -2.8px
+- Amount: 112px serif, letter-spacing 0
 - Comparison: 18px, use `<s>` for competitor prices (stone color, 1px underline)
 - Highlight: `.hl` class for brand-colored emphasis
-- Terms: 13.5px olive, centered, max-width 640px
+- Terms: 13.5px olive, centered, max-width 640px, line-height 1.5
 
 ### Manifesto
 
-- Brand philosophy paragraph: 20px, weight 400, line-height 1.65, letter-spacing 0.05em
+- Brand philosophy paragraph: 20px, weight 400, line-height 1.55, letter-spacing 0.05em
 - `<em>` renders in brand color with `font-style: normal` (not italic, per invariant #10)
 
 ### Code Block
@@ -1102,7 +1103,7 @@ Both: pill shape (999px radius), 15px `--latin-ui`, weight 500, 1.5px border, mi
 ### Footer
 
 - Two-column flex: brand mark (icon + name + tagline) left, colophon (links + ethos) right
-- Mark icon: 56px rounded 12px
+- Mark icon: 56px rounded 8px
 - Links: flex-wrap row, 20px gap, dark-warm color
 - Ethos: closing line, stone color, max-width 360px (no italic per invariant #10)
 - Collapses to single column below 880px

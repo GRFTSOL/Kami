@@ -460,7 +460,7 @@ Invariant #10 applies to landing pages too. No `font-style: italic` anywhere. Po
 
 ### Features list rules
 
-- **Name is the tool, subtitle is the metaphor.** Feature name in brand color, subtitle in italic/small text.
+- **Name is the tool, subtitle is the metaphor.** Feature name in brand color, subtitle in small muted text.
 - **Description answers "so what?"** Not what it does, but why the user should care. One paragraph, 2-3 sentences.
 
 ### Principles rules

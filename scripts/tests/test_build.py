@@ -8,6 +8,8 @@ dependency (matching the rest of the repo's lean tooling).
 from __future__ import annotations
 
 import contextlib
+import builtins
+import importlib.util
 import io
 import sys
 import tempfile
@@ -21,6 +23,7 @@ from build import (  # noqa: E402
     DIAGRAM_TARGETS,
     HTML_TARGETS,
     PPTX_TARGETS,
+    SCREEN_TARGETS,
     _BG_B,
     _BG_G,
     _BG_R,
@@ -34,6 +37,7 @@ from shared import (  # noqa: E402
     PARCHMENT_RGB,
     TEMPLATES,
     build_targets,
+    screen_targets,
     stabilize_targets,
 )
 from highlight import highlight_code_blocks  # noqa: E402
@@ -84,8 +88,12 @@ def silently(callable_, *args, **kwargs):
 def test_registry_consistency() -> None:
     check("HTML_TEMPLATES has 16 entries", len(HTML_TEMPLATES) == 16,
           f"got {len(HTML_TEMPLATES)}")
+    check("SCREEN_TARGETS has 2 entries", len(SCREEN_TARGETS) == 2,
+          f"got {len(SCREEN_TARGETS)}")
     check("build_targets matches HTML_TEMPLATES key set",
           set(build_targets()) == set(HTML_TEMPLATES))
+    check("screen_targets matches SCREEN_TARGETS key set",
+          set(screen_targets()) == set(SCREEN_TARGETS))
     check("stabilize_targets is a subset of HTML_TEMPLATES",
           set(stabilize_targets()) <= set(HTML_TEMPLATES))
     check("HTML_TARGETS in build.py matches build_targets()",
@@ -440,8 +448,17 @@ def test_density_threshold_buckets() -> None:
 def test_highlight_with_language() -> None:
     html = '<pre><code class="language-python">def foo():\n    pass</code></pre>'
     out = highlight_code_blocks(html)
+    if importlib.util.find_spec("pygments") is None:
+        check("highlight skips styled output when Pygments is absent",
+              out == html,
+              f"out differs: {out[:200]}")
+        return
+
     check("highlight adds style spans to language-tagged block",
           "<span" in out and "style=" in out,
+          f"out: {out[:200]}")
+    check("highlight avoids synthetic bold",
+          "font-weight" not in out.lower(),
           f"out: {out[:200]}")
     check("highlight preserves pre/code wrapper",
           "<pre" in out and "</code>" in out)
@@ -451,6 +468,26 @@ def test_highlight_without_language() -> None:
     html = '<pre><code>def foo():\n    pass</code></pre>'
     out = highlight_code_blocks(html)
     check("highlight does not modify plain code block",
+          out == html,
+          f"out differs: {out[:200]}")
+
+
+def test_highlight_without_pygments_dependency() -> None:
+    html = '<pre><code class="language-python">def foo():\n    pass</code></pre>'
+    original_import = builtins.__import__
+
+    def fake_import(name, *args, **kwargs):
+        if name == "pygments" or name.startswith("pygments."):
+            raise ImportError("blocked for fallback test")
+        return original_import(name, *args, **kwargs)
+
+    try:
+        builtins.__import__ = fake_import
+        out = highlight_code_blocks(html)
+    finally:
+        builtins.__import__ = original_import
+
+    check("highlight falls back unchanged without Pygments",
           out == html,
           f"out differs: {out[:200]}")
 
@@ -485,6 +522,7 @@ def main() -> int:
     test_density_threshold_buckets()
     test_highlight_with_language()
     test_highlight_without_language()
+    test_highlight_without_pygments_dependency()
     print()
     print(f"Passed: {_PASS} | Failed: {_FAIL}")
     return 0 if _FAIL == 0 else 1

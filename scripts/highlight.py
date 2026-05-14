@@ -41,7 +41,7 @@ def _build_kami_style():
             Comment.Single:     KAMI_PALETTE["stone"],
             Comment.Multiline:  KAMI_PALETTE["stone"],
             Comment.Preproc:    KAMI_PALETTE["stone"],
-            Keyword:            f'bold {KAMI_PALETTE["brand"]}',
+            Keyword:            KAMI_PALETTE["brand"],
             Keyword.Constant:   KAMI_PALETTE["brand"],
             Keyword.Namespace:  KAMI_PALETTE["brand"],
             Keyword.Type:       KAMI_PALETTE["brand"],

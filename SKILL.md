@@ -411,13 +411,14 @@ Do not ask the user which format to export. Decide from context:
 | "嵌入" / "插图" / "embed in another doc" | PNG only | Used as material inside other documents |
 | User explicitly says a format | Follow the user | Explicit request overrides auto-selection |
 
-PDF always ships. PPTX follows slides. PNG follows sharing context. The user should never need to think about formats.
+PDF always ships for document templates. Landing pages ship as a ready-to-serve static HTML file. PPTX follows slides. PNG follows sharing context. The user should never need to think about formats.
 
 ## Step 5 · Build & verify
 
 ```bash
 python3 scripts/build.py --verify           # build all templates + page count + font check + slides
 python3 scripts/build.py --verify resume-en # single target full verification
+python3 scripts/build.py landing-page        # screen-first static HTML template check
 python3 scripts/build.py --verify slides    # single slide deck verification
 python3 scripts/build.py --check-placeholders path/to/filled.html
 python3 scripts/build.py --check-density              # page whitespace scanner (skips cover)
