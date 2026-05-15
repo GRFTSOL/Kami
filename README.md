@@ -43,6 +43,30 @@ Part of a trilogy: [Kaku](https://github.com/tw93/Kaku) (書く) writes code, [W
 </tr>
 </table>
 
+## Landing Pages
+
+The landing-page template in action: three products, one constraint set.
+
+<table>
+<tr>
+  <td align="center" width="33%">
+    <a href="https://kami.tw93.fun"><img src="assets/images/1.png" alt="Kami landing page"></a>
+    <br><b>Kami</b> · English
+    <br><sub>Design system homepage</sub>
+  </td>
+  <td align="center" width="33%">
+    <a href="https://luo.tw93.fun"><img src="assets/images/2.png" alt="Luo landing page"></a>
+    <br><b>Luo</b> · 中文
+    <br><sub>CJK reading font specimen</sub>
+  </td>
+  <td align="center" width="33%">
+    <a href="https://mole.fit"><img src="assets/images/3.png" alt="Mole landing page"></a>
+    <br><b>Mole</b> · English
+    <br><sub>macOS system utility</sub>
+  </td>
+</tr>
+</table>
+
 ## Usage
 
 **Claude Code**
@@ -126,30 +150,6 @@ The same constraint system doubles as a brief you can hand to any drawing tool. 
 </table>
 
 <sub>Rendered by ChatGPT Images 2.0 in a single pass with no manual touch-up. Kami specifies, the renderer draws.</sub>
-
-## Landing Pages
-
-The landing-page template in action: three products, one constraint set.
-
-<table>
-<tr>
-  <td align="center" width="33%">
-    <a href="https://kami.tw93.fun"><img src="assets/images/1.png" alt="Kami landing page"></a>
-    <br><b>Kami</b> · English
-    <br><sub>Design system homepage</sub>
-  </td>
-  <td align="center" width="33%">
-    <a href="https://luo.tw93.fun"><img src="assets/images/2.png" alt="Luo landing page"></a>
-    <br><b>Luo</b> · 中文
-    <br><sub>CJK reading font specimen</sub>
-  </td>
-  <td align="center" width="33%">
-    <a href="https://mole.fit"><img src="assets/images/3.png" alt="Mole landing page"></a>
-    <br><b>Mole</b> · English
-    <br><sub>macOS system utility</sub>
-  </td>
-</tr>
-</table>
 
 ## Background
 
