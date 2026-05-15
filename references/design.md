@@ -53,7 +53,7 @@ This system is a fusion of Anthropic's visual language and real Chinese / Englis
 ```css
 --near-black:  #141413;   /* Primary text - deepest but not pure black, warm olive undertone */
 --dark-warm:   #3d3d3a;   /* Secondary text, table headers, links */
---olive:       #504e49;   /* Subtext - descriptions, captions. JA override: #4d4c48 (YuMincho thin strokes need darker text) */
+--olive:       #504e49;   /* Subtext - descriptions, captions. zh-CN TsangerJinKai02 不需要 override. JA override: #4d4c48 (YuMincho thin strokes need darker text) */
 --stone:       #6b6a64;   /* Tertiary - dates, metadata */
 ```
 
@@ -136,6 +136,7 @@ Any font-family that may render Chinese or Japanese must include a CJK fallback,
 
 **Screen (px)** ≈ pt × 1.33 (9pt ≈ 12px, 18pt ≈ 24px).
 **Minimum floor**: web text >= 12px, PDF text >= 9pt.
+**Slide caption floor**: slides 上 caption 至少 24px (不是 12px)。Print 9pt 在投影距离不可读，slide caption 用 pt x 2.67。
 
 ### Weight
 
@@ -160,6 +161,7 @@ Print documents are **tighter** than English web body. English web typically run
 | Dense body | 1.40-1.45 | Resume, one-pager, dense information |
 | Reading body | 1.50-1.55 | Long-doc chapters, letters |
 | Label / caption | 1.30-1.40 | Small labels, multi-line metadata |
+| CJK screen body | 1.55-1.65 | 中日文 serif 在 slide scale (27-33px) 下比 print x1.33 更需松行高 |
 
 **Forbidden**:
 - 1.60+ - loose feel, web rhythm, not print
