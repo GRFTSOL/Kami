@@ -11,6 +11,8 @@
   <link rel="alternate" hreflang="en" href="https://kami.tw93.fun/">
   <link rel="alternate" hreflang="zh-CN" href="https://kami.tw93.fun/index-zh.html">
   <link rel="alternate" hreflang="ja" href="https://kami.tw93.fun/index-ja.html">
+  <link rel="alternate" hreflang="zh-Hant" href="https://kami.tw93.fun/index-tw.html">
+  <link rel="alternate" hreflang="ko" href="https://kami.tw93.fun/index-ko.html">
   <link rel="alternate" hreflang="x-default" href="https://kami.tw93.fun/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Kami 紙：AIエージェント向けドキュメントデザインシステム">
@@ -83,7 +85,16 @@
     <div class="eyebrow">
       <span>Design System · v1.5.0<span class="eyebrow-date"> · 2026.05</span></span>
       <span class="hero-links">
-        <nav class="lang-switch" onclick="sessionStorage.setItem('kami-lang','1')"><a href="./index.html">EN</a><a href="./index-zh.html">中</a><a href="./index-ja.html" class="active">日</a></nav>
+        <nav class="lang-switch" aria-label="Language" data-lang-switch>
+          <button class="lang-trigger" type="button" aria-expanded="false" data-lang-trigger>日本語</button>
+          <div class="lang-menu" data-lang-menu>
+            <a href="./index.html" data-lang="en">English</a>
+            <a href="./index-zh.html" data-lang="zh">简体中文</a>
+            <a href="./index-tw.html" data-lang="tw">繁體中文</a>
+            <a href="./index-ja.html" class="active" data-lang="ja">日本語</a>
+            <a href="./index-ko.html" data-lang="ko">한국어</a>
+          </div>
+        </nav>
         <a href="https://github.com/tw93/kami" target="_blank" rel="noopener" aria-label="GitHub">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
             <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/>
@@ -660,5 +671,31 @@ beauty   = constraints × <span class="k">intention</span> ÷ noise</pre>
   </footer>
 
 </main>
+<script>
+(function(){
+  var sw=document.querySelector('[data-lang-switch]');
+  if(!sw)return;
+  var trigger=sw.querySelector('[data-lang-trigger]');
+  function setOpen(open){
+    sw.classList.toggle('is-open',open);
+    trigger.setAttribute('aria-expanded',open);
+  }
+  trigger.addEventListener('click',function(e){
+    e.stopPropagation();
+    setOpen(!sw.classList.contains('is-open'));
+  });
+  sw.querySelectorAll('[data-lang-menu] a').forEach(function(a){
+    a.addEventListener('click',function(){
+      localStorage.setItem('kami-lang',a.getAttribute('data-lang'));
+    });
+  });
+  document.addEventListener('click',function(e){
+    if(!sw.contains(e.target))setOpen(false);
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape')setOpen(false);
+  });
+})();
+</script>
 </body>
 </html>

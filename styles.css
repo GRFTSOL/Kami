@@ -52,34 +52,122 @@
     --olive: #4d4c48;  /* YuMincho strokes are thinner; darken olive text to compensate */
   }
 
+  html[lang="zh-Hant"] {
+    --serif: "TsangerJinKai02", "Source Han Serif TC", "Noto Serif CJK TC", "Songti TC", Georgia, serif;
+    --sans: var(--serif);
+  }
+
+  html[lang="ko"] {
+    --serif: "Nanum Myeongjo", AppleMyungjo, "Noto Serif CJK KR", "Source Han Serif K", Georgia, serif;
+    --sans: var(--serif);
+    --olive: #4d4c48;
+  }
+
   /* Language switcher */
   .lang-switch {
-    display: flex;
-    gap: 0;
+    position: relative;
+    z-index: 20;
     font-family: var(--sans);
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .lang-trigger {
+    min-height: 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0;
+    border: 0;
+    color: var(--stone);
+    background: transparent;
+    cursor: pointer;
+    font: inherit;
     font-size: 12px;
     font-weight: 500;
+    line-height: 1;
+    transition: color 0.15s;
   }
-  .lang-switch a {
-    display: block;
-    padding: 4px 8px;
-    text-decoration: none;
-    color: var(--olive);
+  .lang-trigger::after {
+    content: "";
+    width: 4px;
+    height: 4px;
+    margin-top: -2px;
+    border-right: 1px solid currentColor;
+    border-bottom: 1px solid currentColor;
+    opacity: 0.55;
+    transform: rotate(45deg);
+    transition: transform 0.18s ease, opacity 0.18s ease;
+  }
+  .lang-trigger:hover,
+  .lang-switch.is-open .lang-trigger {
+    color: var(--brand);
+  }
+  .lang-switch.is-open .lang-trigger::after {
+    margin-top: 2px;
+    opacity: 0.7;
+    transform: rotate(225deg);
+  }
+  .lang-trigger:focus-visible,
+  .lang-menu a:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--brand) 38%, transparent);
+    outline-offset: 3px;
+  }
+  .lang-switch::after {
+    content: "";
+    position: absolute;
+    left: -10px;
+    right: -10px;
+    top: 100%;
+    height: 12px;
+  }
+  .lang-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 140px;
+    display: grid;
+    gap: 1px;
+    padding: 5px;
     border: 1px solid var(--border-soft);
-    cursor: pointer;
-    background: var(--ivory);
-    transition: background 0.15s, color 0.15s;
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--ivory) 97%, transparent);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 8px 24px rgba(20, 19, 19, 0.08);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-4px);
+    transition: opacity 0.16s ease, transform 0.16s ease, visibility 0.16s ease;
   }
-  .lang-switch a:first-child { border-radius: 4px 0 0 4px; }
-  .lang-switch a:last-child { border-radius: 0 4px 4px 0; border-left: none; }
-  .lang-switch a.active {
-    background: var(--brand);
-    color: var(--ivory);
-    border-color: var(--brand);
+  .lang-switch.is-open .lang-menu,
+  .lang-switch:hover .lang-menu,
+  .lang-switch:focus-within .lang-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
   }
-  .lang-switch a:hover:not(.active) {
-    background: var(--warm-sand);
-    color: var(--near-black);
+  .lang-menu a {
+    min-height: 29px;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    border-radius: 6px;
+    color: var(--olive);
+    font-size: 12px;
+    line-height: 1;
+    text-decoration: none;
+    transition: color 0.15s, background 0.15s;
+  }
+  .lang-menu a:hover {
+    color: var(--brand);
+    background: color-mix(in srgb, var(--brand) 8%, transparent);
+  }
+  .lang-menu a.active {
+    color: var(--brand);
+    font-weight: 600;
+    background: color-mix(in srgb, var(--brand) 12%, transparent);
   }
 
   /* Page transition */
@@ -113,12 +201,16 @@
     -moz-osx-font-smoothing: grayscale;
   }
   html[lang="zh-CN"] body { letter-spacing: 0.35px; }
+  html[lang="zh-Hant"] body { letter-spacing: 0.35px; }
+  html[lang="ko"] body { letter-spacing: 0; }
   html[lang="en"] body { letter-spacing: 0; }
   html[lang="ja"] body { letter-spacing: 0.02em; }
   html[lang="en"] .section-title { letter-spacing: -0.3px; }
   html[lang="en"] .manifesto,
   html[lang="ja"] .manifesto { letter-spacing: 0; }
   html[lang="zh-CN"] .section-title,
+  html[lang="zh-Hant"] .section-title,
+  html[lang="ko"] .section-title,
   html[lang="ja"] .section-title {
     letter-spacing: 0;
   }
