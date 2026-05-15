@@ -16,12 +16,14 @@
   <meta property="og:title" content="Kami 紙：AIエージェント向けドキュメントデザインシステム">
   <meta property="og:description" content="Kami（紙）は、AI時代の文書制作に向けた、あたたかな紙面デザインシステムです。単一アクセントカラー、serif中心の階層、編集的な余白で一貫した可読性をつくります。">
   <meta property="og:url" content="https://kami.tw93.fun/index-ja.html">
-  <meta property="og:image" content="https://gw.alipayobjects.com/zos/k/vl/logo.svg">
+  <meta property="og:image" content="https://kami.tw93.fun/assets/images/1.png">
+  <meta property="og:image:width" content="3110">
+  <meta property="og:image:height" content="2392">
   <meta property="og:locale" content="ja_JP">
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Kami 紙：AIエージェント向けドキュメントデザインシステム">
   <meta name="twitter:description" content="Kami（紙）は、AI時代の文書制作に向けた、あたたかな紙面デザインシステムです。単一アクセントカラー、serif中心の階層、編集的な余白で一貫した可読性をつくります。">
-  <meta name="twitter:image" content="https://gw.alipayobjects.com/zos/k/vl/logo.svg">
+  <meta name="twitter:image" content="https://kami.tw93.fun/assets/images/1.png">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -74,7 +76,6 @@
   </script>
 </head>
 <body>
-<nav class="lang-switch"><a href="./index.html">EN</a><a href="./index-zh.html">中</a><a href="./index-ja.html" class="active">日</a></nav>
 <main class="page">
 
   <!-- ============ HERO ============ -->
@@ -82,6 +83,7 @@
     <div class="eyebrow">
       <span>Design System · v1.5.0<span class="eyebrow-date"> · 2026.05</span></span>
       <span class="hero-links">
+        <nav class="lang-switch" onclick="sessionStorage.setItem('kami-lang','1')"><a href="./index.html">EN</a><a href="./index-zh.html">中</a><a href="./index-ja.html" class="active">日</a></nav>
         <a href="https://github.com/tw93/kami" target="_blank" rel="noopener" aria-label="GitHub">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
             <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/>
@@ -132,6 +134,32 @@
         <a href="assets/demos/demo-agent-slides.pdf" target="_blank"><img src="assets/demos/demo-agent-slides.png" alt="Agent slides" loading="lazy" decoding="async"></a>
         <p class="demo-title">Slides</p>
         <p class="demo-desc">Agent キーノート、6枚</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LANDING PAGES ============ -->
+  <section>
+    <div class="section-head">
+      <p class="section-num">Landing Pages</p>
+      <h2 class="section-title">Kami で構築</h2>
+      <p class="section-lede">同じランディングページテンプレートを 3 つの異なるプロダクトに適用。ひとつの制約セットから、3 つの異なる目的に。</p>
+    </div>
+    <div class="landing-grid">
+      <div class="landing-card">
+        <a href="https://kami.tw93.fun" target="_blank" rel="noopener"><img src="assets/images/1.png" alt="Kami ランディングページ" loading="lazy" decoding="async"></a>
+        <p class="demo-title">Kami</p>
+        <p class="demo-desc">デザインシステム ホームページ</p>
+      </div>
+      <div class="landing-card">
+        <a href="https://luo.tw93.fun" target="_blank" rel="noopener"><img src="assets/images/2.png" alt="Luo ランディングページ" loading="lazy" decoding="async"></a>
+        <p class="demo-title">Luo 落文</p>
+        <p class="demo-desc">CJK リーディングフォント</p>
+      </div>
+      <div class="landing-card">
+        <a href="https://mole.fit" target="_blank" rel="noopener"><img src="assets/images/3.png" alt="Mole ランディングページ" loading="lazy" decoding="async"></a>
+        <p class="demo-title">Mole 鼹</p>
+        <p class="demo-desc">macOS システムユーティリティ</p>
       </div>
     </div>
   </section>
@@ -632,16 +660,5 @@ beauty   = constraints × <span class="k">intention</span> ÷ noise</pre>
   </footer>
 
 </main>
-<script>
-(function(){
-  var sw=document.querySelector('.lang-switch'),last=0;
-  window.addEventListener('scroll',function(){
-    var y=window.scrollY;
-    if(y>80&&y>last)sw.classList.add('hidden');
-    else sw.classList.remove('hidden');
-    last=y;
-  },{passive:true});
-})();
-</script>
 </body>
 </html>

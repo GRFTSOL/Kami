@@ -17,7 +17,7 @@ This is not a UI framework. It is a constraint system for print, designed to kee
 7. Letter-spacing: Chinese body 0.3pt for comfortable reading; English body 0; tracking only for short labels and overlines
 8. Tag backgrounds must be solid hex, never rgba (WeasyPrint renders a double rectangle)
 9. Depth via ring shadow or whisper shadow, never hard drop shadows
-10. **No italic anywhere**. No `font-style: italic` in any template or demo. No italic @font-face declarations needed
+10. **No italic in print templates**. No `font-style: italic` in any PDF template or demo. Exception: landing page (screen-only) uses italic for poetic lines (gallery captions, feature subtitles, footer ethos) following the Mole pattern
 
 This system is a fusion of Anthropic's visual language and real Chinese / English resume iteration. Details below.
 
@@ -1036,6 +1036,12 @@ The landing-page template is the only kami template designed for browser deliver
 - Sections numbered `00 · Label` through `04 · Label` with `section-num` / `section-title` / `section-lede` pattern
 - Two responsive breakpoints: `880px` (tablet) and `480px` (phone)
 
+### Eyebrow
+
+- Flex row: `space-between`, left side = product category text + version link, right side = hero-links (lang switch, social icons)
+- Version link: brand color, weight 600, clickable to releases page. Slot: `{{VERSION}}`
+- `--latin-ui` 12px, weight 500, letter-spacing 0.4px, uppercase, stone color
+
 ### Hero
 
 - Title: 96px (EN) / 88px (CN), weight 500, letter-spacing 0
@@ -1054,6 +1060,7 @@ The landing-page template is the only kami template designed for browser deliver
 - Empty gallery: script exits cleanly; single-image gallery initializes caption/tab state without starting auto-rotate
 - Tabs: pill buttons 12px `--latin-ui`, active state uses brand-tint background
 - Click navigation: left half = previous, right half = next
+- Caption `.line`: italic serif, 14px olive. Poetic one-liners describing each screenshot
 
 ### Buttons
 
@@ -1076,7 +1083,7 @@ Both: pill shape (999px radius), 15px `--latin-ui`, weight 500, 1.5px border, mi
 ### Manifesto
 
 - Brand philosophy paragraph: 20px, weight 400, line-height 1.55, letter-spacing 0.05em
-- `<em>` renders in brand color with `font-style: normal` (not italic, per invariant #10)
+- `<em>` renders in brand color with `font-style: normal` (brand emphasis, not typographic italic)
 
 ### Code Block
 
@@ -1095,17 +1102,25 @@ Both: pill shape (999px radius), 15px `--latin-ui`, weight 500, 1.5px border, mi
 - Cards: ivory bg, 1px border, 8px radius, whisper shadow on hover
 - Image fills top, title 15px weight 500 + desc 12px olive below
 
+### Features
+
+- Two-column grid: 200px name + 1fr description, 36px gap, separated by border-soft hairlines
+- Feature name: 22px brand, weight 500
+- Poetic subtitle: `<small>` below name, 13px olive, italic. One short line evoking the feature's character
+- Description: 15px dark-warm, line-height 1.55
+
 ### FAQ
 
 - Wrap each dt/dd pair in `<div class="faq-pair">` for spacing (24px margin-bottom)
 - `<dt>` question: 16px, weight 500, no top margin
 - `<dd>` answer: 14px olive
 - Code spans: mono 12px on brand-tint background, 3px radius
+- Tail paragraph: `.faq-tail` after `</dl>`, 13px stone, links to help page. Closes the FAQ without another section
 
 ### Footer
 
 - Two-column flex: brand mark (icon + name + tagline) left, colophon (links + ethos) right
 - Mark icon: 56px rounded 8px
-- Links: flex-wrap row, 20px gap, dark-warm color
-- Ethos: closing line, stone color, max-width 360px (no italic per invariant #10)
+- Links: inline with middot (`&middot;`) separators between items, dark-warm color. Editorial pattern, not flex-gap
+- Ethos: closing italic serif line, olive color, max-width 360px. The italic voice signals a personal sign-off
 - Collapses to single column below 880px

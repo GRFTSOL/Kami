@@ -127,6 +127,30 @@ The same constraint system doubles as a brief you can hand to any drawing tool. 
 
 <sub>Rendered by ChatGPT Images 2.0 in a single pass with no manual touch-up. Kami specifies, the renderer draws.</sub>
 
+## Landing Pages
+
+The landing-page template in action: three products, one constraint set.
+
+<table>
+<tr>
+  <td align="center" width="33%">
+    <a href="https://kami.tw93.fun"><img src="assets/images/1.png" alt="Kami landing page"></a>
+    <br><b>Kami</b> · English
+    <br><sub>Design system homepage</sub>
+  </td>
+  <td align="center" width="33%">
+    <a href="https://luo.tw93.fun"><img src="assets/images/2.png" alt="Luo landing page"></a>
+    <br><b>Luo</b> · 中文
+    <br><sub>CJK reading font specimen</sub>
+  </td>
+  <td align="center" width="33%">
+    <a href="https://mole.fit"><img src="assets/images/3.png" alt="Mole landing page"></a>
+    <br><b>Mole</b> · English
+    <br><sub>macOS system utility</sub>
+  </td>
+</tr>
+</table>
+
 ## Background
 
 I like investing in US equities and ask Claude to write research reports all the time. Every output landed in the same default-doc look: gray, flat, a different layout each session. The structure was hard to scan, the formatting felt dated, and nothing about the page made me want to keep reading. So I started fixing the typography, the palette, the spacing, one rule at a time, until the report became a page I actually enjoyed.

@@ -192,6 +192,12 @@ a:hover { color: var(--brand-light); }
   color: var(--stone);
   margin: 0 0 28px;
 }
+.version-link {
+  color: var(--brand);
+  font-weight: 600;
+}
+.version-link:hover { color: var(--brand-light); }
+
 .hero-links {
   display: flex;
   gap: 12px;
@@ -421,6 +427,7 @@ section { margin-bottom: 72px; }
   font-family: var(--serif);
   font-size: 14px;
   color: var(--olive);
+  font-style: italic;
   letter-spacing: 0.4px;
   margin: 0;
 }
@@ -488,6 +495,7 @@ section { margin-bottom: 72px; }
   font-size: 13px;
   color: var(--olive);
   font-weight: 400;
+  font-style: italic;
   line-height: 1.5;
   letter-spacing: 0.1px;
 }
@@ -751,6 +759,13 @@ pre.code .k { color: var(--brand); }
   padding: 1px 6px;
   border-radius: 3px;
 }
+.faq-tail {
+  font-family: var(--serif);
+  font-size: 13px;
+  color: var(--stone);
+  margin: 28px 0 0;
+}
+.faq-tail a { color: var(--brand); }
 
 /* ========== Footer ========== */
 
@@ -799,19 +814,18 @@ footer.foot {
   max-width: 480px;
 }
 .foot .colophon .links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 20px;
-  justify-content: flex-end;
+  font-family: var(--latin-ui);
+  color: var(--dark-warm);
   margin-bottom: 16px;
+  line-height: 1.55;
 }
 .foot .colophon .links a {
-  font-family: var(--latin-ui);
   color: var(--dark-warm);
 }
 .foot .colophon .links a:hover { color: var(--brand); }
 .foot .colophon .ethos {
-  color: var(--stone);
+  color: var(--olive);
+  font-style: italic;
   line-height: 1.55;
   max-width: 360px;
   margin-left: auto;
@@ -868,7 +882,6 @@ footer.foot {
     margin-top: 48px;
   }
   .foot .colophon { text-align: left; max-width: 100%; }
-  .foot .colophon .links { justify-content: flex-start; }
   .foot .colophon .ethos { margin-left: 0; }
   .foot { align-items: flex-start; }
 }
@@ -901,7 +914,7 @@ footer.foot {
   <!-- ============ Hero ============ -->
   <header class="hero">
     <div class="eyebrow">
-      <span>{{EYEBROW_TEXT}}</span>
+      <span>{{EYEBROW_TEXT}} · <a class="version-link" href="{{RELEASES_URL}}">{{VERSION}}</a></span>
       <span class="hero-links">
         <!-- {{HERO_LINKS}} -->
       </span>
@@ -998,6 +1011,9 @@ footer.foot {
       </div>
       -->
     </dl>
+    <!-- {{FAQ_TAIL}} — 可选的收尾段落，例如：
+    <p class="faq-tail">更多问题？请访问<a href="/help">帮助页面</a>。</p>
+    -->
   </section>
 
   <!-- ============ Footer ============ -->
@@ -1008,9 +1024,15 @@ footer.foot {
       <span class="wm-line">{{FOOTER_TAGLINE}}</span>
     </div>
     <div class="colophon">
-      <nav class="links">
-        <!-- {{FOOTER_LINKS}} -->
-      </nav>
+      <div class="links">
+        <!-- {{FOOTER_LINKS}} — 居中点分隔链接，例如：
+        <a href="https://x.com/..." target="_blank" rel="noopener">Twitter</a> &middot;
+        <a href="mailto:...">邮箱</a> &middot;
+        <a href="/help">帮助</a> &middot;
+        <a href="/terms">条款</a> &middot;
+        <a href="/privacy">隐私</a>
+        -->
+      </div>
       <p class="ethos">{{FOOTER_ETHOS}}</p>
     </div>
   </footer>
