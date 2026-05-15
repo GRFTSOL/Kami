@@ -247,6 +247,7 @@ Scan for these when drawing or reviewing:
 
 ### Slides
 - One diagram per slide, max. The diagram is the body. Text is caption, not a sidebar. At slide scale (1920x1080), scale the SVG to fill >=65% of the slide area; print-sized diagram on screen slide leaves ~35% dead space.
+- **Alternative when the diagram cannot grow** (already at semantic max width, e.g. flow charts or quadrant maps): insert a 70-100 char olive paragraph (`color: var(--olive)`, `font-size: 28px`, `line-height: 1.55`) between figure and caption. The paragraph carries the editorial reading; the caption stays one line as the takeaway. Keeps vertical fill above 60% without forcing the SVG larger than its information density supports.
 
 ---
 

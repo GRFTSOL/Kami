@@ -290,6 +290,8 @@ Structure is necessary but not sufficient. These bars define what separates comp
 
 **Term consistency self-check**: after drafting, list every domain term that appears 3 or more times (product names, feature names, roles, metrics). Confirm there is exactly one spelling and capitalization for each. Inconsistent casing ("LLM" vs "llm" vs "large language model") signals an unreviewed draft.
 
+**Caption quality bar**: every cap must answer "why does this slide matter" — give a tradeoff, an applicability boundary, a next step, or the insight the diagram alone cannot say. Two failure modes both waste the cap's attention slot: restating the slide title in different words (anti-pattern #29), or restating the flow diagram in prose (anti-pattern #26). If removing the cap would make the slide weaker, it is doing its job; if removing it changes nothing, rewrite it.
+
 **Term annotation half-life**: decks 超过 10 张时，跨越 10-slide 窗口再出现的术语需重标。见 core principle #7。
 
 ### Equity Report
